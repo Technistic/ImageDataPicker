@@ -10,7 +10,6 @@
 		69CF513A2DC45A1400402D6E /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF512E2DC45A1400402D6E /* ImageDataPicker.framework */; };
 		69CF51B62DC45C8A00402D6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 69CF51B52DC45C8900402D6E /* README.md */; };
 		69CF51D32DC4675900402D6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF51D22DC4675900402D6E /* UIKit.framework */; platformFilters = (ios, xros, ); };
-		69E73CEE2DE6A66300618E91 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 69E73CED2DE6A65400618E91 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -42,7 +41,6 @@
 		69CF51392DC45A1400402D6E /* ImageDataPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageDataPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51B52DC45C8900402D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		69CF51D22DC4675900402D6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		69E73CED2DE6A65400618E91 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -86,7 +84,6 @@
 		69CF51242DC45A1400402D6E = {
 			isa = PBXGroup;
 			children = (
-				69E73CED2DE6A65400618E91 /* .gitignore */,
 				69CF51B52DC45C8900402D6E /* README.md */,
 				69CF51302DC45A1400402D6E /* ImageDataPicker */,
 				69CF513D2DC45A1400402D6E /* ImageDataPickerTests */,
@@ -217,7 +214,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69E73CEE2DE6A66300618E91 /* .gitignore in Resources */,
 				69CF51B62DC45C8A00402D6E /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
