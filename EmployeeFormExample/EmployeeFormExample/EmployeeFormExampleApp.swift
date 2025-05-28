@@ -49,9 +49,9 @@ struct EmployeeFormExampleApp: App {
             ContentView()
                 .onAppear {
                     // Always start by deleting any sample data.
-                    //SampleDataManager(
-                    //    modelContext: sharedModelContainer.mainContext
-                    //).deleteSampleData()
+                    SampleDataManager(
+                        modelContext: sharedModelContainer.mainContext
+                    ).deleteSampleData()
 
                     // Load sample data if the database is empty.
                     let descriptor = FetchDescriptor<Employee>(

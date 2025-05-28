@@ -91,6 +91,7 @@ struct EmployeeView: View {
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.bordered)
+                    .accessibilityLabel("Cancel changes")
                     Spacer()
                     Button {
                         saveEmployee()
@@ -100,6 +101,7 @@ struct EmployeeView: View {
                     }
                     .disabled(!hasChanges)
                     .buttonStyle(.bordered)
+                    .accessibilityLabel("Save changes")
                 }
                 Spacer()
             }

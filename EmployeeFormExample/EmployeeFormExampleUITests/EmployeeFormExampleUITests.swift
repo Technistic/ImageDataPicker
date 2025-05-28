@@ -57,6 +57,8 @@ final class EmployeeFormExampleUITests: XCTestCase {
             firstName.typeText("\u{8}")
             firstName.typeText("A New Name")
             
+            app.buttons["Save changes"].tap()
+            
             //print(app.navigationBars.firstMatch.buttons)
             app.navigationBars.firstMatch.buttons["Our Employees"]
                 .tap()
