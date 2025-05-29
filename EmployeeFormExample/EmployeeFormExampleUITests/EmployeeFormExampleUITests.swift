@@ -18,12 +18,17 @@ import SwiftData
 //@testable import EmployeeFormExample
 
 final class EmployeeFormExampleUITests: XCTestCase {
+    
+    var app: XCUIApplication!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 #if os(iOS)
         XCUIDevice.shared.orientation = .portrait
 #endif
+        app = XCUIApplication()
+        app.launch()
+
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
@@ -32,17 +37,25 @@ final class EmployeeFormExampleUITests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.terminate()
     }
     
     @MainActor
-    func testExample() throws {
+    func testInitialList() throws {
+        // UI tests must launch the application that they test.
+        //let app = XCUIApplication()
+        //app.launch()
+        
+        XCTAssert(app.images.count == 4)
+    }
+        
+    @MainActor
+    func testEmployeeExists() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
         
-        XCTAssert(app.images.count == 4)
-        
-        let aleshia = app.images["Aleshia Evans"]
+        let aleshia = app.images["EmployeeList.Aleshia.Evans"]
         aleshia.tap()
         
         if app.textFields["Given Name"].waitForExistence(timeout: 5) {
@@ -57,11 +70,15 @@ final class EmployeeFormExampleUITests: XCTestCase {
             firstName.typeText("\u{8}")
             firstName.typeText("A New Name")
             
-            app.buttons["Save changes"].tap()
+            app.buttons[UIIdentifiers.EmployeeView.saveButton].tap()
             
             //print(app.navigationBars.firstMatch.buttons)
-            app.navigationBars.firstMatch.buttons["Our Employees"]
-                .tap()
+           // if app.navigationBars.firstMatch.buttons.count(@"'name' IN $NAME_LIST") > {
+           //
+            //}
+            //if app.navigationBars.firstMatch.buttons.contains("Our Employees") {
+            //    app.navigationBars.firstMatch.buttons["Our Employees"].tap()
+            //}
 
             if app.staticTexts["Our Employees"].waitForExistence(timeout: 5) {
                 XCTAssert(app.staticTexts["A New Name Evans"].exists)

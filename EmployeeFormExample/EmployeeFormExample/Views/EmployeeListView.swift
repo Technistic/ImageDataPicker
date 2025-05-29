@@ -30,34 +30,46 @@ struct EmployeeListView: View {
     @State private var selectedEmployeeID: Employee.ID? = nil
     @State private var columnVisibility =
         NavigationSplitViewVisibility.doubleColumn
+    
+    private let employeeListTestID = UIIdentifiers.EmployeeList.self
+        
 
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             List(selection: $selectedEmployeeID) {
                 ForEach(employees) { employee in
                     EmployeeListRowView(employee: employee)
+                        .accessibilityIdentifier(
+                            employeeListTestID.employeeFullName(firstName: employee.firstName, lastName: employee.lastName)
+                        )
                 }
                 .onDelete(perform: deleteEmployees)
                 .navigationTitle("Our Employees")
             }
-            
-    
+
             .listRowSeparator(.automatic)
 
             .environment(\.defaultMinListRowHeight, 100)
 
-            /* .toolbar {
+            .toolbar {
                 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
+                    .accessibilityIdentifier(
+                        UIIdentifiers.EmployeeList.deleteEmployeeButton
+                    )
                 }
                 #endif
+                
                 ToolbarItem {
                     Button(action: addEmployee) {
                         Label("Add Employee", systemImage: "plus")
                     }
+                    .accessibilityIdentifier(
+                        UIIdentifiers.EmployeeList.addEmployeeButton
+                    )
                 }
-            } */
+            }
             #if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
             #endif
@@ -107,6 +119,8 @@ struct EmployeeListView: View {
 /// A view that presents an employee's details in a row in the list.
 struct EmployeeListRowView: View {
     var employee: Employee?
+    
+    private let employeeListTestID = UIIdentifiers.EmployeeList.self
 
     var body: some View {
         @State var img: Data? = employee?.imageData
@@ -117,16 +131,41 @@ struct EmployeeListRowView: View {
                     imageState: state.imageState
                 )
                 .clippedImageShape(.round)
-
-                .accessibilityLabel(
-                    Text("\(employee?.firstName ?? "") \(employee?.lastName ?? "")")
+                .accessibilityIdentifier(
+                    employeeListTestID.employeeFullName(
+                        firstName: employee!.firstName,
+                        lastName: employee!.lastName
+                    )
                 )
             }
             VStack {
-                Text("\(employee?.firstName ?? "") \(employee?.lastName ?? "")")
-                    .font(.headline)
+                HStack {
+                    Text("\(employee?.firstName ?? "")")
+                        .font(.headline)
+                        .accessibilityIdentifier(
+                            employeeListTestID.firstName(
+                                employeeID: employee!.persistentModelID,
+                                firstName: employee!.firstName
+                            )
+                        )
+
+                    Text("\(employee?.lastName ?? "")")
+                        .font(.headline)
+                        .accessibilityIdentifier(
+                            employeeListTestID.lastName(
+                                employeeID: employee!.persistentModelID,
+                                lastName: employee!.lastName)
+                        )
+                }
+
                 Text("\(employee?.department ?? "")")
                     .font(.subheadline)
+                    .accessibilityIdentifier(
+                        employeeListTestID.department(
+                            employeeID: employee!.persistentModelID,
+                            department: employee!.department
+                        )
+                    )
             }
         }
     }

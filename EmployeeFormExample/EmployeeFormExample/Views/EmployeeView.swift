@@ -48,6 +48,9 @@ struct EmployeeView: View {
                 HStack {
                     Text("\(firstName) \(lastName)")
                         .font(.title)
+                        .accessibilityIdentifier(
+                            UIIdentifiers.EmployeeView.title
+                        )
                 }
                 Spacer()
                 ImageDataPickerView(imageData: $imageData)
@@ -63,15 +66,25 @@ struct EmployeeView: View {
                         TextField("Given Name", text: $firstName)
                             .disableAutocorrection(true)
                             .accessibilityLabel("Given Name")
+                            .accessibilityIdentifier(
+                                UIIdentifiers.EmployeeView.firstNameTextField
+                            )
                         TextField("Family Name", text: $lastName)
                             .disableAutocorrection(true)
                             .accessibilityLabel("Family Name")
+                            .accessibilityIdentifier(
+                                UIIdentifiers.EmployeeView.lastNameTextField
+                            )
                     }
                     Label("Department", systemImage: "person.3.fill")
                         .font(.title)
                         .foregroundColor(.white)
+                        
                     TextField("Department", text: $department)
                         .disableAutocorrection(true)
+                        .accessibilityIdentifier(
+                            UIIdentifiers.EmployeeView.departmentTextField
+                        )
 
                 }
                 .padding(24)
@@ -91,7 +104,9 @@ struct EmployeeView: View {
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.bordered)
-                    .accessibilityLabel("Cancel changes")
+                    .accessibilityIdentifier(
+                        UIIdentifiers.EmployeeView.cancelButton
+                    )
                     Spacer()
                     Button {
                         saveEmployee()
@@ -101,7 +116,9 @@ struct EmployeeView: View {
                     }
                     .disabled(!hasChanges)
                     .buttonStyle(.bordered)
-                    .accessibilityLabel("Save changes")
+                    .accessibilityIdentifier(
+                        UIIdentifiers.EmployeeView.saveButton
+                    )
                 }
                 Spacer()
             }
