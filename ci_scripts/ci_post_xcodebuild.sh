@@ -25,7 +25,7 @@ for ARCHIVE in ../doc_archives/*.doccarchive; do
     }
     ARCHIVE_NAME="$(cmd)"
     echo "Processing Archive: $ARCHIVE"
-    $(xcrun --find docc) process-archive transform-for-static-hosting "$ARCHIVE" --hosting-base-path MySwiftTestPackage/$ARCHIVE_NAME --output-path ../docs/$ARCHIVE_NAME
+    $(xcrun --find docc) process-archive transform-for-static-hosting "$ARCHIVE" --hosting-base-path ImageDataPicker/$ARCHIVE_NAME --output-path ../docs/$ARCHIVE_NAME
 done
 
 ./ci_site_deploy.sh

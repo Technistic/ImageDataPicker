@@ -7,4 +7,20 @@
    <FileRef
       location = "group:EmployeeFormExample/EmployeeFormExample.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:ci_scripts"
+      name = "ci_scripts">
+      <FileRef
+         location = "group:ci_post_xcodebuild.sh">
+      </FileRef>
+      <FileRef
+         location = "group:ci_pre_xcodebuild.sh">
+      </FileRef>
+      <FileRef
+         location = "group:ci_site_deploy.sh">
+      </FileRef>
+      <FileRef
+         location = "group:ci_post_clone.sh">
+      </FileRef>
+   </Group>
 </Workspace>
