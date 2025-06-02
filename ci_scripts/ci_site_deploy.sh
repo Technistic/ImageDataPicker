@@ -12,10 +12,10 @@ git config user.email "$DOCC_GITHUB_EMAIL"
 # Change the GitHub URL to your repository
 git remote set-url origin https://$DOCC_GITHUB_USERNAME:$DOCC_GITHUB_API_TOKEN@github.com/Technistic/ImageDataPicker
 git fetch
-git stash push -u  -- ../docs ../doc_archives
+git stash push -u  -- $CI_WORKSPACE/docs $CI_WORKSPACE/doc_archives
 git checkout feature/docc-hosting
-rm -rf ../docs ../doc_archives
+rm -rf $CI_WORKSPACE/docs $CI_WORKSPACE/doc_archives
 git stash apply
-git add ../docs ../doc_archives
+git add $CI_WORKSPACE/docs $CI_WORKSPACE/doc_archives
 git commit -m "Updated DocC documentation"
 git push --set-upstream origin feature/docc-hosting
