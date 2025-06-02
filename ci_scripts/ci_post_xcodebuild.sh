@@ -23,7 +23,7 @@ mkdir $CI_PRIMARY_REPOSITORY_PATH/docs
 
 for ARCHIVE in $CI_WORKSPACE_PATH/doc_archives/*.doccarchive; do
     cmd() {
-        echo "$ARCHIVE" | awk -F'.' '{print $1}' | awk -F'/' '{print tolower($2)}'
+        echo "$ARCHIVE" | awk -F'.' '{print $1}' | awk -F'/' '{print tolower($5)}'
     }
     ARCHIVE_NAME="$(cmd)"
     echo "Processing Archive: $ARCHIVE"
