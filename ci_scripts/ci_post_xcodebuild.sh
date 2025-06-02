@@ -10,8 +10,7 @@ rm -rf docsData
 
 echo "Building DocC documentation for ImageDataPicker"
 
-if [[ $CI_XCODEBUILD_ACTION = 'build' && $CI_PRODUCT_PLATFORM = 'iOS' ]]; then
-    
+if [[ $CI_XCODEBUILD_ACTION = 'build' && $CI_PRODUCT_PLATFORM = 'iOS' ]];
 then
 xcodebuild -workspace $CI_WORKSPACE/ImageDataPicker.xcworkspace -derivedDataPath docsData -scheme EmployeeFormExample -destination 'platform=iOS Simulator,name=iPhone 16' -parallelizeTargets docbuild
 xcodebuild -workspace $CI_WORKSPACE/ImageDataPicker.xcworkspace -derivedDataPath docsData -scheme ImageDataPicker -destination 'platform=iOS Simulator,name=iPhone 16' -parallelizeTargets docbuild
