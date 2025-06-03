@@ -32,7 +32,6 @@ struct EmployeeListView: View {
         NavigationSplitViewVisibility.doubleColumn
     
     private let employeeListTestID = UIIdentifiers.EmployeeList.self
-        
 
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
@@ -44,9 +43,9 @@ struct EmployeeListView: View {
                         )
                 }
                 .onDelete(perform: deleteEmployees)
-                .navigationTitle("Our Employees")
+                //.navigationTitle("Our Employees")
             }
-
+            .navigationTitle("Our Employees")
             .listRowSeparator(.automatic)
 
             .environment(\.defaultMinListRowHeight, 100)

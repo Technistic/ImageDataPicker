@@ -13,7 +13,7 @@ import SwiftUI
 
 /// An Image View of the supplied ``imageData``, scaled to the size of the parent container and maintaining the image's original aspect ratio.
 ///
-/// The ``ImageDataView`` produced a SwiftUI Image derived from the supplied ``imageData``. ``imageData`` can be stored as an attributed of a SwiftData Model. If ``imageData`` is nil, a placeHolderImage is presented based on an SF Symbols ``systemName`` image. The default is to use the ``Constants/personPlaceholder`` image but this can be overriden on creation.
+/// The ``ImageDataView`` produced a SwiftUI Image derived from the supplied ``imageData``. ``imageData`` can be stored as an attributed of a SwiftData Model. If ``imageData`` is nil, a placeHolderImage is presented based on an SF Symbols `systemName` image. The default is to use the ``Constants/personPlaceholder`` image but this can be overriden on creation.
 ///
 /// Refer to: [https://developer.apple.com/design/resources/#sf-symbols](https://developer.apple.com/design/resources/#sf-symbols)
 ///

@@ -20,7 +20,7 @@ public struct SquareImageView: View {
 
     /// Initialiser
     /// - Parameters:
-    ///   - imageState: The ``ImageDataModel.ImageState`` to be displayed.
+    ///   - imageState: The ``ImageDataModel/ImageState-swift.enum`` to be displayed.
     ///   - emptyImage: Optional system image name to be displayed when the image state is empty.
     ///   - errorImage: Optional system image name to be displayed when there is an error.
     public init(

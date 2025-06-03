@@ -43,7 +43,7 @@ public struct ClippedImageStateView: View {
 
     /// Initializes a new instance of `ClippedImageStateView`.
     /// - Parameters:
-    ///   - imageState: The ``ImageDataModel.ImageState`` to be displayed.
+    ///   - imageState: The ``ImageDataModel/ImageState-swift.enum`` to be displayed.
     ///   - emptyImage: An optional system image name to be displayed when the image state is empty.
     ///   - errorImage: An optional system image name to be displayed when there is an error.
     public init(

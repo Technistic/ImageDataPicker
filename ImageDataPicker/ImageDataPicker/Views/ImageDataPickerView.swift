@@ -39,8 +39,8 @@ public struct ImageDataPickerView: View {
     /// Initializes a new instance of `ImageDataPickerView`.
     /// - Parameters:
     ///   - imageData: A binding to the image data that will be displayed in the view. This should be a `Data?` type, which can be `nil` if no image is selected.
-    ///   - emptyImage: A String specifying the system image name to be displayed when the image state is empty. The default is ``personPlaceholder`` image.
-    ///   - errorImage: A String specifying the system image name to be displayed when there is an error. The default is ``errorImage`` image.
+    ///   - emptyImage: A String specifying the system image name to be displayed when the image state is empty. The default is ``Constants/personPlaceholder`` image.
+    ///   - errorImage: A String specifying the system image name to be displayed when there is an error. The default is ``Constants/errorPlaceholder`` image.
     public init(
         imageData: Binding<Data?>,
         emptyImage: String = Constants.personPlaceholder,
