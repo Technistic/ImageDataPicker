@@ -1,5 +1,9 @@
 # Image Data Picker Framework
 
-[ImageDataPicker](ImageDataPicker/README.md)
+[ImageDataPicker - README](ImageDataPicker/README.md)
 
-[EmployeeFormExample](EmployeeFormExample/README.md)
+[ImageDataPicker Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker)
+
+[EmployeeFormExample - README](EmployeeFormExample/README.md)
+
+[EmployeeFormExample Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample)
