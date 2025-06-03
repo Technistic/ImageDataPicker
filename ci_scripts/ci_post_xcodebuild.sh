@@ -27,7 +27,7 @@ for ARCHIVE in $CI_WORKSPACE_PATH/doc_archives/*.doccarchive; do
     }
     ARCHIVE_NAME="$(cmd)"
     echo "Processing Archive: $ARCHIVE"
-    $(xcrun --find docc) process-archive transform-for-static-hosting "$ARCHIVE" --hosting-base-path ImageDataPicker/$ARCHIVE_NAME --output-path $CI_PRIMARY_REPOSITORY_PATH/docs/$ARCHIVE_NAME
+    $(xcrun --find docc) process-archive transform-for-static-hosting "$ARCHIVE" --hosting-base-path $ARCHIVE_NAME --output-path $CI_PRIMARY_REPOSITORY_PATH/docs/$ARCHIVE_NAME
 done
 
 ./ci_site_deploy.sh
