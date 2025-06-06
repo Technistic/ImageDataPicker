@@ -6,25 +6,6 @@
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
       buildArchitectures = "Automatic">
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "xcodebuild docbuild \&#10;-workspace ImageDataPicker.xcworkspace \&#10;-scheme ImageDataPicker \&#10;-derivedDataPath /Users/mmlogothetis/Documents/testdoc \&#10;-destination &apos;platform=iOS Simulator,name=iPhone 16&apos;&#10;"
-               shellToInvoke = "/bin/bash">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "69CF512D2DC45A1400402D6E"
-                     BuildableName = "ImageDataPicker.framework"
-                     BlueprintName = "ImageDataPicker"
-                     ReferencedContainer = "container:ImageDataPicker.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
