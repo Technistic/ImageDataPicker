@@ -11,6 +11,9 @@
       location = "group:ci_scripts"
       name = "ci_scripts">
       <FileRef
+         location = "group:publish_github_pages.sh">
+      </FileRef>
+      <FileRef
          location = "group:ci_post_xcodebuild.sh">
       </FileRef>
       <FileRef
@@ -21,6 +24,9 @@
       </FileRef>
       <FileRef
          location = "group:ci_post_clone.sh">
+      </FileRef>
+      <FileRef
+         location = "group:configure_build_type.sh">
       </FileRef>
    </Group>
 </Workspace>
