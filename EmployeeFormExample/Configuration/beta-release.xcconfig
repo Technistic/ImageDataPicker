@@ -1,8 +1,8 @@
 //
-//  alpha-release.xcconfig
+//  beta-release.xcconfig
 //  EmployeeFormExample
 //
-//  Created by Michael Logothetis on 7/6/2025.
+//  Created by Michael Logothetis on 8/6/2025.
 //
 
 // Configuration settings file format documentation can be found at:
@@ -11,5 +11,4 @@
 //#include "Debug.xcconfig"
 #include "SampleCode.xcconfig"
 
-ASSETCATALOG_COMPILER_APPICON_NAME=AppIcon-alpha
-
+ASSETCATALOG_COMPILER_APPICON_NAME=AppIcon-beta
