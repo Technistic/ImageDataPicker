@@ -10,6 +10,14 @@
    <Group
       location = "group:ci_scripts"
       name = "ci_scripts">
+      <FileSystemSynchronizedGroup
+         location = "group:beta"
+         name = "beta">
+      </FileSystemSynchronizedGroup>
+      <FileSystemSynchronizedGroup
+         location = "group:alpha"
+         name = "alpha">
+      </FileSystemSynchronizedGroup>
       <FileRef
          location = "group:publish_github_pages.sh">
       </FileRef>
