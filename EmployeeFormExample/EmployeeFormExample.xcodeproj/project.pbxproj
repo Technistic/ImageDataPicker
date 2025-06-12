@@ -431,6 +431,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -456,6 +457,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.technistic.example.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.technistic.example.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -624,6 +627,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.technistic.example.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.technistic.example.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=xros*]" = com.technistic.example.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -876,11 +882,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
-				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -900,8 +908,9 @@
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.technistic-samplecode.EmployeeFormExample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
