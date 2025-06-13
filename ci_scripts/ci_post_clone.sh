@@ -24,6 +24,6 @@ fi
 
 if [[ -n "$ver_type" ]]; then
     echo "Copying $ver_type DocC Assets"
-    cp -R $ver_type/* $CI_WORKSPACE_PATH/ImageDataPicker/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources
-    cp -R $ver_type/* $CI_WORKSPACE_PATH/ImageDataPicker/EmployeeFormExample/EmployeeFormExample/EmployeeFormExample.docc/Resources
+    cp -R $ver_type/* ${CI_PRIMARY_REPOSITORY_PATH}/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources
+    cp -R $ver_type/* ${CI_PRIMARY_REPOSITORY_PATH}/EmployeeFormExample/EmployeeFormExample/EmployeeFormExample.docc/Resources
 fi
