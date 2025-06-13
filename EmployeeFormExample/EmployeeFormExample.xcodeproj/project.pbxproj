@@ -457,11 +457,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.technistic.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.technistic.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=xros*]" = com.technistic.EmployeeFormExample;
+				MARKETING_VERSION = "alpha-v0.0.1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -630,11 +627,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.technistic.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.technistic.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=xros*]" = com.technistic.EmployeeFormExample;
+				MARKETING_VERSION = "alpha-v0.0.1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -869,7 +863,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "alpha-v0.0.1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -917,8 +911,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.technistic-samplecode.EmployeeFormExample";
+				MARKETING_VERSION = "alpha-v0.0.1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
