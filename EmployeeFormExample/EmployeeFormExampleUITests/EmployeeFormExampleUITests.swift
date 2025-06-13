@@ -65,7 +65,7 @@ final class EmployeeFormExampleUITests: XCTestCase {
             #if os(iOS)
             firstName.tap(withNumberOfTaps: 2, numberOfTouches: 1)
             #else
-            firstName.tap
+            firstName.doubleClick()
             #endif
             firstName.typeText("\u{8}")
             firstName.typeText("A New Name")
