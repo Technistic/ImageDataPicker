@@ -456,9 +456,10 @@
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.technistic.example.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.technistic.example.EmployeeFormExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.technistic.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.technistic.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=xros*]" = com.technistic.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -626,10 +627,10 @@
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.technistic.example.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.technistic.example.EmployeeFormExample;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=xros*]" = com.technistic.example.EmployeeFormExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.technistic.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.technistic.EmployeeFormExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=xros*]" = com.technistic.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -838,6 +839,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -862,7 +864,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
