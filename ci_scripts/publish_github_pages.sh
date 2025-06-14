@@ -61,6 +61,9 @@ then
     git config user.name "$DOCC_GITHUB_NAME"
     git config user.email "$DOCC_GITHUB_EMAIL"
     
+    # Stash any uncommitted changes in the primary repository path so that we can safely switch branches.
+    git stash
+    
     # Change the GitHub URL to your repository
     git remote set-url origin https://${DOCC_GITHUB_USERNAME}:${DOCC_GITHUB_API_TOKEN}@github.com/${GITHUB_ORGANIZATION}/${GITHUB_PAGES_REPO}
     git fetch
