@@ -74,12 +74,13 @@ struct EmployeeListView: View {
             #endif
         }
         detail: {
-            if let selection = selectedEmployeeID {
+            if selectedEmployeeID == nil {
+                Text("Please select an employee")
+
+            } else {
                 EmployeeView(
                     selectedEmployeeID: $selectedEmployeeID
                 )
-            } else {
-                Text("Please select an employee")
             }
         }
         .navigationSplitViewStyle(.balanced)
