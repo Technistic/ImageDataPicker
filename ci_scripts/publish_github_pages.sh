@@ -91,4 +91,7 @@ then
     git push --set-upstream origin ${GITHUB_PAGES_BRANCH}
 
     echo "Publishing DocC documentation for ${CI_PRODUCT} completed successfully."
+    
+    echo "Returning to the primary repository branch ${CI_BRANCH}."
+    git checkout ${CI_BRANCH}
 fi
