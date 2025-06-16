@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		694069202DFEDEF0005B4D45 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6940691F2DFEDEF0005B4D45 /* Info.plist */; };
+		69A4F0DC2DFFBBF80089B03D /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69A4F0DB2DFFBBF80089B03D /* ImageDataPicker.framework */; };
+		69A4F0DD2DFFBBF80089B03D /* ImageDataPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69A4F0DB2DFFBBF80089B03D /* ImageDataPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		69CF51B82DC45CB300402D6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 69CF51B72DC45CB300402D6E /* README.md */; };
-		69CF52912DC98B6300402D6E /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF52902DC98B6300402D6E /* ImageDataPicker.framework */; };
-		69CF52922DC98B6300402D6E /* ImageDataPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF52902DC98B6300402D6E /* ImageDataPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		69CF51822DC45A8000402D6E /* Embed Frameworks */ = {
+		694069BB2DFFBB3B005B4D45 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				69CF52922DC98B6300402D6E /* ImageDataPicker.framework in Embed Frameworks */,
+				69A4F0DD2DFFBBF80089B03D /* ImageDataPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,15 +44,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6940691F2DFEDEF0005B4D45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69A4F0DB2DFFBBF80089B03D /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51512DC45A5400402D6E /* EmployeeFormExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeFormExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51612DC45A5600402D6E /* EmployeeFormExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF516B2DC45A5700402D6E /* EmployeeFormExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51B72DC45CB300402D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		69CF52902DC98B6300402D6E /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		694069B62DFFB584005B4D45 /* Exceptions for "EmployeeFormExample" folder in "EmployeeFormExample" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 69CF51502DC45A5400402D6E /* EmployeeFormExample */;
+		};
 		6952DA282DF643AF0080276E /* Exceptions for "Configuration" folder in "EmployeeFormExample" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -76,6 +81,7 @@
 		69CF51532DC45A5400402D6E /* EmployeeFormExample */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				694069B62DFFB584005B4D45 /* Exceptions for "EmployeeFormExample" folder in "EmployeeFormExample" target */,
 				69E73CFB2DE817CE00618E91 /* Exceptions for "EmployeeFormExample" folder in "EmployeeFormExampleUITests" target */,
 			);
 			path = EmployeeFormExample;
@@ -116,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69CF52912DC98B6300402D6E /* ImageDataPicker.framework in Frameworks */,
+				69A4F0DC2DFFBBF80089B03D /* ImageDataPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +146,6 @@
 		69CF51482DC45A5400402D6E = {
 			isa = PBXGroup;
 			children = (
-				6940691F2DFEDEF0005B4D45 /* Info.plist */,
 				69E73CB92DDF673900618E91 /* Configuration */,
 				69CF52812DC9838700402D6E /* Development Assets */,
 				69CF51532DC45A5400402D6E /* EmployeeFormExample */,
@@ -166,7 +171,7 @@
 		69CF517E2DC45A8000402D6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				69CF52902DC98B6300402D6E /* ImageDataPicker.framework */,
+				69A4F0DB2DFFBBF80089B03D /* ImageDataPicker.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,7 +186,7 @@
 				69CF514D2DC45A5400402D6E /* Sources */,
 				69CF514E2DC45A5400402D6E /* Frameworks */,
 				69CF514F2DC45A5400402D6E /* Resources */,
-				69CF51822DC45A8000402D6E /* Embed Frameworks */,
+				694069BB2DFFBB3B005B4D45 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -295,7 +300,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				694069202DFEDEF0005B4D45 /* Info.plist in Resources */,
 				69CF51B82DC45CB300402D6E /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +418,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
