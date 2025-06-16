@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		694069202DFEDEF0005B4D45 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6940691F2DFEDEF0005B4D45 /* Info.plist */; };
 		69CF51B82DC45CB300402D6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 69CF51B72DC45CB300402D6E /* README.md */; };
 		69CF52912DC98B6300402D6E /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF52902DC98B6300402D6E /* ImageDataPicker.framework */; };
 		69CF52922DC98B6300402D6E /* ImageDataPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF52902DC98B6300402D6E /* ImageDataPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6940691F2DFEDEF0005B4D45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69CF51512DC45A5400402D6E /* EmployeeFormExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeFormExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51612DC45A5600402D6E /* EmployeeFormExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF516B2DC45A5700402D6E /* EmployeeFormExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 		69CF51482DC45A5400402D6E = {
 			isa = PBXGroup;
 			children = (
+				6940691F2DFEDEF0005B4D45 /* Info.plist */,
 				69E73CB92DDF673900618E91 /* Configuration */,
 				69CF52812DC9838700402D6E /* Development Assets */,
 				69CF51532DC45A5400402D6E /* EmployeeFormExample */,
@@ -292,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				694069202DFEDEF0005B4D45 /* Info.plist in Resources */,
 				69CF51B82DC45CB300402D6E /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
