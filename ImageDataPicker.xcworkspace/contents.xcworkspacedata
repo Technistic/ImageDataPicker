@@ -36,5 +36,8 @@
       <FileRef
          location = "group:configure_build_type.sh">
       </FileRef>
+      <FileRef
+         location = "group:testflight_test_info.sh">
+      </FileRef>
    </Group>
 </Workspace>

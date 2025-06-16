@@ -13,5 +13,6 @@ if [[ $CI_XCODEBUILD_ACTION = 'build' && $CI_PRODUCT_PLATFORM = 'iOS' ]];
 then
 
 ./publish_github_pages.sh
+./testflight_test_info.sh
 
 fi
