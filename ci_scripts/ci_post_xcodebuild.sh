@@ -11,8 +11,10 @@ echo ""
 
 if [[ $CI_XCODEBUILD_ACTION = 'build' && $CI_PRODUCT_PLATFORM = 'iOS' ]];
 then
+    ./publish_github_pages.sh
+fi
 
-./publish_github_pages.sh
-./testflight_test_info.sh
-
+if [[ $CI_XCODEBUILD_ACTION = 'archive' ]];
+then
+    ./testflight_test_info.sh
 fi
