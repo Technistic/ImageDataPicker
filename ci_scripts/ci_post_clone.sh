@@ -27,3 +27,9 @@ if [[ -n "$ver_type" ]]; then
     cp -R $ver_type/* ${CI_PRIMARY_REPOSITORY_PATH}/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources
     cp -R $ver_type/* ${CI_PRIMARY_REPOSITORY_PATH}/EmployeeFormExample/EmployeeFormExample/EmployeeFormExample.docc/Resources
 fi
+
+#  Update WhatToTest files if we are archiving.
+if [[ $CI_XCODEBUILD_ACTION = 'archive' ]];
+then
+    ./testflight_test_info.sh
+fi
