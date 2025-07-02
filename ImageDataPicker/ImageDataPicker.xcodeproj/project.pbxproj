@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		69791C692E0645C10071F8AB /* build_framework.sh in Resources */ = {isa = PBXBuildFile; fileRef = 69791C682E0645C10071F8AB /* build_framework.sh */; };
 		69CF513A2DC45A1400402D6E /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF512E2DC45A1400402D6E /* ImageDataPicker.framework */; };
 		69CF51B62DC45C8A00402D6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 69CF51B52DC45C8900402D6E /* README.md */; };
 		69CF51D32DC4675900402D6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF51D22DC4675900402D6E /* UIKit.framework */; platformFilters = (ios, xros, ); };
@@ -202,7 +201,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69791C692E0645C10071F8AB /* build_framework.sh in Resources */,
 				69CF51B62DC45C8A00402D6E /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
