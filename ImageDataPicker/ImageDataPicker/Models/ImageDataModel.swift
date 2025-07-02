@@ -21,14 +21,7 @@ import OSLog
 import PhotosUI
 import SwiftUI
 
-/// The ``ImageDataModel`` is a model of the state of a (thumbnail) Image that can be selected and loaded using the SwiftUI PhotosPicker View. The state of the (thumbnail) image can be:
-/// * empty
-/// * loading
-/// * success
-/// * failure
-///
-/// Once selected, the image is loaded as Data and stored in the model.
-///
+/// The ``ImageDataModel`` is a model of the state of a (thumbnail) Image that can be selected and loaded using the SwiftUI PhotosPicker View. The ``ImageState`` represents whether the selected image is empty, in the process of being loaded, successfully loaded, or has failed to load.
 ///
 //ToDo: Do we need @MainActor
 //@MainActor
@@ -51,12 +44,18 @@ public class ImageDataModel: Hashable {
     }
 
     // MARK: - ImageState
-
     /// The UI state of the (thumbnail) Image presented by the DataImagePickerView
     public enum ImageState {
+        /// An empty image state, indicating no image has been selected or loaded.
         case empty
+        /// A loading state with a `Progress` indicating the image is being loaded.
+        /// - Progress: The progress of the image loading operation.
         case loading(Progress)
+        /// A successful image state with the loaded image data.
+        /// - Data?: The successfully loaded image data.
         case success(Data?)
+        /// A failure state with an error indicating the image loading operation failed.
+        /// - Error: The error that occurred during the image loading operation.
         case failure(Error)
 
         func description() -> String {
@@ -161,7 +160,7 @@ public class ImageDataModel: Hashable {
         didSet {
             if let imageSelection {
                 let progress = loadTransferable(from: imageSelection)
-                imageState = .loading(progress)
+                self.imageState = .loading(progress)
             } else {
                 imageState = .empty
             }
