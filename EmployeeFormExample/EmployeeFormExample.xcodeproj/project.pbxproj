@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		69A4F0DC2DFFBBF80089B03D /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69A4F0DB2DFFBBF80089B03D /* ImageDataPicker.framework */; };
-		69A4F0DD2DFFBBF80089B03D /* ImageDataPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69A4F0DB2DFFBBF80089B03D /* ImageDataPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69A4F1672E028FE60089B03D /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69A4F1662E028FE60089B03D /* ImageDataPicker.framework */; };
+		69A4F1682E028FE60089B03D /* ImageDataPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69A4F1662E028FE60089B03D /* ImageDataPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		69CF51B82DC45CB300402D6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 69CF51B72DC45CB300402D6E /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -30,13 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		694069BB2DFFBB3B005B4D45 /* Embed Frameworks */ = {
+		69A4F1692E028FE60089B03D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				69A4F0DD2DFFBBF80089B03D /* ImageDataPicker.framework in Embed Frameworks */,
+				69A4F1682E028FE60089B03D /* ImageDataPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		69A4F0DB2DFFBBF80089B03D /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69A4F1662E028FE60089B03D /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51512DC45A5400402D6E /* EmployeeFormExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeFormExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51612DC45A5600402D6E /* EmployeeFormExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF516B2DC45A5700402D6E /* EmployeeFormExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69A4F0DC2DFFBBF80089B03D /* ImageDataPicker.framework in Frameworks */,
+				69A4F1672E028FE60089B03D /* ImageDataPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +164,7 @@
 		69CF517E2DC45A8000402D6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69A4F1662E028FE60089B03D /* ImageDataPicker.framework */,
 				69A4F0DB2DFFBBF80089B03D /* ImageDataPicker.framework */,
 			);
 			name = Frameworks;
@@ -178,7 +180,7 @@
 				69CF514D2DC45A5400402D6E /* Sources */,
 				69CF514E2DC45A5400402D6E /* Frameworks */,
 				69CF514F2DC45A5400402D6E /* Resources */,
-				694069BB2DFFBB3B005B4D45 /* Embed Frameworks */,
+				69A4F1692E028FE60089B03D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -444,7 +446,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form Example";
+				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form (Alpha)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
@@ -618,7 +620,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form Example";
+				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form (Beta)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
@@ -860,7 +862,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form Example";
+				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form (Debug)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
