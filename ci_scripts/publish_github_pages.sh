@@ -51,7 +51,7 @@ echo "Publishing DocC documentation for $CI_PRODUCT"
 #
 # Use the following line to always run this script in Xcode Cloud, regardless of the action or platform.
 # if [[ $CI && $CI_XCODEBUILD_ACTION = 'build' && $CI_PRODUCT_PLATFORM = 'iOS' || true ]];
-if [[ $CI && $CI_XCODEBUILD_ACTION = 'build' && $CI_PRODUCT_PLATFORM = 'iOS' ]];
+if [[ $CI && $CI_XCODEBUILD_ACTION = 'archive' && $CI_PRODUCT_PLATFORM = 'iOS' ]];
 then
     # Copy any *.doccarchive build artifacts to the workspace doc_archives directory.
     mkdir -p ${CI_WORKSPACE_PATH}/doc_archives
