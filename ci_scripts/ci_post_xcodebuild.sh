@@ -9,7 +9,7 @@
 
 echo ""
 
-if [[ $CI_XCODEBUILD_ACTION = 'build' && $CI_PRODUCT_PLATFORM = 'iOS' ]];
+if [[ $CI_XCODEBUILD_ACTION = 'archive' && $CI_PRODUCT_PLATFORM = 'iOS' ]];
 then
     ./publish_github_pages.sh
 fi

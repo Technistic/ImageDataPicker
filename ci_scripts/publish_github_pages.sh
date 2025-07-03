@@ -94,4 +94,5 @@ then
     
     echo "Returning to the primary repository branch ${CI_BRANCH}."
     git checkout ${CI_BRANCH}
+    git stash pop || true  # Pop the stash, ignore if it fails (e.g., no stash available)
 fi
