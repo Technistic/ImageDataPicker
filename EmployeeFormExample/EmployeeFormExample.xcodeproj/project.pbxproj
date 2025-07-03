@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		69791C6F2E1616E50071F8AB /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69791C6E2E1616E50071F8AB /* ImageDataPicker.framework */; };
-		69791C702E1616E50071F8AB /* ImageDataPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69791C6E2E1616E50071F8AB /* ImageDataPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		69CF51B82DC45CB300402D6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 69CF51B72DC45CB300402D6E /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -28,20 +27,6 @@
 			remoteInfo = EmployeeFormExample;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		69A4F1692E028FE60089B03D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				69791C702E1616E50071F8AB /* ImageDataPicker.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		69791C6E2E1616E50071F8AB /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,7 +163,6 @@
 				69CF514D2DC45A5400402D6E /* Sources */,
 				69CF514E2DC45A5400402D6E /* Frameworks */,
 				69CF514F2DC45A5400402D6E /* Resources */,
-				69A4F1692E028FE60089B03D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
