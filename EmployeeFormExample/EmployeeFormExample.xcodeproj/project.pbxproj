@@ -438,7 +438,7 @@
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
@@ -612,7 +612,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
@@ -854,7 +854,7 @@
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
@@ -904,7 +904,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = "";
