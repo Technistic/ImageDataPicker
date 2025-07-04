@@ -23,6 +23,8 @@ struct EmployeeView: View {
 
     @Binding public var selectedEmployeeID: Employee.ID?
     @State var employee: Employee?
+    
+    @State var clippingSelection: Int = 0
 
     @State private var firstName: String = ""
     @State private var lastName: String = ""
@@ -44,23 +46,26 @@ struct EmployeeView: View {
 
         ScrollView {
             VStack {
-                Spacer()
                 HStack {
                     Text("\(firstName) \(lastName)")
                         .font(.title)
+                        .foregroundStyle(.secondary)
                         .accessibilityIdentifier(
                             UIIdentifiers.EmployeeView.title
                         )
                 }
-                Spacer()
+
                 ImageDataPickerView(imageData: $imageData)
-                    .clippedImageShape(.round)
-                    .padding(4)
+                    //.clippedImageShape(.round)
+                    //.clippedImageShape(.roundedSquare)
+                    .clippedImageShape(ClippedImageShape.allCases [clippingSelection])
+                    .padding(8)
                     .frame(minHeight: 180)
+
                 VStack(alignment: .center) {
                     Label("Employee Name", systemImage: "person.fill")
                         .font(.title)
-                        .foregroundColor(.white)
+                        //.foregroundColor(.secondary)
                         .multilineTextAlignment(.leading)
                     HStack {
                         TextField("Given Name", text: $firstName)
@@ -78,53 +83,66 @@ struct EmployeeView: View {
                     }
                     Label("Department", systemImage: "person.3.fill")
                         .font(.title)
-                        .foregroundColor(.white)
+                        .padding(.top, 16)
+                        //.foregroundColor(.primary)
                         
                     TextField("Department", text: $department)
                         .disableAutocorrection(true)
                         .accessibilityIdentifier(
                             UIIdentifiers.EmployeeView.departmentTextField
                         )
+                    HStack {
+                        Button(role: .cancel) {
+                            firstName = employee!.firstName
+                            lastName = employee!.lastName
+                            department = employee!.department
+                            imageData = employee!.imageData
+                            modelContext.rollback()
+                        } label: {
+                            Text("Cancel")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .accessibilityIdentifier(
+                            UIIdentifiers.EmployeeView.cancelButton
+                        )
 
+                        Button {
+                            saveEmployee()
+                        } label: {
+                            Text("Save")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .disabled(!hasChanges)
+                        .buttonStyle(.bordered)
+                        .accessibilityIdentifier(
+                            UIIdentifiers.EmployeeView.saveButton
+                        )
+                    }
+                    .padding(.top, 16)
                 }
                 .padding(24)
-                .background(.blue)
+                .background(.gray.opacity(0.4))
                 .cornerRadius(12)
                 .textFieldStyle(.roundedBorder)
-                Spacer()
-                HStack {
-                    Button(role: .cancel) {
-                        firstName = employee!.firstName
-                        lastName = employee!.lastName
-                        department = employee!.department
-                        imageData = employee!.imageData
-                        modelContext.rollback()
-                    } label: {
-                        Text("Cancel")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.bordered)
-                    .accessibilityIdentifier(
-                        UIIdentifiers.EmployeeView.cancelButton
-                    )
-                    Spacer()
-                    Button {
-                        saveEmployee()
-                    } label: {
-                        Text("Save")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .disabled(!hasChanges)
-                    .buttonStyle(.bordered)
-                    .accessibilityIdentifier(
-                        UIIdentifiers.EmployeeView.saveButton
-                    )
-                }
-                Spacer()
             }
             .padding(16)
+
+            Picker("Choose course", selection: $clippingSelection) {
+                Image(systemName: "circle.fill")
+                    .tag(0)
+                Image(systemName: "square.fill")
+                    .tag(1)
+                Image(systemName: "square")
+                    .tag(2)
+            }
+            .pickerStyle(.segmented)
+            .padding(24)
         }
-        .background(.white)
+        #if os(iOS)
+        .background(Color(.tertiarySystemBackground))
+        #endif
+        
         .onAppear {
             if selectedEmployeeID == nil {
                 Logger.appdata.debug("No employee selected.")

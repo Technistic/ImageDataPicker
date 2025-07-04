@@ -13,7 +13,7 @@ import SwiftUI
 
 
 /// The `ClippedImageShape` enum defines the clipping shape to apply to the ``ClippedImageStateView``.
-public enum ClippedImageShape: Equatable {
+public enum ClippedImageShape: Equatable, CaseIterable {
     case round
     case square
     case roundedSquare
@@ -91,7 +91,7 @@ public struct ClippedImageStateView: View {
                     .scaleEffect(0.9)
                     .background() {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(.thinMaterial)
+                            .fill(.thickMaterial)
                     }
             }
         } else if imageState.description() == "success" {
