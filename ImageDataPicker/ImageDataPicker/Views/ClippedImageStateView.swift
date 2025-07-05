@@ -11,7 +11,6 @@
 import OSLog
 import SwiftUI
 
-
 /// The `ClippedImageShape` enum defines the clipping shape to apply to the ``ClippedImageStateView``.
 public enum ClippedImageShape: Equatable, CaseIterable {
     case round
@@ -60,39 +59,39 @@ public struct ClippedImageStateView: View {
         if imageState == .empty || imageState.description() == "failure" {
             switch imageShape {
             case .round:
-                    SquareImageView(
-                        imageState: imageState,
-                        emptyImage: emptyImage,
-                        errorImage: errorImage
-                    )
-                    .scaleEffect(scaleFactor(systemImage: emptyImage))
-                    .background() {
-                        Circle()
-                            .fill(.thinMaterial)
-                    }
+                SquareImageView(
+                    imageState: imageState,
+                    emptyImage: emptyImage,
+                    errorImage: errorImage
+                )
+                .scaleEffect(scaleFactor(systemImage: emptyImage))
+                .background {
+                    Circle()
+                        .fill(.thinMaterial)
+                }
             case .square:
-                    SquareImageView(
-                        imageState: imageState,
-                        emptyImage: emptyImage,
-                        errorImage: errorImage
-                    )
-                    .scaleEffect(0.9)
-                    .background() {
-                        Rectangle()
-                            .fill(.thinMaterial)
-                    }
+                SquareImageView(
+                    imageState: imageState,
+                    emptyImage: emptyImage,
+                    errorImage: errorImage
+                )
+                .scaleEffect(0.9)
+                .background {
+                    Rectangle()
+                        .fill(.thinMaterial)
+                }
 
             case .roundedSquare:
-                    SquareImageView(
-                        imageState: imageState,
-                        emptyImage: emptyImage,
-                        errorImage: errorImage
-                    )
-                    .scaleEffect(0.9)
-                    .background() {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(.thickMaterial)
-                    }
+                SquareImageView(
+                    imageState: imageState,
+                    emptyImage: emptyImage,
+                    errorImage: errorImage
+                )
+                .scaleEffect(0.9)
+                .background {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(.thickMaterial)
+                }
             }
         } else if imageState.description() == "success" {
             switch imageShape {
@@ -160,5 +159,22 @@ public struct ClippedImageStateView: View {
                         + (imageSize.height * imageSize.height)).squareRoot()))
             #endif
         }
+    }
+}
+
+#Preview("Square-Placeholder") {
+    SquareImageView(
+        imageState: ImageDataModel.ImageState.empty
+    )
+    .border(Color.blue)
+
+    List {
+        ClippedImageStateView(imageState: ImageDataModel.ImageState.empty)
+            .border(Color.blue)
+        ClippedImageStateView(imageState: ImageDataModel.ImageState.empty)
+            .border(Color.blue)
+        ClippedImageStateView(imageState: ImageDataModel.ImageState.empty)
+            .clippedImageShape(.round)
+            .border(Color.blue)
     }
 }

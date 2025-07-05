@@ -76,7 +76,7 @@ public struct SquareImageView: View {
                     )
                 }
                 .clipShape(Rectangle())  // Clip to a square
-                .clipped()  // Ensure content outside the frame is clipped
+                //.clipped()  // Ensure content outside the frame is clipped
             }
         }
         .frame(
@@ -91,4 +91,22 @@ public struct SquareImageView: View {
         imageState: ImageDataModel.ImageState.empty
     )
     .border(Color.blue)
+
+    List {
+        SquareImageView(
+            imageState: ImageDataModel.ImageState.empty,
+            emptyImage: "person"
+        )
+        .border(Color.blue)
+        SquareImageView(
+            imageState: ImageDataModel.ImageState.empty,
+            emptyImage: "person"
+        )
+        .border(Color.blue)
+        SquareImageView(
+            imageState: ImageDataModel.ImageState.empty,
+            emptyImage: "person"
+        )
+        .border(Color.blue)
+    }
 }
