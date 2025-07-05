@@ -37,7 +37,7 @@ struct EmployeeListView: View {
             List(selection: $selectedEmployeeID) {
                 ForEach(employees) { employee in
                     EmployeeListRowView(employee: employee)
-                        .listRowBackground(Color(.gray.opacity(0.3)))
+                        .listRowSeparator(.visible)
                         .accessibilityIdentifier(
                             employeeListTestID.employeeFullName(
                                 firstName: employee.firstName,
@@ -48,7 +48,6 @@ struct EmployeeListView: View {
                 .onDelete(perform: deleteEmployees)
             }
             .navigationTitle("Our Employees")
-            .listRowSeparator(.automatic)
             .environment(\.defaultMinListRowHeight, 100)
 
             .toolbar {
@@ -85,7 +84,6 @@ struct EmployeeListView: View {
         }
         .navigationSplitViewStyle(.balanced)
     }
-
 
     /// Add a new ``Employee`` with default data.
     private func addEmployee() {
@@ -169,6 +167,9 @@ struct EmployeeListRowView: View {
                         )
                     )
             }
+        }
+        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+            return 0
         }
     }
 }
