@@ -20,7 +20,7 @@ rm -rf ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework
 # Cleaning the workspace cache
 xcodebuild \
     clean \
-    -project "../${FRAMEWORK_NAME}".xcodeproj \
+    -project "../${FRAMEWORK_NAME}/${FRAMEWORK_NAME}".xcodeproj \
     -scheme ${FRAMEWORK_NAME}
 
 destinations=('iOS' 'iOS Simulator' 'macOS')
@@ -36,7 +36,7 @@ for destination in "${destinations[@]}"; do
         archive \
             SKIP_INSTALL=NO \
             BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-            -project "../${FRAMEWORK_NAME}".xcodeproj \
+            -project "../${FRAMEWORK_NAME}/${FRAMEWORK_NAME}".xcodeproj \
             -scheme ${FRAMEWORK_NAME} \
             -configuration Release \
             -destination "generic/platform=${destination}" \
