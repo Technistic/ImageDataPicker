@@ -7,6 +7,8 @@
 #  
 echo "Configuring build for $CI_BRANCH"
 
+echo $(security find-identity -v -p codesigning)
+
 if [[ "$CI_BRANCH" =~ ^(alpha|beta)?-?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+) ]]; then
     major=${BASH_REMATCH[2]}
     minor=${BASH_REMATCH[3]}
