@@ -19,7 +19,7 @@ if [[ "$CI_BRANCH" =~ ^(alpha|beta)?-?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit
     echo "Type: $ver_type"
 else
     echo "Invalid Branch"
-    exit 1
+#    exit 1
 fi
 
 if [[ -n "$ver_type" ]]; then

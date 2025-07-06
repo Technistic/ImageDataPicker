@@ -10,6 +10,9 @@
    <Group
       location = "group:ci_scripts"
       name = "ci_scripts">
+      <FileRef
+         location = "group:build_framework.sh">
+      </FileRef>
       <FileSystemSynchronizedGroup
          location = "group:beta"
          name = "beta">
