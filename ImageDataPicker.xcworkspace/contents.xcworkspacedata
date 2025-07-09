@@ -8,6 +8,17 @@
       location = "group:EmployeeFormExample/EmployeeFormExample.xcodeproj">
    </FileRef>
    <Group
+      location = "container:.github"
+      name = ".github">
+      <Group
+         location = "group:workflows"
+         name = "workflows">
+         <FileRef
+            location = "group:build-xcframework.yaml">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
       location = "group:ci_scripts"
       name = "ci_scripts">
       <FileRef
