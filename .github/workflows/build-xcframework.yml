@@ -110,13 +110,28 @@ jobs:
 
       - name: Archive Framework
         run: |
-          tar -czf ${{ runner.temp }}/ImageDataPicker.tgz ${{ runner.temp }}/framework/ImageDataPicker.xcframework
+          cd ${{ runner.temp }}/framework
+          tar -czf ImageDataPicker.tgz ImageDataPicker.xcframework
 
-      - name: Upload application
-        uses: actions/upload-artifact@v4
+      - name: Publish (Draft) Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: ImageDataPicker.tgz
+          body: "This is a test release."
+          draft: true
+          files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
+          name: v0.0.1 (Test Release)
+          overwrite_files: true
           path: ${{ runner.temp }}/ImageDataPicker.tgz
+          prerelease: true
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
-          retention-days: 3
+          # retention-days: 3
+
+      #- name: Upload application
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: ImageDataPicker.tgz
+      #    path: ${{ runner.temp }}/ImageDataPicker.tgz
+      #    # you can also archive the entire directory
+      #    # path: ${{ runner.temp }}/build
+      #    retention-days: 3
