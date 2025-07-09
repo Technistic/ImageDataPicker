@@ -108,11 +108,15 @@ jobs:
         run: |
           codesign --timestamp -s "Apple Development: Michael Logothetis (J8XH79BD3A)" $RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework
 
+      - name: Archive Framework
+        run: |
+          tar -czf ${{ runner.temp }}/ImageDataPicker.tgz ${{ runner.temp }}/framework/ImageDataPicker.xcframework
+
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: ImageDataPicker.xcframework
-          path: ${{ runner.temp }}/framework/ImageDataPicker.xcframework
+          name: ImageDataPicker.tgz
+          path: ${{ runner.temp }}/ImageDataPicker.tgz
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           retention-days: 3
