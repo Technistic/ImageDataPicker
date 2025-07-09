@@ -63,7 +63,7 @@ jobs:
           # Cleaning the workspace cache
           xcodebuild \
               clean \
-              -project "../${FRAMEWORK_NAME}/${FRAMEWORK_NAME}".xcodeproj \
+              -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}".xcodeproj \
               -scheme ${FRAMEWORK_NAME}
 
           destinations=('iOS' 'iOS Simulator' 'macOS')
