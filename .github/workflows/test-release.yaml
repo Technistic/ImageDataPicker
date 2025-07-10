@@ -1,4 +1,4 @@
-name: "Build xcframework"
+name: "Test Release"
 
 on:
   # manual trigger but change to any supported event
