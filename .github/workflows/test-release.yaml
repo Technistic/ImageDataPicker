@@ -29,10 +29,11 @@ jobs:
       - name: Publish (Draft) Release
         uses: softprops/action-gh-release@v2
         with:
-          body: "This is a test release."
+          # body: "This is a test release."
           draft: true
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
-          name: v0.0.1 (Test Release)
+          generate_release_notes: true
+          # name: v0.0.1 (Test Release)
           prerelease: true
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
