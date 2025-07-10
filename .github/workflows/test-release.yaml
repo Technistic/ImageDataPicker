@@ -33,8 +33,6 @@ jobs:
           draft: true
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
           name: v0.0.1 (Test Release)
-          overwrite_files: true
-          path: ${{ runner.temp }}/ImageDataPicker.tgz
           prerelease: true
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
