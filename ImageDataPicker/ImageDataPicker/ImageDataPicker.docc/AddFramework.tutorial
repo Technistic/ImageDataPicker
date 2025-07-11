@@ -21,7 +21,8 @@
             @Step {
                 Step 1
                 
-                @Code(name: "somefile.swift", file: Constants.swift)
+                @Code(name: "Constants.swift", file: "Tutorial-Code.swift") {
+                    
             }
         }
     }

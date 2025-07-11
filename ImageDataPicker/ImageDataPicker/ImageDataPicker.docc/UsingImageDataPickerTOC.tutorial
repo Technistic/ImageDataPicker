@@ -2,13 +2,13 @@
     @Intro(title: "Uisng the Image Data Picker") {
         How to use the Image Data Picker to select images from the user's photo library.
         
-        @Image(source: <#file#>, alt: "<#accessible description#>")
+        @Image(source: "Beta-Doc-Title", alt: "<#accessible description#>")
     }
     
     @Chapter(name: "Adding the Image Data Picker Framework") {
         This chapter explains how to add the Image Data Picker framework to your project.
         
-        @Image(source: <#file#>, alt: "<#accessible description#>")
+        @Image(source: "Beta-Doc-Title", alt: "<#accessible description#>")
         
         @TutorialReference(tutorial: "doc:AddFramework")
     }
