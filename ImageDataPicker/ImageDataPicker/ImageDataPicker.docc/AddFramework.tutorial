@@ -1,4 +1,5 @@
 @Tutorial(time: 5) {
+    @Identifier("ImageDataPicker.AddFramework")
     @Intro(title: "Adding the Image Data Picker Framework") {
         How to add the Image Data Picker framework to your project.
         @Image(source: Alpha-Doc-Title, alt: "<#accessible description#>")

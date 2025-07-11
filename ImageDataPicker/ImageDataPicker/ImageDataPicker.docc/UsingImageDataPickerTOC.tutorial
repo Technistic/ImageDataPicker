@@ -1,5 +1,5 @@
 @Tutorials(name: "AddFramework") {
-    @Intro(title: "Uisng the Image Data Picker") {
+    @Intro(title: "Using the Image Data Picker") {
         How to use the Image Data Picker to select images from the user's photo library.
         
         @Image(source: "Beta-Doc-Title", alt: "<#accessible description#>")

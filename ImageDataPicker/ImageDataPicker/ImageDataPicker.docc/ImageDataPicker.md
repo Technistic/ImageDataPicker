@@ -22,10 +22,14 @@ The ImageDataPicker framework provides a simple control to select photos using S
 
 4. You can use the ``ClippedImageShape`` view modifier to clip the image to a specific shape, such as `.circle`, `.square`, or `.roundedRectangle`. The image will automatically be resized to fit the containing frame and clipped to a 1:1 aspect ratio.
 
+[Tutorial]<doc:UsingImageDataPickerTOC>
+
 ## Topics
 
-### Essentials
-
 [Getting Started]<doc:GettingStarted>
+
+[Tutorial]<doc:GettingStarted>
+
+[Tutorial]<doc:AddFramework>
 
 
