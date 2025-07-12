@@ -3,8 +3,10 @@
 #  ci_post_clone.sh
 #  ImageDataPicker
 #
-#  Updated by Michael Logothetis on 11/07/2025.
+#  Updated by Michael Logothetis on 13/7/2025.
 #
+
+set -e
 
 # Exit workflow if this is a draft PR.
 ./check_draft_pr.sh
