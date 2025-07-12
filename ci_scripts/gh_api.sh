@@ -19,7 +19,7 @@ IS_DRAFT=$(echo "$RESPONSE" | grep -o '"draft": [^,]*' | awk '{print $2}')
 echo "Is draft? $IS_DRAFT"
 
 # Use this value in a condition
-if [ "$IS_DRAFT" == "true" ]; then
+if [[ "$IS_DRAFT" = "true" ]]; then
   echo "❌ This is a draft PR — skipping build or deploy step."
   exit 0 # or exit with special code to skip later stages
 fi
