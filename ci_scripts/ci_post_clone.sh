@@ -8,7 +8,7 @@
 
 set -e
 
-./gh_auth.sh
+./gh_api.sh
 
 function strip-v () { echo -n "${1#v}"; }
 function strip-pre () { local x="${1#v}"; echo -n "${x%-*}"; }
