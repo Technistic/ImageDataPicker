@@ -15,8 +15,8 @@ if [[ -n $CI_PULL_REQUEST_NUMBER ]]; then
     
     # Fetch PR info using GitHub REST API
     set +e
-    RESPONSE=$(curl -S -H "Authorization: Bearer $GITHUB_TOKEN" "$GITHUB_API")
-    set -e
+    echo "$GITHUB_TOKEN"
+    RESPONSE=$(curl -vvv -S -H "Authorization: Bearer $GITHUB_TOKEN" "$GITHUB_API")
 
     # Parse the 'draft' field using jq (install or use inline grep if jq unavailable)
     IS_DRAFT_PR=$(echo "$RESPONSE" | grep -o '"draft": [^,]*' | awk '{print $2}')
@@ -28,4 +28,7 @@ if [[ -n $CI_PULL_REQUEST_NUMBER ]]; then
         echo "Draft PR: Exiting Workflow."
         exit 0 # or exit with special code to skip later stages
     fi
+    
+    set -e
+    
 fi
