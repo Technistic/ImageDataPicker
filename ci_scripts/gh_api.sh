@@ -13,7 +13,9 @@ PR_NUMBER="61" # or get dynamically if part of a trigger
 GITHUB_API="https://api.github.com/repos/$REPO/pulls/$PR_NUMBER"
 
 # Fetch PR info using GitHub REST API
-RESPONSE=$(curl -vvv -s -H "Authorization: Bearer $GITHUB_TOKEN" "$GITHUB_API")
+RESPONSE=$(curl -vvv -S -H "Authorization: Bearer $GITHUB_TOKEN" "$GITHUB_API")
+
+echo $RESPONSE
 
 # Parse the 'draft' field using jq (install or use inline grep if jq unavailable)
 IS_DRAFT=$(echo "$RESPONSE" | grep -o '"draft": [^,]*' | awk '{print $2}')
