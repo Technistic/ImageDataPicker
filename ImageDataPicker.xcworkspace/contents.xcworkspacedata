@@ -39,5 +39,8 @@
       <FileRef
          location = "group:testflight_test_info.sh">
       </FileRef>
+      <FileRef
+         location = "group:gh_api.sh">
+      </FileRef>
    </Group>
 </Workspace>
