@@ -22,12 +22,12 @@ if [[ -n $CI_PULL_REQUEST_NUMBER ]]; then
 
     if [[ -z "$IS_DRAFT_PR" ]]; then
         echo "Could not retrieve PR $CI_PULL_REQUEST_NUMBER."
-        exit 0
+        exit 1
     fi
 
     # Exit workflow if this is a draft PR.
     if [[ "$IS_DRAFT_PR" = "true" ]]; then
         echo "Draft PR: Exiting Workflow."
-        exit 0 # or exit with special code to skip later stages
+        exit 1 # or exit with special code to skip later stages
     fi
 fi
