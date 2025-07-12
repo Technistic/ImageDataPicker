@@ -17,7 +17,7 @@ if [[ -n $CI_PULL_REQUEST_NUMBER ]]; then
     set +e
     echo "$GITHUB_TOKEN"
     RESPONSE=$(curl -vvv -S -H "Authorization: Bearer $GITHUB_TOKEN" "$GITHUB_API")
-
+    echo "$RESPONSE"
     # Parse the 'draft' field using jq (install or use inline grep if jq unavailable)
     IS_DRAFT_PR=$(echo "$RESPONSE" | grep -o '"draft": [^,]*' | awk '{print $2}')
 
