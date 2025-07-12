@@ -1,7 +1,10 @@
-#!/bin/sh
+#!/bin/zsh
 
 #  ci_pre_xcodebuild.sh
 #  ImageDataPicker
 #
-#  Created by Michael Logothetis on 26/5/2025.
-#  
+#  Updated by Michael Logothetis on 13/7/2025.
+#
+
+# Exit workflow if this is a draft PR.
+./check_draft_pr.sh

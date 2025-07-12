@@ -42,5 +42,8 @@
       <FileRef
          location = "group:gh_api.sh">
       </FileRef>
+      <FileRef
+         location = "group:check_draft_pr.sh">
+      </FileRef>
    </Group>
 </Workspace>
