@@ -1,9 +1,11 @@
-#!/bin/sh
+#!/bin/sh -v
 #  gh_api.sh
 #  
 #
 #  Created by Michael Logothetis on 12/7/2025.
 #
+
+set -e
 
 # Replace with your repo info or get from ENV
 REPO="Technistic/ImageDataPicker"
@@ -23,3 +25,5 @@ if [[ "$IS_DRAFT" = "true" ]]; then
   echo "❌ This is a draft PR — skipping build or deploy step."
   exit 0 # or exit with special code to skip later stages
 fi
+
+set +e
