@@ -28,25 +28,36 @@ if [[ -n "$CI_TAG" ]]; then
     fi
 fi
 
-# As CI_TAG must match CI_BRANCH, we derive the version from CI_BRANCH.
-if [[ -n "$CI_BRANCH" ]]; then
-    if [[ "$CI_BRANCH" =~ ^((alpha|beta|rc)?(\.{1}([[:digit:]]+))?)?\-?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
+# For a PR targeting a branch, we use the target branch as the version branch.
+if [[ -n "$CI_PULL_REQUEST_TARGET_BRANCH" ]]; then
+    BRANCH="$CI_PULL_REQUEST_TARGET_BRANCH"
+else
+    BRANCH="$CI_BRANCH"
+fi
+
+# As CI_TAG must match CI_BRANCH, we derive the version from BRANCH.
+if [[ -n "$BRANCH" ]]; then
+    if [[ "$BRANCH" =~ ^((alpha|beta|rc)?(\.{1}([[:digit:]]+))?)?\-?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
         major=${BASH_REMATCH[5]}
         minor=${BASH_REMATCH[6]}
         patch=${BASH_REMATCH[7]}
         ver_type=${BASH_REMATCH[2]}
         build=${BASH_REMATCH[4]}
     else
-        echo "Error: BRANCH $CI_BRANCH does not match expected format."
+        echo "Error: BRANCH $BRANCH does not match expected format."
         exit 1
     fi
 else
-    echo "Error: CI_BRANCH undefined."
+    echo "Error: BRANCH undefined."
     exit 1
 fi
 
 echo "CI_TAG: $CI_TAG"
-echo "CI_BRANCH: $CI_BRANCH"
+echo "CI_BRANCH: $BRANCH"
+echo "CI_PULL_REQUEST_SOURCE_BRANCH: $CI_PULL_REQUEST_SOURCE_BRANCH"
+echo "CI_PULL_REQUEST_TARGET_BRANCH: $CI_PULL_REQUEST_TARGET_BRANCH"
+echo
+echo "BRANCH: $BRANCH"
 echo "VER_TYPE: $ver_type"
 echo "BUILD: $build"
 echo "MAJOR: $major"
