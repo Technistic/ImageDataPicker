@@ -8,6 +8,9 @@
 
 set -e
 
+./test_xcode_cloud_pr.sh
+exit 1
+
 # Exit workflow if this is a draft PR.
 ./check_draft_pr.sh
 

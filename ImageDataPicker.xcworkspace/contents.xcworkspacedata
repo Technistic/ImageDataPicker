@@ -42,5 +42,8 @@
       <FileRef
          location = "group:get_version_from_branch.sh">
       </FileRef>
+      <FileRef
+         location = "group:test_xcode_cloud_pr.sh">
+      </FileRef>
    </Group>
 </Workspace>
