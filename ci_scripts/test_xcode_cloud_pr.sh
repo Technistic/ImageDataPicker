@@ -6,6 +6,7 @@
 #  Created by Michael Logothetis on 14/7/2025.
 #  
 
+echo "GIT BRANCH is $(git branch)"
 echo "CI_BRANCH is $CI_BRANCH"
 echo "CI_PRIMARY_REPOSITORY_PATH is $CI_PRIMARY_REPOSITORY_PATH"
 echo "CI_TAG is $CI_TAG"
