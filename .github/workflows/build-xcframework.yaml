@@ -4,11 +4,10 @@ on:
   # manual trigger but change to any supported event
   # see addl: https://www.andrewhoog.com/post/how-to-build-react-native-android-app-with-github-actions/#3-run-build-workflow
   workflow_dispatch:
-    branches: [feature-xcode_cloud_framework]
 
 jobs:
   build_with_signing:
-    runs-on: macos-latest
+    runs-on: macos-15
     steps:
       # this was more debug as was curious what came pre-installed
       # GitHub shares this online, e.g. https://github.com/actions/runner-images/blob/macOS-12/20230224.1/images/macos/macos-12-Readme.md
@@ -41,8 +40,9 @@ jobs:
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 
           # import certificate to keychain
-          security import $CERTIFICATE_PATH -P $P12_PASSWORD -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
 
           # apply provisioning profile
           # mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
@@ -63,7 +63,7 @@ jobs:
           # Cleaning the workspace cache
           xcodebuild \
               clean \
-              -project "../${FRAMEWORK_NAME}/${FRAMEWORK_NAME}".xcodeproj \
+              -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}".xcodeproj \
               -scheme ${FRAMEWORK_NAME}
 
           destinations=('iOS' 'iOS Simulator' 'macOS')
@@ -108,11 +108,30 @@ jobs:
         run: |
           codesign --timestamp -s "Apple Development: Michael Logothetis (J8XH79BD3A)" $RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework
 
-      - name: Upload application
-        uses: actions/upload-artifact@v4
+      - name: Archive Framework
+        run: |
+          cd ${{ runner.temp }}/framework
+          tar -czf ImageDataPicker.tgz ImageDataPicker.xcframework
+
+      - name: Publish (Draft) Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: framework
-          path: ${{ runner.temp }}/framework/ImageDataPicker.xcframework
+          body: "This is a test release."
+          draft: true
+          files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
+          name: v0.0.1 (Test Release)
+          overwrite_files: true
+          path: ${{ runner.temp }}/ImageDataPicker.tgz
+          prerelease: true
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
-          retention-days: 3
+          # retention-days: 3
+
+      #- name: Upload application
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: ImageDataPicker.tgz
+      #    path: ${{ runner.temp }}/ImageDataPicker.tgz
+      #    # you can also archive the entire directory
+      #    # path: ${{ runner.temp }}/build
+      #    retention-days: 3
