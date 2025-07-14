@@ -4,10 +4,23 @@ on:
   # manual trigger but change to any supported event
   # see addl: https://www.andrewhoog.com/post/how-to-build-react-native-android-app-with-github-actions/#3-run-build-workflow
   workflow_dispatch:
+  
+env:
+  ver_type: alpha
+  major: 0
+  minor: 0
+  patch: 0
+  build: 1
+  version: '0.0.0'
+  BRANCH: ${{ github.ref_name }}
 
 jobs:
   build_with_signing:
     runs-on: macos-15
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./.github/workflows/scripts
     steps:
       # this was more debug as was curious what came pre-installed
       # GitHub shares this online, e.g. https://github.com/actions/runner-images/blob/macOS-12/20230224.1/images/macos/macos-12-Readme.md
@@ -112,16 +125,22 @@ jobs:
         run: |
           cd ${{ runner.temp }}/framework
           tar -czf ImageDataPicker.tgz ImageDataPicker.xcframework
-
+          
+      - name: Parse Version
+        run: . ./ci_scripts/get_version_from_branch.sh
+        
+      - name: Set Version
+        id: set_version
+        run: echo "version=v${major}.${minor}.${patch}" >> $GITHUB_OUTPUT
+        
       - name: Publish (Draft) Release
         uses: softprops/action-gh-release@v2.3.2
         with:
           body: "This is a test release."
           draft: true
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
-          name: ${{ github.ref_name }}
+          name: ${{ env.version }}
           overwrite_files: true
-          path: ${{ runner.temp }}/ImageDataPicker.tgz
           prerelease: contains(fromJSON('["alpha", "beta", "rc"]'), github.ref_name)
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
