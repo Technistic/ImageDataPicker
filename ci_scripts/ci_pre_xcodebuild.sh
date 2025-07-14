@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 #  ci_pre_xcodebuild.sh
 #  ImageDataPicker
