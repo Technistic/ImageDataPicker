@@ -24,7 +24,6 @@
 
 /* Begin PBXFileReference section */
 		69791C682E0645C10071F8AB /* build_framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_framework.sh; sourceTree = "<group>"; };
-		69B609C92E1E044E008405BC /* build-xcframework.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "build-xcframework.yaml"; sourceTree = "<group>"; };
 		69CF512E2DC45A1400402D6E /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51392DC45A1400402D6E /* ImageDataPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageDataPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51B52DC45C8900402D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -69,27 +68,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		69B609CA2E1E044E008405BC /* workflows */ = {
-			isa = PBXGroup;
-			children = (
-				69B609C92E1E044E008405BC /* build-xcframework.yaml */,
-			);
-			path = workflows;
-			sourceTree = "<group>";
-		};
-		69B609CB2E1E044E008405BC /* .github */ = {
-			isa = PBXGroup;
-			children = (
-				69B609CA2E1E044E008405BC /* workflows */,
-			);
-			name = .github;
-			path = ../.github;
-			sourceTree = SOURCE_ROOT;
-		};
 		69CF51242DC45A1400402D6E = {
 			isa = PBXGroup;
 			children = (
-				69B609CB2E1E044E008405BC /* .github */,
 				69791C682E0645C10071F8AB /* build_framework.sh */,
 				69CF51302DC45A1400402D6E /* ImageDataPicker */,
 				69CF513D2DC45A1400402D6E /* ImageDataPickerTests */,
