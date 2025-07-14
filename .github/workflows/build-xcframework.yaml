@@ -143,7 +143,7 @@ jobs:
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
           name: ${{ env.version }}
           overwrite_files: true
-          prerelease: ${{ contains(fromJSON('["alpha", "beta", "rc"]'), ${{ github.ref_name }} ) }}
+          prerelease: ${{ contains(fromJSON('["alpha", "beta", "rc"]'), github.ref_name) }}
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           # retention-days: 3
