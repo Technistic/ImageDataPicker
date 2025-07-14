@@ -7,14 +7,11 @@
 #  
 
 
-echo $(security find-identity -v -p codesigning)
+#  Publish DocC documentation to GitHub Pages if there is a TAG change or manually triggered workflow.
+if [[ -n "$CI_TAG" || ("$CI_WORKFLOW" = "Publish-Pages" && ("$CI_START_CONDITION" = "manual" || "$CI_START_CONDITION" = "manual_rebuild")) ]]; then
 
-if [[ $CI_XCODEBUILD_ACTION = 'archive' && $CI_PRODUCT_PLATFORM = 'iOS' && $CI_WORKFLOW != 'Release Framework' ]];
-then
-    echo "./publish_github_pages.sh"
-fi
-
-if [[ $CI_XCODEBUILD_ACTION = 'archive' && $CI_PRODUCT_PLATFORM = 'iOS' && $CI_WORKFLOW = 'Release Framework' ]];
-then
-    ./build_framework.sh
+    #  Only publish GitHub Pages for iOS archive builds.
+    if [[ $CI_XCODEBUILD_ACTION = 'archive' && $CI_PRODUCT_PLATFORM = 'iOS' ]]; then
+        ./publish_github_pages.sh
+    fi
 fi

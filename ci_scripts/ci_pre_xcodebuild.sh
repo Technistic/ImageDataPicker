@@ -1,7 +1,19 @@
-#!/bin/sh
+#!/bin/zsh
 
 #  ci_pre_xcodebuild.sh
 #  ImageDataPicker
 #
-#  Created by Michael Logothetis on 26/5/2025.
-#  
+#  Updated by Michael Logothetis on 13/7/2025.
+#
+
+echo "Configuring build for $CI_BRANCH"
+
+# Set version information based on branch or tag name.
+. ./get_version_from_branch.sh
+
+# Copy DocC assets for alpha and beta versions.
+if [[ -n "$ver_type" ]]; then
+    echo "Copying $ver_type DocC Assets"
+    cp -R $ver_type/* ${CI_PRIMARY_REPOSITORY_PATH}/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources
+    cp -R $ver_type/* ${CI_PRIMARY_REPOSITORY_PATH}/EmployeeFormExample/EmployeeFormExample/EmployeeFormExample.docc/Resources
+fi

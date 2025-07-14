@@ -48,10 +48,16 @@
          location = "group:ci_post_clone.sh">
       </FileRef>
       <FileRef
-         location = "group:configure_build_type.sh">
+         location = "group:testflight_test_info.sh">
       </FileRef>
       <FileRef
-         location = "group:testflight_test_info.sh">
+         location = "group:check_draft_pr.sh">
+      </FileRef>
+      <FileRef
+         location = "group:get_version_from_branch.sh">
+      </FileRef>
+      <FileRef
+         location = "group:test_xcode_cloud_pr.sh">
       </FileRef>
    </Group>
 </Workspace>
