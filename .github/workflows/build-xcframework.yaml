@@ -12,7 +12,7 @@ env:
   patch: 0
   build: 1
   version: '0.0.0'
-  BRANCH: ${{ github.ref_name }}
+  BRANCH: github.ref_name
 
 jobs:
   build_with_signing:
