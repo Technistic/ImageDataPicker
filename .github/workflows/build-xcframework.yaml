@@ -126,7 +126,7 @@ jobs:
           tar -czf ImageDataPicker.tgz ImageDataPicker.xcframework
           
       - name: Parse Version
-        run: . ../ci_scripts/get_version_from_branch.sh
+        run: . ci_scripts/get_version_from_branch.sh
         
       - name: Set Version
         id: set_version
