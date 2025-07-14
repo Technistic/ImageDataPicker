@@ -17,7 +17,7 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v4
         with:
-          ref: feature-xcode_cloud_framework
+          ref: ${{ github.ref_name }}
 
       - name: Install the Apple certificate and provisioning profile
         env:
@@ -119,10 +119,10 @@ jobs:
           body: "This is a test release."
           draft: true
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
-          name: v0.0.1 (Test Release)
+          name: ${{ github.ref_name }}
           overwrite_files: true
           path: ${{ runner.temp }}/ImageDataPicker.tgz
-          prerelease: true
+          prerelease: contains(fromJSON('["alpha", "beta", "rc"]'), github.ref_name)
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           # retention-days: 3
