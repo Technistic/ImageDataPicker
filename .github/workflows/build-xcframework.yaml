@@ -126,10 +126,13 @@ jobs:
           tar -czf ImageDataPicker.tgz ImageDataPicker.xcframework
           
       - name: Parse Version
-        run: . ci_scripts/get_version_from_branch.sh
+        run: |
+          . ci_scripts/get_version_from_branch.sh
+          echo "major=${major}" >> $GITHUB_ENV
+          echo "minor=${minor}" >> $GITHUB_ENV
+          echo "patch=${patch}" >> $GITHUB_ENV
         
       - name: Set Version
-        id: set_version
         run: echo "version=v${major}.${minor}.${patch}" >> $GITHUB_ENV
         
       - name: Publish (Draft) Release
