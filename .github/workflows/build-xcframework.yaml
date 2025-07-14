@@ -12,7 +12,7 @@ env:
   patch: 0
   build: 1
   version: '0.0.0'
-  BRANCH: github.ref_name
+  BRANCH: ${{ github.ref_name }}
 
 jobs:
   build_with_signing:
@@ -127,6 +127,8 @@ jobs:
           
       - name: Parse Version
         run: . ci_scripts/get_version_from_branch.sh
+        env:
+          BRANCH: ${{ github.ref_name }}
         
       - name: Set Version
         id: set_version
