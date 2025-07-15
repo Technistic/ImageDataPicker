@@ -12,6 +12,7 @@ env:
   patch: 0
   build: 1
   version: '0.0.0'
+  product_version: 'v0.0.0'
   CI_BRANCH: ${{ github.ref_name }}
 
 jobs:
@@ -131,6 +132,7 @@ jobs:
           echo "major=${major}" >> $GITHUB_ENV
           echo "minor=${minor}" >> $GITHUB_ENV
           echo "patch=${patch}" >> $GITHUB_ENV
+          echo "product_version=${product_version}" >> $GITHUB_ENV
         
       - name: Set Version
         run: echo "version=v${major}.${minor}.${patch}" >> $GITHUB_ENV
@@ -144,7 +146,7 @@ jobs:
           body: "This is a test release."
           draft: true
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
-          name: ${{ env.version }}
+          name: ${{ env.product_version }}
           overwrite_files: true
           prerelease: ${{ (contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}
           # you can also archive the entire directory

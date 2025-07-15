@@ -52,6 +52,16 @@ else
     exit 1
 fi
 
+PRODUCT_VERSION="v${major}.${minor}.${patch}"
+
+if [[ -n "$ver_type" ]]; then
+    PRODUCT_VERSION="${PRODUCT_VERSION}-${ver_type}"
+fi
+
+if [[ -n "$build" ]]; then
+    PRODUCT_VERSION="${PRODUCT_VERSION}.${build}"
+fi
+
 echo "CI_TAG: $CI_TAG"
 echo "CI_BRANCH: $CI_BRANCH"
 echo "CI_PULL_REQUEST_SOURCE_BRANCH: $CI_PULL_REQUEST_SOURCE_BRANCH"
@@ -63,3 +73,4 @@ echo "BUILD: $build"
 echo "MAJOR: $major"
 echo "MINOR: $minor"
 echo "PATCH: $patch"
+echo "PRODUCT_VERSION: $PRODUCT_VERSION"
