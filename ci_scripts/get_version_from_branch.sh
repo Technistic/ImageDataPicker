@@ -52,14 +52,14 @@ else
     exit 1
 fi
 
-PRODUCT_VERSION="v${major}.${minor}.${patch}"
+product_version="v${major}.${minor}.${patch}"
 
 if [[ -n "$ver_type" ]]; then
-    PRODUCT_VERSION="${PRODUCT_VERSION}-${ver_type}"
+    product_version="${product_version}-${ver_type}"
 fi
 
 if [[ -n "$build" ]]; then
-    PRODUCT_VERSION="${PRODUCT_VERSION}.${build}"
+    product_version="${product_version}.${build}"
 fi
 
 echo "CI_TAG: $CI_TAG"
@@ -73,4 +73,4 @@ echo "BUILD: $build"
 echo "MAJOR: $major"
 echo "MINOR: $minor"
 echo "PATCH: $patch"
-echo "PRODUCT_VERSION: $PRODUCT_VERSION"
+echo "PRODUCT_VERSION: $product_version"
