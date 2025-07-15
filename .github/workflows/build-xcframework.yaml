@@ -5,6 +5,13 @@ on:
   # see addl: https://www.andrewhoog.com/post/how-to-build-react-native-android-app-with-github-actions/#3-run-build-workflow
   workflow_dispatch:
   
+  push:
+    tags:
+      - 'v*'
+      - 'alpha-'*
+      - 'beta-'*
+      - 'rc-'*
+  
 env:
   ver_type: alpha
   major: 0
@@ -150,8 +157,10 @@ jobs:
           draft: true
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
           name: ${{ env.product_version }}
-          overwrite_files: true
+          # overwrite_files: true
           prerelease: ${{ (contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           # retention-days: 3
