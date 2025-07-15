@@ -7,10 +7,10 @@ on:
   
   push:
     tags:
-      - 'v*'
-      - 'alpha-'*
-      - 'beta-'*
-      - 'rc-'*
+      - v*
+      - alpha*
+      - beta*
+      - rc*
   
 env:
   ver_type: alpha
