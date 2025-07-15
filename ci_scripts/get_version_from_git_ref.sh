@@ -30,23 +30,21 @@
 #  v1.2.3 -> v1.2.3 (Xcode Cloud Production Build)
 #get_version
 
-set -e
+set -ex
 
 if [[ -n "$CI_TAG" ]]; then
     # $CI_TAG should align with the branch name.
-    if [[ -n "$CI_BRANCH" && "$CI_TAG" != $(echo $"$CI_BRANCH" | tr '_' '-') ]]; then
-        if [[ "$CI_BRANCH" != "release_${CI_TAG}" ]]; then
-            echo "Error: CI_TAG $CI_TAG does not match CI_BRANCH ${CI_BRANCH}."
-            exit 1
-        fi
+    BRANCH=$(echo $"$CI_TAG" | tr '-' '_')
+    if [[ "CI_TAG" =~ ^v* ]]; then
+        BRANCH="release_${BRANCH}"
     fi
-fi
-
-# For a PR targeting a branch, we use the target branch as the version branch.
-if [[ -n "$CI_PULL_REQUEST_TARGET_BRANCH" ]]; then
-    BRANCH="$CI_PULL_REQUEST_TARGET_BRANCH"
 else
-    BRANCH="$CI_BRANCH"
+    # For a PR targeting a branch, we use the target branch as the version branch.
+    if [[ -n "$CI_PULL_REQUEST_TARGET_BRANCH" ]]; then
+        BRANCH="$CI_PULL_REQUEST_TARGET_BRANCH"
+    else
+        BRANCH="$CI_BRANCH"
+    fi
 fi
 
 # As CI_TAG must match CI_BRANCH, we derive the version from BRANCH.
