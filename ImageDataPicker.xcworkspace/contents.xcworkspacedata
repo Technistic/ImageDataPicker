@@ -26,6 +26,9 @@
       location = "group:ci_scripts"
       name = "ci_scripts">
       <FileRef
+         location = "group:get_version_from_git_ref.sh">
+      </FileRef>
+      <FileRef
          location = "group:build_framework.sh">
       </FileRef>
       <FileSystemSynchronizedGroup
@@ -56,9 +59,6 @@
       </FileRef>
       <FileRef
          location = "group:check_draft_pr.sh">
-      </FileRef>
-      <FileRef
-         location = "group:get_version_from_branch.sh">
       </FileRef>
       <FileRef
          location = "group:test_xcode_cloud_pr.sh">

@@ -1,30 +1,44 @@
 #!/bin/sh
 #
-#  get_version_from_branch.sh
-#  
+#  get_version_from_git_ref.sh
 #
-#  Created by Michael Logothetis on 13/7/2025.
+#
+#  Updated by Michael Logothetis on 16/7/2025.
 #
 #
 #  Set the marketing version and build type based on the branch or tag name.
 #
 #  Branch names should follow the format:
+#    [TYPE(.BUILD)]_vMAJOR.MINOR.PATCH
+#
+#  Tag names should follow the format:
 #    [TYPE(.BUILD)]-vMAJOR.MINOR.PATCH
 #
-#  features/featureA -> No Xcode Cloud Build
-#  bugs/bugA -> No Xcode Cloud Build
+#
+#  Example Branch Names:
+#  features-featureA -> No Xcode Cloud Build
+#  bugs-bugA -> No Xcode Cloud Build
+#  alpha.2_v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Integration Build)
+#  beta.1_v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Staging Build)
+#  rc.1_v1.2.3 -> v1.2.3-rc.1 (Xcode Cloud Release Candidate Build)
+#  release_v1.2.3 -> v1.2.3 (Xcode Cloud Production Build)
+#
+#  Example Tag Names:
 #  alpha.2-v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Integration Build)
 #  beta.1-v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Staging Build)
 #  rc.1-v1.2.3 -> v1.2.3-rc.1 (Xcode Cloud Release Candidate Build)
 #  v1.2.3 -> v1.2.3 (Xcode Cloud Production Build)
+#get_version
 
 set -e
 
 if [[ -n "$CI_TAG" ]]; then
-    # $CI_TAG should match the branch name.
-    if [[ -n "$CI_BRANCH" && "$CI_TAG" != "$CI_BRANCH" ]]; then
-        echo "Error: CI_TAG $CI_TAG does not match CI_BRANCH ${CI_BRANCH}."
-        exit 1
+    # $CI_TAG should align with the branch name.
+    if [[ -n "$CI_BRANCH" && "$CI_TAG" != $(echo $"$CI_BRANCH" | tr '_' '-') ]]; then
+        if [[ "$CI_BRANCH" != "release_${CI_TAG}" ]]; then
+            echo "Error: CI_TAG $CI_TAG does not match CI_BRANCH ${CI_BRANCH}."
+            exit 1
+        fi
     fi
 fi
 
@@ -37,7 +51,7 @@ fi
 
 # As CI_TAG must match CI_BRANCH, we derive the version from BRANCH.
 if [[ -n "$BRANCH" ]]; then
-    if [[ "$BRANCH" =~ ^((alpha|beta|rc)?(\.{1}([[:digit:]]+))?)?\-?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
+    if [[ "$BRANCH" =~ ^((alpha|beta|rc|release)?(\.{1}([[:digit:]]+))?)?[\-|_]?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
         major=${BASH_REMATCH[5]}
         minor=${BASH_REMATCH[6]}
         patch=${BASH_REMATCH[7]}
