@@ -136,7 +136,7 @@ jobs:
         run: echo "version=v${major}.${minor}.${patch}" >> $GITHUB_ENV
         
       - name: Debug
-        run: echo "::notice ${{ (contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc'), "rc"]')) }}"
+        run: echo "::notice ${{ ((contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}"
 
       - name: Publish (Draft) Release
         uses: softprops/action-gh-release@v2.3.2
