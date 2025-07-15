@@ -135,6 +135,9 @@ jobs:
       - name: Set Version
         run: echo "version=v${major}.${minor}.${patch}" >> $GITHUB_ENV
         
+      - name: Debug
+        run: echo "::notice file={name},line={line},endLine={endLine},title={title}::{ ${{ contains(fromJSON('["alpha", "beta", "rc"]'), github.ref_name) }} }"
+"
       - name: Publish (Draft) Release
         uses: softprops/action-gh-release@v2.3.2
         with:
@@ -143,7 +146,7 @@ jobs:
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
           name: ${{ env.version }}
           overwrite_files: true
-          prerelease: contains(fromJSON('["alpha", "beta", "rc"]'), github.ref_name)
+          prerelease: ${{ contains(fromJSON('["alpha", "beta", "rc"]'), github.ref_name) }}
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           # retention-days: 3

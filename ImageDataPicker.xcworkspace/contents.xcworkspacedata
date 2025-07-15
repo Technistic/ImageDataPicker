@@ -64,4 +64,7 @@
          location = "group:test_xcode_cloud_pr.sh">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
 </Workspace>
