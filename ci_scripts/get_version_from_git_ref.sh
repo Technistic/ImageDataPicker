@@ -28,7 +28,7 @@
 #  beta.1-v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Staging Release)
 #  rc.1-v1.2.3 -> v1.2.3-rc.1 (Xcode Cloud Release Candidate)
 #  v1.2.3 -> v1.2.3 (Xcode Cloud Production Release)
-#get_version
+#
 
 set -e
 
@@ -56,7 +56,7 @@ if [[ -n "$BRANCH" ]]; then
         ver_type=${BASH_REMATCH[2]}
         build=${BASH_REMATCH[4]}
     else
-        echo "Error: BRANCH $BRANCH does not match expected format."
+        echo "Error: BRANCH/TAG $BRANCH does not match expected format."
         exit 1
     fi
 else
