@@ -106,6 +106,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Alpha"
-      revealArchiveInOrganizer = "YES">
+      revealArchiveInOrganizer = "YES"
+      allowsArchivingForSimulator = "YES">
    </ArchiveAction>
 </Scheme>
