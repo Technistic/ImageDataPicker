@@ -9,13 +9,11 @@
 set -e
 
 ./test_xcode_cloud_pr.sh
-exit 1
 
 # Exit workflow if this is a draft PR.
 ./check_draft_pr.sh
 
-
-#  Update WhatToTest files if we are archiving.
+#  Update WhatToTest files when creating an archive.
 if [[ $CI_XCODEBUILD_ACTION = 'archive' ]];
 then
     ./testflight_test_info.sh

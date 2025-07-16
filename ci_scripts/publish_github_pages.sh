@@ -46,53 +46,48 @@ GITHUB_PAGES_REPO="ImageDataPicker"
 
 echo "Publishing DocC documentation for $CI_PRODUCT"
 
-# Check that this script is running in an Xcode Cloud environment and optionally
-# for a specific $CI_XCODEBUILD_ACTION and $CI_PRODUCT_PLATFORM.
-#
-# Use the following line to always run this script in Xcode Cloud, regardless of the action or platform.
-# if [[ $CI && $CI_XCODEBUILD_ACTION = 'build' && $CI_PRODUCT_PLATFORM = 'iOS' || true ]];
-if [[ $CI && ($CI_XCODEBUILD_ACTION = 'build' || $CI_XCODEBUILD_ACTION = 'archive') && $CI_PRODUCT_PLATFORM = 'iOS' ]];
-then
-    # Copy any *.doccarchive build artifacts to the workspace doc_archives directory.
-    mkdir -p ${CI_WORKSPACE_PATH}/doc_archives
-    cp -R `find $CI_DERIVED_DATA_PATH -type d -name "*.doccarchive"` ${CI_WORKSPACE_PATH}/doc_archives
+# Copy any *.doccarchive build artifacts to the workspace doc_archives directory.
+mkdir -p ${CI_WORKSPACE_PATH}/doc_archives
+cp -R `find $CI_DERIVED_DATA_PATH -type d -name "*.doccarchive"` ${CI_WORKSPACE_PATH}/doc_archives
 
-    #  Configure git and change branch to $GITHUB_PAGES_BRANCH
-    git config user.name "$DOCC_GITHUB_NAME"
-    git config user.email "$DOCC_GITHUB_EMAIL"
+#  Configure git and change branch to $GITHUB_PAGES_BRANCH
+git config user.name "$DOCC_GITHUB_NAME"
+git config user.email "$DOCC_GITHUB_EMAIL"
     
-    # Stash any uncommitted changes in the primary repository path so that we can safely switch branches.
-    git stash
+# Stash any uncommitted changes in the primary repository path so that we can safely switch branches.
+# TODO: This should not be required.
+git stash
     
-    # Change the GitHub URL to your repository
-    git remote set-url origin https://${DOCC_GITHUB_USERNAME}:${DOCC_GITHUB_API_TOKEN}@github.com/${GITHUB_ORGANIZATION}/${GITHUB_PAGES_REPO}
-    git fetch
-    git checkout ${GITHUB_PAGES_BRANCH}
+# Change the GitHub URL to your repository
+git remote set-url origin https://${DOCC_GITHUB_USERNAME}:${DOCC_GITHUB_API_TOKEN}@github.com/${GITHUB_ORGANIZATION}/${GITHUB_PAGES_REPO}
+git fetch
+git checkout ${GITHUB_PAGES_BRANCH}
 
-    #  Delete existing documentation directories and create new ones.
-    rm -rf ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR} ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives
-    mkdir -p ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives
-    mkdir -p ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}/
+#  Delete existing documentation directories and create new ones.
+rm -rf ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR} ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives
+mkdir -p ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives
+mkdir -p ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}/
 
-    #  Process each DocC archive and copy it to the GitHub Pages directory.
-    for ARCHIVE in ${CI_WORKSPACE_PATH}/doc_archives/*.doccarchive; do
-        ARCHIVE_FILE=$(basename "${ARCHIVE}")
-        ARCHIVE_NAME=$(echo $ARCHIVE_FILE | awk -F '.' '{print tolower($1)}')
+#  Process each DocC archive and copy it to the GitHub Pages directory.
+for ARCHIVE in ${CI_WORKSPACE_PATH}/doc_archives/*.doccarchive; do
+    ARCHIVE_FILE=$(basename "${ARCHIVE}")
+    ARCHIVE_NAME=$(echo $ARCHIVE_FILE | awk -F '.' '{print tolower($1)}')
 
-        echo "Processing Archive: $ARCHIVE"
-        mkdir -p ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}/${ARCHIVE_NAME}
-        mv $ARCHIVE ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives/
-        cp -R ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives/${ARCHIVE_FILE}/* ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}/${ARCHIVE_NAME}
-    done
+    echo "Processing Archive: $ARCHIVE"
+    mkdir -p ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}/${ARCHIVE_NAME}
+    # mv $ARCHIVE ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives/
+    # cp -R ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives/${ARCHIVE_FILE}/* ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}/${ARCHIVE_NAME}
+    cp -R ${ARCHIVE}/* ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}/${ARCHIVE_NAME}
+done
 
-    #  Commit and push the changes to the GitHub Pages branch.
-    git add ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR} ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives
-    git commit -m "Updated DocC documentation"
-    git push --set-upstream origin ${GITHUB_PAGES_BRANCH}
+#  Commit and push the changes to the GitHub Pages branch.
+# git add ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR} ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives
+git add ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}
+git commit -m "Updated DocC documentation"
+git push --set-upstream origin ${GITHUB_PAGES_BRANCH}
 
-    echo "Publishing DocC documentation for ${CI_PRODUCT} completed successfully."
+echo "Publishing DocC documentation for ${CI_PRODUCT} completed successfully."
     
-    echo "Returning to the primary repository branch ${CI_BRANCH}."
-    git checkout ${CI_BRANCH}
-    git stash pop || true  # Pop the stash, ignore if it fails (e.g., no stash available)
-fi
+echo "Returning to the primary repository branch ${CI_BRANCH}."
+git checkout ${CI_BRANCH}
+git stash pop || true  # Pop the stash, ignore if it fails (e.g., no stash available)
