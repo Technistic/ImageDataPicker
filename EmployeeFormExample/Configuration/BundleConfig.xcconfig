@@ -1,14 +1,13 @@
 //
-//  beta-release.xcconfig
+//  BundleConfig.xcconfig
 //  EmployeeFormExample
 //
-//  Created by Michael Logothetis on 8/6/2025.
+//  Created by Michael Logothetis on 17/7/2025.
 //
 
 // Configuration settings file format documentation can be found at:
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
 
-//#include "Debug.xcconfig"
-#include "BundleConfig.xcconfig"
+#include "SampleCode.xcconfig"
 
-ASSETCATALOG_COMPILER_APPICON_NAME=AppIcon-beta
+MARKETING_VERSION = 0.0.2
