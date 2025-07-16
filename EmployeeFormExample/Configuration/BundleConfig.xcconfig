@@ -10,4 +10,4 @@
 
 #include "SampleCode.xcconfig"
 
-MARKETING_VERSION = v0.0.2-alpha
+MARKETING_VERSION = 0.0.2
