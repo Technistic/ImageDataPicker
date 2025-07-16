@@ -1,0 +1,11 @@
+//
+//  BundleConfig.xcconfig
+//  ImageDataPicker
+//
+//  Created by Michael Logothetis on 17/7/2025.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+MARKETING_VERSION = v0.0.2_alpha
