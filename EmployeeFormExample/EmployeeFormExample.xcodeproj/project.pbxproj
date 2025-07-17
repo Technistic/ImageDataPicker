@@ -30,7 +30,7 @@
 
 /* Begin PBXFileReference section */
 		69791C6E2E1616E50071F8AB /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		69CF51512DC45A5400402D6E /* EmployeeFormExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeFormExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		69CF51512DC45A5400402D6E /* EmployeeFormExample (Debug).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmployeeFormExample (Debug).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51612DC45A5600402D6E /* EmployeeFormExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF516B2DC45A5700402D6E /* EmployeeFormExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51B72DC45CB300402D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		69CF51522DC45A5400402D6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				69CF51512DC45A5400402D6E /* EmployeeFormExample.app */,
+				69CF51512DC45A5400402D6E /* EmployeeFormExample (Debug).app */,
 				69CF51612DC45A5600402D6E /* EmployeeFormExampleTests.xctest */,
 				69CF516B2DC45A5700402D6E /* EmployeeFormExampleUITests.xctest */,
 			);
@@ -179,7 +179,7 @@
 			packageProductDependencies = (
 			);
 			productName = EmployeeFormExample;
-			productReference = 69CF51512DC45A5400402D6E /* EmployeeFormExample.app */;
+			productReference = 69CF51512DC45A5400402D6E /* EmployeeFormExample (Debug).app */;
 			productType = "com.apple.product-type.application";
 		};
 		69CF51602DC45A5600402D6E /* EmployeeFormExampleTests */ = {
@@ -431,7 +431,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form (alpha)";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
@@ -450,8 +450,8 @@
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technistic-samplecode.EmployeeFormExample";
+				PRODUCT_NAME = "$(TARGET_NAME) (alpha)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -607,7 +607,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form (beta)";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
@@ -626,8 +626,8 @@
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technistic-samplecode.EmployeeFormExample";
+				PRODUCT_NAME = "$(TARGET_NAME) (beta)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -851,7 +851,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form (debug)";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
@@ -870,8 +870,8 @@
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technistic-samplecode.EmployeeFormExample";
+				PRODUCT_NAME = "$(TARGET_NAME) (Debug)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -891,17 +891,17 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = "Employee Form";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
@@ -920,8 +920,8 @@
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technistic-samplecode.EmployeeFormExample";
+				PRODUCT_NAME = "$(TARGET_NAME) (Release)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
