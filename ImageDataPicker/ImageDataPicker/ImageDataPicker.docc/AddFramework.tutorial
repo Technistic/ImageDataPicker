@@ -1,0 +1,30 @@
+@Tutorial(time: 5) {
+    @Identifier("ImageDataPicker.AddFramework")
+    @Intro(title: "Adding the Image Data Picker Framework") {
+        How to add the Image Data Picker framework to your project.
+        @Image(source: Alpha-Doc-Title, alt: "<#accessible description#>")
+    }
+    
+    @Section(title: "<#text#>") {
+        @ContentAndMedia {
+            This section explains how to add the Image Data Picker framework to your project.
+            
+            @Image(source: Alpha-Doc-Title, alt: "<#accessible description#>")
+        }
+        
+        @Steps {
+            @Step {
+                Step 1
+                
+                @Image(source: Alpha-Doc-Title, alt: "<#accessible description#>")
+            }
+            
+            @Step {
+                Step 1
+                
+                @Code(name: "Constants.swift", file: "Tutorial-Code.swift") {
+                    
+            }
+        }
+    }
+}

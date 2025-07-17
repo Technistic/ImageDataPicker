@@ -8,8 +8,32 @@
       location = "group:EmployeeFormExample/EmployeeFormExample.xcodeproj">
    </FileRef>
    <Group
+      location = "container:.github"
+      name = ".github">
+      <Group
+         location = "group:workflows"
+         name = "workflows">
+         <FileSystemSynchronizedGroup
+            location = "group:scripts"
+            name = "scripts">
+         </FileSystemSynchronizedGroup>
+         <FileRef
+            location = "group:build-xcframework.yaml">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
       location = "group:ci_scripts"
       name = "ci_scripts">
+      <FileRef
+         location = "group:get_version_from_git_ref.sh">
+      </FileRef>
+      <FileRef
+         location = "group:build_framework.sh">
+      </FileRef>
+      <FileRef
+         location = "group:test_regex.sh">
+      </FileRef>
       <FileSystemSynchronizedGroup
          location = "group:beta"
          name = "beta">
@@ -34,7 +58,16 @@
          location = "group:ci_post_clone.sh">
       </FileRef>
       <FileRef
-         location = "group:configure_build_type.sh">
+         location = "group:testflight_test_info.sh">
+      </FileRef>
+      <FileRef
+         location = "group:check_draft_pr.sh">
+      </FileRef>
+      <FileRef
+         location = "group:test_xcode_cloud_pr.sh">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
 </Workspace>

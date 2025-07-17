@@ -11,11 +11,10 @@
 //  Copyright (c) 2025 Michael Logothetis (Technistic Pty Ltd)
 //
 
-
+import ImageDataPicker
 import OSLog
 import SwiftData
 import SwiftUI
-import ImageDataPicker
 
 /// The ``EmployeeListView`` displays a list of employees, allowing the user to select an ``Employee`` to view their details.
 ///
@@ -30,7 +29,7 @@ struct EmployeeListView: View {
     @State private var selectedEmployeeID: Employee.ID? = nil
     @State private var columnVisibility =
         NavigationSplitViewVisibility.doubleColumn
-    
+
     private let employeeListTestID = UIIdentifiers.EmployeeList.self
 
     var body: some View {
@@ -38,28 +37,29 @@ struct EmployeeListView: View {
             List(selection: $selectedEmployeeID) {
                 ForEach(employees) { employee in
                     EmployeeListRowView(employee: employee)
+                        .listRowSeparator(.visible)
                         .accessibilityIdentifier(
-                            employeeListTestID.employeeFullName(firstName: employee.firstName, lastName: employee.lastName)
+                            employeeListTestID.employeeFullName(
+                                firstName: employee.firstName,
+                                lastName: employee.lastName
+                            )
                         )
                 }
                 .onDelete(perform: deleteEmployees)
-                //.navigationTitle("Our Employees")
             }
             .navigationTitle("Our Employees")
-            .listRowSeparator(.automatic)
-
             .environment(\.defaultMinListRowHeight, 100)
 
             .toolbar {
                 #if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                    .accessibilityIdentifier(
-                        UIIdentifiers.EmployeeList.deleteEmployeeButton
-                    )
-                }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                            .accessibilityIdentifier(
+                                UIIdentifiers.EmployeeList.deleteEmployeeButton
+                            )
+                    }
                 #endif
-                
+
                 ToolbarItem {
                     Button(action: addEmployee) {
                         Label("Add Employee", systemImage: "plus")
@@ -70,20 +70,19 @@ struct EmployeeListView: View {
                 }
             }
             #if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
+                .navigationSplitViewColumnWidth(min: 180, ideal: 200)
             #endif
-        }
-        detail: {
-            if let selection = selectedEmployeeID {
+        } detail: {
+            if selectedEmployeeID == nil {
+                Text("Please select an employee")
+
+            } else {
                 EmployeeView(
                     selectedEmployeeID: $selectedEmployeeID
                 )
-            } else {
-                Text("Please select an employee")
             }
         }
         .navigationSplitViewStyle(.balanced)
-        .accentColor(.blue)
     }
 
     /// Add a new ``Employee`` with default data.
@@ -118,7 +117,7 @@ struct EmployeeListView: View {
 /// A view that presents an employee's details in a row in the list.
 struct EmployeeListRowView: View {
     var employee: Employee?
-    
+
     private let employeeListTestID = UIIdentifiers.EmployeeList.self
 
     var body: some View {
@@ -130,6 +129,7 @@ struct EmployeeListRowView: View {
                     imageState: state.imageState
                 )
                 .clippedImageShape(.round)
+                .padding(4)
                 .accessibilityIdentifier(
                     employeeListTestID.employeeFullName(
                         firstName: employee!.firstName,
@@ -153,7 +153,8 @@ struct EmployeeListRowView: View {
                         .accessibilityIdentifier(
                             employeeListTestID.lastName(
                                 employeeID: employee!.persistentModelID,
-                                lastName: employee!.lastName)
+                                lastName: employee!.lastName
+                            )
                         )
                 }
 
@@ -166,6 +167,9 @@ struct EmployeeListRowView: View {
                         )
                     )
             }
+        }
+        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+            return 0
         }
     }
 }

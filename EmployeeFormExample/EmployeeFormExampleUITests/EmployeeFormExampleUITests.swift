@@ -65,7 +65,7 @@ final class EmployeeFormExampleUITests: XCTestCase {
             #if os(iOS)
             firstName.tap(withNumberOfTaps: 2, numberOfTouches: 1)
             #else
-            firstName.tap
+            firstName.doubleClick()
             #endif
             firstName.typeText("\u{8}")
             firstName.typeText("A New Name")
@@ -83,14 +83,6 @@ final class EmployeeFormExampleUITests: XCTestCase {
             if app.staticTexts["Our Employees"].waitForExistence(timeout: 5) {
                 XCTAssert(app.staticTexts["A New Name Evans"].exists)
             }
-        }
-    }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
         }
     }
 }

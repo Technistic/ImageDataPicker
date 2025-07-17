@@ -1,29 +1,20 @@
-#!/bin/sh
-
+#!/bin/zsh
+#
 #  ci_post_clone.sh
 #  ImageDataPicker
 #
-#  Created by Michael Logothetis on 26/5/2025.
-#  
-echo "Configuring build for $CI_BRANCH"
+#  Updated by Michael Logothetis on 13/7/2025.
+#
 
-if [[ "$CI_BRANCH" =~ ^(alpha|beta)?-?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+) ]]; then
-    major=${BASH_REMATCH[2]}
-    minor=${BASH_REMATCH[3]}
-    patch=${BASH_REMATCH[4]}
-    ver_type=${BASH_REMATCH[1]}
+set -e
 
-    echo "Major: $major"
-    echo "Minor: $minor"
-    echo "Patch: $patch"
-    echo "Type: $ver_type"
-else
-    echo "Invalid Branch"
-    exit 1
-fi
+./test_xcode_cloud_pr.sh
 
-if [[ -n "$ver_type" ]]; then
-    echo "Copying $ver_type DocC Assets"
-    cp -R $ver_type/* ${CI_PRIMARY_REPOSITORY_PATH}/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources
-    cp -R $ver_type/* ${CI_PRIMARY_REPOSITORY_PATH}/EmployeeFormExample/EmployeeFormExample/EmployeeFormExample.docc/Resources
+# Exit workflow if this is a draft PR.
+./check_draft_pr.sh
+
+#  Update WhatToTest files when creating an archive.
+if [[ $CI_XCODEBUILD_ACTION = 'archive' ]];
+then
+    ./testflight_test_info.sh
 fi
