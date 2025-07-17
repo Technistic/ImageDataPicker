@@ -61,20 +61,7 @@ jobs:
           # import certificate to keychain
           security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
-
-          # apply provisioning profile
-          # mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          # cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles          
-
-      # - name: build archive
-      #   run: |
-      #     xcodebuild -scheme "I am Groot" \
-      #     -archivePath $RUNNER_TEMP/iamgroot.xcarchive \
-      #     -sdk iphoneos \
-      #     -configuration Debug \
-      #     -destination generic/platform=iOS \
-      #     clean archive          
+          security list-keychain -d user -s $KEYCHAIN_PATH      
 
       - name: build archive
         run: |
@@ -143,16 +130,13 @@ jobs:
       - name: Set Version
         run: echo "version=v${major}.${minor}.${patch}" >> $GITHUB_ENV
         
-      # - name: Set Product Version
-      # product_version  run: echo "product_version=${product_version}" >> $GITHUB_ENV
-        
       - name: Debug
         run: echo "::notice ${{ (contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}"
 
-      - name: Publish (Draft) Release
+      - name: Publish ImageDataPicker Framework Release
         uses: softprops/action-gh-release@v2.3.2
         with:
-          body: "This is a test release."
+          body: "ImageDataPicker Framework Release"
           draft: true
           files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
           name: ${{ env.product_version }}
@@ -160,15 +144,12 @@ jobs:
           prerelease: ${{ (contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}
           tag_name: ${{ github.ref_name }}
           generate_release_notes: true
-          # you can also archive the entire directory
-          # path: ${{ runner.temp }}/build
-          # retention-days: 3
 
-      #- name: Upload application
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: ImageDataPicker.tgz
-      #    path: ${{ runner.temp }}/ImageDataPicker.tgz
-      #    # you can also archive the entire directory
-      #    # path: ${{ runner.temp }}/build
-      #    retention-days: 3
+      # - name: Upload application
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ImageDataPicker.tgz
+      #     path: ${{ runner.temp }}/ImageDataPicker.tgz
+      #     # you can also archive the entire directory
+      #     # path: ${{ runner.temp }}/build
+      #     retention-days: 3

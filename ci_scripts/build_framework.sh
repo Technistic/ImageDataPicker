@@ -45,28 +45,6 @@ for destination in "${destinations[@]}"; do
     archives="${archives} -archive ${CI_WORKSPACE_PATH}/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive -framework ${FRAMEWORK_NAME}.framework"
 done
 
-# Create an archive for iOS simulators
-# xcodebuild \
-#     archive \
-#         SKIP_INSTALL=NO \
-#         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-#         -project "${FRAMEWORK_NAME}".xcodeproj \
-#         -scheme ${FRAMEWORK_NAME} \
-#         -configuration Release \
-#         -destination "generic/platform=iOS Simulator" \
-#         -archivePath build/${FRAMEWORK_NAME}-iOS_Simulator.xcarchive
-        
-# Create an archive for iOS simulators
-# xcodebuild \
-#     archive \
-#         SKIP_INSTALL=NO \
-#         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-#         -project "${FRAMEWORK_NAME}".xcodeproj \
-#         -scheme ${FRAMEWORK_NAME} \
-#         -configuration Release \
-#         -destination "generic/platform=macOS" \
-#         -archivePath build/${FRAMEWORK_NAME}-macOS.xcarchive
-
 # Convert the archives to .framework
 # and package them both into one xcframework
 xcodebuild \

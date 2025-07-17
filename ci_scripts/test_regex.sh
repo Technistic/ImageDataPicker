@@ -18,9 +18,9 @@ CI_TAG="rc.4-v10.2.3"
 if [[ -n "$CI_TAG" ]]; then
     # $CI_TAG should align with the branch name.
     BRANCH=$(echo $"$CI_TAG" | tr '-' '_')
-    if [[ "$CI_TAG" =~ ^v ]]; then
-        BRANCH="production_${BRANCH}"
-    fi
+    # if [[ "$CI_TAG" =~ ^v ]]; then
+    #    BRANCH="${BRANCH}"
+    # fi
 else
     # For a PR targeting a branch, we use the target branch as the version branch.
     if [[ -n "$CI_PULL_REQUEST_TARGET_BRANCH" ]]; then
@@ -32,7 +32,7 @@ fi
 
 # As CI_TAG must match CI_BRANCH, we derive the version from BRANCH.
 if [[ -n "$BRANCH" ]]; then
-    if [[ "$BRANCH" =~ ^((alpha|beta|rc|production)?(\.{1}([[:digit:]]+))?)?[\-|_]?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
+    if [[ "$BRANCH" =~ ^((alpha|beta|rc)?(\.{1}([[:digit:]]+))?)?[\-|_]?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
         major=${BASH_REMATCH[5]}
         minor=${BASH_REMATCH[6]}
         patch=${BASH_REMATCH[7]}
@@ -49,7 +49,7 @@ fi
 
 product_version="v${major}.${minor}.${patch}"
 
-if [[ -n "$ver_type" && "$ver_type" != 'production' ]]; then
+if [[ -n "$ver_type" ]]; then
     product_version="${product_version}-${ver_type}"
 fi
 
@@ -79,27 +79,30 @@ TEST_BRANCHES=(
     beta_v1.2.13
     rc.3_v1.2.3
     rc_v11.2.3
-    production_v1.2.3
-    production_v22.33.44
+    v1.2.3
+    v22.33.44
+    beta-v22.33.44
+    main
 )
 
 for TEST_BRANCH in "${TEST_BRANCHES[@]}"; do
 
     CI_BRANCH="$TEST_BRANCH"
 
-    if [[ "$CI_BRANCH" =~ ^((alpha|beta|rc|production)?(\.{1}([[:digit:]]+))?)?[\-|_]?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
+    if [[ "$CI_BRANCH" =~ ^((alpha|beta|rc)?(\.{1}([[:digit:]]+))?)?[\-|_]?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
          major=${BASH_REMATCH[5]}
          minor=${BASH_REMATCH[6]}
          patch=${BASH_REMATCH[7]}
          ver_type=${BASH_REMATCH[2]}
          build=${BASH_REMATCH[4]}
     else
-         echo "Error: BRANCH/TAG $BRANCH does not match expected format."
+         echo "Error: BRANCH/TAG $CI_BRANCH does not match expected format."
+         continue
     fi
     
     product_version="v${major}.${minor}.${patch}"
 
-    if [[ -n "$ver_type" && "$ver_type" != 'production' ]]; then
+    if [[ -n "$ver_type" ]]; then
         product_version="${product_version}-${ver_type}"
     fi
 
