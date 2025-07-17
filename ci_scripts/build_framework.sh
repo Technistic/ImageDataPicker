@@ -11,10 +11,13 @@
 
 FRAMEWORK_NAME="ImageDataPicker"
 
+major=1
+minor=2
+patch=3
+
 # Starting from a clean slate
 # Removing the build and output folders
 rm -rf ${CI_WORKSPACE_PATH}/build &&\
-# rm -rf ${CI_WORKSPACE_PATH}/output &&\
 rm -rf ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework
 
 # Cleaning the workspace cache
@@ -55,6 +58,18 @@ xcodebuild \
     -output ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework &&\
     rm -rf build
 
+# Update the Info.plist file for the xcframework
+#
+# Uncomment the following lines to modify the Info.plist file prior to signing.
+# However, the following keys are not required for the xcframework bundle type.
+#
+# plutil -insert CFBundleName -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+# plutil -insert CFBundleShortVersionString -string $major.$minor.$patch ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+# plutil -insert CFBundleVersion -string $major.$minor.$patch ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+# plutil -insert CFBundleIdentifier -string com.technistic.ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+# plutil -insert CFBundleExecutable -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+
+# Sign the xcframework
 codesign --timestamp -s "Apple Development: Michael Logothetis (J8XH79BD3A)" ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework
 
 echo $(ls -l ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework)

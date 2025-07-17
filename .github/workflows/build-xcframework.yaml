@@ -106,7 +106,21 @@ jobs:
           -archive $RUNNER_TEMP/build/${FRAMEWORK_NAME}-iOS.xcarchive -framework ${FRAMEWORK_NAME}.framework \
           -archive $RUNNER_TEMP/build/${FRAMEWORK_NAME}-iOS_Simulator.xcarchive -framework ${FRAMEWORK_NAME}.framework \
           -archive $RUNNER_TEMP/build/${FRAMEWORK_NAME}-macOS.xcarchive -framework ${FRAMEWORK_NAME}.framework \
-          -output $RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework 
+          -output $RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework
+          
+      - name: Update XCFramework Info.plist
+        run: |
+          echo "Updating Info.plist for xcframework...(this step is optional)"
+          # Update the Info.plist file for the xcframework
+          #
+          # Uncomment the following lines to modify the Info.plist file prior to signing.
+          # However, the following keys are not required for the xcframework bundle type.
+          #
+          # plutil -insert CFBundleName -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+          # plutil -insert CFBundleShortVersionString -string $major.$minor.$patch ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+          # plutil -insert CFBundleVersion -string $major.$minor.$patch ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+          # plutil -insert CFBundleIdentifier -string com.technistic.ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+          # plutil -insert CFBundleExecutable -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
 
       - name: Sign Framework
         env:
