@@ -21,7 +21,7 @@
 #  alpha.2_v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Integration Build)
 #  beta.1_v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Staging Build)
 #  rc.1_v1.2.3 -> v1.2.3-rc.1 (Xcode Cloud Release Candidate Build)
-#  production_v1.2.3 -> v1.2.3 (Xcode Cloud Production Build)
+#  main (Xcode Cloud Production Build)
 #
 #  Example Tag Names:
 #  alpha.2-v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Integration Release)
@@ -35,9 +35,6 @@ set -e
 if [[ -n "$CI_TAG" ]]; then
     # $CI_TAG should align with the branch name.
     BRANCH=$(echo $"$CI_TAG" | tr '-' '_')
-    if [[ "$CI_TAG" =~ ^v ]]; then
-        BRANCH="production_${BRANCH}"
-    fi
 else
     # For a PR targeting a branch, we use the target branch as the version branch.
     if [[ -n "$CI_PULL_REQUEST_TARGET_BRANCH" ]]; then
@@ -49,7 +46,7 @@ fi
 
 # As CI_TAG must match CI_BRANCH, we derive the version from BRANCH.
 if [[ -n "$BRANCH" ]]; then
-    if [[ "$BRANCH" =~ ^((alpha|beta|rc|production)?(\.{1}([[:digit:]]+))?)?[\-|_]?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
+    if [[ "$BRANCH" =~ ^((alpha|beta|rc)?(\.{1}([[:digit:]]+))?)?[\-|_]?v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
         major=${BASH_REMATCH[5]}
         minor=${BASH_REMATCH[6]}
         patch=${BASH_REMATCH[7]}
@@ -66,7 +63,7 @@ fi
 
 product_version="v${major}.${minor}.${patch}"
 
-if [[ -n "$ver_type" && "$ver_type" != 'production' ]]; then
+if [[ -n "$ver_type" ]]; then
     product_version="${product_version}-${ver_type}"
 fi
 

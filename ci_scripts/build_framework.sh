@@ -11,10 +11,13 @@
 
 FRAMEWORK_NAME="ImageDataPicker"
 
+major=1
+minor=2
+patch=3
+
 # Starting from a clean slate
 # Removing the build and output folders
 rm -rf ${CI_WORKSPACE_PATH}/build &&\
-# rm -rf ${CI_WORKSPACE_PATH}/output &&\
 rm -rf ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework
 
 # Cleaning the workspace cache
@@ -45,28 +48,6 @@ for destination in "${destinations[@]}"; do
     archives="${archives} -archive ${CI_WORKSPACE_PATH}/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive -framework ${FRAMEWORK_NAME}.framework"
 done
 
-# Create an archive for iOS simulators
-# xcodebuild \
-#     archive \
-#         SKIP_INSTALL=NO \
-#         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-#         -project "${FRAMEWORK_NAME}".xcodeproj \
-#         -scheme ${FRAMEWORK_NAME} \
-#         -configuration Release \
-#         -destination "generic/platform=iOS Simulator" \
-#         -archivePath build/${FRAMEWORK_NAME}-iOS_Simulator.xcarchive
-        
-# Create an archive for iOS simulators
-# xcodebuild \
-#     archive \
-#         SKIP_INSTALL=NO \
-#         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-#         -project "${FRAMEWORK_NAME}".xcodeproj \
-#         -scheme ${FRAMEWORK_NAME} \
-#         -configuration Release \
-#         -destination "generic/platform=macOS" \
-#         -archivePath build/${FRAMEWORK_NAME}-macOS.xcarchive
-
 # Convert the archives to .framework
 # and package them both into one xcframework
 xcodebuild \
@@ -77,6 +58,18 @@ xcodebuild \
     -output ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework &&\
     rm -rf build
 
+# Update the Info.plist file for the xcframework
+#
+# Uncomment the following lines to modify the Info.plist file prior to signing.
+# However, the following keys are not required for the xcframework bundle type.
+#
+# plutil -insert CFBundleName -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+# plutil -insert CFBundleShortVersionString -string $major.$minor.$patch ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+# plutil -insert CFBundleVersion -string $major.$minor.$patch ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+# plutil -insert CFBundleIdentifier -string com.technistic.ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+# plutil -insert CFBundleExecutable -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+
+# Sign the xcframework
 codesign --timestamp -s "Apple Development: Michael Logothetis (J8XH79BD3A)" ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework
 
 echo $(ls -l ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework)
