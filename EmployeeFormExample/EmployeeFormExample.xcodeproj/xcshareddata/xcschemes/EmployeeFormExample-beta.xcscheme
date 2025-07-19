@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "69CF51502DC45A5400402D6E"
-               BuildableName = "EmployeeFormExample (Release).app"
+               BuildableName = "EmployeeFormExample.app"
                BlueprintName = "EmployeeFormExample"
                ReferencedContainer = "container:EmployeeFormExample.xcodeproj">
             </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69CF51502DC45A5400402D6E"
-            BuildableName = "EmployeeFormExample (Release).app"
+            BuildableName = "EmployeeFormExample.app"
             BlueprintName = "EmployeeFormExample"
             ReferencedContainer = "container:EmployeeFormExample.xcodeproj">
          </BuildableReference>
@@ -86,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69CF51502DC45A5400402D6E"
-            BuildableName = "EmployeeFormExample (Release).app"
+            BuildableName = "EmployeeFormExample.app"
             BlueprintName = "EmployeeFormExample"
             ReferencedContainer = "container:EmployeeFormExample.xcodeproj">
          </BuildableReference>
