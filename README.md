@@ -2,13 +2,19 @@
 
 The **Swift Image Data Picker Framework** provides a convenient, intuitive and customizable control that you can use in your SwiftUI projects, to select images from a device's Photo Library and bind the selected image to a Swift Data Model.
 
+<p align="center">
 <img width="640" height="320" alt="GitHub 640" src="https://github.com/user-attachments/assets/b36f3d25-3681-4197-8ad6-9b24382a0761" />
+</p>
 
 ## Getting Started
 
 [Download](https://github.com/Technistic/ImageDataPicker/releases) the latest copy of the Image Data Picker Framework and Add (+) it to your Swift Project.
 
-<img width="320" height="122" alt="GitHub Xcode Framework" src="https://github.com/user-attachments/assets/cb41a35c-7862-457c-a6e0-46c30397c630" />
+<p align="center">
+<img width="640" height="244" alt="GitHub Xcode Framework" src="https://github.com/user-attachments/assets/cb41a35c-7862-457c-a6e0-46c30397c630" />
+</p>
+
+Then include an [ImageDataPickerView()](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker/imagedatapickerview) in your App.
 
 ```
 import ImageDataPicker
@@ -25,7 +31,9 @@ struct ContentView: View {
 }
 ```
 
-<img width="320" height="263" alt="GitHub Xcode Code" src="https://github.com/user-attachments/assets/80e65e6b-80d0-44a0-acdf-964879d4fbd8" />
+<p align="center">
+<img width="640" height="526" alt="GitHub Xcode Code" src="https://github.com/user-attachments/assets/80e65e6b-80d0-44a0-acdf-964879d4fbd8" />
+</p>
 
 ## Documentation
 
@@ -35,7 +43,10 @@ Look at the documentation and code for our **EmployeeForm** example app, to see 
 
 ## Support
 
-Commercial Support available on request.
+Commercial Support available on request. 
+
+**Email:** <a href="mailto:sales\@technistic.com">sales\@technistic.com</a>
+
 
 ## Further Details
 
@@ -47,4 +58,4 @@ Commercial Support available on request.
 
 [EmployeeFormExample Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample)
 
-Copyright Technistic Pty Ltd 2025
+Copyright &copy; 2025 Technistic Pty Ltd
