@@ -1,6 +1,6 @@
 # Swift Image Data Picker
 
-The **Swift Image Data Picker Framework** provides a convenient, intuitive and customizable control that you can use in yout SwiftUI projects, to select images from a devices Photo Library and bind the selected image to a Swift Data Model.
+The **Swift Image Data Picker Framework** provides a convenient, intuitive and customizable control that you can use in your SwiftUI projects, to select images from a device's Photo Library and bind the selected image to a Swift Data Model.
 
 <img width="640" height="320" alt="GitHub 640" src="https://github.com/user-attachments/assets/b36f3d25-3681-4197-8ad6-9b24382a0761" />
 
