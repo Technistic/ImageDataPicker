@@ -1,3 +1,5 @@
+[![Build xcframework](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml/badge.svg?branch=alpha_v0.0.2)](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml)
+
 # Swift Image Data Picker
 
 The **Swift Image Data Picker Framework** provides a convenient, intuitive and customizable control that you can use in your SwiftUI projects, to select images from a device's Photo Library and bind the selected image to a Swift Data Model.
