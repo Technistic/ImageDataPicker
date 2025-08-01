@@ -1,0 +1,25 @@
+@Tutorial(time: 5) {
+    @Intro(title: "Download the Framework") {
+        Download the latestest version of the **ImageDataPicker** framework from the official repository, extract the archive and add the Framework to your Xcode project.
+        @Image(source: "Download-Header-R", alt: "Download Archive")
+    }
+    
+    @Section(title: "Download the Framework") {
+        @ContentAndMedia {
+            Download the Framework from the official repository or website. Make sure to download the latest version.
+            @Image(source: "Download-Header", alt: "Download Archive")
+        }
+        
+        @Steps {
+            @Step {
+                Navigate to the official [repository](https://www.github.com/technistic/ImageDataPicker) where the ImageDataPicker framework is hosted. Follow the link to the latest **Release** in the right sidebar.
+                @Image(source: "GitHub Releases", alt: "GitHub Releases")
+            }
+            
+            @Step {
+                Click on the [ImageDataPicker.tgz](https://github.com/Technistic/ImageDataPicker/releases/download/beta-v0.0.2/ImageDataPicker.tgz) file to download the Framework archive.
+                @Image(source: "GitHub Archive", alt: "GitHub Archive")
+            }
+        }
+    }
+}

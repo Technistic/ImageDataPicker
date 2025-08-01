@@ -1,0 +1,22 @@
+@Tutorial(time: 5) {
+    @Intro(title: "Extract the Archive") {
+        Expand the downloaded Framework Archive.
+        @Image(source: "Extract-Header-R", alt: "Expand Archive")
+    }
+    
+    @Section(title: "Extracting the Archive") {
+        @ContentAndMedia {
+            Extract the downloaded archive to get the Framework.
+            @Image(source: "Extract-Header", alt: "Expand Archive")
+        }
+        @Steps {
+            @Step {
+                Double-click on the downloaded **ImageDataPicker.tgz** archive file to extract it. This will create a **framework bundle** directory (`ImageDataPicker.xcfamework`) containing the Framework files.
+                
+                > Note: This is a mutli-platform framework, so it contains resources for both iOS and macOS.
+                
+                @Image(source: "Extract Archive", alt: "GitHub Archive")
+            }
+        }
+    }
+}

@@ -39,9 +39,9 @@ struct ContentView: View {
 
 ## Documentation
 
-Read the [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **Image Data Framework** or get started by following our Tutorial.
+Read the [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **Image Data Framework** or get started by following our [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/ImageDataPickerTOC/).
 
-Look at the documentation and code for our **EmployeeForm** example app, to see how to use the Framework in your Apps.
+Look at the documentation and code for our **EmployeeForm** example app, to see how to use the Framework in your own Apps.
 
 ## Support
 

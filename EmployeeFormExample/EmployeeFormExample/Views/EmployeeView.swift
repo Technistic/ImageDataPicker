@@ -23,7 +23,7 @@ struct EmployeeView: View {
 
     @Binding public var selectedEmployeeID: Employee.ID?
     @State var employee: Employee?
-    
+
     @State var clippingSelection: Int = 0
 
     @State private var firstName: String = ""
@@ -58,7 +58,9 @@ struct EmployeeView: View {
                 ImageDataPickerView(imageData: $imageData)
                     //.clippedImageShape(.round)
                     //.clippedImageShape(.roundedSquare)
-                    .clippedImageShape(ClippedImageShape.allCases [clippingSelection])
+                    .clippedImageShape(
+                        ClippedImageShape.allCases[clippingSelection]
+                    )
                     .padding(8)
                     .frame(minHeight: 180)
 
@@ -84,8 +86,8 @@ struct EmployeeView: View {
                     Label("Department", systemImage: "person.3.fill")
                         .font(.title)
                         .padding(.top, 16)
-                        //.foregroundColor(.primary)
-                        
+                    //.foregroundColor(.primary)
+
                     TextField("Department", text: $department)
                         .disableAutocorrection(true)
                         .accessibilityIdentifier(
@@ -140,9 +142,9 @@ struct EmployeeView: View {
             .padding(24)
         }
         #if os(iOS)
-        .background(Color(.tertiarySystemBackground))
+            .background(Color(.tertiarySystemBackground))
         #endif
-        
+
         .onAppear {
             if selectedEmployeeID == nil {
                 Logger.appdata.debug("No employee selected.")
