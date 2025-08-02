@@ -26,7 +26,7 @@
                 @Image(source: "MyImageList-New Project", alt: "Xcode Project Platform")
             }
             @Step {
-                Press **Next**.
+                Click **Next**.
                 @Image(source: "MyImageList-New Project", alt: "Xcode Project Platform")
             }
             @Step {
@@ -38,11 +38,11 @@
                 @Image(source: "MyImageList-Project Options-SwiftData", alt: "Xcode Project Platform")
             }
             @Step {
-                Press **Next**.
+                Click **Next**.
                 @Image(source: "MyImageList-Project Options", alt: "Xcode Project Platform")
             }
             @Step {
-                Select the `Folder` to create the project in and press **Create**.
+                Select the `Folder` to create the project in and click **Create**.
             }
         }
     }
@@ -66,7 +66,7 @@
                 @Image(source: "MyImageList-Frameworks", alt: "Xcode Framework")
             }
             @Step {
-                Add the **ImageDataPicker** framework by clicking the **+** button.
+                Add the **ImageDataPicker** framework by clicking the **(+)** button.
                 @Image(source: "MyImageList-Framework Add", alt: "Xcode Framework")
             }
             @Step {
@@ -167,7 +167,7 @@
             }
             
             @Step {
-                Press **Create**
+                Click **Create**
                 @Image(source: "MyImageList-MyImageListView-2", alt: "Xcode Framework Embed")
             }
         }
@@ -207,7 +207,7 @@
             }
             
             @Step {
-                Press **Create**
+                Click **Create**
                 @Image(source: "MyImageList-MyImageView-1", alt: "Xcode Framework Embed")
             }
         

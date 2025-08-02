@@ -23,7 +23,7 @@
                 @Image(source: "MyImageList-Frameworks", alt: "Xcode Framework")
             }
             @Step {
-                Add the **ImageDataPicker** framework by clicking the **+** button.
+                Add the **ImageDataPicker** framework by clicking the **(+)** button.
                 @Image(source: "MyImageList-Framework Add", alt: "Xcode Framework")
             }
             @Step {

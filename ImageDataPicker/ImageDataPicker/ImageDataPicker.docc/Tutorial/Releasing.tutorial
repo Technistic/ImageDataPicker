@@ -22,7 +22,7 @@
                 @Image(source: "MyImageList-Capabilities", alt: "Xcode Capabilities")
             }
             @Step {
-                Press **(+)** Capability
+                Click **(+)** Capability
                 @Image(source: "MyImageList-Capabilities", alt: "Xcode Capabilities")
             }
             @Step {
@@ -42,7 +42,7 @@
     
     @Section(title: "App Signing") {
         @ContentAndMedia {
-            When you sign your App you are also signing any included frameworks. After you have added the ImageDataPicker framework to your project, check that you are using an appropriately signed version of the Framework.
+            When you sign your App you are also signing any frameworks your app includes. After you have added the **ImageDataPicker framework** to your project, check that you are using an appropriately signed version of the Framework.
             
             @Image(source: "Key-Header", alt: "Key Background")
         }
