@@ -6,7 +6,7 @@
 
 A Framework for binding an Image to SwiftData with a control that allows you to select a photo from the PhotoLibrary using the PhotosUI `PhotosPicker`.
 
-![ImageDataPicker](Release-Doc-Title)
+![ImageDataPicker](ImageDataPicker-Hero)
 
 The ImageDataPicker framework provides a simple control to select photos using SwiftUI's PhotosPicker and then store the selected image to a SwiftData Model. The control presents a thumbnail view of the selected image that can be clipped to various geometries (round, square or rounded). A customisable placeholder image is presented if no image has been selected or an error loading the image occurs.
 
@@ -22,7 +22,7 @@ The ImageDataPicker framework provides a simple control to select photos using S
 
 4. You can use the ``ClippedImageShape`` view modifier to clip the image to a specific shape, such as `.circle`, `.square`, or `.roundedRectangle`. The image will automatically be resized to fit the containing frame and clipped to a 1:1 aspect ratio.
 
-[Tutorial]<doc:UsingImageDataPickerTOC>
+[Tutorial]<doc:ImageDataPickerTOC>
 
 ## Topics
 

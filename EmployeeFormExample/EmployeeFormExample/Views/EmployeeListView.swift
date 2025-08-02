@@ -22,7 +22,6 @@ import SwiftUI
 /// employees along with their photo, name and department.
 struct EmployeeListView: View {
     @Environment(\.editMode) private var editMode
-
     @Environment(\.modelContext) private var modelContext
     @Query private var employees: [Employee]
 
