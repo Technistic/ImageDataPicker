@@ -1,3 +1,5 @@
+[![Build xcframework](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml/badge.svg?branch=alpha_v0.0.2)](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml)
+
 <img width="640" height="320" alt="ImageDataPicker-DocC" src="https://github.com/user-attachments/assets/a4b5dd0d-b3ce-4fcd-a6a6-24279d031ff4" />
 
 # SwiftUI Image Data Picker
