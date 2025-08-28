@@ -23,7 +23,7 @@
             }
             @Step {
                 Choose **Multiplatform** as the platform.
-                @Image(source: "MyImageList-New Project", alt: "Project tlatform")
+                @Image(source: "MyImageList-New Project", alt: "Project platform")
             }
             @Step {
                 Choose **App** as the template.
