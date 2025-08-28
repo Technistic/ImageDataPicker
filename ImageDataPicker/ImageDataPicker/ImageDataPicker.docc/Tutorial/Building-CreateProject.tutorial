@@ -1,0 +1,98 @@
+@Tutorial(time: 10, projectFiles: MyImageList-main.zip) {
+    @XcodeRequirement(
+                      title: "Xcode 16", 
+                      destination: "https://developer.apple.com/download/")
+    @Intro(title: "Create a new Project") {
+        Start by creating a new SwiftUI multi-platform project for the App.
+        
+        @Image(source: "Phone-Header-R", alt: "Phone Background")
+    }
+    
+    @Section(title: "Create the Project") {
+        @ContentAndMedia {
+            Create a new XCode project to produce a multi-platform App.
+            
+            @Comment {@Image(source: "Phone-Header", alt: "Xcode Project")}
+            @Image(source: "Phone-Header", alt: "Sample Video")
+        }
+        
+        @Steps {
+            @Step {
+                Open **Xcode** and select **File...New...Project...** to create a new project.
+                @Image(source: "MyImageList-New Project", alt: "Xcode New Project window")
+            }
+            @Step {
+                Choose **Multiplatform** as the platform.
+                @Image(source: "MyImageList-New Project", alt: "Project tlatform")
+            }
+            @Step {
+                Choose **App** as the template.
+                @Image(source: "MyImageList-New Project", alt: "Project template")
+            }
+            @Step {
+                Press **Next**.
+                @Image(source: "MyImageList-New Project", alt: "Next button")
+            }
+            @Step {
+                Name your project `MyImageList`.
+                @Image(source: "MyImageList-Project Options", alt: "Project Options Name")
+            }
+            @Step {
+                Choose **Storage:** `SwiftData`
+                @Image(source: "MyImageList-Project Options-SwiftData", alt: "Project Options Storage")
+            }
+            @Step {
+                Press **Next**.
+                @Image(source: "MyImageList-Project Options", alt: "Next button")
+            }
+            @Step {
+                Select the `Folder` to create the project in and press **Create**.
+                @Image(source: "1-InitialProjectFiles", alt: "Project and Files")
+            }
+        }
+    }
+    
+    @Section(title: "Add the Framework to your Project") {
+        @ContentAndMedia {
+            Add the ImageDataPicker framework to your Xcode project.
+            @Image(source: "Plus-Header", alt: "Add Framework")
+        }
+        @Steps {
+            @Step {
+                Select the **MyImageList** Project in the Xcode Project Navigator
+                @Image(source: "2-1-Frameworks", alt: "Xcode Framework")
+            }
+            @Step {
+                Select the **MyImageList** Project Target
+                @Image(source: "2-1-Frameworks", alt: "Xcode Framework")
+            }
+            @Step {
+                Under the **General** tab, scroll down to **Frameworks, Libraries, and Embedded Content**.
+                @Image(source: "2-1-Frameworks", alt: "Xcode Framework")
+            }
+            @Step {
+                Add the **ImageDataPicker** framework by clicking the **(+)** button.
+                @Image(source: "2-2-AddFramework", alt: "Xcode Framework")
+            }
+            @Step {
+                Select **Add Other...** **Add Files...** and navigate to the location where you downloaded the **ImageDataPicker** framework and select it.
+                @Image(source: "2-3-FrameworkFiles", alt: "Xcode Framework Files")
+            }
+            @Step {
+                Select the **ImageDataPicker.xcframework** bundle folder and click **Open**.
+                @Image(source: "2-4-FrameworkFileSelection", alt: "Xcode Framework Files")
+            }
+            @Step {
+                Ensure that the framework is set to `Embed & Sign` in the **Frameworks, Libraries, and Embedded Content** section.
+                
+                > Note: This is a **multi-platform** framework, so you can use it in both `iOS` and `macOS` projects.
+                
+                @Image(source: "2-5-FrameworkEmbedded", alt: "Xcode Framework set to Embed & Sign")
+            }
+            @Step {
+                It is good practice to check you are using a correctly signed release of the Framework. Select the **ImageDataPicker** framework in the Project Navigator and examine the signing details in the **File inspector**.
+                @Image(source: "2-6-FrameworkSigned", alt: "Xcode Framework Signing")
+            }
+        }
+    }
+}

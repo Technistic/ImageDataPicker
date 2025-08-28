@@ -1,0 +1,22 @@
+@Article(time: 5) {
+    @Intro(title: "Customization Options") {
+        The **ImageDataPicker Framework** allows you to customize how the ``ImageDataPickerView`` appears. You have options to specify placeholder images, clipping shapes, and more to suit your application's requirements.
+        @Image(source: "Options-Header-R", alt: "Brain")
+    
+    }
+    
+    @Stack {
+        @ContentAndMedia {
+            @Image(source: "Placeholders", alt: "Placeholder image options.")
+            The ``ImageDataPickerView`` can be customized to satisfy different requirements. If a photo has not been selected, the ``ImageDataPickerView`` will display a placeholder image as the thumbnail. This placeholder can be any [SF Symbol](https://developer.apple.com/sf-symbols) that satisfies your application's requirements.
+        }
+    
+        @ContentAndMedia {
+            @Image(source: "Clipping-Background", alt: "ImageDataPickerView clipping shape options.")
+            The shape of the ``ImageDataPickerView`` can be customized to be either circular (`.round`), a rounded-square (`.rounded`) or a square (`.square`).
+        
+            The `ImageDataPickerView` centres the selected image and clips it to a 1:1 aspect ratio, using the image's smaller horizontal or vertical dimension. The ``ImageDataPickerView`` will then be sized to fill its containing `Frame`.
+        }
+    }
+}
+

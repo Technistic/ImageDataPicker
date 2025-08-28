@@ -1,0 +1,12 @@
+@Article(time: 5) {
+    @Intro(title: "Using the Framework") {
+        It is simple to incorporate the **ImageDataPicker Framework** in your application. Download the Framework, add it to your Project, create a **SwiftData Model** and `@Bind` the ``ImageDataPickerView`` to a property in your Model.
+        @Image(source: "Brain-Header-R", alt: "Brain")
+    }
+    
+    @ContentAndMedia {
+        @Image(source: "ImageDataPicker-Header", alt: "Typical usage of the ImageDataPicker Framework.")
+        The ``ImageDataPickerView`` is designed to be bound to a **SwiftData Model**. Applications typically display a `List` of images stored in the `Model` and you `@Bind` the ``ImageDataPickerView`` to a `Data?` property within that **Model**. When a user selects a photo from their **PhotoLibrary** using the ``ImageDataPickerView``, it can automatically update the image in your **Model** with the `Data?` for the selected image.
+    }
+}
+
