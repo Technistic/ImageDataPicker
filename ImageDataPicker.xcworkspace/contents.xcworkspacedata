@@ -70,4 +70,8 @@
    <FileRef
       location = "group:README.md">
    </FileRef>
+   <FileSystemSynchronizedGroup
+      location = "group:assets"
+      name = "assets">
+   </FileSystemSynchronizedGroup>
 </Workspace>
