@@ -5,7 +5,7 @@
         @Image(source: "Options-Header-R", alt: "Options List")
     }
     
-    @Section(title: "Customizing Placholder Images") {
+    @Section(title: "Customizing Placeholder Images") {
         @ContentAndMedia {
             When a photo has not been selected or the selected photo is deleted, the ``ImageDataPickerView`` displays a placeholder image. The type of placeholder image that is displayed can be customized to your requirements. Similarly if the ``ImageDataPickerView`` fails to retrieve a selected image, it will display an error image. You can also customize the error image that is displayed. The specific placeholder images can be set using the `placeholderImage` and `errorImage` parameters of the ``ImageDataPickerView/init(imageData:emptyImage:errorImage:)`` initializer, and can be any SF Symbol that matches your App's requirements.
             
