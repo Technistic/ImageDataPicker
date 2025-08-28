@@ -1,0 +1,31 @@
+@Tutorial(time: 10) {
+    @Intro(title: "Customizing Placeholder Images") {
+        How to customize placeholder images in the ``ImageDataPickerView``.
+        
+        @Image(source: "Options-Header-R", alt: "Options List")
+    }
+    
+    @Section(title: "Customizing Placeholder Images") {
+        @ContentAndMedia {
+            When a photo has not been selected or the selected photo is deleted, the ``ImageDataPickerView`` displays a placeholder image. The type of placeholder image that is displayed can be customized to your requirements. Similarly if the ``ImageDataPickerView`` fails to retrieve a selected image, it will display an error image. You can also customize the error image that is displayed. The specific placeholder images can be set using the `placeholderImage` and `errorImage` parameters of the ``ImageDataPickerView/init(imageData:emptyImage:errorImage:)`` initializer, and can be any SF Symbol that matches your App's requirements.
+            
+            > Tip: For a list of valid system images, see [SF Symbols documentation](https://developer.apple.com/sf-symbols).
+                
+            @Image(source: "Placeholders", alt: "Placeholder Images")
+            
+        }
+        @Steps {
+            @Step {
+                Customize the `ImageDataPickerView` empty placeholder by setting the `emptyImage` parameter to a valid system image.
+                
+                @Code(name: "MyView.swift", file: "2-Placeholder.swift", previousFile: "1-Placeholder.swift")
+            }
+            
+            @Step {
+                Customize the `ImageDataPickerView` error placeholder by setting the `errorImage` parameter to a valid system image.
+                
+                @Code(name: "MyView.swift", file: "3-Placeholder.swift", previousFile: "2-Placeholder.swift")
+            }
+        }
+    }
+}

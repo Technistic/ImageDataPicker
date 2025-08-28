@@ -1,0 +1,85 @@
+@Tutorial(time: 10) {
+
+    @Intro(title: "Create a Detail view") {
+        Add a Detail view to your SwiftUI project that allows users to view and select images.
+        
+        @Image(source: "Phone-Header-R", alt: "Phone Background")
+    }
+    
+    @Section(title: "Add the MyImageView") {
+        @ContentAndMedia {
+            Use the MyImageView to display the selected image and its details. Present the image in an `ImageDataPickerView` that allows the user to select a new image or remove the current image.
+            @Image(source: "5-MyImageView", alt: "List Background")
+            
+        }
+        
+        @Steps {
+            @Step {
+                Add a new **Swift View File** to your **Project**
+                @Image(source: "5-1-NewViewFile", alt: "Xcode Framework Embed")
+            }
+            
+            @Step {
+                Name your file `MyImageView.swift` 
+                @Image(source: "5-2-NewViewFile-MyImageView", alt: "Xcode Framework Embed")
+            }
+            
+            @Step {
+                Click **Create**
+                @Code(name: "MyImageView.swift", file: "5-3-MyImageView.swift") {
+                    @Image(source: "5-3-MyImageViewSrc", alt: "Xcode Framework Embed")
+                }
+            }
+        
+            @Step {
+                Load the selected Image and store the `imageName` and `imageData` in local variables so that changes to the model are not committed until the user saves them.
+                @Code(name: "MyImageView.swift", file: "5-4-MyImageView.swift", previousFile: "5-3-MyImageView.swift") {
+                    @Image(source: "5-4-MyImageViewSrc", alt: "Xcode Framework Embed")
+                }
+            }
+            
+            @Step {
+                Add a function to determine when the user has made changes to the model.
+                @Code(name: "MyImageView.swift", file: "5-5-MyImageView.swift", previousFile: "5-4-MyImageView.swift") {
+                    @Image(source: "5-5-MyImageViewSrc", alt: "Xcode Framework Embed")
+                }
+            }
+            
+            @Step {
+                Add buttons and functions to `save` or `cancel` the changes.
+                @Code(name: "MyImageView.swift", file: "5-6-MyImageView.swift", previousFile: "5-5-MyImageView.swift") {
+                    @Image(source: "5-6-MyImageViewSrc", alt: "Xcode Framework Embed")
+                }
+            }
+            
+            @Step {
+                Change the `detail:` view of the `NavigationSplitView` to use the `MyImageView`.
+                @Code(name: "MyImageListView.swift", file: "5-7-MyImageListView.swift", previousFile: "4-6-MyImageListView.swift") {
+                    @Image(source: "5-7-MyImageListViewSrc", alt: "Xcode Framework Embed")
+                }
+            }
+        }
+    }
+}
+    
+    @Section(title: "Remove the boiler-plate Item code") {
+        Remove references to **Item.swift** in your project. This is boilerplate code that is not needed for this tutorial.
+
+    > Why remove Item.swift? The default template includes a sample model and view. Replacing these ensures your app uses your custom image model.
+        
+        @Steps {
+            @Step {
+                Replace `Item.self` with `MyImage.self` in the App schema.
+                @Code(name: "MyImageListApp.swift", file: 2-MyImageListApp.swift, previousFile: 1-MyImageListApp.swift)
+            }
+            @Step {
+                Remove the `NavigationSplitView` controller code in **ContentView.swift**.
+                @Code(name: "ContentView.swift", file: 1a-ContentView.swift, previousFile: 1-ContentView.swift)
+            }
+            @Step {
+                Delete the **Item.swift** file from your project.
+            }
+        }
+    }
+    
+
