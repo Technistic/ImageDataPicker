@@ -71,7 +71,7 @@
         }
             
         @Downloads(destination: "https://github.com/Technistic/ImageDataPicker/releases") {
-            Get the latest stable release or try a beta-versions.
+            Get the latest stable release or try beta versions.
         }
                 
         @Documentation(destination: "https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker/") {
