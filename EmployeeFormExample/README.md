@@ -11,11 +11,19 @@ selecting an appropriate photo using the PhotosPicker.
 ## Architecture
 
 The application uses a SwiftData Model to store the information for employees. The `Employee` model's `imageData` property is bound to an `ImageDataPickerView` that
-allows a photo to be selected from the **PhotoLibrary**.
+allows a photo to be selected from the **PhotoLibrary**. The `detail:` `EmployeeView() loads the selected `Employee` data into temporary variables. This allows the user
+to either `save()` the changes or `cancel()` the proposed changes.
+
+![Architecture](/EmployeeFormExample/EmployeeFormExample/EmployeeFormExample.docc/Resources/ImageDataPicker-Header@0.5x.png)
 
 ## Design
 
-As this is a multi-platform application - it can be run on iOS, iPadOS and macOS - it uses a `NavigationSplitView` to present a list-detail interface.
+As this is a multi-platform application - it can be run on iOS, iPadOS and macOS - it uses a `NavigationSplitView` to present a list-detail interface. The `NavigationSplitView`
+`List` is configured to use the `Edit()` button to `delete()` rows from the `List`. An `Add()` button adds a new row to the `List` with default values that can be modified
+in the `EmployeeView`.
+
+Notice that there is a segmented picker at the bottom of the `EmployeeView` that allows you to see the effect of the `clippedImageShape()` view modifier on the `ImageDataPickerView()`.
+
 
 ## Credits
 
