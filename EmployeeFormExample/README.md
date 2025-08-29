@@ -4,9 +4,9 @@
 
 The EmployeeFormExample application demonstrates how to build a multi-platform application that uses the ImageDataPicker framework. It presents a list of employees,
 displaying their name, department and a photo. Selecting an employee from the list presents a detail view that allows this information to be edited, including
-selecting an appropriate photo from using PhotosPicker.
+selecting an appropriate photo using the PhotosPicker.
 
-![EmployeeFormExample](/employeeformexample/assets/images/EmployeeFormExample-Hero@1x.png)
+![EmployeeFormExample](/EmployeeFormExample/assets/images/EmployeeFormExample-Hero@1x.png)
 
 ## Architecture
 
