@@ -4,7 +4,7 @@
 
 <img width="518" height="322" alt="ImageDataPicker-README-Hero" src="https://github.com/user-attachments/assets/ae9cf4bb-4223-4523-80d5-f62f4bc78aa3" />
 
-The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your SwiftUI projects, to select images from a device's **PhotoLibrary** and bind the selected image to a SwiftData Model.
+The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select images from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** `@Model`.
 
 ## Quick Start
 
@@ -14,7 +14,7 @@ The **ImageDataPicker** framework provides a convenient, intuitive and customiza
    
     <img width="624" height="310" alt="MyImageList-Framework Added" src="https://github.com/user-attachments/assets/e209dc2f-4cc7-49e1-b7e5-577bad11b8b1" />
 
-4. Add the `ImageDataPickerView` to a View in your application.
+4. Add the `ImageDataPickerView` to a `View` in your application.
    
     ```
     import ImageDataPicker
@@ -35,9 +35,11 @@ The **ImageDataPicker** framework provides a convenient, intuitive and customiza
 
 ## Documentation
 
-Read the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the [ImageDataPicker](ImageDataPicker/README.md) framework.
+Read more about the [ImageDataPicker](ImageDataPicker/README.md) framework.
 
-Walk through the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multi-platform application using the Framework.
+See the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework.
+
+Walk through the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multi-platform application using the **ImageDataPicker** framework.
 
 Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for our [EmployeeFormExample](EmployeeFormExample/README.md) application, to understand how to use the Framework in a *real-world* application.
 
@@ -45,7 +47,7 @@ Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employe
 
 Commercial Support available on request.
 
-Contact <a href="mailto:support&amp;#64;technistic.com">support&#64;technistic.com</a>
+**Contact** <a href="mailto:sales&#64;technistic.com?subject='Request for ImageDataPicker commercial support'" target="_blank">sales&#64;technistic.com</a>
 
 ---
 
