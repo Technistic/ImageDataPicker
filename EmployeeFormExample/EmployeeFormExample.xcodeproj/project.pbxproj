@@ -47,6 +47,15 @@
 			);
 			target = 69CF51502DC45A5400402D6E /* EmployeeFormExample */;
 		};
+		69DE3F802E61335900FDBE62 /* Exceptions for "assets" folder in "EmployeeFormExample" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"images/EmployeeFormExample-Hero@0.5x.png",
+				"images/EmployeeFormExample-Hero@1x.png",
+				"images/EmployeeFormExample-Hero@2x.png",
+			);
+			target = 69CF51502DC45A5400402D6E /* EmployeeFormExample */;
+		};
 		69E73CFB2DE817CE00618E91 /* Exceptions for "EmployeeFormExample" folder in "EmployeeFormExampleUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -83,6 +92,14 @@
 		69CF52812DC9838700402D6E /* Development Assets */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Development Assets";
+			sourceTree = "<group>";
+		};
+		69DE3F7E2E61332400FDBE62 /* assets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				69DE3F802E61335900FDBE62 /* Exceptions for "assets" folder in "EmployeeFormExample" target */,
+			);
+			path = assets;
 			sourceTree = "<group>";
 		};
 		69E73CB92DDF673900618E91 /* Configuration */ = {
@@ -124,6 +141,7 @@
 		69CF51482DC45A5400402D6E = {
 			isa = PBXGroup;
 			children = (
+				69DE3F7E2E61332400FDBE62 /* assets */,
 				69E73CB92DDF673900618E91 /* Configuration */,
 				69CF52812DC9838700402D6E /* Development Assets */,
 				69CF51532DC45A5400402D6E /* EmployeeFormExample */,
@@ -173,6 +191,7 @@
 				69CF51532DC45A5400402D6E /* EmployeeFormExample */,
 				69CF51D92DC46FFB00402D6E /* LICENSE */,
 				69CF52812DC9838700402D6E /* Development Assets */,
+				69DE3F7E2E61332400FDBE62 /* assets */,
 				69E73CB92DDF673900618E91 /* Configuration */,
 			);
 			name = EmployeeFormExample;
