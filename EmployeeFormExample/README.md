@@ -11,7 +11,7 @@ selecting an appropriate photo using the PhotosPicker.
 ## Architecture
 
 The application uses a SwiftData Model to store the information for employees. The `Employee` model's `imageData` property is bound to an `ImageDataPickerView` that
-allows a photo to be selected from the **PhotoLibrary**. The `detail:` `EmployeeView() loads the selected `Employee` data into temporary variables. This allows the user
+allows a photo to be selected from the **PhotoLibrary**. The `detail:` `EmployeeView()` loads the selected `Employee` data into temporary variables. This allows the user
 to either `save()` the changes or `cancel()` the proposed changes.
 
 ![Architecture](/EmployeeFormExample/EmployeeFormExample/EmployeeFormExample.docc/Resources/ImageDataPicker-Header@0.5x.png)
