@@ -45,7 +45,7 @@ Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employe
 
 Commercial Support available on request.
 
-**Contact** <a href="mailto:sales&amp;#64;technistic.com?subject='Request for ImageDataPicker commercial support'" target="_blank">sales&#64;technistic.com</a>
+**Contact** <a href="mailto:sales&#64;technistic.com?subject='Request for ImageDataPicker commercial support'" target="_blank">sales&#64;technistic.com</a>
 
 ---
 
