@@ -47,7 +47,7 @@
 			);
 			target = 69CF51502DC45A5400402D6E /* EmployeeFormExample */;
 		};
-		69DE3F802E61335900FDBE62 /* Exceptions for "assets" folder in "EmployeeFormExample" target */ = {
+		69DE3FFA2E62659F00FDBE62 /* Exceptions for "assets" folder in "EmployeeFormExample" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"images/EmployeeFormExample-Hero@0.5x.png",
@@ -97,7 +97,7 @@
 		69DE3F7E2E61332400FDBE62 /* assets */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				69DE3F802E61335900FDBE62 /* Exceptions for "assets" folder in "EmployeeFormExample" target */,
+				69DE3FFA2E62659F00FDBE62 /* Exceptions for "assets" folder in "EmployeeFormExample" target */,
 			);
 			path = assets;
 			sourceTree = "<group>";
