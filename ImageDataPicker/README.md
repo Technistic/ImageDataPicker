@@ -2,9 +2,17 @@
 
 <img width="518" height="322" alt="ImageDataPicker-README-Hero" src="https://github.com/user-attachments/assets/ae9cf4bb-4223-4523-80d5-f62f4bc78aa3" />
 
+The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select images from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** `@Model`.
+
 ## Overview
 
-The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your SwiftUI projects, to select images from a device's **PhotoLibrary** and bind the selected image to a SwiftData Model.
+The **ImageDataPicker** is a multi-platform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** `PhotosPicker` to provide a **SwiftUI** control that presents an `Image` and allows a user to select a photo from a device's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the image to the containing `Frame`. The `clippedImageShape()` viewModifier allows the view to be presented as a circle, rounded-square or square.
+
+![Clipping Options](/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources/Clipping-Background@0.5x.png)
+
+If no image is selected, the control will present a customizable placeholder image.
+
+![Placeholder Options](/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources/Placeholders@0.5x.png)
 
 ## Download
 
@@ -47,7 +55,7 @@ Walk through the [Tutorial](https://technistic.github.io/ImageDataPicker/imageda
 
 Commercial Support available on request.
 
-**Contact:** <a href="mailto:sales\@technistic.com">sales\@technistic.com</a>
+**Contact** <a href="mailto:sales&#64;technistic.com?subject='Request for ImageDataPicker commercial support'" target="_blank">sales&#64;technistic.com</a>
 
 ---
 
