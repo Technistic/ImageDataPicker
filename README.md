@@ -2,9 +2,11 @@
 
 # The ImageDataPicker Framework
 
-<img width="518" height="322" alt="ImageDataPicker-README-Hero" src="https://github.com/user-attachments/assets/ae9cf4bb-4223-4523-80d5-f62f4bc78aa3" />
+![ImageDataPicker Hero](/assets/images/ImageDataPicker-README-Hero.png)
 
-The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select images from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** `@Model`.
+## Summary
+
+The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select photos from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model).
 
 Learn more by reading the [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) or following the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc).
 
@@ -15,26 +17,44 @@ Learn more by reading the [Documentation](https://technistic.github.io/ImageData
 2. Add **(+)** the Framework to your Xcode Project.
    
     ![Embed Framework](/assets/images/FrameworkEmbedded.png)
-    <img width="624" height="310" alt="MyImageList-Framework Added" src="https://github.com/user-attachments/assets/e209dc2f-4cc7-49e1-b7e5-577bad11b8b1" />
 
 4. Add the `ImageDataPickerView` to a `View` in your application.
    
     ```
-    import ImageDataPicker
-    import SwiftUI
+    //
+    //  ContentView.swift
+    //  MyGreatApp
+    //
+    //
     
+    import ImageDataPicker
+    import SwiftData
+    import SwiftUI
+
     struct ContentView: View {
-        @State private var imageData: Data? = nil
+        @State var imageData: Data? = UIImage(named: "Image")!.pngData()
         var body: some View {
             VStack {
                 ImageDataPickerView(imageData: $imageData)
+                .clippedImageShape(.round)
+                .frame(width: 240, height: 240)
+                .padding(32)
+
+                Text("Image Data Picker")
+                .font(.title)
+
+            	Spacer()
             }
-            .padding()
         }
     }
+     
+    #Preview {
+        @Previewable @State var imageData: Data? = UIImage(named: "Image")!.pngData()
+        ContentView()
+    }
     ```
-    
-    <img width="640" height="512" alt="GitHub Xcode Code" src="https://github.com/user-attachments/assets/80e65e6b-80d0-44a0-acdf-964879d4fbd8" />
+
+    ![ContentView.swift](/assets/images/MyGreatApp-Content.png)
 
 ## Documentation
 
@@ -42,7 +62,7 @@ Read more about the [ImageDataPicker](ImageDataPicker/README.md) framework.
 
 See the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework.
 
-Walk through the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multi-platform application using the **ImageDataPicker** framework.
+Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multi-platform application using the **ImageDataPicker** framework.
 
 Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for our [EmployeeFormExample](EmployeeFormExample/README.md) application, to understand how to use the Framework in a *real-world* application.
 
@@ -50,7 +70,7 @@ Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employe
 
 Commercial Support available on request.
 
-**Contact** <a href="mailto:sales&#64;technistic.com?subject='Request for ImageDataPicker commercial support'" target="_blank">sales&#64;technistic.com</a>
+**Contact:** [sales@technistic.com](mailto://sales@technistic.com)
 
 ---
 

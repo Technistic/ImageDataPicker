@@ -68,7 +68,8 @@
       </FileRef>
    </Group>
    <FileRef
-      location = "group:README.md">
+      location = "group:README.md"
+      assignedFileDataType = "net.daringfireball.markdown">
    </FileRef>
    <FileSystemSynchronizedGroup
       location = "group:assets"
