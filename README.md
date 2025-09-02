@@ -6,7 +6,7 @@
 
 ## Summary
 
-The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select photos from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model).
+The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select photos from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model()).
 
 Learn more by reading the [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) or following the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc).
 
