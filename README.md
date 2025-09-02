@@ -16,7 +16,7 @@ Learn more by reading the [Documentation](https://technistic.github.io/ImageData
 
 2. Add **(+)** the Framework to your Xcode Project.
    
-    ![Embed Framework](/assets/images/FrameworkEmbedded.png)
+    ![Embed Framework](/assets/images/MyGreatApp-FrameworkEmbedded.png)
 
 4. Add the `ImageDataPickerView` to a `View` in your application.
    
