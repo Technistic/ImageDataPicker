@@ -18,7 +18,7 @@ Learn more by reading the [Documentation](https://technistic.github.io/ImageData
    
     ![Embed Framework](/assets/images/MyGreatApp-FrameworkEmbedded.png)
 
-4. Add the `ImageDataPickerView` to a `View` in your application.
+4. Add the ``ImageDataPickerView`` to a `View` in your application.
    
     ```
     //
@@ -75,3 +75,4 @@ Commercial Support available on request.
 ---
 
 Copyright &copy; 2025 Technistic Pty Ltd
+

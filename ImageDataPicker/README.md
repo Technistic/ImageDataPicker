@@ -1,62 +1,87 @@
+[![Build xcframework](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml/badge.svg?branch=alpha_v0.1.0)](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml)
+
 # The ImageDataPicker Framework
 
-<img width="518" height="322" alt="ImageDataPicker-README-Hero" src="https://github.com/user-attachments/assets/ae9cf4bb-4223-4523-80d5-f62f4bc78aa3" />
+![ImageDataPicker Hero](assets/images/ImageDataPicker-README-Hero.png)
 
-The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select images from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** `@Model`.
+## Summary
 
-## Overview
+The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select photos from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model()).
 
-The **ImageDataPicker** is a multi-platform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** `PhotosPicker` to provide a **SwiftUI** control that presents an `Image` and allows a user to select a photo from a device's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the image to the containing `Frame`. The `clippedImageShape()` viewModifier allows the view to be presented as a circle, rounded-square or square.
+## Features
 
-![Clipping Options](/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources/Clipping-Background@0.5x.png)
+The **ImageDataPicker** framework is a multi-platform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** [PhotosPicker](https://developer.apple.com/documentation/photosui/photospicker) to provide a **SwiftUI** control that presents an `Image` selected from a user's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the Image to the containing `Frame`. Use the ``clippedImageShape()`` viewModifier to present the image in a *circular*, *rounded-square* or *square* format.
 
-If no image is selected, the control will present a customizable placeholder image.
+![Clipping Options](ImageDataPicker/ImageDataPicker.docc/Resources/Clipping-Background@0.5x.png)
 
-![Placeholder Options](/ImageDataPicker/ImageDataPicker/ImageDataPicker.docc/Resources/Placeholders@0.5x.png)
+If no image is selected, or there is an error loading the selected Image, the control will present a customizable placeholder Image in its place.
 
-## Download
+![Placeholder Options](ImageDataPicker/ImageDataPicker.docc/Resources/Placeholders@0.5x.png)
 
-[Download](https://github.com/Technistic/ImageDataPicker/releases) the latest copy of the **ImageDataPicker** framework from the official repo.
+## Get the **ImageDataPicker** Framework
 
-## Quick Start
+1. [Download](https://github.com/Technistic/ImageDataPicker/releases) the latest archive of the **ImageDataPicker** framework from the official repo.
 
-1. [Download](https://github.com/Technistic/ImageDataPicker/releases) the latest copy of the **ImageDataPicker** framework.
+2. Double-click the downloaded file to extract the archive.
 
-2. Add **(+)** the Framework to your Xcode Project.
+## Using the **ImageDataPicker** Framework
+
+1. Add **(+)** the *ImageDataPicker.xcframework* framework to your Xcode Project.
+
+    ![Embed Framework](/assets/images/MyGreatApp-FrameworkEmbedded.png)
    
-    <img width="624" height="310" alt="MyImageList-Framework Added" src="https://github.com/user-attachments/assets/e209dc2f-4cc7-49e1-b7e5-577bad11b8b1" />
-
-4. Add the `ImageDataPickerView` to a View in your application.
-   
+2. Add the ``ImageDataPickerView`` to a View in your application.
+ 
     ```
+    //
+    //  ContentView.swift
+    //  MyGreatApp
+    //
+    //
+
     import ImageDataPicker
+    import SwiftData
     import SwiftUI
-    
+
     struct ContentView: View {
-        @State private var imageData: Data? = nil
+        @State var imageData: Data? = UIImage(named: "Image")!.pngData()
         var body: some View {
             VStack {
                 ImageDataPickerView(imageData: $imageData)
+                .clippedImageShape(.round)
+                .frame(width: 240, height: 240)
+                .padding(32)
+
+                Text("Image Data Picker")
+                .font(.title)
+
+                Spacer()
             }
-            .padding()
         }
     }
-    ```
-    
-    <img width="640" height="512" alt="GitHub Xcode Code" src="https://github.com/user-attachments/assets/80e65e6b-80d0-44a0-acdf-964879d4fbd8" />
 
+    #Preview {
+        @Previewable @State var imageData: Data? = UIImage(named: "Image")!.pngData()
+        ContentView()
+    }
+    ```
+   ![ContentView.swift](/assets/images/MyGreatApp-Content.png)
+ 
 ## Documentation
 
-Read the [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker Framework**.
+See the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework.
 
-Walk through the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multi-platform application using the Framework.
+Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multi-platform application using the **ImageDataPicker** framework.
+
+Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for our [EmployeeFormExample](EmployeeFormExample/README.md) application, to understand how to use the Framework in a *real-world* application.
 
 ## Support
 
 Commercial Support available on request.
 
-**Contact** <a href="mailto:sales&#64;technistic.com?subject='Request for ImageDataPicker commercial support'" target="_blank">sales&#64;technistic.com</a>
+**Contact:** [sales@technistic.com](mailto:sales@technistic.com)
 
 ---
 
 Copyright &copy; 2025 Technistic Pty Ltd
+
