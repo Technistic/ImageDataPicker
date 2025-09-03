@@ -34,6 +34,16 @@
 		69CF51612DC45A5600402D6E /* EmployeeFormExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF516B2DC45A5700402D6E /* EmployeeFormExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51B72DC45CB300402D6E /* README.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		69DE42AB2E67C46900FDBE62 /* EmployeeFormExample-Hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmployeeFormExample-Hero.png"; sourceTree = "<group>"; };
+		69DE42AC2E67C46900FDBE62 /* EmployeeFormExample-Hero@0.5x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmployeeFormExample-Hero@0.5x.png"; sourceTree = "<group>"; };
+		69DE42AD2E67C46900FDBE62 /* EmployeeFormExample-Hero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmployeeFormExample-Hero@2x.png"; sourceTree = "<group>"; };
+		69DE42AE2E67C46900FDBE62 /* ImageDataPicker-README-Hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero.png"; sourceTree = "<group>"; };
+		69DE42AF2E67C46900FDBE62 /* ImageDataPicker-README-Hero@0.5x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@0.5x.png"; sourceTree = "<group>"; };
+		69DE42B02E67C46900FDBE62 /* ImageDataPicker-README-Hero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@2x.png"; sourceTree = "<group>"; };
+		69DE42B12E67C46900FDBE62 /* MyGreatApp-Content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-Content.png"; sourceTree = "<group>"; };
+		69DE42B22E67C46900FDBE62 /* MyGreatApp-Content_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-Content_orig.png"; sourceTree = "<group>"; };
+		69DE42B32E67C46900FDBE62 /* MyGreatApp-FrameworkEmbedded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-FrameworkEmbedded.png"; sourceTree = "<group>"; };
+		69DE42B42E67C46900FDBE62 /* MyGreatApp[FrameworkEmbedded_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp[FrameworkEmbedded_orig.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -44,15 +54,6 @@
 				"beta-release.xcconfig",
 				BundleConfig.xcconfig,
 				SampleCode.xcconfig,
-			);
-			target = 69CF51502DC45A5400402D6E /* EmployeeFormExample */;
-		};
-		69DE3FFA2E62659F00FDBE62 /* Exceptions for "assets" folder in "EmployeeFormExample" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"images/EmployeeFormExample-Hero@0.5x.png",
-				"images/EmployeeFormExample-Hero@1x.png",
-				"images/EmployeeFormExample-Hero@2x.png",
 			);
 			target = 69CF51502DC45A5400402D6E /* EmployeeFormExample */;
 		};
@@ -94,14 +95,6 @@
 			path = "Development Assets";
 			sourceTree = "<group>";
 		};
-		69DE3F7E2E61332400FDBE62 /* assets */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				69DE3FFA2E62659F00FDBE62 /* Exceptions for "assets" folder in "EmployeeFormExample" target */,
-			);
-			path = assets;
-			sourceTree = "<group>";
-		};
 		69E73CB92DDF673900618E91 /* Configuration */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -141,7 +134,7 @@
 		69CF51482DC45A5400402D6E = {
 			isa = PBXGroup;
 			children = (
-				69DE3F7E2E61332400FDBE62 /* assets */,
+				69DE42B62E67C46900FDBE62 /* assets */,
 				69E73CB92DDF673900618E91 /* Configuration */,
 				69CF52812DC9838700402D6E /* Development Assets */,
 				69CF51532DC45A5400402D6E /* EmployeeFormExample */,
@@ -172,6 +165,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		69DE42B52E67C46900FDBE62 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				69DE42AB2E67C46900FDBE62 /* EmployeeFormExample-Hero.png */,
+				69DE42AC2E67C46900FDBE62 /* EmployeeFormExample-Hero@0.5x.png */,
+				69DE42AD2E67C46900FDBE62 /* EmployeeFormExample-Hero@2x.png */,
+				69DE42AE2E67C46900FDBE62 /* ImageDataPicker-README-Hero.png */,
+				69DE42AF2E67C46900FDBE62 /* ImageDataPicker-README-Hero@0.5x.png */,
+				69DE42B02E67C46900FDBE62 /* ImageDataPicker-README-Hero@2x.png */,
+				69DE42B12E67C46900FDBE62 /* MyGreatApp-Content.png */,
+				69DE42B22E67C46900FDBE62 /* MyGreatApp-Content_orig.png */,
+				69DE42B32E67C46900FDBE62 /* MyGreatApp-FrameworkEmbedded.png */,
+				69DE42B42E67C46900FDBE62 /* MyGreatApp[FrameworkEmbedded_orig.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		69DE42B62E67C46900FDBE62 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				69DE42B52E67C46900FDBE62 /* images */,
+			);
+			name = assets;
+			path = ../assets;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -191,7 +210,6 @@
 				69CF51532DC45A5400402D6E /* EmployeeFormExample */,
 				69CF51D92DC46FFB00402D6E /* LICENSE */,
 				69CF52812DC9838700402D6E /* Development Assets */,
-				69DE3F7E2E61332400FDBE62 /* assets */,
 				69E73CB92DDF673900618E91 /* Configuration */,
 			);
 			name = EmployeeFormExample;
