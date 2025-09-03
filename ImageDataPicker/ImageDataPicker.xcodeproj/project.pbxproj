@@ -27,6 +27,13 @@
 		69CF51392DC45A1400402D6E /* ImageDataPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageDataPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51B52DC45C8900402D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		69CF51D22DC4675900402D6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		69DE41C52E67C0E500FDBE62 /* ImageDataPicker-README-Hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero.png"; sourceTree = "<group>"; };
+		69DE41C62E67C0E500FDBE62 /* ImageDataPicker-README-Hero@0.5x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@0.5x.png"; sourceTree = "<group>"; };
+		69DE41C72E67C0E500FDBE62 /* ImageDataPicker-README-Hero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@2x.png"; sourceTree = "<group>"; };
+		69DE41C82E67C0E500FDBE62 /* MyGreatApp-Content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-Content.png"; sourceTree = "<group>"; };
+		69DE41C92E67C0E500FDBE62 /* MyGreatApp-Content_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-Content_orig.png"; sourceTree = "<group>"; };
+		69DE41CA2E67C0E500FDBE62 /* MyGreatApp-FrameworkEmbedded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-FrameworkEmbedded.png"; sourceTree = "<group>"; };
+		69DE41CB2E67C0E500FDBE62 /* MyGreatApp[FrameworkEmbedded_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp[FrameworkEmbedded_orig.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -88,6 +95,7 @@
 		69CF51242DC45A1400402D6E = {
 			isa = PBXGroup;
 			children = (
+				69DE41CD2E67C0E500FDBE62 /* assets */,
 				69059A662E285BC100A1A3B2 /* Configuration */,
 				69CF51302DC45A1400402D6E /* ImageDataPicker */,
 				69CF513D2DC45A1400402D6E /* ImageDataPickerTests */,
@@ -114,6 +122,29 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		69DE41CC2E67C0E500FDBE62 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				69DE41C52E67C0E500FDBE62 /* ImageDataPicker-README-Hero.png */,
+				69DE41C62E67C0E500FDBE62 /* ImageDataPicker-README-Hero@0.5x.png */,
+				69DE41C72E67C0E500FDBE62 /* ImageDataPicker-README-Hero@2x.png */,
+				69DE41C82E67C0E500FDBE62 /* MyGreatApp-Content.png */,
+				69DE41C92E67C0E500FDBE62 /* MyGreatApp-Content_orig.png */,
+				69DE41CA2E67C0E500FDBE62 /* MyGreatApp-FrameworkEmbedded.png */,
+				69DE41CB2E67C0E500FDBE62 /* MyGreatApp[FrameworkEmbedded_orig.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		69DE41CD2E67C0E500FDBE62 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				69DE41CC2E67C0E500FDBE62 /* images */,
+			);
+			name = assets;
+			path = ../assets;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 

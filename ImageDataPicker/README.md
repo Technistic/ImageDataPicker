@@ -2,7 +2,7 @@
 
 # The ImageDataPicker Framework
 
-![ImageDataPicker Hero](assets/images/ImageDataPicker-README-Hero.png)
+![ImageDataPicker Hero](/assets/images/ImageDataPicker-README-Hero.png)
 
 ## Summary
 
