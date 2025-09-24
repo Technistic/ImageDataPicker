@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  A SwiftUI Image Picker that supporting SwiftData binding.
+//  Constants used the ImageDataPicker framework.
 //
 //  Created by Michael Logothetis on 30/04/2025.
 //
