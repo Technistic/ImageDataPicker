@@ -29,7 +29,3 @@ The ImageDataPicker framework provides a simple control to select photos using S
 [Getting Started]<doc:GettingStarted>
 
 [Tutorial]<doc:GettingStarted>
-
-[Tutorial]<doc:AddFramework>
-
-
