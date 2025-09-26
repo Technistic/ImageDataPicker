@@ -63,7 +63,7 @@ import SwiftUI
     Text("with custom placeholder").font(.title2)
     ImageDataView(
         imageData: imageData,
-        emptyImage: "photo.fill"
+        placeholder: "photo.fill"
     )
 }
 

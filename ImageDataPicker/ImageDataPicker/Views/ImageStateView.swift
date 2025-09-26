@@ -45,13 +45,13 @@ public struct ImageStateView: View {
     public var body: some View {
         switch imageState {
         case .success(let imageData):
-            ImageDataView(imageData: imageData, emptyImage: emptyImage)
+            ImageDataView(imageData: imageData, placeholder: emptyImage)
         case .loading:
             ProgressView()
                 // TODO: Implement a responsive mechanism to size the ProgressView
                 .controlSize(.extraLarge)
         case .empty:
-            ImageDataView(imageData: nil, emptyImage: emptyImage)
+            ImageDataView(imageData: nil, placeholder: emptyImage)
         case .failure:
             errorPlaceholderImage
                 .resizable()
