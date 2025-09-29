@@ -20,6 +20,68 @@ public enum Constants {
     public static let photoPlaceholder = "photo.fill"
     /// An error placeholder image to display when an image fails to load.
     public static let errorPlaceholder = "exclamationmark.circle.fill"
-
+    /// The relative horizontal and vertical position of Edit and Delete buttons from the centre of a Frame, calculated as 1 divided by the square root of 2.
     public static let buttonPosition: Double = 1 / (2.0.squareRoot())
+}
+
+#Preview("Constants") {
+    VStack {
+        Image(systemName: Constants.personPlaceholder)
+            .resizable()
+            .scaledToFit()
+            .border(Color.gray, width: 1)
+        Text("Person Placeholder").font(.caption)
+
+        Image(systemName: Constants.photoPlaceholder)
+            .resizable()
+            .scaledToFit()
+            .border(Color.gray, width: 1)
+        Text("Photo Placeholder").font(.caption)
+
+        Image(systemName: Constants.errorPlaceholder)
+            .resizable()
+            .scaledToFit()
+            .border(Color.gray, width: 1)
+        Text("Error Placeholder").font(.caption)
+    }
+    .padding(8)
+}
+
+#Preview("with modifiers") {
+    VStack {
+        Image(systemName: Constants.personPlaceholder)
+            .resizable()
+            .scaledToFit()
+            .scaleEffect(
+                Util.scaleFactor(systemImage: Constants.photoPlaceholder)
+            )
+            .squareImageView(shape: Circle())
+            .padding(1)
+            .border(Color.gray, width: 1)
+            .background(.teal)
+        Text("Person Placeholder").font(.caption)
+
+        Image(systemName: Constants.photoPlaceholder)
+            .resizable()
+            .scaledToFit()
+            .scaleEffect(
+                Util.scaleFactor(systemImage: Constants.photoPlaceholder)
+            )
+            .squareImageView(shape: Circle())
+            .padding(1)
+            .border(Color.gray, width: 1)
+            .background(.teal)
+        Text("Photo Placeholder").font(.caption)
+
+        Image(systemName: Constants.errorPlaceholder)
+            .resizable()
+            .scaledToFit()
+            //.scaleEffect(Util.scaleFactor(systemImage: Constants.photoPlaceholder))
+            .squareImageView(shape: Circle())
+            .padding(1)
+            .border(Color.gray, width: 1)
+            .background(.teal)
+        Text("Error Placeholder").font(.caption)
+    }
+    .padding(8)
 }

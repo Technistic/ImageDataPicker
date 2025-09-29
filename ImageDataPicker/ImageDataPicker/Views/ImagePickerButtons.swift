@@ -74,7 +74,7 @@ struct ImagePickerStar: View {
     }
 }
 
-#Preview {
+#Preview("ImagePickerButtons") {
     VStack {
         ImagePickerEditButton()
             .frame(width: 50, height: 50)

@@ -75,6 +75,19 @@ Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapick
 
 Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for our [EmployeeFormExample](EmployeeFormExample/README.md) application, to understand how to use the Framework in a *real-world* application.
 
+## Credits
+
+### Sample Images
+
+The sample images used in this project are from [unsplash.com](https://unsplash.com).
+
+Photo by [Jimmy Fermin](https://unsplash.com/@jimmyferminphotography?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+
+![Jimmy Fermin Image](ImageDataPicker/Preview%20Content/Preview%20Assets.xcassets/TestPortrait.imageset/jimmy-fermin.png)
+
+[Credit](https://unsplash.com/photos/woman-staring-directly-at-camera-near-pink-wall-bqe0J0b26RQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+
+
 ## Support
 
 Commercial Support available on request.

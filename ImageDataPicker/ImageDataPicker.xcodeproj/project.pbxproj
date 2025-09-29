@@ -328,6 +328,7 @@
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Preview\\ Content/Preview\\ Assets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -351,7 +352,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -400,6 +401,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -482,6 +484,7 @@
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Preview\\ Content/Preview\\ Assets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -505,7 +508,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -553,6 +556,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -634,6 +638,7 @@
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Preview\\ Content/Preview\\ Assets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -657,7 +662,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -713,6 +718,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Preview\\ Content/Preview\\ Assets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -730,7 +736,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -776,6 +782,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -828,6 +835,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";

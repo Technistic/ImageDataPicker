@@ -23,8 +23,8 @@ import SwiftUI
 
 /// The ``ImageDataModel`` is a model of the state of a (thumbnail) Image that can be selected and loaded using the SwiftUI PhotosPicker View. The ``ImageState`` represents whether the selected image is empty, in the process of being loaded, successfully loaded, or has failed to load.
 ///
-//ToDo: Do we need @MainActor
-//@MainActor
+// ToDo: Do we need @MainActor
+// @MainActor
 @Observable
 public class ImageDataModel: Hashable {
 

@@ -19,6 +19,7 @@ import ImageDataPicker
 /// The sole purpose of this file is to provide a convenient mechanism to experiment with a #Preview of the Views provided by the ``ImageDataPicker`` framework.
 /// These Previews rely on Development Assets that are not budled with the EmployeeFormExample Application.
 ///
+/*
 #Preview("Square Image View") {
     SquareImageView(imageState: ImageDataModel.ImageState.success(UIImage(named: "Anne_Lee")?.pngData()))
     
@@ -79,3 +80,4 @@ import ImageDataPicker
         .background(.yellow)
     
 }
+*/

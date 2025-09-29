@@ -48,7 +48,7 @@ struct EmployeeListView: View {
             }
             .navigationTitle("Our Employees")
             .environment(\.defaultMinListRowHeight, 100)
-
+            
             .toolbar {
                 #if os(iOS)
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -124,18 +124,64 @@ struct EmployeeListRowView: View {
         @State var state: ImageDataModel = ImageDataModel(imageData: img)
         HStack {
             VStack {
-                ClippedImageStateView(
-                    imageState: state.imageState
-                )
-                .clippedImageShape(.round)
+                switch state.imageState {
+                case .empty:
+                    ImageStateView(
+                        imageState: state.imageState
+                    )
+                    .foregroundColor(.white)
+                    .scaleEffect(Util.scaleFactor(systemImage: "person"))
+                    .squareImageView(shape: Circle(), background: .green)
+                    .padding(4)
+                    .frame(width: 80, height: 80)
+                    .accessibilityIdentifier(
+                        employeeListTestID.employeeFullName(
+                            firstName: employee!.firstName,
+                            lastName: employee!.lastName
+                        )
+                    )
+                    
+                case .loading:
+                    ImageStateView(
+                        imageState: state.imageState
+                    )
+                    .tint(Color.white)
+                    .scaleEffect(1.5)
+                    .squareImageView(shape: Circle(), background: .green)
+                    
+                case .success(_):
+                    ImageStateView(
+                        imageState: state.imageState
+                    )
+                    .squareImageView(shape: Circle(), background: .green)
+                    
+                case .failure(_):
+                    ImageStateView(
+                        imageState: state.imageState
+                    )
+                    .foregroundColor(.white)
+                    .scaleEffect(Util.scaleFactor(systemImage: "exclamationmark.triangle"))
+                    //.offet(Util.offsetFactor(systemImage: "exclamationmark.triangle"))
+                    .squareImageView(shape: Circle(), background: .green)
+                @unknown default:
+                    ImageStateView(
+                        imageState: state.imageState
+                    )
+                    .foregroundColor(.white)
+                    .scaleEffect(Util.scaleFactor(systemImage: "exclamationmark.triangle"))
+                    //.offet(Util.offsetFactor(systemImage: "exclamationmark.triangle"))
+                    .squareImageView(shape: Circle(), background: .green)
+                }
+            }
                 .padding(4)
+                .frame(width: 80, height: 80)
                 .accessibilityIdentifier(
                     employeeListTestID.employeeFullName(
                         firstName: employee!.firstName,
                         lastName: employee!.lastName
                     )
                 )
-            }
+            
             VStack {
                 HStack {
                     Text("\(employee?.firstName ?? "")")

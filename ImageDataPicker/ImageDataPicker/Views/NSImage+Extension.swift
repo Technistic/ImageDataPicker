@@ -11,22 +11,21 @@
 import Foundation
 import SwiftUI
 
-
-#if os(macOS)
-import AppKit
-typealias UIImage = NSImage
-
-extension NSBitmapImageRep {
-    var png: Data? { representation(using: .png, properties: [:]) }
-}
-extension Data {
-    var bitmap: NSBitmapImageRep? { NSBitmapImageRep(data: self) }
-}
-extension NSImage {
-    var png: Data? { tiffRepresentation?.bitmap?.png }
-    
-    public func pngData() -> Data? {
-        return png
-    }
-}
-#endif
+ #if os(macOS)
+ import AppKit
+ typealias UIImage = NSImage
+ 
+ extension NSBitmapImageRep {
+ var png: Data? { representation(using: .png, properties: [:]) }
+ }
+ extension Data {
+ var bitmap: NSBitmapImageRep? { NSBitmapImageRep(data: self) }
+ }
+ extension NSImage {
+ var png: Data? { tiffRepresentation?.bitmap?.png }
+ 
+ public func pngData() -> Data? {
+ return png
+ }
+ }
+ #endif

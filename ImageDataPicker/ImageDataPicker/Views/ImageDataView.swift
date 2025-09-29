@@ -19,9 +19,7 @@ import SwiftUI
 /// Refer to: [https://developer.apple.com/design/resources/#sf-symbols](https://developer.apple.com/design/resources/#sf-symbols)
 ///
 
-
-
-//@available(iOS 13.0, macCatalyst 13.0, macOS 10.15, visionOS 1.0, *)
+@available(iOS 13.0, macCatalyst 13.0, macOS 10.15, visionOS 1.0, *)
 public struct ImageDataView: View {
 
     public var imageData: Data?
@@ -35,23 +33,17 @@ public struct ImageDataView: View {
         imageData: Data? = nil,
         placeholder: String = Constants.personPlaceholder
     ) {
-        let x: MyFWClass = MyFWClass()
         self.imageData = imageData
         self.placeholder = placeholder
     }
 
     public var body: some View {
-        
-        //Image("blahBlah")
-        //    .resizable()
-        //    .scaledToFit()
-            
         #if canImport(UIKit)
             if let imageData {
                 if let uiImage = UIImage(data: imageData) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .scaledToFill()
+                        .scaledToFit()
                 } else {
                     Image(systemName: placeholder)
                         .resizable()
@@ -68,7 +60,7 @@ public struct ImageDataView: View {
                 if let nsImage = NSImage(data: imageData) {
                     Image(nsImage: nsImage)
                         .resizable()
-                        .scaledToFill()
+                        .scaledToFit()
                 } else {
                     Image(systemName: placeholder)
                         .resizable()
@@ -80,15 +72,8 @@ public struct ImageDataView: View {
                     .scaledToFit()
             }
         #endif
-        Image(systemName: "person")
-            
     }
 }
-
-/* extension DeveloperToolsSupport.ImageResource {
-    /// The "japan-street" asset catalog image resource.
-    static let japanStreet = DeveloperToolsSupport.ImageResource(name: "Image", bundle: Bundle(for: ImageDataModel.self))
-} */
 
 #Preview("Photo View") {
     @Previewable @State var imageData: Data? = nil
@@ -110,11 +95,6 @@ public struct ImageDataView: View {
         .frame(width: 200, height: 200)
 }
 
-/* public func myView() -> Image {
-    Image(uiImage: UIImage(named: "blahBlah", in: Bundle(for: MyFWClass.self), compatibleWith: nil)!)
-
-} */
-
 #Preview("Exclamation Mark View") {
     @Previewable @State var imageData: Data? = nil
 
@@ -135,55 +115,44 @@ public struct ImageDataView: View {
         .frame(width: 200, height: 200)
 }
 
-#Preview("Image View") {
-    
-    //Image(uiImage: UIImage(named: "blahBlah", in: Bundle(for: MyFWClass.self), compatibleWith: nil)!)
-    
-    //Image(uiImage: UIImage(named: "blahBlah", in: Bundle.main, compatibleWith: nil)!)
-    
-    /* myView()
-        .resizable()
-        .scaledToFill() */
-        
-    @Previewable @State var imageData: Data? = UIImage(named: "blahBlah", in: Bundle(for: ImageDataModel.self), compatibleWith: nil)?.pngData()
+#if canImport(UIKit)
+#Preview("Image View iOS") {
+    @Previewable @State var imageData: Data? = UIImage(
+        named: "TestPortrait",
+        in: Bundle(for: ImageDataModel.self),
+        compatibleWith: nil)?
+        .pngData()
     
     ImageDataView(imageData: imageData, placeholder: "photo")
-    
-    //let frameworkBundles = Bundle.allFrameworks
-    //let frameworkNames = frameworkBundles.compactMap { $0.bundleIdentifier }
-
-    //Image(.blahBlah)
-    //Image(uiImage: UIImage(named: "blahBlah", in: Bundle(for: MyFWClass.self), compatibleWith: nil)!)
-    //Image(uiImage("Image", bundle: Bundle)
-        //.resizable()
-        //.scaledToFill()
-        //.frame(width: 200, height: 200)
-        
-    //let bundle = Bundle(identifier: "com.technistic.ImageDataPicker")
-    //ImageDataView(imageData: nil, placeholder: "photo")
-
-    /* Text("Hello")
-        .frame(width: 200, height: 200)
-        .onAppear {
-            print("Frameworks used by the application:")
-            //for name in frameworkNames {
-            //    print(name)
-            //}
-        } */
-
-    ImageDataView(imageData: nil, placeholder: "photo")
-        
-    
-    
-    /*ImageDataView(imageData: imageData)
         .border(.green)
-
-    ImageDataView(imageData: imageData)
+        .frame(width: 400, height: 400)
+    
+    ImageDataView(imageData: imageData, placeholder: "photo")
         .scaledToFill()
         .squareImageView(shape: Circle())
-        // Test .background(), .border(), .frame() modifiers
-        .background(.yellow)
+    // Test .background(), .border(), .frame() modifiers
+        .background(.green)
         .clipped()
         .border(.green)
-        .frame(width: 200, height: 200) */
+        .frame(width: 400, height: 400)
 }
+#else
+#Preview("Image View macOS") {
+    @Previewable @State var imageData: Data? = Bundle(
+        for: ImageDataModel.self)
+        .image(forResource: "TestPortrait")?
+        .pngData()
+    
+    ImageDataView(imageData: imageData, placeholder: "photo")
+        .border(.green)
+    
+    ImageDataView(imageData: imageData, placeholder: "photo")
+        .scaledToFill()
+        .squareImageView(shape: Circle())
+    // Test .background(), .border(), .frame() modifiers
+        .background(.green)
+        .clipped()
+        .border(.green)
+        .frame(width: 200, height: 200)
+}
+#endif

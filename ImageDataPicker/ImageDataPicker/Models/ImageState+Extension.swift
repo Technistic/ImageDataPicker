@@ -10,7 +10,7 @@
 
 import Foundation
 
-//TODO: Review support for Equatable and Hashable
+// TODO: Review support for Equatable and Hashable
 extension ImageDataModel.ImageState: Equatable {
     public static func == (
         lhs: ImageDataModel.ImageState,

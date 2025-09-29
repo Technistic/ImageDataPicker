@@ -28,42 +28,140 @@ import SwiftUI
 /// If the `imageState` is `.failure`, it will display an error placeholder image defined by the `errorImage` parameter.
 ///
 public struct ImageStateView: View {
-    var imageState: ImageDataModel.ImageState
-    var emptyImage: String = Constants.personPlaceholder
-    var errorImage: String = Constants.errorPlaceholder
+    public var imageState: ImageDataModel.ImageState = .empty
+    private var emptyPlaceholder: String = Constants.personPlaceholder
+    private var errorPlaceholder: String = Constants.errorPlaceholder
 
     public init(
-        imageState: ImageDataModel.ImageState,
-        emptyImage: String = Constants.personPlaceholder,
-        errorImage: String = Constants.errorPlaceholder
+        imageState: ImageDataModel.ImageState = .empty,
+        emptyPlaceholder: String = Constants.personPlaceholder,
+        errorPlaceholder: String = Constants.errorPlaceholder
     ) {
         self.imageState = imageState
-        self.emptyImage = emptyImage
-        self.errorImage = errorImage
+        self.emptyPlaceholder = emptyPlaceholder
+        self.errorPlaceholder = errorPlaceholder
     }
 
     public var body: some View {
         switch imageState {
-        case .success(let imageData):
-            ImageDataView(imageData: imageData, placeholder: emptyImage)
-        case .loading:
+        case .empty:
+            ImageDataView(imageData: nil, placeholder: emptyPlaceholder)
+                //.scaleEffect(Util.scaleFactor(systemImage: emptyPlaceholder))
+        case .loading(_):
             ProgressView()
                 // TODO: Implement a responsive mechanism to size the ProgressView
-                .controlSize(.extraLarge)
-        case .empty:
-            ImageDataView(imageData: nil, placeholder: emptyImage)
-        case .failure:
-            errorPlaceholderImage
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+                //.controlSize(.extraLarge)
+        case .success(let imageData):
+            ImageDataView(imageData: imageData, placeholder: emptyPlaceholder)
+                .scaledToFill()
+        case .failure(let error):
+            // TODO: Reassess the use of an ImageDataView with an errorPlaceholder here.
+            let _: () = Logger.application.error(
+                "ImageStateView: Failure - \(error.localizedDescription)"
+            )
+            ImageDataView(imageData: nil, placeholder: errorPlaceholder)
         }
     }
+}
 
-    var emptyPlaceholderImage: Image {
-        Image(systemName: self.emptyImage)
-    }
+#Preview("Empty View") {
+    @Previewable @State var empty: ImageDataModel.ImageState = .empty
+    let placeholder: String = "person"
 
-    var errorPlaceholderImage: Image {
-        Image(systemName: self.errorImage)
-    }
+    ImageStateView(imageState: empty)
+        .frame(width: 200, height: 200)
+
+    ImageStateView(imageState: empty)
+        .foregroundColor(.red)
+        .scaleEffect(Util.scaleFactor(systemImage: placeholder))
+        .offset(x: 0, y: Util.offsetFactor(systemImage: placeholder))
+        .squareImageView(shape: Circle(), background: .white)
+        // Test .background(), .frame() modifiers
+        .background(.red)
+        .frame(width: 200, height: 200)
+}
+
+#Preview("Loading View") {
+    @Previewable @State var loading: ImageDataModel.ImageState = .loading(
+        Progress()
+    )
+
+    let placeholder: String = "person"
+
+    ImageStateView(imageState: loading)
+        .frame(width: 200, height: 200)
+        .border(.red)
+
+    ImageStateView(imageState: loading, emptyPlaceholder: placeholder)
+        .tint(Color.white)
+        .scaleEffect(1.5)
+        .squareImageView(shape: Circle(), background: .blue)
+        // Test .background(), .frame() modifiers
+        .background(.green)
+        .frame(width: 200, height: 200)
+}
+
+#if canImport(UIKit)
+#Preview("Success View iOS") {
+    @Previewable @State var successTest: ImageDataModel.ImageState = .success(
+        UIImage(
+            named: "TestImage",
+            in: Bundle(for: ImageDataModel.self),
+            compatibleWith: nil)?
+            .pngData()
+    )
+
+    ImageStateView(imageState: successTest)
+        .frame(width: 200, height: 200)
+        .clipped()
+
+    ImageStateView(imageState: successTest)
+        .squareImageView(shape: Circle(), background: .mint)
+        // Test .background(), .border(), .frame() modifiers
+        .background(.green)
+        .clipped()
+        .border(.red, width: 2.0)
+        .frame(width: 200, height: 200)
+}
+#else
+#Preview("Success View macOS") {
+    @Previewable @State var successTest: ImageDataModel.ImageState = .success(
+    Bundle(
+    for: ImageDataModel.self)
+    .image(forResource: "TestImage")?
+    .pngData()
+    )
+
+ImageStateView(imageState: successTest)
+    .frame(width: 200, height: 200)
+    .clipped()
+
+ImageStateView(imageState: successTest)
+    .squareImageView(shape: Circle(), background: .mint)
+    // Test .background(), .border(), .frame() modifiers
+    .background(.green)
+    .clipped()
+    .border(.red, width: 2.0)
+    .frame(width: 200, height: 200)
+}
+#endif
+
+#Preview("Failure View") {
+    @Previewable @State var failure: ImageDataModel.ImageState = .failure(
+        NSError(domain: "Test", code: 1, userInfo: nil)
+    )
+
+    let placeholder: String = "exclamationmark.triangle"
+
+    ImageStateView(imageState: failure)
+        .frame(width: 200, height: 200)
+
+    ImageStateView(imageState: failure, errorPlaceholder: placeholder)
+        .foregroundColor(.red)
+        .scaleEffect(Util.scaleFactor(systemImage: placeholder))
+        .offset(x: 0, y: Util.offsetFactor(systemImage: placeholder))
+        .squareImageView(shape: Circle(), background: .white)
+        // Test .background(), .frame() modifiers
+        .background(.gray)
+        .frame(width: 200, height: 200)
 }

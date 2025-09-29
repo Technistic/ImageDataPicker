@@ -31,9 +31,9 @@ The segmented picker at the bottom of the ``EmployeeView`` allows you to see the
 
 ## Credits
 
-## Sample Images
+### Sample Images
 
-The sample Images used in this project are from [unsplash.com](unsplash.com).
+The sample images used in this project are from [unsplash.com](https://unsplash.com).
 
 Photo by [Christian Buehner](https://unsplash.com/@christianbuehner?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
 

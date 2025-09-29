@@ -19,7 +19,7 @@ import SwiftUI
     import UIColor
 #endif
 
-struct SquareImageViewModifier<S: Shape>: ViewModifier {
+public struct SquareImageViewModifier<S: Shape>: ViewModifier {
     var shape: S
 
     #if canImport(AppKit)
@@ -28,7 +28,7 @@ struct SquareImageViewModifier<S: Shape>: ViewModifier {
         var background: Color = Color(uiColor: UIColor.systemBackground)
     #endif
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         var imageSize: CGSize = CGSize(
             width: CGFloat.infinity,
             height: CGFloat.infinity
@@ -64,11 +64,7 @@ struct SquareImageViewModifier<S: Shape>: ViewModifier {
     }
 }
 
-//TODO: Rename this function to something more appropriate.
-/// Calcluates the scale factor to apply to a specific system image, so it fits within the bounds of a circle.
-/// - Parameter systemImage: The name of the system image to be scaled.
-/// - Returns: The scale factor to be applied.
-struct Util {
+public struct Util {
     static func maxDim(_ size: CGSize) -> CGFloat {
         max(size.width, size.height)
     }
@@ -99,7 +95,10 @@ struct Util {
         }
     }
 
-    static func scaleFactor(systemImage: String) -> CGFloat {
+    /// Calcluates the scale factor to apply to a specific system image, so it fits within the bounds of a circle.
+    /// - Parameter systemImage: The name of the system image to be scaled.
+    /// - Returns: The scale factor to be applied.
+    public static func scaleFactor(systemImage: String) -> CGFloat {
         if systemImage.contains("circle") {
             return 1.01
         } else {
@@ -118,7 +117,7 @@ struct Util {
         }
     }
 
-    static func offsetFactor(systemImage: String) -> CGFloat {
+    public static func offsetFactor(systemImage: String) -> CGFloat {
         if systemImage.contains("circle") {
             return 0.0
         } else if systemImage.contains("triangle") {
@@ -131,34 +130,69 @@ struct Util {
 
 extension View {
     #if canImport(UIKit)
-    func squareImageView<S: Shape>(
-        shape: S,
-        background: Color = Color(uiColor: UIColor.systemBackground)
-    ) -> some View {
-        modifier(SquareImageViewModifier(shape: shape, background: background))
-    }
+        public func squareImageView<S: Shape>(
+            shape: S,
+            background: Color = Color(uiColor: UIColor.systemBackground)
+        ) -> some View {
+            modifier(
+                SquareImageViewModifier(shape: shape, background: background)
+            )
+        }
     #else
-    func squareImageView<S: Shape>(
-        shape: S,
-        background: Color = Color(nsColor: NSColor.windowBackgroundColor)
-    ) -> some View {
-        modifier(SquareImageViewModifier(shape: shape, background: background))
-    }
+        public func squareImageView<S: Shape>(
+            shape: S,
+            background: Color = Color(nsColor: NSColor.windowBackgroundColor)
+        ) -> some View {
+            modifier(
+                SquareImageViewModifier(shape: shape, background: background)
+            )
+        }
     #endif
 }
 
 #Preview {
     VStack {
-        Image("Girl_Rectangle")
+        #if canImport(UIKit)
+            Image(
+                uiImage: UIImage(
+                    named: "TestImage",
+                    in: Bundle(for: ImageDataModel.self),
+                    compatibleWith: nil
+                )!
+            )
             .resizable()
-            .scaledToFill()
+            .scaledToFit()
 
-        Image("Girl_Rectangle")
+            Image(
+                uiImage: UIImage(
+                    named: "TestImage",
+                    in: Bundle(for: ImageDataModel.self),
+                    compatibleWith: nil
+                )!
+            )
             .resizable()
             .scaledToFill()
             .squareImageView(shape: Circle())
             .background(.yellow)
+        #else
+            Image(
+                nsImage: Bundle(for: ImageDataModel.self).image(
+                    forResource: "TestImage"
+                )!
+            )
+            .resizable()
+            .scaledToFit()
 
+            Image(
+                nsImage: Bundle(for: ImageDataModel.self).image(
+                    forResource: "TestImage"
+                )!
+            )
+            .resizable()
+            .scaledToFill()
+            .squareImageView(shape: Circle())
+            .background(.yellow)
+        #endif
         Image(systemName: "person")
             .resizable()
             .scaledToFit()
@@ -170,6 +204,4 @@ extension View {
             //.background(.green)
             .border(.green)
     }
-    .frame(height: 700)
-    .background(Color.blue.opacity(0.2))
 }
