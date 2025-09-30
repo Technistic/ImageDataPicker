@@ -161,7 +161,7 @@ struct EmployeeListRowView: View {
                     )
                     .foregroundColor(.white)
                     .scaleEffect(Util.scaleFactor(systemImage: "exclamationmark.triangle"))
-                    //.offet(Util.offsetFactor(systemImage: "exclamationmark.triangle"))
+                    //.offset(Util.offsetFactor(systemImage: "exclamationmark.triangle"))
                     .squareImageView(shape: Circle(), background: .green)
                 @unknown default:
                     ImageStateView(
