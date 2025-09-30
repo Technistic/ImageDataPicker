@@ -258,7 +258,6 @@ private struct ClippedImageStateView<S: Shape>: View {
             backgroundColor: Color = Color(.systemBackground),
             foregroundColor: Color = Color(.label)
         ) {
-            print(foregroundColor.description)
             self.imageState = imageState
             self.emptyPlaceholder = emptyPlaceholder
             self.errorPlaceholder = errorPlaceholder
