@@ -15,10 +15,6 @@ import SwiftUI
     import UIKit
 #endif
 
-#if canImport(UIColor)
-    import UIColor
-#endif
-
 public struct SquareImageViewModifier<S: Shape>: ViewModifier {
     var shape: S
 
