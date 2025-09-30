@@ -95,7 +95,7 @@ public struct Util {
         }
     }
 
-    /// Calcluates the scale factor to apply to a specific system image, so it fits within the bounds of a circle.
+    /// Calculates the scale factor to apply to a specific system image, so it fits within the bounds of a circle.
     /// - Parameter systemImage: The name of the system image to be scaled.
     /// - Returns: The scale factor to be applied.
     public static func scaleFactor(systemImage: String) -> CGFloat {
