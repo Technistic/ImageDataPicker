@@ -46,7 +46,7 @@ public struct ImageStateView: View {
         switch imageState {
         case .empty:
             ImageDataView(imageData: nil, placeholder: emptyPlaceholder)
-                //.scaleEffect(Util.scaleFactor(systemImage: emptyPlaceholder))
+                // TODO: Consider scaling the placeholder image using Util.scaleFactor(systemImage: emptyPlaceholder)
         case .loading(_):
             ProgressView()
                 // TODO: Implement a responsive mechanism to size the ProgressView
