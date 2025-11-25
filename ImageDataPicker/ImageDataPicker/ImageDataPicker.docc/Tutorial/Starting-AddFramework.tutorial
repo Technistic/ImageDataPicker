@@ -38,7 +38,7 @@
             @Step {
                 Ensure that the framework is set to `Embed & Sign` in the **Frameworks, Libraries, and Embedded Content** section.
                 
-                > Note: This is a **multi-platform** framework, so you can use it in both `iOS` and `macOS` projects.
+                > Note: This is a **multiplatform** framework, so you can use it in both `iOS` and `macOS` projects.
                 
                 @Image(source: "2-5-FrameworkEmbedded", alt: "Xcode Framework set to Embed & Sign")
             }

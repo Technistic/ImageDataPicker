@@ -34,7 +34,11 @@ import SwiftUI
 // The relative position of the edit and delete buttons from the .bottomLeading and .bottomTrailing corners of the (thumbnail) image.
 public let buttonPosition: Double = Constants.buttonPosition
 
-/// The ImageDataPickerView is a SwiftUI view that allows users to select and display an image from their photo library. The data associated with the selected photo is bound to an `imageData` property of type `Data?`,  to simplify integration with `SwiftData`. The View presents a thumbnail of the Image that can be changed or removed. If no Image is selected, a placeholder image is displayed. The placeholder image can be changed to any SF system image. The Image will also change to a Progress view while an image is loading or a Failure image if the transfer is unsuccessful. The Failure image can also be customised to any SF system image.
+/// A `SwiftUI View` to select, display and store a photo from a user's photo library.
+///
+/// The ``ImageDataPickerView`` presents a thumbnail `Image` of a photo selected from a user's photo library. It is overlayed with an **edit** button that allows the photo to be changed and optionally, a **delete** button that removes the selected photo. The `Image` is presented in a **1:1 aspect ratio** and can be clipped to either a **circular**, **square** or **rounded square** shape.
+///
+/// To simplify integration with `SwiftData`,  data associated with the selected photo is bound to an `imageData` property of type `Data?`. If no Image is selected (`imageData == nil`), a placeholder image is displayed. The placeholder image can be changed to any SF symbol. The Image will change to a **Progress View** while an image is loading or a **Failure** image if the transfer is unsuccessful. The **Failure** image can also be customised to any SF symbol.
 public struct ImageDataPickerView<S: Shape>: View {
     @Binding var imageData: Data?
     private var emptyImage: String = Constants.personPlaceholder
@@ -54,6 +58,7 @@ public struct ImageDataPickerView<S: Shape>: View {
     @State private var imageSize: CGSize = .zero
 
     /// Initializes a new instance of `ImageDataPickerView`.
+    ///
     /// - Parameters:
     ///   - imageData: A binding to the image data that will be displayed in the view. This should be a `Data?` type, which can be `nil`
     ///   if no image is selected.
@@ -63,7 +68,15 @@ public struct ImageDataPickerView<S: Shape>: View {
     ///   - cshape: The clipping shape to apply to the image. This can be any SwiftUI Shape, such as Circle(), Rectangle() or RoundedRectangle(cornerRadius:).
     ///   - backgroundColor: The background color to apply to the image. The default is the system background color.
     ///   - foregroundColor: The foreground color to apply to the image. The default is the system label color.
-    #if canImport(AppKit)
+#if canImport(AppKit)
+    /// Iniitializer for the ImageDataPickerView().
+    /// - Parameters:
+    ///   - imageData: Property to bind the image data to.
+    ///   - emptyImage: A String specifying the system image name to be displayed when the image state is empty. The default is  ``Constants/personPlaceholder`` image.
+    ///   - errorImage: A String specifying the system image name to be displayed when there is an error. The default is ``Constants/errorPlaceholder`` image.
+    ///   - cshape: The clipping shape to apply to the image. This can be any SwiftUI Shape, such as Circle(), Rectangle() or RoundedRectangle(cornerRadius:).
+    ///   - backgroundColor: The background color to apply to the placeholder  image. The default is the system background color.
+    ///   - foregroundColor: The foreground color to apply to the placeholder image. The default is the system label color.
         public init(
             imageData: Binding<Data?>,
             emptyImage: String = Constants.personPlaceholder,
@@ -79,7 +92,17 @@ public struct ImageDataPickerView<S: Shape>: View {
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
         }
-    #else
+#else
+    /// Initializer for the ImageDataPickerView().
+    /// - Parameters:
+    ///   - imageData: A binding to the image data that will be displayed in the view. This should be a `Data?` type, which can be `nil`
+    ///   if no image is selected.
+    ///   - emptyImage: A String specifying the system image name to be displayed when the image state is empty. The default is  ``Constants/personPlaceholder`` image.
+    ///   - errorImage: A String specifying the system image name to be displayed when there is an error. The default is
+    ///   ``Constants/errorPlaceholder`` image.
+    ///   - cshape: The clipping shape to apply to the image. This can be any SwiftUI Shape, such as Circle(), Rectangle() or RoundedRectangle(cornerRadius:).
+    ///   - backgroundColor: The background color to apply to the image. The default is the system background color.
+    ///   - foregroundColor: The foreground color to apply to the image. The default is the system label color.
         public init(
             imageData: Binding<Data?>,
             emptyImage: String = Constants.personPlaceholder,

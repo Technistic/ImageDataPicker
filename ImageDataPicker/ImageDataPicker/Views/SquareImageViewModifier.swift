@@ -15,6 +15,7 @@ import SwiftUI
     import UIKit
 #endif
 
+/// Modifies a view to have a square (1:1) aspect ratio, clipped to the specified shape and with a customizable background color.
 public struct SquareImageViewModifier<S: Shape>: ViewModifier {
     var shape: S
 
@@ -60,15 +61,25 @@ public struct SquareImageViewModifier<S: Shape>: ViewModifier {
     }
 }
 
+/// A set of utility functions used by the SquareImageViewModifier to calculate scaling and offsets for system images.
 public struct Util {
+    /// Returns the maximum dimension (width or height) of a given CGSize.
+    /// - Parameter size: The CGSize to evaluate.
+    /// - Returns: The larger of the width or height of the CGSize.
     static func maxDim(_ size: CGSize) -> CGFloat {
         max(size.width, size.height)
     }
-
+    
+    /// Returns the minimum dimension (width or height) of a given CGSize.
+    /// - Parameter size: The CGSize to evaluate.
+    /// - Returns: The smaller of the width or height of the CGSize.
     static func minDim(_ size: CGSize) -> CGFloat {
         min(size.width, size.height)
     }
-
+    
+    /// Calculates the radius of a Circle() that will contain the specific system image.
+    /// - Parameter systemImage: The name of the system image to contain.
+    /// - Returns: The radius of the Circle() that will contain the system image.
     static func imageRadius(systemImage: String) -> CGFloat {
         if systemImage.contains("circle") {
             return 1.0
@@ -112,7 +123,10 @@ public struct Util {
                 * 0.9
         }
     }
-
+    
+    /// Calculates the  offset to apply to a specific system image, so it is visually centered within a circle.
+    /// - Parameter systemImage: The name of the system image to be centred.
+    /// - Returns: The offsets to visually centre the system image.
     public static func offsetFactor(systemImage: String) -> CGFloat {
         if systemImage.contains("circle") {
             return 0.0
@@ -125,7 +139,12 @@ public struct Util {
 }
 
 extension View {
-    #if canImport(UIKit)
+#if canImport(UIKit)
+    /// A `View` extension that applies the ``SquareImageViewModifier`` .
+    /// - Parameters:
+    ///   - shape: The `Shape` to which the view will be clipped.
+    ///   - background: The background color to apply behind the clipped shape. Default is the system background color.
+    /// - Returns: A view modified to have a square aspect ratio, clipped to the specified shape, and with the specified background color.
         public func squareImageView<S: Shape>(
             shape: S,
             background: Color = Color(uiColor: UIColor.systemBackground)
@@ -134,7 +153,12 @@ extension View {
                 SquareImageViewModifier(shape: shape, background: background)
             )
         }
-    #else
+#else
+    /// A `View` extension that applies the ``SquareImageViewModifier`` .
+    /// - Parameters:
+    ///   - shape: The `Shape` to which the view will be clipped.
+    ///   - background: The background color to apply behind the clipped shape. Default is the window background color.
+    /// - Returns:  A view modified to have a square aspect ratio, clipped to the specified shape, and with the specified background color.
         public func squareImageView<S: Shape>(
             shape: S,
             background: Color = Color(nsColor: NSColor.windowBackgroundColor)

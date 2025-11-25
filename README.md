@@ -62,7 +62,7 @@ Read more about the [ImageDataPicker](ImageDataPicker#the-imagedatapicker-framew
 
 See the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework.
 
-Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multi-platform application using the **ImageDataPicker** framework.
+Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multiplatform application using the **ImageDataPicker** framework.
 
 Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](EmployeeFormExample) for our [EmployeeFormExample](EmployeeFormExample#employee-form-example) application, to understand how to use the Framework in a *real-world* application.
 

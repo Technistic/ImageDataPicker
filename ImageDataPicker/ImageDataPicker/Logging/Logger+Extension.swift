@@ -13,8 +13,19 @@ import OSLog
 
 /// These extensions to OSLog, simplify logging.
 ///
-/// The Swift Authors app uses three categories of logging.
+/// The predefined categories are:
+/// - application
+/// - data
+/// - viewcycle
+/// - statistics
+/// - tests.
 ///
+///
+///
+///
+
+
+
 extension Logger {
     /// Using your bundle identifier is a great way to ensure a unique identifier.
     private static let subsystem = Bundle.main.bundleIdentifier!

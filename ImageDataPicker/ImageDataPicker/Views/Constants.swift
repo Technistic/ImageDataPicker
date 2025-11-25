@@ -11,14 +11,15 @@
 import Foundation
 import SwiftUI
 
-/// Constants used throughout the framework.
-/// These constants are used to define system symbols (SF Symbols) that can be used as placeholder images for consistency throughout the app.
+/// Constants that provide consistency for applications using the framework, but can be overriden to customise the appearance of an application.
+///
+/// These constants are used to define system symbols (SF Symbols) that can be used as placeholder images for consistency throughout the Framework.
 public enum Constants {
-    /// A person placeholder image to display when no image is available.
+    /// A person placeholder image to display when no photo is selected.
     public static let personPlaceholder = "person.fill"
     /// A photo placeholder image to display when no photo is available.
     public static let photoPlaceholder = "photo.fill"
-    /// An error placeholder image to display when an image fails to load.
+    /// An error placeholder image to display when a photo fails to load.
     public static let errorPlaceholder = "exclamationmark.circle.fill"
     /// The relative horizontal and vertical position of Edit and Delete buttons from the centre of a Frame, calculated as 1 divided by the square root of 2.
     public static let buttonPosition: Double = 1 / (2.0.squareRoot())
