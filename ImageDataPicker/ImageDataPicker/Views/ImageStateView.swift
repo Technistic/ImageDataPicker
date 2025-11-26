@@ -52,19 +52,25 @@ public struct ImageStateView: View {
         switch imageState {
         case .empty:
             ImageDataView(imageData: nil, placeholder: emptyPlaceholder)
+                .scaleEffect(Util.scaleFactor(systemImage: emptyPlaceholder))
+                
+                .offset(x: 0, y: Util.offsetFactor(systemImage: emptyPlaceholder))
                 // TODO: Consider scaling the placeholder image using Util.scaleFactor(systemImage: emptyPlaceholder)
         case .loading(_):
             ProgressView()
                 // TODO: Implement a responsive mechanism to size the ProgressView
-                //.controlSize(.extraLarge)
+                .controlSize(.extraLarge)
         case .success(let imageData):
-            if imageData != nil{
+            if imageData != nil {
                 ImageDataView(imageData: imageData, placeholder: emptyPlaceholder)
                     .scaledToFill()
             }
             else {
                 ImageDataView(imageData: imageData, placeholder: emptyPlaceholder)
                     .scaledToFit()
+                    .scaleEffect(Util.scaleFactor(systemImage: emptyPlaceholder))
+                    
+                    .offset(x: 0, y: Util.offsetFactor(systemImage: emptyPlaceholder))
             }
         case .failure(let error):
             // TODO: Reassess the use of an ImageDataView with an errorPlaceholder here.
@@ -72,6 +78,9 @@ public struct ImageStateView: View {
                 "ImageStateView: Failure - \(error.localizedDescription)"
             )
             ImageDataView(imageData: nil, placeholder: errorPlaceholder)
+                .scaleEffect(Util.scaleFactor(systemImage: errorPlaceholder))
+                
+                .offset(x: 0, y: Util.offsetFactor(systemImage: errorPlaceholder))
         }
     }
 }
@@ -85,9 +94,9 @@ public struct ImageStateView: View {
 
     ImageStateView(imageState: empty)
         //.foregroundColor(.red)
-        .scaleEffect(Util.scaleFactor(systemImage: placeholder))
+        //.scaleEffect(Util.scaleFactor(systemImage: placeholder))
         
-        .offset(x: 0, y: Util.offsetFactor(systemImage: placeholder))
+        //.offset(x: 0, y: Util.offsetFactor(systemImage: placeholder))
         //.foregroundColor(.red)
         .squareImageView(shape: Circle(), background: .white)
         .foregroundColor(.red)
@@ -109,7 +118,7 @@ public struct ImageStateView: View {
 
     ImageStateView(imageState: loading, emptyPlaceholder: placeholder)
         .tint(Color.white)
-        .scaleEffect(1.5)
+        //.scaleEffect(1.5)
         .squareImageView(shape: Circle(), background: .blue)
         // Test .background(), .frame() modifiers
         .background(.green)
@@ -173,8 +182,8 @@ ImageStateView(imageState: successTest)
 
     ImageStateView(imageState: failure, errorPlaceholder: placeholder)
         .foregroundColor(.red)
-        .scaleEffect(Util.scaleFactor(systemImage: placeholder))
-        .offset(x: 0, y: Util.offsetFactor(systemImage: placeholder))
+        //.scaleEffect(Util.scaleFactor(systemImage: placeholder))
+        //.offset(x: 0, y: Util.offsetFactor(systemImage: placeholder))
         .squareImageView(shape: Circle(), background: .white)
         // Test .background(), .frame() modifiers
         .background(.gray)
