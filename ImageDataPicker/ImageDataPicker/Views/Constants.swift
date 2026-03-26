@@ -11,7 +11,7 @@
 import Foundation
 import SwiftUI
 
-/// Constants that provide consistency for applications using the framework, but can be overriden to customise the appearance of an application.
+/// Constants that provide consistency for applications using the framework, but can be overriden to customize the appearance of an application.
 ///
 /// These constants are used to define system symbols (SF Symbols) that can be used as placeholder images for consistency throughout the Framework.
 public enum Constants {

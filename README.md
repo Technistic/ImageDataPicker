@@ -35,15 +35,18 @@ Learn more by reading the [Documentation](https://technistic.github.io/ImageData
         @State var imageData: Data? = UIImage(named: "Image")!.pngData()
         var body: some View {
             VStack {
-                ImageDataPickerView(imageData: $imageData)
-                .clippedImageShape(.round)
+                ImageDataPickerView(
+                    imageData: $imageData,
+                    cshape: Circle(),
+                    backgroundColor: .gray,
+                    foregroundColor: .white
+                )
                 .frame(width: 240, height: 240)
                 .padding(32)
-
                 Text("Image Data Picker")
-                .font(.title)
+                    .font(.title)
 
-            	Spacer()
+                Spacer()
             }
         }
     }

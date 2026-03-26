@@ -26,7 +26,7 @@ As this is a multiplatform application - it can be run on iOS, iPadOS and macOS 
 `List` is configured to use the `Edit()` button to `delete()` rows from the `List`. An `Add()` button adds 
 a new row to the `List` with default values that can be modified in the ``EmployeeView``.
 
-The segmented picker at the bottom of the ``EmployeeView`` allows you to see the effect of the ``clippedImageShape()`` view modifier on the ``ImageDataPickerView``.
+The segmented picker at the bottom of the ``EmployeeView`` allows you to see the effect of the ``cshape`` initializer parameter on the ``ImageDataPickerView``.
 
 
 ## Credits

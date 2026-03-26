@@ -7,7 +7,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ImageDataPickerView(
-                imageData: $imageData, )
+                imageData: $imageData, csp)
             .clippedImageShape(.round)
             .frame(width: 240, height: 240)
             .padding(32)

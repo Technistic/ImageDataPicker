@@ -7,7 +7,7 @@
     
     @Section(title: "Customizing Clipping Shapes") {
         @ContentAndMedia {
-            The Image that is presented in the `ImageDataPickerView` is cropped to a 1:1 aspect ratio. You can customise the clipping of the Image to be either `.round`, `.rounded` or `.square` by applying the `.clippingshape()` view modifier
+            The Image that is presented in the `ImageDataPickerView` is cropped to a 1:1 aspect ratio. You can customize the clipping of the Image to be either `.round`, `.rounded` or `.square` by applying the `.clippingshape()` view modifier
             @Image(source: "Clipping", alt: "Clipping Options")
             
         }

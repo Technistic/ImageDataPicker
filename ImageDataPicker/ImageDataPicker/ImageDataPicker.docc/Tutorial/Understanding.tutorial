@@ -1,0 +1,28 @@
+@Article(time: 5) {
+    @Intro(title: "Understanding the Framework") {
+        The **ImageDataPicker Framework** provides a convenient way for users to select photos from their Photo Library and bind the image data to a **SwiftData Model**. 
+        @Image(source: "Brain-Header-R", alt: "Brain")
+    }
+    
+    @ContentAndMedia {
+        @Image(source: "Release-Doc-Title", alt: "The ImageDataPickerView")
+        The ImageDataPicker framework simplifies photo selection from a user's **Photo Library** and binding those photos to a **SwiftData Model**. It uses the [PhotosUI](https://developer.apple.com/documentation/photosui) [PhotosPicker](https://developer.apple.com/documentation/PhotosUI/PhotosPicker) to render a **SwiftUI** component that displays a thumbnail of the selected image with `Edit` and `Delete` buttons. Simply include the `ImageDataPickerView` in your app and bind it to a `Data?` property in your **Model**. Think of it as a `TextField` for images.
+    }
+    
+    @ContentAndMedia {
+        @Image(source: "ImageDataPicker-Header", alt: "Typical usage of the ImageDataPicker Framework.")
+        The `ImageDataPickerView` is designed to bind to a **SwiftData Model**. Apps typically display a `List` of images from a `ModelContainer` and can bind the `ImageDataPickerView` to a `Data?` property within the **Model**. When a user selects a **Photo Library** image using the `ImageDataPickerView`, it automatically updates the image in the **Model**.
+    }
+    
+    @ContentAndMedia {
+        @Image(source: "Placeholders", alt: "Placeholder image options.")
+        The `ImageDataPickerView` can be customized to meet different requirements. When no photo has been selected, the `ImageDataPickerView` displays a placeholder image as the thumbnail. This placeholder can be any [SF Symbol](https://developer.apple.com/sf-symbols) that matches your app's design.
+    }
+    
+    @ContentAndMedia {
+        @Image(source: "Clipping", alt: "ImageDataPicker clipping shape options.")
+        The shape of the `ImageDataPickerView` can be customized as circular (`.round`), rounded-square (`.rounded`), or square (`.square`).
+        
+        The `ImageDataPickerView` centers the selected image and clips it to a 1:1 aspect ratio using the image's smaller dimension. The `ImageDataPickerView` fills its containing frame.
+    }
+}
