@@ -3,14 +3,14 @@
                       title: "Xcode 16", 
                       destination: "https://developer.apple.com/download/")
     @Intro(title: "Create a new Project") {
-        Start by creating a new SwiftUI multi-platform project for the App.
+        Start by creating a new SwiftUI multiplatform project for the App.
         
         @Image(source: "Phone-Header-R", alt: "Phone Background")
     }
     
     @Section(title: "Create the Project") {
         @ContentAndMedia {
-            Create a new XCode project to produce a multi-platform App.
+            Create a new XCode project to produce a multiplatform App.
             
             @Comment {@Image(source: "Phone-Header", alt: "Xcode Project")}
             @Image(source: "Phone-Header", alt: "Sample Video")
@@ -85,7 +85,7 @@
             @Step {
                 Ensure that the framework is set to `Embed & Sign` in the **Frameworks, Libraries, and Embedded Content** section.
                 
-                > Note: This is a **multi-platform** framework, so you can use it in both `iOS` and `macOS` projects.
+                > Note: This is a **multiplatform** framework, so you can use it in both `iOS` and `macOS` projects.
                 
                 @Image(source: "2-5-FrameworkEmbedded", alt: "Xcode Framework set to Embed & Sign")
             }

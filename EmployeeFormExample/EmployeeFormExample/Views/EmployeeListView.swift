@@ -18,7 +18,7 @@ import SwiftUI
 
 /// The ``EmployeeListView`` displays a list of employees, allowing the user to select an ``Employee`` to view their details.
 ///
-/// This is a multi-platform view based on a NavigationSplitView that presents a list of
+/// This is a multiplatform view based on a NavigationSplitView that presents a list of
 /// employees along with their photo, name and department.
 struct EmployeeListView: View {
     @Environment(\.editMode) private var editMode

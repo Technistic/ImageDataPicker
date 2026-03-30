@@ -186,7 +186,7 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Woman").font(.title2)
-    Text("clippedImageShape(.round)")
+    Text("cshape: RoundedRectangle(cornerRadius: 8)")
     ImageDataPickerView(
         imageData: $imageData,
         cshape: RoundedRectangle(cornerRadius: 8)
@@ -199,7 +199,7 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Man").font(.title2)
-    Text("clippedImageShape(.square)")
+    Text("cshape: Rectangle()")
     ImageDataPickerView(
         imageData: $imageData,
         cshape: Rectangle()
@@ -212,7 +212,7 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Girl").font(.title2)
-    Text("clippedImageShape(.roundedSquare)")
+    Text("cshape: RoundedRectangle(cornerRadius: 8)")
     ImageDataPickerView(
         imageData: $imageData,
         cshape: RoundedRectangle(cornerRadius: 8)

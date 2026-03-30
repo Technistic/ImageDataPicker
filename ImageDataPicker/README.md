@@ -10,7 +10,7 @@ The **ImageDataPicker** framework provides a convenient, intuitive and customiza
 
 ## Features
 
-The **ImageDataPicker** framework is a multi-platform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** [PhotosPicker](https://developer.apple.com/documentation/photosui/photospicker) to provide a **SwiftUI** control that presents an `Image` selected from a user's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the Image to the containing `Frame`. Use the ``clippedImageShape()`` viewModifier to present the image in a *circular*, *rounded-square* or *square* format.
+The **ImageDataPicker** framework is a multiplatform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** [PhotosPicker](https://developer.apple.com/documentation/photosui/photospicker) to provide a **SwiftUI** control that presents an `Image` selected from a user's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the Image to the containing `Frame`. Use the ``cshape`` initializer parameter to present the image clipped to a circular, square or rounded-square shape.
 
 ![Clipping Options](ImageDataPicker/ImageDataPicker.docc/Resources/Clipping-Background@0.5x.png)
 
@@ -47,13 +47,16 @@ If no image is selected, or there is an error loading the selected Image, the co
         @State var imageData: Data? = UIImage(named: "Image")!.pngData()
         var body: some View {
             VStack {
-                ImageDataPickerView(imageData: $imageData)
-                .clippedImageShape(.round)
+                ImageDataPickerView(
+                    imageData: $imageData,
+                    cshape: Circle(),
+                    backgroundColor: .gray,
+                    foregroundColor: .white
+                )
                 .frame(width: 240, height: 240)
                 .padding(32)
-
                 Text("Image Data Picker")
-                .font(.title)
+                    .font(.title)
 
                 Spacer()
             }
@@ -61,7 +64,8 @@ If no image is selected, or there is an error loading the selected Image, the co
     }
 
     #Preview {
-        @Previewable @State var imageData: Data? = UIImage(named: "Image")!.pngData()
+        @Previewable @State var imageData: Data? = UIImage(named: "Image")!
+            .pngData()
         ContentView()
     }
     ```
@@ -71,7 +75,7 @@ If no image is selected, or there is an error loading the selected Image, the co
 
 See the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework.
 
-Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multi-platform application using the **ImageDataPicker** framework.
+Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multiplatform application using the **ImageDataPicker** framework.
 
 Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for our [EmployeeFormExample](EmployeeFormExample/README.md) application, to understand how to use the Framework in a *real-world* application.
 

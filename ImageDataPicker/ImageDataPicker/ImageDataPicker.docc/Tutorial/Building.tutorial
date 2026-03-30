@@ -1,16 +1,16 @@
 @Article(time: 5) {
-    @Intro(title: "Build a multi-platform App") {
-        Walk-through, step-by-step, how to create a SwiftUI multi-platform App that uses the **ImageDataPicker** framework.
+    @Intro(title: "Build a multiplatform App") {
+        Walk-through, step-by-step, how to create a SwiftUI multiplatform App that uses the **ImageDataPicker** framework.
 
         
         @Image(source: "Phone-Header-R", alt: "Phone Background")
     }
     
     @ContentAndMedia {
-        > Overview: Create a multi-platform project, add the ImageDataPicker framework, set up a **SwiftData Model** and build views that use the ``ImageDataPickerView`` to select and display images selected from a user's **PhotoLibrary**.
+        > Overview: Create a multiplatform project, add the ImageDataPicker framework, set up a **SwiftData Model** and build views that use the ``ImageDataPickerView`` to select and display images selected from a user's **PhotoLibrary**.
         
         @Image(source: "MyImageList", alt: "The ImageDataPickerView")
         
-        This part of the tutorial walks you through all the steps to create a multi-platform App that uses the **ImageDataPicker** framework, and how you bind an ``ImageDataPickerView`` to your **SwiftData Model**.
+        This part of the tutorial walks you through all the steps to create a multiplatform App that uses the **ImageDataPicker** framework, and how you bind an ``ImageDataPickerView`` to your **SwiftData Model**.
     }
 }

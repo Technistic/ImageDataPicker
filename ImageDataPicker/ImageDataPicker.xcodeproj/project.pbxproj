@@ -27,13 +27,13 @@
 		69CF51392DC45A1400402D6E /* ImageDataPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageDataPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51B52DC45C8900402D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		69CF51D22DC4675900402D6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		69DE41C52E67C0E500FDBE62 /* ImageDataPicker-README-Hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero.png"; sourceTree = "<group>"; };
-		69DE41C62E67C0E500FDBE62 /* ImageDataPicker-README-Hero@0.5x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@0.5x.png"; sourceTree = "<group>"; };
-		69DE41C72E67C0E500FDBE62 /* ImageDataPicker-README-Hero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@2x.png"; sourceTree = "<group>"; };
 		69DE41C82E67C0E500FDBE62 /* MyGreatApp-Content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-Content.png"; sourceTree = "<group>"; };
 		69DE41C92E67C0E500FDBE62 /* MyGreatApp-Content_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-Content_orig.png"; sourceTree = "<group>"; };
 		69DE41CA2E67C0E500FDBE62 /* MyGreatApp-FrameworkEmbedded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-FrameworkEmbedded.png"; sourceTree = "<group>"; };
 		69DE41CB2E67C0E500FDBE62 /* MyGreatApp[FrameworkEmbedded_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp[FrameworkEmbedded_orig.png"; sourceTree = "<group>"; };
+		69F6ED5A2E9F220B00B518D1 /* ImageDataPicker-README-Hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero.png"; sourceTree = "<group>"; };
+		69F6ED5B2E9F220B00B518D1 /* ImageDataPicker-README-Hero@0.5x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@0.5x.png"; sourceTree = "<group>"; };
+		69F6ED5C2E9F220B00B518D1 /* ImageDataPicker-README-Hero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -126,9 +126,9 @@
 		69DE41CC2E67C0E500FDBE62 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				69DE41C52E67C0E500FDBE62 /* ImageDataPicker-README-Hero.png */,
-				69DE41C62E67C0E500FDBE62 /* ImageDataPicker-README-Hero@0.5x.png */,
-				69DE41C72E67C0E500FDBE62 /* ImageDataPicker-README-Hero@2x.png */,
+				69F6ED5A2E9F220B00B518D1 /* ImageDataPicker-README-Hero.png */,
+				69F6ED5B2E9F220B00B518D1 /* ImageDataPicker-README-Hero@0.5x.png */,
+				69F6ED5C2E9F220B00B518D1 /* ImageDataPicker-README-Hero@2x.png */,
 				69DE41C82E67C0E500FDBE62 /* MyGreatApp-Content.png */,
 				69DE41C92E67C0E500FDBE62 /* MyGreatApp-Content_orig.png */,
 				69DE41CA2E67C0E500FDBE62 /* MyGreatApp-FrameworkEmbedded.png */,
@@ -215,7 +215,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					69CF512D2DC45A1400402D6E = {
 						CreatedOnToolsVersion = 16.3;
@@ -360,8 +360,10 @@
 				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.ImageDataPicker;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -380,7 +382,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker/imagedatapicker;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -416,6 +418,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 2.4;
@@ -516,9 +519,11 @@
 				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.ImageDataPicker;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
+				SWIFT_VERSION = 6.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -535,7 +540,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker/imagedatapicker;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -570,6 +575,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 2.4;
@@ -670,9 +676,11 @@
 				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.ImageDataPicker;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
+				SWIFT_VERSION = 6.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -743,8 +751,10 @@
 				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.ImageDataPicker;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
+				SWIFT_VERSION = 6.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -761,7 +771,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker/imagedatapicker;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -796,6 +806,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 2.4;
@@ -814,7 +825,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker/imagedatapicker;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -850,6 +861,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 2.4;

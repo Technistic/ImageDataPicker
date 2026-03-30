@@ -4,7 +4,7 @@
 
 ## Overview
 
-The **EmployeeFormExample** application demonstrates how to build a multi-platform application using the 
+The **EmployeeFormExample** application demonstrates how to build a multiplatform application using the 
 **ImageDataPicker** framework. It presents a list of employees, displaying their name, department and a
 photo. Selecting an employee from the list presents a detail view that allows this information to be 
 edited, including selecting a photo using the **PhotosPicker**.
@@ -21,12 +21,12 @@ to either `save()` or `cancel()` their proposed changes.
 
 ## Design
 
-As this is a multi-platform application - it can be run on iOS, iPadOS and macOS - it uses a 
+As this is a multiplatform application - it can be run on iOS, iPadOS and macOS - it uses a 
 `NavigationSplitView` to present a list-detail interface. The `NavigationSplitView`
 `List` is configured to use the `Edit()` button to `delete()` rows from the `List`. An `Add()` button adds 
 a new row to the `List` with default values that can be modified in the ``EmployeeView``.
 
-The segmented picker at the bottom of the ``EmployeeView`` allows you to see the effect of the ``clippedImageShape()`` view modifier on the ``ImageDataPickerView``.
+The segmented picker at the bottom of the ``EmployeeView`` allows you to see the effect of the ``cshape`` initializer parameter on the ``ImageDataPickerView``.
 
 
 ## Credits

@@ -479,7 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
+				DEVELOPMENT_ASSET_PATHS = "\"Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
@@ -659,7 +659,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
+				DEVELOPMENT_ASSET_PATHS = "\"Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
@@ -909,7 +909,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
+				DEVELOPMENT_ASSET_PATHS = "\"Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
@@ -961,7 +961,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 49;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
+				DEVELOPMENT_ASSET_PATHS = "\"Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;

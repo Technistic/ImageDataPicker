@@ -10,6 +10,9 @@ import ImageDataPicker
 import SwiftData
 import SwiftUI
 
+let emptyPlaceholder = "photo.fill"
+let failurePlaceholder = "exclamationmark.triangle"
+
 struct MyImageListView: View {
     @Environment(\.dismiss) private var dismiss
     
@@ -98,11 +101,18 @@ struct MyImageListRow: View {
         @State var state: ImageDataModel = ImageDataModel(imageData: img)
             
         HStack {
-            ClippedImageStateView(imageState: state.imageState)
-                .clippedImageShape(.round)
+            VStack {
+                ImageStateView(
+                    imageState: state.imageState, emptyPlaceholder: emptyPlaceholder
+                )
+                .foregroundColor(.white)
+                .squareImageView(shape: Circle(), background: .green)
+                .background(Color.blue)
+            }
+            .frame(width: 80, height: 80)
             Text(myImage!.imageName)
+                .padding(4)
         }
-        .padding(4)
     }
 }
 
