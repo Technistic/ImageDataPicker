@@ -1,7 +1,6 @@
 //
 //  View+Extension.swift
-//  A SwiftUI Image Picker that supporting SwiftData binding.
-//  Refer to FigmaDesign
+//  Shared view helpers for the ImageDataPicker framework.
 //
 //  Created by Michael Logothetis on 30/04/2025.
 //

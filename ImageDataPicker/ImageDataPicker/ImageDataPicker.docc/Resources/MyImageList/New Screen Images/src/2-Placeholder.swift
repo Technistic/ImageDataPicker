@@ -8,7 +8,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ImageDataPickerView(imageData: $imageData,
-                                emptyImage: "photo.fill")
+                                emptyPlaceholderImageName: "photo.fill")
         }
     }
 }

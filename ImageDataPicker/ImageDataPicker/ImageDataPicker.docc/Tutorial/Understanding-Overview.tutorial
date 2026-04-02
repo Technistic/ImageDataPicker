@@ -1,13 +1,13 @@
 @Article(time: 5) {
     @Intro(title: "Overview of the Framework") {
-        The **ImageDataPicker Framework** provides a `View` that allows users to select photos from their **PhotoLibrary** and `@Bind` the data for these images to a **SwiftData Model**.
+        The **ImageDataPicker Framework** provides a SwiftUI view that allows users to select photos from their photo library and bind the resulting `Data?` to app state or a SwiftData model.
         @Image(source: "Brain-Header-R", alt: "Brain")
     
     }
     
     @ContentAndMedia {
         @Image(source: "Release-Doc-Title", alt: "The ImageDataPickerView")
-        The **ImageDataPicker Framework** makes it simple to select photos from a user's **PhotoLibrary** and `@Bind` those photos to a **SwiftData Model**. It leverages the [PhotosUI](https://developer.apple.com/documentation/photosui) [PhotosPicker](https://developer.apple.com/documentation/PhotosUI/PhotosPicker) to render a **SwiftUI** component that presents a thumbnail of the selected image along with `Edit` and `Delete` buttons. Simply include the `ImageDataPickerView` in your application and `@Bind` it to a `Data?` property in your model.
+        The **ImageDataPicker Framework** makes it simple to select photos from a user's photo library and bind them to `Data?` in SwiftUI state or a SwiftData model. It uses [PhotosUI](https://developer.apple.com/documentation/photosui) and [PhotosPicker](https://developer.apple.com/documentation/PhotosUI/PhotosPicker) to present a square thumbnail with controls for replacing or deleting the selected image.
         
         Think of it as a `TextField` for `Images`.
     }

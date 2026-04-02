@@ -10,7 +10,7 @@ The **ImageDataPicker** framework provides a convenient, intuitive and customiza
 
 ## Features
 
-The **ImageDataPicker** framework is a multiplatform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** [PhotosPicker](https://developer.apple.com/documentation/photosui/photospicker) to provide a **SwiftUI** control that presents an `Image` selected from a user's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the Image to the containing `Frame`. Use the ``cshape`` initializer parameter to present the image clipped to a circular, square or rounded-square shape.
+The **ImageDataPicker** framework is a multiplatform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** [PhotosPicker](https://developer.apple.com/documentation/photosui/photospicker) to provide a **SwiftUI** control that presents an `Image` selected from a user's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the Image to the containing `Frame`. Use the ``clipShape`` initializer parameter to present the image clipped to a circular, square or rounded-square shape.
 
 ![Clipping Options](ImageDataPicker/ImageDataPicker.docc/Resources/Clipping-Background@0.5x.png)
 
@@ -49,7 +49,7 @@ If no image is selected, or there is an error loading the selected Image, the co
             VStack {
                 ImageDataPickerView(
                     imageData: $imageData,
-                    cshape: Circle(),
+                    clipShape: Circle(),
                     backgroundColor: .gray,
                     foregroundColor: .white
                 )
@@ -101,4 +101,3 @@ Commercial Support available on request.
 ---
 
 Copyright &copy; 2025 Technistic Pty Ltd
-
