@@ -328,7 +328,7 @@
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Preview\\ Content/Preview\\ Assets\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -487,7 +487,7 @@
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Preview\\ Content/Preview\\ Assets\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -644,7 +644,7 @@
 				CURRENT_PROJECT_VERSION = 0.0002;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Preview\\ Content/Preview\\ Assets\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -726,7 +726,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Preview\\ Content/Preview\\ Assets\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ImageDataPicker/Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
