@@ -23,7 +23,9 @@ env:
 
 jobs:
   build_with_signing:
-    runs-on: macos-15
+    runs-on: macos-latest
+    env:
+        DEVELOPER_DIR: /Applications/Xcode_26.3.app
     defaults:
       run:
         shell: bash
