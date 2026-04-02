@@ -55,7 +55,7 @@ struct EmployeeView: View {
                 }
 
                 ImageDataPickerView(imageData: $imageData,
-                                    cshape: clippingShape(selection: clippingSelection), backgroundColor: .green, foregroundColor: .white)
+                                    clipShape: clippingShape(selection: clippingSelection), backgroundColor: .green, foregroundColor: .white)
                     .padding(8)
                     .frame(width: 240, height: 240)
 

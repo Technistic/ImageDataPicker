@@ -37,7 +37,7 @@ Learn more by reading the [Documentation](https://technistic.github.io/ImageData
             VStack {
                 ImageDataPickerView(
                     imageData: $imageData,
-                    cshape: Circle(),
+                    clipShape: Circle(),
                     backgroundColor: .gray,
                     foregroundColor: .white
                 )
@@ -78,4 +78,3 @@ Commercial Support available on request.
 ---
 
 Copyright &copy; 2025 Technistic Pty Ltd
-

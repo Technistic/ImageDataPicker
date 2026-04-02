@@ -175,8 +175,8 @@ import SwiftUI
     Text("with default placeholder").font(.title2)
     ImageDataPickerView(
         imageData: $imageData,
-        emptyImage: "person.circle.fill",
-        cshape: Circle()
+        emptyPlaceholderImageName: "person.circle.fill",
+        clipShape: Circle()
     )
     .frame(width: 200, height: 200)
 }
@@ -186,10 +186,10 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Woman").font(.title2)
-    Text("cshape: RoundedRectangle(cornerRadius: 8)")
+    Text("clipShape: RoundedRectangle(cornerRadius: 8)")
     ImageDataPickerView(
         imageData: $imageData,
-        cshape: RoundedRectangle(cornerRadius: 8)
+        clipShape: RoundedRectangle(cornerRadius: 8)
     )
     .frame(width: 200, height: 200)
 }
@@ -199,10 +199,10 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Man").font(.title2)
-    Text("cshape: Rectangle()")
+    Text("clipShape: Rectangle()")
     ImageDataPickerView(
         imageData: $imageData,
-        cshape: Rectangle()
+        clipShape: Rectangle()
     )
     .frame(width: 200, height: 200)
 }
@@ -212,10 +212,10 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Girl").font(.title2)
-    Text("cshape: RoundedRectangle(cornerRadius: 8)")
+    Text("clipShape: RoundedRectangle(cornerRadius: 8)")
     ImageDataPickerView(
         imageData: $imageData,
-        cshape: RoundedRectangle(cornerRadius: 8)
+        clipShape: RoundedRectangle(cornerRadius: 8)
     )
 }
 
@@ -226,9 +226,9 @@ import SwiftUI
     Text("with custom placeholder").font(.title2)
     ImageDataPickerView(
         imageData: $imageData,
-        emptyImage: "photo.circle.fill",
-        errorImage: "exclamationmark.triangle.fill",
-        cshape: Circle()
+        emptyPlaceholderImageName: "photo.circle.fill",
+        errorPlaceholderImageName: "exclamationmark.triangle.fill",
+        clipShape: Circle()
     )
     .frame(width: 200, height: 200)
 }
@@ -240,7 +240,7 @@ import SwiftUI
     Text("Non-Existing").font(.title)
     ImageDataPickerView(
         imageData: $imageData,
-        emptyImage: "photo.circle.fill",
+        emptyPlaceholderImageName: "photo.circle.fill",
     )
     .frame(width: 200,  height: 200)
 }
