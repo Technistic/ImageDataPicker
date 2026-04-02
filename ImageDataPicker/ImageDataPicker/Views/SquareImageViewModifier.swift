@@ -1,7 +1,6 @@
 //
 //  SquareImageViewModifier.swift
-//  A ViewModifier to transform a View to a square (1:1)
-//  aspect ratio.
+//  A view modifier that presents content in a clipped square frame.
 //
 //  Created by Michael Logothetis on 22/09/2025.
 //
@@ -15,7 +14,7 @@ import SwiftUI
     import UIKit
 #endif
 
-/// Modifies a view to have a square (1:1) aspect ratio, clipped to the specified shape and with a customizable background color.
+/// A view modifier that constrains content to a square and clips it to a supplied shape.
 public struct SquareImageViewModifier<S: Shape>: ViewModifier {
     var shape: S
 
@@ -32,7 +31,7 @@ public struct SquareImageViewModifier<S: Shape>: ViewModifier {
         )
         ZStack {
             GeometryReader { geometry in
-                let side = Util.minDim(geometry.size)
+                let side = SymbolLayoutHelper.minDim(geometry.size)
                 content
                     .frame(width: side, height: side)
                     .background(background)
@@ -40,29 +39,29 @@ public struct SquareImageViewModifier<S: Shape>: ViewModifier {
                     .clipped()
                     .onChange(of: geometry.size) {
                         imageSize = CGSize(
-                            width: Util.minDim(geometry.size),
-                            height: Util.minDim(geometry.size)
+                            width: SymbolLayoutHelper.minDim(geometry.size),
+                            height: SymbolLayoutHelper.minDim(geometry.size)
                         )
                     }
                     .onAppear {
                         imageSize = CGSize(
-                            width: Util.minDim(geometry.size),
-                            height: Util.minDim(geometry.size)
+                            width: SymbolLayoutHelper.minDim(geometry.size),
+                            height: SymbolLayoutHelper.minDim(geometry.size)
                         )
                     }
             }
             .scaledToFit()
 
             .frame(
-                width: Util.minDim(imageSize),
-                height: Util.minDim(imageSize)
+                width: SymbolLayoutHelper.minDim(imageSize),
+                height: SymbolLayoutHelper.minDim(imageSize)
             )
         }
     }
 }
 
-/// A set of utility functions used by the SquareImageViewModifier to calculate scaling and offsets for system images.
-public struct Util {
+/// Helper functions used to size and position SF Symbols inside clipped image placeholders.
+public struct SymbolLayoutHelper {
     /// Returns the maximum dimension (width or height) of a given CGSize.
     /// - Parameter size: The CGSize to evaluate.
     /// - Returns: The larger of the width or height of the CGSize.
@@ -77,37 +76,42 @@ public struct Util {
         min(size.width, size.height)
     }
     
-    /// Calculates the radius of a Circle() that will contain the specific system image.
-    /// - Parameter systemImage: The name of the system image to contain.
-    /// - Returns: The radius of the Circle() that will contain the system image.
+    /// Calculates the radius of the smallest circle that contains the supplied symbol image.
+    /// - Parameter systemImage: The SF Symbol name to measure.
+    /// - Returns: The radius needed to contain the symbol.
     static func imageRadius(systemImage: String) -> CGFloat {
         if systemImage.contains("circle") {
             return 1.0
         } else {
             #if canImport(UIKit)
-                let imageSize = UIImage(systemName: systemImage)!.size
+                guard let image = UIImage(systemName: systemImage) else {
+                    return 1.0
+                }
+                let imageSize = image.size
             #else
-                let imageSize = NSImage(
+                guard let image = NSImage(
                     systemSymbolName: systemImage,
-                    accessibilityDescription: "TestImage"
-                )!.size
+                    accessibilityDescription: "System image"
+                ) else {
+                    return 1.0
+                }
+                let imageSize = image.size
             #endif
-
-            let radius =
-                (((imageSize.width) * (imageSize.width) + (imageSize.height)
-                    * (imageSize.height))
-                    .squareRoot()) / 2.0
+            let radius = (
+                (imageSize.width * imageSize.width + imageSize.height * imageSize.height)
+                .squareRoot()
+            ) / 2.0
 
             return radius
         }
     }
 
-    /// Calculates the scale factor to apply to a specific system image, so it fits within the bounds of a circle.
-    /// - Parameter systemImage: The name of the system image to be scaled.
-    /// - Returns: The scale factor to be applied.
+    /// Calculates a scale factor that helps an SF Symbol fit visually inside a circular placeholder.
+    /// - Parameter systemImage: The SF Symbol name to scale.
+    /// - Returns: A scale factor for the symbol.
     public static func scaleFactor(systemImage: String) -> CGFloat {
         if systemImage.contains("circle") {
-            return 1.01
+            return 1.0
         } else {
             #if canImport(UIKit)
                 let imageSize = UIImage(systemName: systemImage)!.size
@@ -124,14 +128,14 @@ public struct Util {
         }
     }
     
-    /// Calculates the  offset to apply to a specific system image, so it is visually centered within a circle.
-    /// - Parameter systemImage: The name of the system image to be centred.
-    /// - Returns: The offsets to visually centre the system image.
+    /// Calculates a vertical offset used to visually center some SF Symbols in circular placeholders.
+    /// - Parameter systemImage: The SF Symbol name to position.
+    /// - Returns: A vertical offset for the symbol.
     public static func offsetFactor(systemImage: String) -> CGFloat {
         if systemImage.contains("circle") {
             return 0.0
         } else if systemImage.contains("triangle") {
-            return -8.0
+            return -3.0
         } else {
             return 0.0
         }
@@ -194,6 +198,7 @@ extension View {
             .scaledToFill()
             .squareImageView(shape: Circle())
             .background(.yellow)
+
         #else
             Image(
                 nsImage: Bundle(for: ImageDataModel.self).image(
@@ -221,7 +226,7 @@ extension View {
             .modifier(
                 SquareImageViewModifier(shape: Circle(), background: .red)
             )
-            //.background(.green)
-            .border(.green)
+            .background(.green, ignoresSafeAreaEdges: [])
+            //.border(.green)
     }
 }

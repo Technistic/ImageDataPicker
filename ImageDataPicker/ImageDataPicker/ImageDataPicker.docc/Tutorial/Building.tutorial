@@ -7,10 +7,10 @@
     }
     
     @ContentAndMedia {
-        > Overview: Create a multiplatform project, add the ImageDataPicker framework, set up a **SwiftData Model** and build views that use the ``ImageDataPickerView`` to select and display images selected from a user's **PhotoLibrary**.
+        > Overview: Create a multiplatform project, add the ImageDataPicker framework, set up a SwiftData model, and build views that use ``ImageDataPickerView`` to select and display images from the photo library.
         
         @Image(source: "MyImageList", alt: "The ImageDataPickerView")
         
-        This part of the tutorial walks you through all the steps to create a multiplatform App that uses the **ImageDataPicker** framework, and how you bind an ``ImageDataPickerView`` to your **SwiftData Model**.
+        This part of the tutorial walks you through creating a multiplatform app that uses **ImageDataPicker** and binding ``ImageDataPickerView`` to image data stored in a SwiftData model.
     }
 }

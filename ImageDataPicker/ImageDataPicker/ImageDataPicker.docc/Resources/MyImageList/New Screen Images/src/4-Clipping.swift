@@ -4,16 +4,18 @@ import SwiftUI
 
 struct ContentView: View {
     @State var imageData: Data? = UIImage(named: "Image")!.pngData()
+
     var body: some View {
         VStack {
             ImageDataPickerView(
-                imageData: $imageData, )
-            .clippedImageShape(.rounded)
+                imageData: $imageData,
+                clipShape: RoundedRectangle(cornerRadius: 12)
+            )
             .frame(width: 240, height: 240)
             .padding(32)
             Text("Image Data Picker")
                 .font(.title)
-        Spacer()
+            Spacer()
         }
     }
 }

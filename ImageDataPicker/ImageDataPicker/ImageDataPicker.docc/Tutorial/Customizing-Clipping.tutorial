@@ -1,13 +1,13 @@
 @Tutorial(time: 10) {
     @Intro(title: "Customizing Clipping Options") {
-        How to customize the clippingShape of the ``ImageDataPickerView``.
+        How to customize the clipping shape used by ``ImageDataPickerView``.
         
         @Image(source: "Options-Header-R", alt: "Options List")
     }
     
     @Section(title: "Customizing Clipping Shapes") {
         @ContentAndMedia {
-            The Image that is presented in the `ImageDataPickerView` is cropped to a 1:1 aspect ratio. You can customize the clipping of the Image to be either `.round`, `.rounded` or `.square` by applying the `.clippingshape()` view modifier
+            `ImageDataPickerView` always presents a square image. You can customize its clipping by supplying a `clipShape` such as `Circle()`, `RoundedRectangle(cornerRadius:)`, or `Rectangle()`.
             @Image(source: "Clipping", alt: "Clipping Options")
             
         }
@@ -21,7 +21,7 @@
             }
             
             @Step {
-                Customize the `ImageDataPickerView` by clipping the view to a rounded-square.
+                Customize `ImageDataPickerView` by clipping the view to a rounded rectangle.
                 
                 @Code(name: "MyView.swift", file: "4-Clipping.swift", previousFile: "3-Clipping.swift") {
                     @Image(source: "ClippedRoundedApp", alt: "ImageDataPickerView with rounded clipping.")

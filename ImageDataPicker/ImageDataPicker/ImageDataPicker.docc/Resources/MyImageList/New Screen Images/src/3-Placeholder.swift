@@ -8,8 +8,8 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ImageDataPickerView(imageData: $imageData,
-                                emptyImage: "photo.fill",
-                                errorImage: "exclamationmark.circle.fill")
+                                emptyPlaceholderImageName: "photo.fill",
+                                errorPlaceholderImageName: "exclamationmark.circle.fill")
         }
     }
 }

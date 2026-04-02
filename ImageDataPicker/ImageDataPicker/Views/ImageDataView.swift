@@ -1,8 +1,9 @@
 //
 //  ImageDataView.swift
-//  A SwiftUI Image View that supports SwiftData binding.
+//  A SwiftUI view that displays image data or a fallback symbol.
 //
 //  Created by Michael Logothetis on 30/04/2025.
+//  Updated by Michael Logothetis on 01/04/2026.
 //
 //  MIT License
 //  Copyright (c) 2025 Michael Logothetis (Technistic Pty Ltd)
@@ -12,26 +13,26 @@ import Foundation
 import OSLog
 import SwiftUI
 
-/// An Image view of the supplied ``imageData``, scaled to the size of the parent container and maintaining the image's original aspect ratio.
+/// A SwiftUI image view backed by `Data?`.
 ///
-/// The ``ImageDataView`` produced a SwiftUI Image derived from the supplied ``imageData``. ``imageData`` can be stored as an attributed of a SwiftData Model. If ``imageData`` is nil, a placeHolderImage is presented based on an SF Symbols `systemName` image. The default is to use the ``Constants/personPlaceholder`` image but this can be overriden on creation.
+/// `ImageDataView` converts `Data?` into a platform image (`UIImage` or `NSImage`).
+/// If conversion fails or the data is `nil`, it displays the supplied SF Symbol placeholder.
 ///
-/// Refer to: [https://developer.apple.com/design/resources/#sf-symbols](https://developer.apple.com/design/resources/#sf-symbols)
-///
+/// An Image is displayed with `.scaledToFill()` to ensure it fills the view, and the placeholder is displayed with `.scaledToFit()` to maintain its aspect ratio.
 
 @available(iOS 13.0, macCatalyst 13.0, macOS 10.15, visionOS 1.0, *)
 public struct ImageDataView: View {
 
     public var imageData: Data?
-    private var placeholder: String = Constants.personPlaceholder
+    private var placeholder: String = Constants.photoPlaceholder
 
-    /// Initializes an Image View using imageData. Use the emptyImage parameter to override the default system symbol image presented when imageData is nil
+    /// Creates an image view from imageData.
     /// - Parameters:
-    ///   - imageData: The data for the underlying image. Although this can be in the format of any of the supported platform-native image types, png format is recommended.
-    ///   - placeholder: The system symbol image to use as a placeholder if imageData is nil.
+    ///   - imageData: The image data to display, typically .png.
+    ///   - placeholder: The SF Symbol to display if `imageData` is `nil` or invalid. Defaults to ``Constants/photoPlaceholder``.
     public init(
         imageData: Data? = nil,
-        placeholder: String = Constants.personPlaceholder
+        placeholder: String = Constants.photoPlaceholder
     ) {
         self.imageData = imageData
         self.placeholder = placeholder
@@ -43,7 +44,7 @@ public struct ImageDataView: View {
                 if let uiImage = UIImage(data: imageData) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                 } else {
                     Image(systemName: placeholder)
                         .resizable()
@@ -60,7 +61,7 @@ public struct ImageDataView: View {
                 if let nsImage = NSImage(data: imageData) {
                     Image(nsImage: nsImage)
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                 } else {
                     Image(systemName: placeholder)
                         .resizable()
@@ -75,84 +76,98 @@ public struct ImageDataView: View {
     }
 }
 
-#Preview("Photo View") {
-    @Previewable @State var imageData: Data? = nil
 
-    let placeholder: String = "photo"
-
-    ImageDataView(imageData: imageData)
-        .border(.green)
-
-    ImageDataView(imageData: imageData)
-        .scaledToFit()
-        .scaleEffect(Util.scaleFactor(systemImage: placeholder))
-        .offset(x: 0, y: Util.offsetFactor(systemImage: placeholder))
-        .squareImageView(shape: Circle(), background: .gray)
-        // Test .background(), .border(), .frame() modifiers
-        .background(.yellow)
-        .clipped()
-        .border(.green)
-        .frame(width: 200, height: 200)
-}
-
-#Preview("Exclamation Mark View") {
-    @Previewable @State var imageData: Data? = nil
-
-    let placeholder: String = "exclamationmark.triangle"
-
-    ImageDataView(imageData: imageData, placeholder: placeholder)
-        .border(.green)
-
-    ImageDataView(imageData: imageData, placeholder: placeholder)
-        .scaledToFill()
-        .scaleEffect(Util.scaleFactor(systemImage: placeholder))
-        .offset(x: 0, y: Util.offsetFactor(systemImage: placeholder))
-        .squareImageView(shape: Circle(), background: .gray)
-        // Test .background(), .border(), .frame() modifiers
-        .background(.yellow)
-        .clipped()
-        .border(.green)
-        .frame(width: 200, height: 200)
-}
-
+/// This helper function loads an Image resource from the bundle and returns its data as .png `Data?`. It handles both UIKit and AppKit image loading.
+/// - Parameter _imageResource: The name of the image resource to load from the bundle.
+/// - Returns: pngData for the specified image resource, or `nil` if the resource cannot be found or loaded.
+func imageResourceData(for _imageResource: String) -> Data? {
 #if canImport(UIKit)
-#Preview("Image View iOS") {
-    @Previewable @State var imageData: Data? = UIImage(
-        named: "TestPortrait",
-        in: Bundle(for: ImageDataModel.self),
-        compatibleWith: nil)?
-        .pngData()
-    
-    ImageDataView(imageData: imageData, placeholder: "photo")
-        .border(.green)
-        .frame(width: 400, height: 400)
-    
-    ImageDataView(imageData: imageData, placeholder: "photo")
-        .scaledToFill()
-        .squareImageView(shape: Circle())
-    // Test .background(), .border(), .frame() modifiers
-        .background(.green)
-        .clipped()
-        .border(.green)
-        .frame(width: 400, height: 400)
-}
+    return UIImage(named: _imageResource,
+    in: Bundle(for: ImageDataModel.self),
+    compatibleWith: nil)?.pngData()
 #else
-#Preview("Image View macOS") {
-    @Previewable @State var imageData: Data? = Bundle(
+    return Bundle(
         for: ImageDataModel.self)
-        .image(forResource: "TestPortrait")?
+        .image(forResource: _imageResource)?
         .pngData()
-    
-    ImageDataView(imageData: imageData, placeholder: "photo")
-        .border(.green)
-    
-    ImageDataView(imageData: imageData, placeholder: "photo")
-        .scaledToFill()
-        .squareImageView(shape: Circle())
-    // Test .background(), .border(), .frame() modifiers
-        .background(.green)
-        .clipped()
-        .border(.green)
-        .frame(width: 200, height: 200)
-}
 #endif
+}
+
+#Preview("Image") {
+    @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
+    
+    VStack {
+        ImageDataView(imageData: imageData)
+            .border(.green)
+        Text("Image Data")
+    }
+}
+
+#Preview("Image-Scaled") {
+    @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
+
+    VStack {
+        ImageDataView(imageData: imageData)
+            .scaledToFit()
+            .border(.green)
+        Text("Image Scaled")
+    }
+}
+
+#Preview("Placeholders") {
+    HStack {
+        VStack {
+            ImageDataView(imageData: nil)
+                .border(.green)
+            Text("Default Placeholder")
+        }
+        VStack {
+            ImageDataView(imageData: nil, placeholder: "person")
+                .border(.green)
+            Text("Specified Placeholder")
+        }
+    }
+}
+
+#Preview("Image-Squared") {
+    @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
+
+    VStack {
+        ImageDataView(imageData: imageData)
+            .scaledToFill()
+            .squareImageView(shape: Circle())
+            .background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
+            .border(.green)
+        ImageDataView(imageData: imageData)
+            .scaledToFill()
+            .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0))
+        Text("Image Scaled")
+    }
+}
+
+#Preview("Placeholders-Squared") {
+    @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
+    
+    HStack {
+        VStack {
+            ImageDataView(imageData: nil)
+            .foregroundColor(.white)
+            .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: Constants.photoPlaceholder))
+            .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: Constants.photoPlaceholder))
+            .squareImageView(shape: Circle(), background: .blue)
+            .background(.blue.opacity(0.3))
+            .border(.green)
+            Text("Default Placeholder")
+        }
+        
+        VStack {
+            ImageDataView(imageData: nil, placeholder: "person")
+                .foregroundColor(.white)
+                .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: Constants.personPlaceholder))
+                .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: Constants.personPlaceholder))
+                .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0), background: .blue)
+
+            Text("Specified Placeholder")
+        }
+    }
+}

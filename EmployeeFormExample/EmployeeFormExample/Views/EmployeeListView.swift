@@ -120,17 +120,20 @@ struct EmployeeListRowView: View {
     private let employeeListTestID = UIIdentifiers.EmployeeList.self
 
     var body: some View {
-        @State var img: Data? = employee?.imageData
-        @State var state: ImageDataModel = ImageDataModel(imageData: img)
+        let imageData = employee?.imageData
+
         HStack {
             VStack {
-                switch state.imageState {
-                case .empty:
+                if let imageData {
+                    ImageDataView(imageData: imageData)
+                        .scaledToFill()
+                        .squareImageView(shape: Circle(), background: .green)
+                } else {
                     ImageStateView(
-                        imageState: state.imageState
+                        imageState: .empty
                     )
                     .foregroundColor(.white)
-                    .scaleEffect(Util.scaleFactor(systemImage: "person"))
+                    .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: "person"))
                     .squareImageView(shape: Circle(), background: .green)
                     .padding(4)
                     .frame(width: 80, height: 80)
@@ -140,37 +143,6 @@ struct EmployeeListRowView: View {
                             lastName: employee!.lastName
                         )
                     )
-                    
-                case .loading:
-                    ImageStateView(
-                        imageState: state.imageState
-                    )
-                    .tint(Color.white)
-                    .scaleEffect(1.5)
-                    .squareImageView(shape: Circle(), background: .green)
-                    
-                case .success(_):
-                    ImageStateView(
-                        imageState: state.imageState
-                    )
-                    .squareImageView(shape: Circle(), background: .green)
-                    
-                case .failure(_):
-                    ImageStateView(
-                        imageState: state.imageState
-                    )
-                    .foregroundColor(.white)
-                    .scaleEffect(Util.scaleFactor(systemImage: "exclamationmark.triangle"))
-                    //.offset(Util.offsetFactor(systemImage: "exclamationmark.triangle"))
-                    .squareImageView(shape: Circle(), background: .green)
-                @unknown default:
-                    ImageStateView(
-                        imageState: state.imageState
-                    )
-                    .foregroundColor(.white)
-                    .scaleEffect(Util.scaleFactor(systemImage: "exclamationmark.triangle"))
-                    //.offset(Util.offsetFactor(systemImage: "exclamationmark.triangle"))
-                    .squareImageView(shape: Circle(), background: .green)
                 }
             }
                 .padding(4)
