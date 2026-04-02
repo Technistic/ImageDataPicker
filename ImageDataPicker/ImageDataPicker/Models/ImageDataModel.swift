@@ -1,6 +1,6 @@
 //
 //  ImageDataModel.swift
-//  A SwiftUI Image Picker that supporting SwiftData binding.
+//  A SwiftUI image picker model that supports SwiftData-friendly image storage.
 //
 //  Derived from Sample Code - "Bringing Photos picker to your SwiftUI app"
 //  by Apple Inc. © 2022
@@ -8,6 +8,7 @@
 //  See original License in License/License-Apple-Sample-Code
 //
 //  Created by Michael Logothetis on 30/04/2025.
+//  Updated by Michael Logothetis on 02/04/2026.
 //
 //  MIT License
 //  Copyright (c) 2025 Michael Logothetis (Technistic Pty Ltd)
@@ -21,30 +22,34 @@ import OSLog
 import PhotosUI
 import SwiftUI
 
-/// The ``ImageDataModel`` is a model of the state of a (thumbnail) Image that can be selected and loaded using the SwiftUI PhotosPicker View. The ``ImageState`` represents whether the selected image is empty, in the process of being loaded, successfully loaded, or has failed to load.
+/// A main-actor-isolated model that tracks the UI state of an image selected with `PhotosPicker`.
 ///
-// ToDo: Do we need @MainActor
-// @MainActor
+/// `ImageDataModel` is designed for SwiftUI views that bind image content as `Data?`.
+/// It represents whether the image is empty, loading, loaded successfully, or failed to load.
+///
+@MainActor
 @Observable
-public class ImageDataModel: Hashable {
+public final class ImageDataModel: Hashable {
 
-    /// ImageDataModel equality function
+    /// Returns `true` when both references point to the same model instance.
     /// - Parameters:
     ///   - lhs: lhs ImageDataModel
     ///   - rhs: rhs ImageDataModel
     /// - Returns: Compares the two ImageDataModel objects
-    public static func == (lhs: ImageDataModel, rhs: ImageDataModel) -> Bool {
+    public nonisolated static func == (lhs: ImageDataModel, rhs: ImageDataModel)
+        -> Bool
+    {
         ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
 
-    /// ImageDataModel hash function
-    /// - Parameter hasher: Hashes the essential components of this value by feeding them into the given hasher.
-    public func hash(into hasher: inout Hasher) {
+    /// Hashes the model by identity.
+    /// - Parameter hasher: The hasher to update.
+    public nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(ObjectIdentifier(self))
     }
 
     // MARK: - ImageState
-    /// The UI state of the (thumbnail) Image presented by the DataImagePickerView
+    /// The UI state of the image presented by `ImageDataPickerView`.
     public enum ImageState {
         /// An empty image state, indicating no image has been selected or loaded.
         case empty
@@ -72,13 +77,15 @@ public class ImageDataModel: Hashable {
         }
     }
 
-    /// The current ``ImageState`` of the model.
+    /// The current state of the image.
     public var imageState: ImageState
 
-    /// Initialize the ImageDataModel with an ImageState
+    private var imageLoadTask: Task<Void, Never>?
+
+    /// Creates a model with an explicit state.
     /// - Parameters:
-    ///   - imageState: Initialize the model with the ImageState
-    ///   - imageSelection: The PhotosPicker selected image
+    ///   - imageState: The initial image state.
+    ///   - imageSelection: The current `PhotosPicker` selection, if any.
     public init(imageState: ImageState, imageSelection: PhotosPickerItem? = nil)
     {
         Logger.application.info("\(imageState.description())")
@@ -86,24 +93,30 @@ public class ImageDataModel: Hashable {
         self.imageSelection = imageSelection
     }
 
-    /// Initialize the ImageDataModel using imageData to set the ImageState.success
+    /// Creates a model from a `Binding<Data?>`.
     /// - Parameters:
-    ///   - imageData: Use imageData to initialize the model with ImageState.success
-    ///   - imageSelection: The PhotosPicker selected image
+    ///   - imageData: The bound image data used to determine the initial state.
+    ///   - imageSelection: The current `PhotosPicker` selection, if any.
     public init(
         imageData: Binding<Data?>,
         imageSelection: PhotosPickerItem? = nil
     ) {
+        self.imageSelection = imageSelection
+
         if imageData.wrappedValue == nil {
             self.imageState = ImageState.empty
         } else {
             self.imageState = ImageState.success(imageData.wrappedValue)
         }
-        self.imageSelection = imageSelection
     }
 
-    // TODO: Test this
+    /// Creates a model from image data.
+    /// - Parameters:
+    ///   - imageData: The image data used to determine the initial state.
+    ///   - imageSelection: The current `PhotosPicker` selection, if any.
     public init(imageData: Data?, imageSelection: PhotosPickerItem? = nil) {
+        self.imageSelection = imageSelection
+
         if imageData == nil {
             self.imageState = ImageState.empty
         } else {
@@ -111,12 +124,12 @@ public class ImageDataModel: Hashable {
         }
     }
 
-    /// An error that can be thrown when importing a photo.
+    /// Errors that can occur while importing a selected photo.
     public enum TransferError: Error {
         case importFailed
     }
 
-    /// Transfer the selected photo as Data
+    /// A transferable wrapper used to import selected photo data.
     public struct DataImage: Transferable {
         let imageData: Data?
 
@@ -154,42 +167,64 @@ public class ImageDataModel: Hashable {
         }
     }
 
-    /// The selected image from the PhotosPicker library.
-    /// This initiates the loading of the image when set.
+    /// The selected item from `PhotosPicker`.
+    ///
+    /// Setting this property cancels any in-flight load and starts loading the new selection.
     public var imageSelection: PhotosPickerItem? = nil {
         didSet {
-            if let imageSelection {
-                let progress = loadTransferable(from: imageSelection)
-                self.imageState = .loading(progress)
-            } else {
+            imageLoadTask?.cancel()
+            imageLoadTask = nil
+
+            guard let imageSelection else {
                 imageState = .empty
+                return
             }
+
+            beginLoadingImage(from: imageSelection)
         }
     }
 
     // MARK: - Private Methods
-    private func loadTransferable(from imageSelection: PhotosPickerItem)
-        -> Progress
-    {
-        return imageSelection.loadTransferable(type: DataImage.self) { result in
-            DispatchQueue.main.async {
-                guard imageSelection == self.imageSelection else {
-                    // ToDo: Handle failure case
-                    Logger.application.error("Failed to get the selected item.")
-                    return
-                }
-                switch result {
-                case .success(let image?):
-                    self.imageState = .success(image.imageData)
-                case .success(nil):
-                    self.imageState = .empty
-                case .failure(let error):
-                    self.imageState = .failure(error)
-                    Logger.application.error(
-                        "Failed to load image: \(error.localizedDescription)."
-                    )
-                }
+    private func beginLoadingImage(from imageSelection: PhotosPickerItem) {
+        // PhotosPicker's async API does not currently expose progress here, so we use
+        // an indeterminate placeholder progress value while the transfer runs.
+        imageState = .loading(Progress(totalUnitCount: 1))
+        imageLoadTask = Task { [weak self, imageSelection] in
+            await self?.loadTransferable(from: imageSelection)
+        }
+    }
+
+    private func loadTransferable(from imageSelection: PhotosPickerItem) async {
+        do {
+            let image = try await imageSelection.loadTransferable(
+                type: DataImage.self
+            )
+
+            guard !Task.isCancelled else {
+                return
             }
+
+            guard imageSelection == self.imageSelection else {
+                Logger.application.error("Failed to get the selected item.")
+                return
+            }
+
+            if let image {
+                self.imageState = .success(image.imageData)
+            } else {
+                self.imageState = .empty
+            }
+        } catch is CancellationError {
+            Logger.application.debug("Cancelled image load request.")
+        } catch {
+            guard !Task.isCancelled else {
+                return
+            }
+
+            self.imageState = .failure(error)
+            Logger.application.error(
+                "Failed to load image: \(error.localizedDescription)."
+            )
         }
     }
 }
