@@ -63,7 +63,7 @@ final class EmployeeFormExampleUITests: XCTestCase {
             XCTAssert(firstName.exists)
             XCTAssertEqual(firstName.value as! String, "Aleshia")
             #if os(iOS)
-            firstName.tap(withNumberOfTaps: 2, numberOfTouches: 1)
+            firstName.doubleTap()
             #else
             firstName.doubleClick()
             #endif
