@@ -1,0 +1,42 @@
+@Tutorial(time: 5) {
+    @Intro(title: "App Entitlements") {
+        Review the following aspects of your app before submitting to the **AppStore** when using the ImageDataPicker framework.
+        
+        @Image(source: "Shop-Header-R", alt: "AppStore submission preparation")
+    }
+    
+    @Section(title: "Configure Entitlements") {
+        @ContentAndMedia {
+            The ``ImageDataPickerView`` uses Swift's [PhotosUI](https://developer.apple.com/documentation/photosui) framework and [PhotosPicker](https://developer.apple.com/documentation/PhotosUI/PhotosPicker). While iOS handles photo library access automatically, macOS requires explicit permission through the Hardened Runtime settings.
+            
+            @Image(source: "List-Header", alt: "Entitlements configuration")
+        }
+        
+        @Steps {
+            @Step {
+                In the Xcode Project Navigator, select your project (For example: **MyImageList**).
+                @Image(source: "MyImageList-Capabilities", alt: "Xcode project selection")
+            }
+            @Step {
+                Select your app target under the project.
+                @Image(source: "MyImageList-Capabilities", alt: "Xcode target selection")
+            }
+            @Step {
+                In the **Signing & Capabilities** tab, click the **(+) Capability** button.
+                @Image(source: "MyImageList-Capabilities", alt: "Add capability button")
+            }
+            @Step {
+                Select **Hardened Runtime** from the capabilities list.
+                @Image(source: "MyImageList-Hardened Runtime", alt: "Hardened Runtime capability selection")
+            }
+            @Step {
+                Scroll down to the **Hardened Runtime** section in the **Signing & Capabilities** tab.
+                @Image(source: "MyImageList-Photos Library", alt: "Hardened Runtime section")
+            }
+            @Step {
+                Under **Resource Access**, enable **Photos Library** access.
+                @Image(source: "MyImageList-Photos Library", alt: "Photos Library entitlement enabled")
+            }
+        }
+    }
+}

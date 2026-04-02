@@ -1,6 +1,6 @@
 //
 //  Logger+Extension.swift
-//  A SwiftUI Image Picker that supporting SwiftData binding.
+//  Logging helpers for the ImageDataPicker framework.
 //
 //  Created by Michael Logothetis on 30/04/2025.
 //
@@ -11,13 +11,20 @@
 import Foundation
 import OSLog
 
-/// These extensions to OSLog, simplify logging.
+/// Convenience loggers used by the framework.
 ///
-/// The Swift Authors app uses three categories of logging.
-///
+/// The predefined categories are:
+/// - application
+/// - data
+/// - viewCycle
+/// - statistics
+/// - tests
 extension Logger {
-    /// Using your bundle identifier is a great way to ensure a unique identifier.
-    private static let subsystem = Bundle.main.bundleIdentifier!
+    /// Prefer the framework bundle identifier, then the host app, then a stable fallback.
+    private static let subsystem =
+        Bundle(for: ImageDataModel.self).bundleIdentifier
+        ?? Bundle.main.bundleIdentifier
+        ?? "com.technistic.ImageDataPicker"
 
     /// Logs application information.
     static let application = Logger(

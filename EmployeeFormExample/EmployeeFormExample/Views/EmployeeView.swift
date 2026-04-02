@@ -23,9 +23,8 @@ struct EmployeeView: View {
 
     @Binding public var selectedEmployeeID: Employee.ID?
     @State var employee: Employee?
-    
-    @State var clippingSelection: Int = 0
 
+    @State var clippingSelection: ClipShape = ClipShape.circle
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var department: String = ""
@@ -55,12 +54,10 @@ struct EmployeeView: View {
                         )
                 }
 
-                ImageDataPickerView(imageData: $imageData)
-                    //.clippedImageShape(.round)
-                    //.clippedImageShape(.roundedSquare)
-                    .clippedImageShape(ClippedImageShape.allCases [clippingSelection])
+                ImageDataPickerView(imageData: $imageData,
+                                    clipShape: clippingShape(selection: clippingSelection), backgroundColor: .green, foregroundColor: .white)
                     .padding(8)
-                    .frame(minHeight: 180)
+                    .frame(width: 240, height: 240)
 
                 VStack(alignment: .center) {
                     Label("Employee Name", systemImage: "person.fill")
@@ -84,8 +81,8 @@ struct EmployeeView: View {
                     Label("Department", systemImage: "person.3.fill")
                         .font(.title)
                         .padding(.top, 16)
-                        //.foregroundColor(.primary)
-                        
+                    //.foregroundColor(.primary)
+
                     TextField("Department", text: $department)
                         .disableAutocorrection(true)
                         .accessibilityIdentifier(
@@ -128,21 +125,21 @@ struct EmployeeView: View {
             }
             .padding(16)
 
-            Picker("Choose course", selection: $clippingSelection) {
+            Picker("Clipping Shape:", selection: $clippingSelection) {
                 Image(systemName: "circle.fill")
-                    .tag(0)
+                    .tag(ClipShape.circle)
                 Image(systemName: "square.fill")
-                    .tag(1)
+                    .tag(ClipShape.roundedSquare)
                 Image(systemName: "square")
-                    .tag(2)
+                    .tag(ClipShape.square)
             }
             .pickerStyle(.segmented)
             .padding(24)
         }
         #if os(iOS)
-        .background(Color(.tertiarySystemBackground))
+            .background(Color(.tertiarySystemBackground))
         #endif
-        
+
         .onAppear {
             if selectedEmployeeID == nil {
                 Logger.appdata.debug("No employee selected.")
@@ -188,22 +185,41 @@ struct EmployeeView: View {
     }
 }
 
+enum ClipShape {
+    case circle
+    case square
+    case roundedSquare
+}
+
+func clippingShape(selection: ClipShape) -> AnyShape {
+    switch selection {
+    case .circle:
+        return AnyShape(Circle())
+    case  .square:
+        return AnyShape(Rectangle())
+    case .roundedSquare:
+        return AnyShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
+
 #Preview {
     //TODO: Create a preview with an employee information and image rather than pass in nil.
 
-    /* @Previewable @State var selectedEmployee: Employee = Employee(
+    @Previewable @State var selectedEmployeeID: Employee.ID?
+    @Previewable @State var selectedEmployee: Employee = Employee(
          firstName: "John",
          lastName: "Doe",
          department: "Test Department",
          imageData: UIImage(named: "Anne_Lee")?.pngData()
-     ) */
+    )
+    //DataController.previewContainer.mainContext.insert(selectedEmployee)
+    
+    //selectedEmployeeID = selectedEmployee.persistentModelID
 
-    @Previewable @State var selectedEmployee: Employee? = try! DataController
-        .previewContainer.mainContext.fetch(
-            FetchDescriptor<Employee>(predicate: #Predicate { $0 == $0 })
-        ).first!
-
-    @Previewable @State var selectedEmployeeID: Employee.ID? = nil
-
-    EmployeeView(selectedEmployeeID: $selectedEmployeeID)
+    EmployeeView(selectedEmployeeID: $selectedEmployeeID, employee: selectedEmployee)
+        .onAppear {
+            //DataController.previewContainer.mainContext.insert(selectedEmployee)
+            //selectedEmployeeID = selectedEmployee.persistentModelID
+        }
+        
 }

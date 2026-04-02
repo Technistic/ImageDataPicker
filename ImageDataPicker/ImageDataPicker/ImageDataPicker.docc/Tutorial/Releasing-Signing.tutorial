@@ -1,0 +1,29 @@
+@Tutorial(time: 5) {
+    @Intro(title: "App Signing") {
+        Review the following aspects of your app before submitting to the **AppStore** when using the ImageDataPicker framework.
+        
+        @Image(source: "Shop-Header-R", alt: "AppStore submission preparation")
+    }
+    
+    @Section(title: "Verify App Signing") {
+        @ContentAndMedia {
+            Ensure your app and all included frameworks are properly signed. After adding the ImageDataPicker framework, verify it uses a compatible signature.
+            
+            @Image(source: "Key-Header", alt: "Code signing verification")
+        }
+        
+        @Steps {
+            @Step {
+                In the Project Navigator, expand **Frameworks** and select **ImageDataPicker**.
+                
+                @Image(source: "2-6-FrameworkSigned", alt: "ImageDataPicker framework selection")
+            }
+            
+            @Step {
+                In the File Inspector panel, verify the framework's code signature matches your expectations.
+                
+                @Image(source: "2-6-FrameworkSigned", alt: "Framework signature verification in File Inspector")
+            }
+        }
+    }
+}

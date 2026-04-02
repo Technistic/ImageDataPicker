@@ -1,35 +1,95 @@
 # ``ImageDataPicker``
 
 @Metadata {
-    @Available("ImageDataPicker", introduced: "0.0.1")
+    @Available("ImageDataPicker", introduced: "0.2.0")
 }
 
-A Framework for binding an Image to SwiftData with a control that allows you to select a photo from the PhotoLibrary using the PhotosUI `PhotosPicker`.
+The **ImageDataPicker** framework provides a **SwiftUI** control for selecting a photo from the photo library using **PhotosUI** and storing it as `Data?`.
 
-![ImageDataPicker](Release-Doc-Title)
+![ImageDataPicker](ImageDataPicker-Hero)
 
-The ImageDataPicker framework provides a simple control to select photos using SwiftUI's PhotosPicker and then store the selected image to a SwiftData Model. The control presents a thumbnail view of the selected image that can be clipped to various geometries (round, square or rounded). A customisable placeholder image is presented if no image has been selected or an error loading the image occurs.
+Use the `ImageDataPickerView` to bind a selected photo directly to `Data?` in `@State` or a SwiftData model. The control presents a square (1:1) thumbnail of the image clipped to a supplied shape. Button controls overlaid on the image allow the selected image to be removed or changed. An empty image is represented by an ``Constants/photoPlaceholder`` and any error in loading an image presents an ``Constants/errorPlaceholder``.
 
-## How to use the ImageDataPicker Framework
+## Quick Start
 
 ![ImageDataPicker](ImageDataPicker-Header)
 
-1. You start by adding the ImageDataPicker Framework (ImageDataPicker.xcframework) to your Xcode project.
+1. Download the [latest release](https://github.com/Technistic/ImageDataPicker/releases) of the **ImageDataPicker** framework from the official repository.
 
-2. Create a SwiftData Model to store your image or an @State variable to hold the image data. The model should have a `Data` attribute that can be bound directly to the ImageDataPicker.
+2. Add `ImageDataPicker.xcframework` to your Xcode project. The framework supports iOS, iPadOS, and macOS.
 
-3. Add the ``ImageDataPickerView`` to your View and bind it to your imageData.
+3. Create a SwiftData `@Model` property or an `@State` property to store image data as `Data?`.
 
-4. You can use the ``ClippedImageShape`` view modifier to clip the image to a specific shape, such as `.circle`, `.square`, or `.roundedRectangle`. The image will automatically be resized to fit the containing frame and clipped to a 1:1 aspect ratio.
+4. Add the ``ImageDataPickerView`` to your `View` and bind it to your `imageData`.
 
-[Tutorial]<doc:UsingImageDataPickerTOC>
+```
+import ImageDataPicker
+import SwiftData
+import SwiftUI
+
+struct ContentView: View {
+    @State var imageData: Data? = nil
+
+    var body: some View {
+        ImageDataPickerView(imageData: $imageData, clipShape: Circle())
+    }
+}
+```
+
+5. `ImageDataPickerView` always renders a square image. Use the `clipShape` parameter of ``ImageDataPickerView/init(imageData:emptyPlaceholderImageName:errorPlaceholderImageName:clipShape:backgroundColor:foregroundColor:)`` to clip it to shapes such as `Circle()`, `Rectangle()`, or `RoundedRectangle(cornerRadius:)`.
+
+## Tutorial
+
+Learn more by following the <doc:ImageDataPickerTOC> tutorial.
+
+## Example Application
+
+The [EmployeeFormExample](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) application demonstrates how to use the **ImageDataPicker** framework in a multiplatform **SwiftUI** application.
 
 ## Topics
 
-[Getting Started]<doc:GettingStarted>
+### The ImageDataPickerView
 
-[Tutorial]<doc:GettingStarted>
+- ``ImageDataPickerView`` 
 
-[Tutorial]<doc:AddFramework>
+### Image State
+
+- ``ImageDataModel``
+
+- ``ImageDataModel/ImageState``
+
+- ``ImageDataModel/ImageState/empty``
+
+- ``ImageDataModel/ImageState/loading(_:)``
+
+- ``ImageDataModel/ImageState/success(_:)``
+
+- ``ImageDataModel/ImageState/failure(_:)``
 
 
+### Companion Views
+
+- ``ImageStateView``
+
+- ``ImageDataView``
+
+
+### View Modifiers
+
+- ``SquareImageViewModifier``
+
+- ``SwiftUICore/View/squareImageView(shape:background:)``
+
+
+### Utility Functions
+
+- ``SymbolLayoutHelper``
+
+- ``SymbolLayoutHelper/scaleFactor(systemImage:)``
+
+- ``SymbolLayoutHelper/offsetFactor(systemImage:)``
+
+
+### Customization
+
+- ``Constants``

@@ -45,11 +45,11 @@ Commercial Support available on request.
 
 ## Further Details
 
-[ImageDataPicker - README](ImageDataPicker/README.md)
+# The ImageDataPicker Framework
 
-[ImageDataPicker Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker)
+![ImageDataPicker Hero](/assets/images/ImageDataPicker-README-Hero.png)
 
-[EmployeeFormExample - README](EmployeeFormExample/README.md)
+## Summary
 
 [EmployeeFormExample Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample)
 

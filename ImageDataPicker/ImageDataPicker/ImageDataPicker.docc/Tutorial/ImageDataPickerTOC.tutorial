@@ -1,0 +1,83 @@
+@Tutorials(name: "ImageDataPicker Tutorial") {
+    @Intro(title: "Using the ImageDataPicker Framework") {
+        Learn how to get the Framework, incorporate it in your App and important steps for releasing your App to the AppStore.
+        
+        `iOS 16.0+ | iPadOS 16.0+ | macOS 13.0+`
+        
+        @Image(source: "ImageDataPicker-Hero", alt: "ImageDataPicker Framework")
+    }
+    
+        
+    @Chapter(name: "Understanding the Framework") {
+        Get an overview of the ImageDataPicker Framework, how to use it and the customization options it provides.
+        
+        @Image(source: "Brain-Header", alt: "ImageDataPickerView")            
+        @TutorialReference(tutorial: "doc:Understanding-Overview")
+        @TutorialReference(tutorial: "doc:Understanding-Usage")
+        @TutorialReference(tutorial: "doc:Understanding-Customization")
+    }
+        
+    @Chapter(name: "Getting Started") {
+        Download the latest version of the ImageDataPicker framework, extract the archive and add the Framework to your project.
+            
+        @Image(source: "Compass-Header", alt: "Download Arrow")
+            
+        @TutorialReference(tutorial: "doc:Starting-Download")
+        @TutorialReference(tutorial: "doc:Starting-Extract")
+        @TutorialReference(tutorial: "doc:Starting-AddFramework")
+    }
+        
+    @Chapter(name: "Building an ImageDataPicker App") {
+        Learn how to use the ImageDataPicker in your own App.
+            
+        @Image(source: "Phone-Header", alt: "Your App")
+            
+        @TutorialReference(tutorial: "doc:Building")
+        @TutorialReference(tutorial: "doc:Building-CreateProject")
+        @TutorialReference(tutorial: "doc:Building-DataModel")
+        @TutorialReference(tutorial: "doc:Building-ListView")
+        @TutorialReference(tutorial: "doc:Building-DetailView")
+    }
+        
+    @Chapter(name: "Customizing the ImageDataPickerView") {
+        How to adapt the ImageDataPickerView to your needs.
+        Learn about customization options including clipping shapes and changing the placeholder image.
+            
+        @Image(source: "Options-Header", alt: "Options Icon")
+            
+        @TutorialReference(tutorial: "doc:Customizing-Placeholders")
+        @TutorialReference(tutorial: "doc:Customizing-Clipping")
+    }
+    
+    @Chapter(name: "Releasing Your App") {
+        Getting your App ready for the AppStore. This chapter covers important steps for releasing your App to the AppStore.
+        This chapter covers important steps for releasing your App to the AppStore.
+        
+        @Image(source: "Shop-Header", alt: "Shopfront")
+        
+        @TutorialReference(tutorial: "doc:Releasing-Entitlements")
+        @TutorialReference(tutorial: "doc:Releasing-Signing")
+
+    }
+    
+    
+    @Resources {
+        Explore more ImageDataPicker resources.
+        
+        @Videos(destination: "https://www.youtube.com/") {
+            Watch our demonstration videos.
+            
+            - [ImageDataPicker Framework](https://www.youtube.com/)
+        }
+            
+        @Downloads(destination: "https://github.com/Technistic/ImageDataPicker/releases") {
+            Get the latest stable release or try beta versions.
+        }
+                
+        @Documentation(destination: "https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker/") {
+            View our Framework API documentation.
+                    
+            - [ImageDataPicker Framework API](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker/)
+        }
+    }
+}

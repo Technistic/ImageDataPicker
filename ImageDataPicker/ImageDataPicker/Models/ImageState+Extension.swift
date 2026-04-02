@@ -1,8 +1,9 @@
 //
 //  ImageState+Extension.swift
-//  A SwiftUI Image Picker that supporting SwiftData binding.
+//  Equatable support for ImageDataModel.ImageState.
 //
 //  Created by Michael Logothetis on 30/04/2025.
+//  Updated by Michael Logothetis on 01/04/2026.
 //
 //  MIT License
 //  Copyright (c) 2025 Michael Logothetis (Technistic Pty Ltd)
@@ -10,7 +11,6 @@
 
 import Foundation
 
-//TODO: Review support for Equatable and Hashable
 extension ImageDataModel.ImageState: Equatable {
     public static func == (
         lhs: ImageDataModel.ImageState,

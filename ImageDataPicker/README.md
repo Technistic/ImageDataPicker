@@ -1,79 +1,103 @@
-# SwiftUI  Image Data Picker
-![][image-1]
+[![Build xcframework](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml/badge.svg?branch=alpha_v0.1.0)](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml)
 
+# The ImageDataPicker Framework
+
+![ImageDataPicker Hero](/assets/images/ImageDataPicker-README-Hero.png)
+
+## Summary
+
+The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select photos from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model()).
+
+## Features
+
+The **ImageDataPicker** framework is a multiplatform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** [PhotosPicker](https://developer.apple.com/documentation/photosui/photospicker) to provide a **SwiftUI** control that presents an `Image` selected from a user's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the Image to the containing `Frame`. Use the ``clipShape`` initializer parameter to present the image clipped to a circular, square or rounded-square shape.
+
+![Clipping Options](ImageDataPicker/ImageDataPicker.docc/Resources/Clipping-Background@0.5x.png)
+
+If no image is selected, or there is an error loading the selected Image, the control will present a customizable placeholder Image in its place.
+
+![Placeholder Options](ImageDataPicker/ImageDataPicker.docc/Resources/Placeholders@0.5x.png)
+
+## Get the **ImageDataPicker** Framework
+
+1. [Download](https://github.com/Technistic/ImageDataPicker/releases) the latest archive of the **ImageDataPicker** framework from the official repo.
+
+2. Double-click the downloaded file to extract the archive.
+
+## Using the **ImageDataPicker** Framework
+
+1. Add **(+)** the *ImageDataPicker.xcframework* framework to your Xcode Project.
+
+    ![Embed Framework](/assets/images/MyGreatApp-FrameworkEmbedded.png)
+   
+2. Add the ``ImageDataPickerView`` to a View in your application.
  
-The Image Data Picker Framework, provides a simple control to select photos using SwiftUI's PhotosPicker and then store the selected image to a SwiftData Model. The control presents a thumbnail view of the selected image that can  be clipped to various geometries (round, square, rounded square).
+    ```
+    //
+    //  ContentView.swift
+    //  MyGreatApp
+    //
+    //
 
-## Getting Started in Xcode
+    import ImageDataPicker
+    import SwiftData
+    import SwiftUI
 
-1. Create a new Xcode Project
+    struct ContentView: View {
+        @State var imageData: Data? = UIImage(named: "Image")!.pngData()
+        var body: some View {
+            VStack {
+                ImageDataPickerView(
+                    imageData: $imageData,
+                    clipShape: Circle(),
+                    backgroundColor: .gray,
+                    foregroundColor: .white
+                )
+                .frame(width: 240, height: 240)
+                .padding(32)
+                Text("Image Data Picker")
+                    .font(.title)
 
-2. Select a Multiplatform App
+                Spacer()
+            }
+        }
+    }
 
-3. Add ImageDataPicker as Swift Package dependency.
+    #Preview {
+        @Previewable @State var imageData: Data? = UIImage(named: "Image")!
+            .pngData()
+        ContentView()
+    }
+    ```
+   ![ContentView.swift](/assets/images/MyGreatApp-Content.png)
+ 
+## Documentation
 
-4. Import ImageDataPicker into you project
+See the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework.
 
-	import SwiftData
-	import SwiftUI
-	import ImageDataPicker
+Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multiplatform application using the **ImageDataPicker** framework.
 
-## Using the ImageDataPicker
+Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for our [EmployeeFormExample](EmployeeFormExample/README.md) application, to understand how to use the Framework in a *real-world* application.
 
-1. Create a SwiftData Model to store your image
+## Credits
 
-	import Foundation
-	import SwiftData
-	import SwiftUI
-	import ImageDataPicker
-	# if canImport(UIKit)
-	//import UIKit
-	# endif
-		
-		
-	/// Employee Data Model
-	///
-	/// This simple SwiftData model forms part of the EmployeeFormExample App that demonstrates how to use the Swift Data Image Picker.
-	///
-	/// The model stores an Employee name (non-unique) and photo. The photo image data is stored in a `Data` attribute called `imageData`. The `imageData` that can be bound directly to the
-	/// Swift Data Image Picker. The Employee class also provides a computed variable `image` that returns the `imageData` as a `UIImage`. If `imageData` is nil, `image` returns a placeholder image.
-	///
-	@Model
-	final class MyPhoto {
-		var imageName: String?
-		var imageData: Data?
-		
-		/// Initialize an MyModel with an imageName and (optional) imageData.
-		/// - Parameters:
-		///   - imageName: The name of the Photo
-		///   - imageData: The imageData. Any platform supported image format can be used but .png is preferred.
-		init(imageName: String, imageData: Data? = nil) {
-		    self.imageName = imageName
-		    self.imageData = imageData
-		}
-		
-		/// Representation of the stored imageData as an Image View. If imageData is nil a placeholder image is presented.
-		var photo: Image {
-		    //ImageDataView(imageData: imageData)
-		    #if canImport(UIKit)
-		
-		    if let imageData, let uiImage = UIImage(data: imageData) {
-		        return Image(uiImage: uiImage)
-		    }
-		    else
-		    {
-		        return pConstants.personPlaceholderImage
-		    }
-		    #else
-		    if let imageData {
-		        return Image(nsImage: NSImage(data: imageData as Data)!)
-		    }
-		    else
-		    {
-		        return pConstants.personPlaceholderImage
-		    }
-		    #endif
-		}
-	}
+### Sample Images
 
-[image-1]:	file:///.file/id=6571367.224925024
+The sample images used in this project are from [unsplash.com](https://unsplash.com).
+
+Photo by [Jimmy Fermin](https://unsplash.com/@jimmyferminphotography?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+
+![Jimmy Fermin Image](ImageDataPicker/Preview%20Content/Preview%20Assets.xcassets/TestPortrait.imageset/jimmy-fermin.png)
+
+[Credit](https://unsplash.com/photos/woman-staring-directly-at-camera-near-pink-wall-bqe0J0b26RQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+
+
+## Support
+
+Commercial Support available on request.
+
+**Contact:** [sales@technistic.com](mailto:sales@technistic.com)
+
+---
+
+Copyright &copy; 2025 Technistic Pty Ltd

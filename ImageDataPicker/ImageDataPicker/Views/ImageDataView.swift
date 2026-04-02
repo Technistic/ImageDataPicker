@@ -1,74 +1,173 @@
 //
 //  ImageDataView.swift
-//  A SwiftUI Image Picker that supporting SwiftData binding.
+//  A SwiftUI view that displays image data or a fallback symbol.
 //
 //  Created by Michael Logothetis on 30/04/2025.
+//  Updated by Michael Logothetis on 01/04/2026.
 //
 //  MIT License
 //  Copyright (c) 2025 Michael Logothetis (Technistic Pty Ltd)
 //
 
+import Foundation
 import OSLog
 import SwiftUI
 
-/// An Image View of the supplied ``imageData``, scaled to the size of the parent container and maintaining the image's original aspect ratio.
+/// A SwiftUI image view backed by `Data?`.
 ///
-/// The ``ImageDataView`` produced a SwiftUI Image derived from the supplied ``imageData``. ``imageData`` can be stored as an attributed of a SwiftData Model. If ``imageData`` is nil, a placeHolderImage is presented based on an SF Symbols `systemName` image. The default is to use the ``Constants/personPlaceholder`` image but this can be overriden on creation.
+/// `ImageDataView` converts `Data?` into a platform image (`UIImage` or `NSImage`).
+/// If conversion fails or the data is `nil`, it displays the supplied SF Symbol placeholder.
 ///
-/// Refer to: [https://developer.apple.com/design/resources/#sf-symbols](https://developer.apple.com/design/resources/#sf-symbols)
-///
+/// An Image is displayed with `.scaledToFill()` to ensure it fills the view, and the placeholder is displayed with `.scaledToFit()` to maintain its aspect ratio.
 
-@available(iOS 17.6, macOS 14.6, *)
+@available(iOS 13.0, macCatalyst 13.0, macOS 10.15, visionOS 1.0, *)
 public struct ImageDataView: View {
 
     public var imageData: Data?
-    private var emptyImage: String = Constants.personPlaceholder
+    private var placeholder: String = Constants.photoPlaceholder
 
-    /// Initializes an Image View using imageData. Use the emptyImage parameter to override the default system symbol image presented when imageData is nil
+    /// Creates an image view from imageData.
     /// - Parameters:
-    ///   - imageData: The data for the underlying image. Although this can be in the format of any of the supported platform-native image types, png format is recommended.
-    ///   - emptyImage: The system symbol image to use as a placeholder if imageData is nil.
+    ///   - imageData: The image data to display, typically .png.
+    ///   - placeholder: The SF Symbol to display if `imageData` is `nil` or invalid. Defaults to ``Constants/photoPlaceholder``.
     public init(
-        imageData: Data?,
-        emptyImage: String = Constants.personPlaceholder
+        imageData: Data? = nil,
+        placeholder: String = Constants.photoPlaceholder
     ) {
         self.imageData = imageData
-        self.emptyImage = emptyImage
+        self.placeholder = placeholder
     }
 
     public var body: some View {
-        imageFromData(imageData)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-    }
-    
-    private func imageFromData(_ imageData: Data?) -> Image {
         #if canImport(UIKit)
-        if let data = imageData {
-            if let uiImage = UIImage(data: data) {
-                return Image(uiImage: uiImage)
+            if let imageData {
+                if let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Image(systemName: placeholder)
+                        .resizable()
+                        .scaledToFit()
+                }
             } else {
-                Logger.appdata.error("Failed to create UIImage from data.")
-                return emptyPlaceholderImage
+                Image(systemName: placeholder)
+                    .resizable()
+                    .scaledToFit()
             }
-        } else {
-            return emptyPlaceholderImage
-        }
-        #elseif canImport(AppKit)
-        if let data = imageData {
-            if let nsImage = NSImage(data: data) {
-                return Image(nsImage: nsImage)
+        #endif
+        #if canImport(AppKit)
+            if let imageData {
+                if let nsImage = NSImage(data: imageData) {
+                    Image(nsImage: nsImage)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Image(systemName: placeholder)
+                        .resizable()
+                        .scaledToFit()
+                }
             } else {
-                Logger.appdata.error("Failed to create NSImage from data.")
-                return emptyPlaceholderImage
+                Image(systemName: placeholder)
+                    .resizable()
+                    .scaledToFit()
             }
-        } else {
-            return emptyPlaceholderImage
-        }
         #endif
     }
+}
 
-    var emptyPlaceholderImage: Image {
-        Image(systemName: self.emptyImage)
+
+/// This helper function loads an Image resource from the bundle and returns its data as .png `Data?`. It handles both UIKit and AppKit image loading.
+/// - Parameter _imageResource: The name of the image resource to load from the bundle.
+/// - Returns: pngData for the specified image resource, or `nil` if the resource cannot be found or loaded.
+func imageResourceData(for _imageResource: String) -> Data? {
+#if canImport(UIKit)
+    return UIImage(named: _imageResource,
+    in: Bundle(for: ImageDataModel.self),
+    compatibleWith: nil)?.pngData()
+#else
+    return Bundle(
+        for: ImageDataModel.self)
+        .image(forResource: _imageResource)?
+        .pngData()
+#endif
+}
+
+#Preview("Image") {
+    @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
+    
+    VStack {
+        ImageDataView(imageData: imageData)
+            .border(.green)
+        Text("Image Data")
+    }
+}
+
+#Preview("Image-Scaled") {
+    @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
+
+    VStack {
+        ImageDataView(imageData: imageData)
+            .scaledToFit()
+            .border(.green)
+        Text("Image Scaled")
+    }
+}
+
+#Preview("Placeholders") {
+    HStack {
+        VStack {
+            ImageDataView(imageData: nil)
+                .border(.green)
+            Text("Default Placeholder")
+        }
+        VStack {
+            ImageDataView(imageData: nil, placeholder: "person")
+                .border(.green)
+            Text("Specified Placeholder")
+        }
+    }
+}
+
+#Preview("Image-Squared") {
+    @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
+
+    VStack {
+        ImageDataView(imageData: imageData)
+            .scaledToFill()
+            .squareImageView(shape: Circle())
+            .background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
+            .border(.green)
+        ImageDataView(imageData: imageData)
+            .scaledToFill()
+            .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0))
+        Text("Image Scaled")
+    }
+}
+
+#Preview("Placeholders-Squared") {
+    @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
+    
+    HStack {
+        VStack {
+            ImageDataView(imageData: nil)
+            .foregroundColor(.white)
+            .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: Constants.photoPlaceholder))
+            .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: Constants.photoPlaceholder))
+            .squareImageView(shape: Circle(), background: .blue)
+            .background(.blue.opacity(0.3))
+            .border(.green)
+            Text("Default Placeholder")
+        }
+        
+        VStack {
+            ImageDataView(imageData: nil, placeholder: "person")
+                .foregroundColor(.white)
+                .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: Constants.personPlaceholder))
+                .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: Constants.personPlaceholder))
+                .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0), background: .blue)
+
+            Text("Specified Placeholder")
+        }
     }
 }

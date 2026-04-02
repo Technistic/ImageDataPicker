@@ -18,11 +18,10 @@ import SwiftUI
 
 /// The ``EmployeeListView`` displays a list of employees, allowing the user to select an ``Employee`` to view their details.
 ///
-/// This is a multi-platform view based on a NavigationSplitView that presents a list of
+/// This is a multiplatform view based on a NavigationSplitView that presents a list of
 /// employees along with their photo, name and department.
 struct EmployeeListView: View {
     @Environment(\.editMode) private var editMode
-
     @Environment(\.modelContext) private var modelContext
     @Query private var employees: [Employee]
 
@@ -49,7 +48,7 @@ struct EmployeeListView: View {
             }
             .navigationTitle("Our Employees")
             .environment(\.defaultMinListRowHeight, 100)
-
+            
             .toolbar {
                 #if os(iOS)
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -121,22 +120,40 @@ struct EmployeeListRowView: View {
     private let employeeListTestID = UIIdentifiers.EmployeeList.self
 
     var body: some View {
-        @State var img: Data? = employee?.imageData
-        @State var state: ImageDataModel = ImageDataModel(imageData: img)
+        let imageData = employee?.imageData
+
         HStack {
             VStack {
-                ClippedImageStateView(
-                    imageState: state.imageState
-                )
-                .clippedImageShape(.round)
+                if let imageData {
+                    ImageDataView(imageData: imageData)
+                        .scaledToFill()
+                        .squareImageView(shape: Circle(), background: .green)
+                } else {
+                    ImageStateView(
+                        imageState: .empty
+                    )
+                    .foregroundColor(.white)
+                    .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: "person"))
+                    .squareImageView(shape: Circle(), background: .green)
+                    .padding(4)
+                    .frame(width: 80, height: 80)
+                    .accessibilityIdentifier(
+                        employeeListTestID.employeeFullName(
+                            firstName: employee!.firstName,
+                            lastName: employee!.lastName
+                        )
+                    )
+                }
+            }
                 .padding(4)
+                .frame(width: 80, height: 80)
                 .accessibilityIdentifier(
                     employeeListTestID.employeeFullName(
                         firstName: employee!.firstName,
                         lastName: employee!.lastName
                     )
                 )
-            }
+            
             VStack {
                 HStack {
                     Text("\(employee?.firstName ?? "")")
