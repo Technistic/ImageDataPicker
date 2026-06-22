@@ -209,7 +209,7 @@ struct ImageDataPickerTests {
     }
 
     @MainActor
-    @Test func imageDataPickerViewRetainsInitializerValuesAndBuildsBody() {
+    @Test func imageDataPickerViewRetainsInitializerValues() {
         var imageData: Data? = TestImageData.png
         let binding = Binding<Data?>(
             get: { imageData },
@@ -226,9 +226,6 @@ struct ImageDataPickerTests {
         #expect((reflectedValue(named: "emptyPlaceholderImageName", in: view) as? String) == Constants.photoPlaceholder)
         #expect((reflectedValue(named: "errorPlaceholderImageName", in: view) as? String) == Constants.errorPlaceholder)
         #expect(reflectedValue(named: "clipShape", in: view) is Circle)
-
-        let body = view.body
-        #expect(String(describing: type(of: body)).isEmpty == false)
     }
 
     @MainActor

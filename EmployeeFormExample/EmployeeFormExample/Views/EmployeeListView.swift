@@ -145,22 +145,10 @@ struct EmployeeListRowView: View {
                         .foregroundStyle(.white)
                         .padding(4)
                         .frame(width: 80, height: 80)
-                        .accessibilityIdentifier(
-                            employeeListTestID.employeeFullName(
-                                firstName: employee.firstName,
-                                lastName: employee.lastName
-                            )
-                        )
                     }
                 }
                 .padding(4)
                 .frame(width: 80, height: 80)
-                .accessibilityIdentifier(
-                    employeeListTestID.employeeFullName(
-                        firstName: employee.firstName,
-                        lastName: employee.lastName
-                    )
-                )
             
             VStack {
                 HStack {

@@ -76,6 +76,13 @@ final class EmployeeFormExampleUITests: XCTestCase {
     }
 
     private func employeeRow(firstName: String, lastName: String) -> XCUIElement {
-        app.otherElements["EmployeeList.\(firstName).\(lastName)"]
+        app.descendants(matching: .any)
+            .matching(
+                identifier: UIIdentifiers.EmployeeList.employeeFullName(
+                    firstName: firstName,
+                    lastName: lastName
+                )
+            )
+            .firstMatch
     }
 }
