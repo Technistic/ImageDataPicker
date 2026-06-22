@@ -44,6 +44,14 @@ Read the [Documentation](https://technistic.github.io/ImageDataPicker/imagedatap
 
 See the documentation and code for the **EmployeeFormExample** sample app to understand how the framework fits into a real SwiftUI and SwiftData workflow.
 
+## Release Channels
+
+The repository uses three release channels:
+
+- `alpha_v*` branches build and test the `*-alpha` schemes and publish prerelease artifacts.
+- `beta_v*` branches build and test the `*-beta` schemes and publish prerelease artifacts.
+- `main` builds production artifacts, publishes the production GitHub release, and updates the semantic version tag used by Swift Package Manager.
+
 ## Support
 
 Commercial Support available on request.

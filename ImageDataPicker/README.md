@@ -84,6 +84,14 @@ Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapick
 
 Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for the [EmployeeFormExample](EmployeeFormExample/README.md) application to see how the framework is used in a working sample app.
 
+## Release Channels
+
+This repository publishes three release channels:
+
+- `alpha_v*` branches run the `ImageDataPicker-alpha` and `EmployeeFormExample-alpha` schemes and publish prerelease XCFramework artifacts.
+- `beta_v*` branches run the `ImageDataPicker-beta` and `EmployeeFormExample-beta` schemes and publish prerelease XCFramework artifacts.
+- `main` runs the production schemes, publishes the production XCFramework release, and updates the semantic version tag used by Swift Package Manager.
+
 ## Credits
 
 ### Sample Images

@@ -26,6 +26,8 @@ jobs:
       prerelease: ${{ steps.resolve.outputs.prerelease }}
       release_channel: ${{ steps.resolve.outputs.release_channel }}
       artifact_name: ${{ steps.resolve.outputs.artifact_name }}
+      framework_scheme: ${{ steps.resolve.outputs.framework_scheme }}
+      sample_scheme: ${{ steps.resolve.outputs.sample_scheme }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,10 +38,26 @@ jobs:
           CI_BRANCH: ${{ github.ref_name }}
         run: |
           . ci_scripts/get_version_from_git_ref.sh
+          case "$release_channel" in
+            alpha)
+              framework_scheme="ImageDataPicker-alpha"
+              sample_scheme="EmployeeFormExample-alpha"
+              ;;
+            beta)
+              framework_scheme="ImageDataPicker-beta"
+              sample_scheme="EmployeeFormExample-beta"
+              ;;
+            *)
+              framework_scheme="ImageDataPicker"
+              sample_scheme="EmployeeFormExample-Release"
+              ;;
+          esac
           echo "product_version=${product_version}" >> "$GITHUB_OUTPUT"
           echo "tag_name=${tag_name}" >> "$GITHUB_OUTPUT"
           echo "prerelease=${prerelease}" >> "$GITHUB_OUTPUT"
           echo "release_channel=${release_channel}" >> "$GITHUB_OUTPUT"
+          echo "framework_scheme=${framework_scheme}" >> "$GITHUB_OUTPUT"
+          echo "sample_scheme=${sample_scheme}" >> "$GITHUB_OUTPUT"
           echo "artifact_name=ImageDataPicker-${tag_name}.tgz" >> "$GITHUB_OUTPUT"
 
   package-tests:
@@ -58,23 +76,28 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scheme:
-          - ImageDataPicker
-          - EmployeeFormExample
         include:
-          - scheme: ImageDataPicker
+          - target_kind: framework
             project: ImageDataPicker/ImageDataPicker.xcodeproj
-          - scheme: EmployeeFormExample
+          - target_kind: sample
             project: EmployeeFormExample/EmployeeFormExample.xcodeproj
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run unsigned macOS tests
+        env:
+          FRAMEWORK_SCHEME: ${{ needs.resolve-release-metadata.outputs.framework_scheme }}
+          SAMPLE_SCHEME: ${{ needs.resolve-release-metadata.outputs.sample_scheme }}
         run: |
+          if [[ "${{ matrix.target_kind }}" == "framework" ]]; then
+            SCHEME="$FRAMEWORK_SCHEME"
+          else
+            SCHEME="$SAMPLE_SCHEME"
+          fi
           xcodebuild test \
             -project "${{ matrix.project }}" \
-            -scheme "${{ matrix.scheme }}" \
+            -scheme "$SCHEME" \
             -destination "platform=macOS" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
@@ -96,6 +119,7 @@ jobs:
       RELEASE_CHANNEL: ${{ needs.resolve-release-metadata.outputs.release_channel }}
       RELEASE_TAG: ${{ needs.resolve-release-metadata.outputs.tag_name }}
       RELEASE_ARTIFACT: ${{ needs.resolve-release-metadata.outputs.artifact_name }}
+      FRAMEWORK_SCHEME: ${{ needs.resolve-release-metadata.outputs.framework_scheme }}
     steps:
       - name: Check Xcode version
         run: /usr/bin/xcodebuild -version
@@ -129,7 +153,7 @@ jobs:
           xcodebuild \
             clean \
             -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}.xcodeproj" \
-            -scheme "${FRAMEWORK_NAME}"
+            -scheme "${FRAMEWORK_SCHEME}"
 
           mkdir -p "$RUNNER_TEMP/build" "$RUNNER_TEMP/framework"
 
@@ -141,8 +165,7 @@ jobs:
               SKIP_INSTALL=NO \
               BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
               -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}.xcodeproj" \
-              -scheme "${FRAMEWORK_NAME}" \
-              -configuration Release \
+              -scheme "${FRAMEWORK_SCHEME}" \
               -destination "generic/platform=${destination}" \
               -archivePath "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive"
           done

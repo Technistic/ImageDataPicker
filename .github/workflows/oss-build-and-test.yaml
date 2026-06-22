@@ -18,43 +18,84 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  package-tests:
-    runs-on: macos-latest
+  resolve-channel:
+    runs-on: ubuntu-latest
+    outputs:
+      release_channel: ${{ steps.resolve.outputs.release_channel }}
+      framework_scheme: ${{ steps.resolve.outputs.framework_scheme }}
+      sample_scheme: ${{ steps.resolve.outputs.sample_scheme }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate release metadata for release branches
-        if: ${{ github.event_name == 'push' && (startsWith(github.ref_name, 'alpha_') || startsWith(github.ref_name, 'alpha-') || startsWith(github.ref_name, 'beta_') || startsWith(github.ref_name, 'beta-') || github.ref_name == 'main') }}
+      - name: Resolve channel and scheme selection
+        id: resolve
         env:
           CI_BRANCH: ${{ github.ref_name }}
-        run: bash ci_scripts/get_version_from_git_ref.sh
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            release_channel="pull_request"
+            framework_scheme="ImageDataPicker"
+            sample_scheme="EmployeeFormExample"
+          else
+            . ci_scripts/get_version_from_git_ref.sh
+            case "$release_channel" in
+              alpha)
+                framework_scheme="ImageDataPicker-alpha"
+                sample_scheme="EmployeeFormExample-alpha"
+                ;;
+              beta)
+                framework_scheme="ImageDataPicker-beta"
+                sample_scheme="EmployeeFormExample-beta"
+                ;;
+              *)
+                framework_scheme="ImageDataPicker"
+                sample_scheme="EmployeeFormExample-Release"
+                ;;
+            esac
+          fi
+          echo "release_channel=${release_channel}" >> "$GITHUB_OUTPUT"
+          echo "framework_scheme=${framework_scheme}" >> "$GITHUB_OUTPUT"
+          echo "sample_scheme=${sample_scheme}" >> "$GITHUB_OUTPUT"
+
+  package-tests:
+    runs-on: macos-latest
+    needs: resolve-channel
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Swift package tests
         run: swift test
 
   xcode-tests:
     runs-on: macos-latest
+    needs: resolve-channel
     strategy:
       fail-fast: false
       matrix:
-        scheme:
-          - ImageDataPicker
-          - EmployeeFormExample
         include:
-          - scheme: ImageDataPicker
+          - target_kind: framework
             project: ImageDataPicker/ImageDataPicker.xcodeproj
-          - scheme: EmployeeFormExample
+          - target_kind: sample
             project: EmployeeFormExample/EmployeeFormExample.xcodeproj
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run unsigned macOS tests
+        env:
+          FRAMEWORK_SCHEME: ${{ needs.resolve-channel.outputs.framework_scheme }}
+          SAMPLE_SCHEME: ${{ needs.resolve-channel.outputs.sample_scheme }}
         run: |
+          if [[ "${{ matrix.target_kind }}" == "framework" ]]; then
+            SCHEME="$FRAMEWORK_SCHEME"
+          else
+            SCHEME="$SAMPLE_SCHEME"
+          fi
           xcodebuild test \
             -project "${{ matrix.project }}" \
-            -scheme "${{ matrix.scheme }}" \
+            -scheme "$SCHEME" \
             -destination "platform=macOS" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
