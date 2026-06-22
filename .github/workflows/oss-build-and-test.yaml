@@ -5,7 +5,17 @@ on:
   push:
     branches:
       - main
-      - alpha_v0.1.0
+      - 'alpha_v*'
+      - 'alpha-v*'
+      - 'beta_v*'
+      - 'beta-v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oss-build-and-test-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   package-tests:
@@ -13,6 +23,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Validate release metadata for release branches
+        if: ${{ github.event_name == 'push' && (startsWith(github.ref_name, 'alpha_') || startsWith(github.ref_name, 'alpha-') || startsWith(github.ref_name, 'beta_') || startsWith(github.ref_name, 'beta-') || github.ref_name == 'main') }}
+        env:
+          CI_BRANCH: ${{ github.ref_name }}
+        run: bash ci_scripts/get_version_from_git_ref.sh
 
       - name: Swift package tests
         run: swift test

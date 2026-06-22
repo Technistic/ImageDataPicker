@@ -1,172 +1,218 @@
-name: "Build xcframework"
+name: Build and Release XCFramework
 
 on:
-  # manual trigger but change to any supported event
-  # see addl: https://www.andrewhoog.com/post/how-to-build-react-native-android-app-with-github-actions/#3-run-build-workflow
   workflow_dispatch:
   push:
-    tags:
-      - 'v**'
-      - 'alpha-**'
-      - 'beta-**'
-      - 'rc-**'
-  
-env:
-  ver_type: alpha
-  major: 0
-  minor: 0
-  patch: 0
-  build: 1
-  version: '0.0.0'
-  product_version: 'v0.0.0'
-  CI_BRANCH: ${{ github.ref_name }}
+    branches:
+      - main
+      - 'alpha_v*'
+      - 'alpha-v*'
+      - 'beta_v*'
+      - 'beta-v*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-and-release-xcframework-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build_with_signing:
+  resolve-release-metadata:
+    runs-on: ubuntu-latest
+    outputs:
+      product_version: ${{ steps.resolve.outputs.product_version }}
+      tag_name: ${{ steps.resolve.outputs.tag_name }}
+      prerelease: ${{ steps.resolve.outputs.prerelease }}
+      release_channel: ${{ steps.resolve.outputs.release_channel }}
+      artifact_name: ${{ steps.resolve.outputs.artifact_name }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve release metadata
+        id: resolve
+        env:
+          CI_BRANCH: ${{ github.ref_name }}
+        run: |
+          . ci_scripts/get_version_from_git_ref.sh
+          echo "product_version=${product_version}" >> "$GITHUB_OUTPUT"
+          echo "tag_name=${tag_name}" >> "$GITHUB_OUTPUT"
+          echo "prerelease=${prerelease}" >> "$GITHUB_OUTPUT"
+          echo "release_channel=${release_channel}" >> "$GITHUB_OUTPUT"
+          echo "artifact_name=ImageDataPicker-${tag_name}.tgz" >> "$GITHUB_OUTPUT"
+
+  package-tests:
     runs-on: macos-latest
+    needs: resolve-release-metadata
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Swift package tests
+        run: swift test
+
+  xcode-tests:
+    runs-on: macos-latest
+    needs: resolve-release-metadata
+    strategy:
+      fail-fast: false
+      matrix:
+        scheme:
+          - ImageDataPicker
+          - EmployeeFormExample
+        include:
+          - scheme: ImageDataPicker
+            project: ImageDataPicker/ImageDataPicker.xcodeproj
+          - scheme: EmployeeFormExample
+            project: EmployeeFormExample/EmployeeFormExample.xcodeproj
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run unsigned macOS tests
+        run: |
+          xcodebuild test \
+            -project "${{ matrix.project }}" \
+            -scheme "${{ matrix.scheme }}" \
+            -destination "platform=macOS" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM=""
+
+  build-and-release:
+    runs-on: macos-15
+    needs:
+      - resolve-release-metadata
+      - package-tests
+      - xcode-tests
     defaults:
       run:
         shell: bash
+    env:
+      FRAMEWORK_NAME: ImageDataPicker
+      PRODUCT_VERSION: ${{ needs.resolve-release-metadata.outputs.product_version }}
+      RELEASE_CHANNEL: ${{ needs.resolve-release-metadata.outputs.release_channel }}
+      RELEASE_TAG: ${{ needs.resolve-release-metadata.outputs.tag_name }}
+      RELEASE_ARTIFACT: ${{ needs.resolve-release-metadata.outputs.artifact_name }}
     steps:
-      # this was more debug as was curious what came pre-installed
-      # GitHub shares this online, e.g. https://github.com/actions/runner-images/blob/macOS-12/20230224.1/images/macos/macos-12-Readme.md
-      - name: check Xcode version
+      - name: Check Xcode version
         run: /usr/bin/xcodebuild -version
 
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          fetch-depth: 0
 
-      - name: Install the Apple certificate and provisioning profile
+      - name: Install signing certificate
         if: ${{ secrets.BUILD_CERTIFICATE_BASE64 != '' }}
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
-          # BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-          FRAMEWORK_NAME: "ImageDataPicker"
         run: |
-          # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          CERTIFICATE_PATH="$RUNNER_TEMP/build_certificate.p12"
+          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
 
-          # import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o "$CERTIFICATE_PATH"
 
-          # create temporary keychain
-          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
 
-          # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH      
-
-      - name: build archive
+      - name: Build archives
         run: |
-          FRAMEWORK_NAME="ImageDataPicker"
-          # Cleaning the workspace cache
           xcodebuild \
-              clean \
-              -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}".xcodeproj \
-              -scheme ${FRAMEWORK_NAME}
+            clean \
+            -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}.xcodeproj" \
+            -scheme "${FRAMEWORK_NAME}"
+
+          mkdir -p "$RUNNER_TEMP/build" "$RUNNER_TEMP/framework"
 
           destinations=('iOS' 'iOS Simulator' 'macOS')
-          archives=""
-
-          # Create an archive for iOS devices
           for destination in "${destinations[@]}"; do
-            echo "Creating archive for ${destination}..."
-
-            output_archive=$(echo "${destination}" | tr ' ' '_')
-            
+            output_archive="$(echo "${destination}" | tr ' ' '_')"
             xcodebuild \
-                archive \
-                SKIP_INSTALL=NO \
-                BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-                -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}".xcodeproj \
-                -scheme ${FRAMEWORK_NAME} \
-                -configuration Release \
-                -destination "generic/platform=${destination}" \
-                -archivePath $RUNNER_TEMP/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive
-    
-            archives="${archives} -archive $RUNNER_TEMP/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive -framework ${FRAMEWORK_NAME}.framework"
+              archive \
+              SKIP_INSTALL=NO \
+              BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+              -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}.xcodeproj" \
+              -scheme "${FRAMEWORK_NAME}" \
+              -configuration Release \
+              -destination "generic/platform=${destination}" \
+              -archivePath "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive"
           done
-        
 
-      - name: build archive
-        env:
-          FRAMEWORK_NAME: "ImageDataPicker"
+      - name: Create xcframework
         run: |
-          # Convert the archives to .framework
-          # and package them both into one xcframework
           xcodebuild \
-          -create-xcframework \
-          -archive $RUNNER_TEMP/build/${FRAMEWORK_NAME}-iOS.xcarchive -framework ${FRAMEWORK_NAME}.framework \
-          -archive $RUNNER_TEMP/build/${FRAMEWORK_NAME}-iOS_Simulator.xcarchive -framework ${FRAMEWORK_NAME}.framework \
-          -archive $RUNNER_TEMP/build/${FRAMEWORK_NAME}-macOS.xcarchive -framework ${FRAMEWORK_NAME}.framework \
-          -output $RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework
-          
-      - name: Update XCFramework Info.plist
-        run: |
-          echo "Updating Info.plist for xcframework...(this step is optional)"
-          # Update the Info.plist file for the xcframework
-          #
-          # Uncomment the following lines to modify the Info.plist file prior to signing.
-          # However, the following keys are not required for the xcframework bundle type.
-          #
-          # plutil -insert CFBundleName -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
-          # plutil -insert CFBundleShortVersionString -string $major.$minor.$patch ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
-          # plutil -insert CFBundleVersion -string $major.$minor.$patch ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
-          # plutil -insert CFBundleIdentifier -string com.technistic.ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
-          # plutil -insert CFBundleExecutable -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
+            -create-xcframework \
+            -archive "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-iOS.xcarchive" -framework "${FRAMEWORK_NAME}.framework" \
+            -archive "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-iOS_Simulator.xcarchive" -framework "${FRAMEWORK_NAME}.framework" \
+            -archive "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-macOS.xcarchive" -framework "${FRAMEWORK_NAME}.framework" \
+            -output "$RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework"
 
-      - name: Sign Framework
+      - name: Sign xcframework
         if: ${{ secrets.BUILD_CERTIFICATE_BASE64 != '' && vars.XCFRAMEWORK_SIGNING_IDENTITY != '' }}
         env:
-          FRAMEWORK_NAME: "ImageDataPicker"
           SIGNING_IDENTITY: ${{ vars.XCFRAMEWORK_SIGNING_IDENTITY }}
         run: |
-          codesign --timestamp -s "$SIGNING_IDENTITY" $RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework
+          codesign --timestamp -s "$SIGNING_IDENTITY" "$RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework"
 
-      - name: Archive Framework
+      - name: Archive xcframework artifact
         run: |
-          cd ${{ runner.temp }}/framework
-          tar -czf ImageDataPicker.tgz ImageDataPicker.xcframework
-          
-      - name: Parse Version
-        run: |
-          . ci_scripts/get_version_from_git_ref.sh
-          echo "major=${major}" >> $GITHUB_ENV
-          echo "minor=${minor}" >> $GITHUB_ENV
-          echo "patch=${patch}" >> $GITHUB_ENV
-          echo "product_version=${product_version}" >> $GITHUB_ENV
-        
-      - name: Set Version
-        run: echo "version=v${major}.${minor}.${patch}" >> $GITHUB_ENV
-        
-      - name: Debug
-        run: echo "::notice ${{ (contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}"
+          cd "$RUNNER_TEMP/framework"
+          tar -czf "$RELEASE_ARTIFACT" "${FRAMEWORK_NAME}.xcframework"
 
-      - name: Publish ImageDataPicker Framework Release
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.RELEASE_ARTIFACT }}
+          path: ${{ runner.temp }}/framework/${{ env.RELEASE_ARTIFACT }}
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Sync prerelease tag to current commit
+        if: ${{ needs.resolve-release-metadata.outputs.prerelease == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -f "$RELEASE_TAG" "$GITHUB_SHA"
+          git push origin "refs/tags/${RELEASE_TAG}" --force
+
+      - name: Create production tag for Swift Package Manager
+        if: ${{ needs.resolve-release-metadata.outputs.release_channel == 'production' }}
+        run: |
+          if git rev-parse "$RELEASE_TAG" >/dev/null 2>&1; then
+            existing_sha="$(git rev-list -n 1 "$RELEASE_TAG")"
+            if [[ "$existing_sha" != "$GITHUB_SHA" ]]; then
+              echo "Production tag $RELEASE_TAG already exists at $existing_sha and will not be moved."
+              exit 1
+            fi
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag "$RELEASE_TAG" "$GITHUB_SHA"
+            git push origin "refs/tags/${RELEASE_TAG}"
+          fi
+
+      - name: Publish GitHub release
         uses: softprops/action-gh-release@v2.3.2
         with:
-          body: "ImageDataPicker Framework Release"
-          draft: true
-          files: ${{ runner.temp }}/framework/ImageDataPicker.tgz
-          name: ${{ env.product_version }}
-          # overwrite_files: true
-          prerelease: ${{ (contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}
-          tag_name: ${{ github.ref_name }}
+          draft: false
+          files: ${{ runner.temp }}/framework/${{ env.RELEASE_ARTIFACT }}
           generate_release_notes: true
+          name: ${{ env.PRODUCT_VERSION }}
+          overwrite_files: true
+          prerelease: ${{ needs.resolve-release-metadata.outputs.prerelease == 'true' }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          target_commitish: ${{ github.sha }}
 
-      # - name: Upload application
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: ImageDataPicker.tgz
-      #     path: ${{ runner.temp }}/ImageDataPicker.tgz
-      #     # you can also archive the entire directory
-      #     # path: ${{ runner.temp }}/build
-      #     retention-days: 3
+      - name: Production tag notice for Swift Package Manager
+        if: ${{ needs.resolve-release-metadata.outputs.release_channel == 'production' }}
+        run: |
+          echo "Published production tag ${RELEASE_TAG}. Swift Package Manager consumers can resolve this release from the repository tag."
