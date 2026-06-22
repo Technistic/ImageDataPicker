@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 #  get_version_from_git_ref.sh
 #

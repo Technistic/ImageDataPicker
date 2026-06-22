@@ -8,7 +8,11 @@ The **SwiftUI Image Data Picker Framework** provides a convenient, intuitive and
 
 ## Getting Started
 
-### Download the Framework
+### Add with Swift Package Manager
+
+In Xcode, choose `File > Add Package Dependencies...` and add this repository. Then add the `ImageDataPicker` library product to your app target.
+
+### Download the XCFramework
 
 [Download](https://github.com/Technistic/ImageDataPicker/releases) the latest copy of the Image Data Picker Framework and Add **(+)** it to your Swift Project.
 

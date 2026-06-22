@@ -24,8 +24,6 @@ env:
 jobs:
   build_with_signing:
     runs-on: macos-latest
-    env:
-        DEVELOPER_DIR: /Applications/Xcode_26.3.app
     defaults:
       run:
         shell: bash
@@ -41,6 +39,7 @@ jobs:
           ref: ${{ github.ref_name }}
 
       - name: Install the Apple certificate and provisioning profile
+        if: ${{ secrets.BUILD_CERTIFICATE_BASE64 != '' }}
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
@@ -125,10 +124,12 @@ jobs:
           # plutil -insert CFBundleExecutable -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
 
       - name: Sign Framework
+        if: ${{ secrets.BUILD_CERTIFICATE_BASE64 != '' && vars.XCFRAMEWORK_SIGNING_IDENTITY != '' }}
         env:
           FRAMEWORK_NAME: "ImageDataPicker"
+          SIGNING_IDENTITY: ${{ vars.XCFRAMEWORK_SIGNING_IDENTITY }}
         run: |
-          codesign --timestamp -s "Apple Development: Michael Logothetis (J8XH79BD3A)" $RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework
+          codesign --timestamp -s "$SIGNING_IDENTITY" $RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework
 
       - name: Archive Framework
         run: |

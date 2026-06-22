@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #  build_framework.sh
 #  ImageDataPicker
@@ -69,7 +69,8 @@ xcodebuild \
 # plutil -insert CFBundleIdentifier -string com.technistic.ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
 # plutil -insert CFBundleExecutable -string ImageDataPicker ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework/Info.plist
 
-# Sign the xcframework
-codesign --timestamp -s "Apple Development: Michael Logothetis (J8XH79BD3A)" ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework
+if [[ -n "${XCFRAMEWORK_SIGNING_IDENTITY}" ]]; then
+    codesign --timestamp -s "${XCFRAMEWORK_SIGNING_IDENTITY}" ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework
+fi
 
 echo $(ls -l ${CI_WORKSPACE_PATH}/framework/${FRAMEWORK_NAME}.xcframework)

@@ -1,0 +1,46 @@
+name: OSS Build and Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - alpha_v0.1.0
+
+jobs:
+  package-tests:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Swift package tests
+        run: swift test
+
+  xcode-tests:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scheme:
+          - ImageDataPicker
+          - EmployeeFormExample
+        include:
+          - scheme: ImageDataPicker
+            project: ImageDataPicker/ImageDataPicker.xcodeproj
+          - scheme: EmployeeFormExample
+            project: EmployeeFormExample/EmployeeFormExample.xcodeproj
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run unsigned macOS tests
+        run: |
+          xcodebuild test \
+            -project "${{ matrix.project }}" \
+            -scheme "${{ matrix.scheme }}" \
+            -destination "platform=macOS" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM=""

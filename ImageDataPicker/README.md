@@ -20,6 +20,12 @@ If no image is selected, or there is an error loading the selected Image, the co
 
 ## Get the **ImageDataPicker** Framework
 
+### Swift Package Manager
+
+Add this repository in Xcode using `File > Add Package Dependencies...`, then select the `ImageDataPicker` library product.
+
+### XCFramework
+
 1. [Download](https://github.com/Technistic/ImageDataPicker/releases) the latest archive of the **ImageDataPicker** framework from the official repo.
 
 2. Double-click the downloaded file to extract the archive.
@@ -44,7 +50,7 @@ If no image is selected, or there is an error loading the selected Image, the co
     import SwiftUI
 
     struct ContentView: View {
-        @State var imageData: Data? = UIImage(named: "Image")!.pngData()
+        @State var imageData: Data? = nil
         var body: some View {
             VStack {
                 ImageDataPickerView(
@@ -64,8 +70,7 @@ If no image is selected, or there is an error loading the selected Image, the co
     }
 
     #Preview {
-        @Previewable @State var imageData: Data? = UIImage(named: "Image")!
-            .pngData()
+        @Previewable @State var imageData: Data? = nil
         ContentView()
     }
     ```

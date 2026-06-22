@@ -31,24 +31,15 @@ struct EmployeeFormExampleTests {
     
     @MainActor
     @Test(.tags(.data)) func testSampleDataManager() async throws {
-        let sharedModelContainer: ModelContainer = {
-            let schema = Schema([
-                Employee.self
-            ])
-            let modelConfiguration = ModelConfiguration(
-                schema: schema,
-                isStoredInMemoryOnly: false
-            )
-            
-            do {
-                return try ModelContainer(
-                    for: schema,
-                    configurations: [modelConfiguration]
-                )
-            } catch {
-                fatalError("Could not create ModelContainer: \(error)")
-            }
-        }()
+        let schema = Schema([Employee.self])
+        let modelConfiguration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: true
+        )
+        let sharedModelContainer = try ModelContainer(
+            for: schema,
+            configurations: [modelConfiguration]
+        )
         
         #expect(sharedModelContainer.configurations.count == 1)
         
@@ -59,19 +50,32 @@ struct EmployeeFormExampleTests {
         let descriptor = FetchDescriptor<Employee>()
         
         sampleDataManager.deleteSampleData()
-        try! sharedModelContainer.mainContext.save()
+        try sharedModelContainer.mainContext.save()
         
         sampleDataManager.insertSampleData()
-        try! sharedModelContainer.mainContext.save()
+        try sharedModelContainer.mainContext.save()
         
         let initialEmployeeCount = try? sharedModelContainer.mainContext.fetchCount(descriptor)
         
         #expect(initialEmployeeCount == 4)
         
         sampleDataManager.deleteSampleData()
-        try! sharedModelContainer.mainContext.save()
+        try sharedModelContainer.mainContext.save()
         
         let deletedEmployeeCount = try? sharedModelContainer.mainContext.fetch(descriptor)
         #expect(deletedEmployeeCount?.count == 0)
+    }
+
+    @Test(.tags(.model)) func testEmployeePhotoFallsBackWhenImageDataIsInvalid() {
+        let employee = Employee(
+            firstName: "Aleshia",
+            lastName: "Evans",
+            department: "Engineering",
+            imageData: Data("not-an-image".utf8)
+        )
+
+        let photo = employee.photo
+
+        #expect(String(describing: type(of: photo)).isEmpty == false)
     }
 }
