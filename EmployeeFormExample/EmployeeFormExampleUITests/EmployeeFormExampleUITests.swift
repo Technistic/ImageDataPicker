@@ -43,16 +43,17 @@ final class EmployeeFormExampleUITests: XCTestCase {
     @MainActor
     func testInitialList() throws {
         XCTAssertTrue(
-            app.images["EmployeeList.Aleshia.Evans"].waitForExistence(timeout: 5)
+            employeeRow(firstName: "Aleshia", lastName: "Evans")
+                .waitForExistence(timeout: 5)
         )
-        XCTAssertTrue(app.images["EmployeeList.Peter.Jones"].exists)
-        XCTAssertTrue(app.images["EmployeeList.Craig.Birch"].exists)
-        XCTAssertTrue(app.images["EmployeeList.Anne.Lee"].exists)
+        XCTAssertTrue(employeeRow(firstName: "Peter", lastName: "Jones").exists)
+        XCTAssertTrue(employeeRow(firstName: "Craig", lastName: "Birch").exists)
+        XCTAssertTrue(employeeRow(firstName: "Anne", lastName: "Lee").exists)
     }
         
     @MainActor
     func testEmployeeExists() throws {
-        let aleshia = app.images["EmployeeList.Aleshia.Evans"]
+        let aleshia = employeeRow(firstName: "Aleshia", lastName: "Evans")
         XCTAssertTrue(aleshia.waitForExistence(timeout: 5))
         aleshia.tap()
 
@@ -72,5 +73,9 @@ final class EmployeeFormExampleUITests: XCTestCase {
         app.buttons[UIIdentifiers.EmployeeView.saveButton].tap()
 
         XCTAssertTrue(app.staticTexts["A New Name Evans"].waitForExistence(timeout: 5))
+    }
+
+    private func employeeRow(firstName: String, lastName: String) -> XCUIElement {
+        app.otherElements["EmployeeList.\(firstName).\(lastName)"]
     }
 }

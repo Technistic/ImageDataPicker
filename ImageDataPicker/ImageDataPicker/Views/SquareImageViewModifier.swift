@@ -177,25 +177,43 @@ extension View {
 #Preview {
     VStack {
         #if canImport(UIKit)
-        Image(uiImage: UIImage(data: imageResourceData(for: "TestImage")!)!)
-            .resizable()
-            .scaledToFit()
+        if let imageData = imageResourceData(for: "TestImage"),
+           let uiImage = UIImage(data: imageData) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFit()
 
-        Image(uiImage: UIImage(data: imageResourceData(for: "TestImage")!)!)
-            .resizable()
-            .scaledToFill()
-            .squareImageView(shape: Circle())
-            .background(.blue.opacity(0.3))
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFill()
+                .squareImageView(shape: Circle())
+                .background(.blue.opacity(0.3))
+        } else {
+            Image(systemName: Constants.photoPlaceholder)
+                .resizable()
+                .scaledToFit()
+                .squareImageView(shape: Circle())
+                .background(.blue.opacity(0.3))
+        }
         #else
-        Image(nsImage: NSImage(data: imageResourceData(for: "TestImage")!)!)
-            .resizable()
-            .scaledToFit()
+        if let imageData = imageResourceData(for: "TestImage"),
+           let nsImage = NSImage(data: imageData) {
+            Image(nsImage: nsImage)
+                .resizable()
+                .scaledToFit()
 
-        Image(nsImage: NSImage(data: imageResourceData(for: "TestImage")!)!)
-            .resizable()
-            .scaledToFill()
-            .squareImageView(shape: Circle())
-            .background(.blue.opacity(0.3))
+            Image(nsImage: nsImage)
+                .resizable()
+                .scaledToFill()
+                .squareImageView(shape: Circle())
+                .background(.blue.opacity(0.3))
+        } else {
+            Image(systemName: Constants.photoPlaceholder)
+                .resizable()
+                .scaledToFit()
+                .squareImageView(shape: Circle())
+                .background(.blue.opacity(0.3))
+        }
         #endif
         
         Image(systemName: "person.circle")
