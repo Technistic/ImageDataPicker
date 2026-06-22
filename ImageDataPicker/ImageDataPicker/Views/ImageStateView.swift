@@ -29,7 +29,7 @@ public struct ImageStateView: View {
     public var imageState: ImageDataModel.ImageState = .empty
     private var emptyPlaceholder: String = Constants.personPlaceholder
     private var errorPlaceholder: String = Constants.errorPlaceholder
-    
+
     /// - Parameters:
     ///   - imageState: The state to render.
     ///   - emptyPlaceholder: The SF Symbol to use when the state is `.empty`.
@@ -48,105 +48,192 @@ public struct ImageStateView: View {
         switch imageState {
         case .empty:
             ImageDataView(imageData: nil, placeholder: emptyPlaceholder)
-                .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: emptyPlaceholder))
-                
-                .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: emptyPlaceholder))
+                .scaleEffect(
+                    SymbolLayoutHelper.scaleFactor(
+                        systemImage: emptyPlaceholder
+                    )
+                )
+
+                .offset(
+                    x: 0,
+                    y: SymbolLayoutHelper.offsetFactor(
+                        systemImage: emptyPlaceholder
+                    )
+                )
         case .loading(_):
             ProgressView()
                 .controlSize(.extraLarge)
         case .success(let imageData):
             if imageData != nil {
-                ImageDataView(imageData: imageData, placeholder: emptyPlaceholder)
-                    .scaledToFill()
-            }
-            else {
-                ImageDataView(imageData: imageData, placeholder: emptyPlaceholder)
-                    .scaledToFit()
-                    .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: emptyPlaceholder))
-                    
-                    .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: emptyPlaceholder))
+                ImageDataView(
+                    imageData: imageData,
+                    placeholder: emptyPlaceholder
+                )
+                .scaledToFill()
+            } else {
+                ImageDataView(
+                    imageData: imageData,
+                    placeholder: emptyPlaceholder
+                )
+                .scaledToFit()
+                .scaleEffect(
+                    SymbolLayoutHelper.scaleFactor(
+                        systemImage: emptyPlaceholder
+                    )
+                )
+
+                .offset(
+                    x: 0,
+                    y: SymbolLayoutHelper.offsetFactor(
+                        systemImage: emptyPlaceholder
+                    )
+                )
             }
         case .failure(let error):
             let _: () = Logger.application.error(
                 "ImageStateView: Failure - \(error.localizedDescription)"
             )
             ImageDataView(imageData: nil, placeholder: errorPlaceholder)
-                .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: errorPlaceholder))
-                
-                .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: errorPlaceholder))
+                .scaleEffect(
+                    SymbolLayoutHelper.scaleFactor(
+                        systemImage: errorPlaceholder
+                    )
+                )
+
+                .offset(
+                    x: 0,
+                    y: SymbolLayoutHelper.offsetFactor(
+                        systemImage: errorPlaceholder
+                    )
+                )
         }
     }
 }
 
-
-#Preview("Empty View") {
+#Preview("Empty View", traits: .landscapeRight) {
     @Previewable @State var empty: ImageDataModel.ImageState = .empty
     let placeholder: String = Constants.personPlaceholder
 
-    ImageStateView(imageState: empty)
-        .squareImageView(shape: Circle(), background: .blue)
-        .foregroundColor(.white)
-        .background(.blue.opacity(0.3))
-        .frame(width: 200, height: 200)
+    HStack {
+        VStack {
+            ImageStateView(imageState: empty)
+                .squareImageView(shape: Circle(), background: .blue)
+                .foregroundColor(.white)
+                .background(.blue.opacity(0.3))
+                .frame(width: 200, height: 200)
 
-    ImageStateView(imageState: empty, emptyPlaceholder: placeholder)
-        .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0), background: .gray)
-        .foregroundColor(.black)
-        .frame(width: 200, height: 200)
+            Text("Default Placeholder").font(.caption)
+        }
+
+        VStack {
+            ImageStateView(
+                imageState: empty,
+                emptyPlaceholder: Constants.photoPlaceholder
+            )
+            .squareImageView(
+                shape: RoundedRectangle(cornerRadius: 24.0),
+                background: .blue
+            )
+            .foregroundColor(.white)
+            .frame(width: 200, height: 200)
+
+            Text("Custom Placeholder").font(.caption)
+        }
+    }
 }
 
-#Preview("Loading View") {
+#Preview("Loading View", traits: .landscapeRight) {
     @Previewable @State var loading: ImageDataModel.ImageState = .loading(
         Progress()
     )
 
     let placeholder: String = Constants.personPlaceholder
 
-    ImageStateView(imageState: loading)
-        .squareImageView(shape: Circle(), background: .blue)
-        .background(.blue.opacity(0.3))
-        .tint(Color.white)
-        .frame(width: 200, height: 200)
-        .border(.green)
+    HStack {
+        VStack {
+            ImageStateView(imageState: loading)
+                .squareImageView(shape: Circle(), background: .blue)
+                .background(.blue.opacity(0.3))
+                .tint(Color.white)
+                .frame(width: 200, height: 200)
 
-    ImageStateView(imageState: loading, emptyPlaceholder: placeholder)
-        .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0), background: .gray)
-        .tint(Color.black)
-        .frame(width: 200, height: 200)
+            Text("Loading").font(.caption)
+        }
+
+        VStack {
+            ImageStateView(imageState: loading, emptyPlaceholder: placeholder)
+                .squareImageView(
+                    shape: RoundedRectangle(cornerRadius: 24.0),
+                    background: .blue
+                )
+                .tint(Color.white)
+                .frame(width: 200, height: 200)
+
+            Text("Loading").font(.caption)
+        }
+    }
 }
 
-#Preview("Success View") {
+#Preview("Success View", traits: .landscapeRight) {
     @Previewable @State var successTest: ImageDataModel.ImageState = .success(
         imageResourceData(for: "TestImage")
     )
 
-    ImageStateView(imageState: successTest)
-        .squareImageView(shape: Circle())
-    //TODO: Apply background via .squareImageView() modifier instead, and test that it renders correctly with the image.
-        .background(.blue.opacity(0.3))
-        .frame(width: 200, height: 200)
-        .border(.green)
+    HStack {
+        VStack {
+            ImageStateView(imageState: successTest)
+                .squareImageView(shape: Circle())
+            //TODO: Apply background via .squareImageView() modifier instead, and test that it renders correctly with the image.
+                .background(.blue.opacity(0.3))
+                .frame(width: 200, height: 200)
+            
+            Text("Success")
+        }
 
-    ImageStateView(imageState: successTest)
-        .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0), background: .gray)
-        .frame(width: 200, height: 200)
+        VStack {
+            ImageStateView(imageState: successTest)
+                .squareImageView(
+                    shape: RoundedRectangle(cornerRadius: 24.0),
+                    background: .blue
+                )
+                .frame(width: 200, height: 200)
+            
+            Text("Success")
+        }
+    }
 }
 
- #Preview("Failure View") {
-     @Previewable @State var failure: ImageDataModel.ImageState = .failure(
+#Preview("Failure View", traits: .landscapeRight) {
+    @Previewable @State var failure: ImageDataModel.ImageState = .failure(
         NSError(domain: "Test", code: 1, userInfo: nil)
-     )
- 
-     let placeholder: String = Constants.errorPlaceholder
- 
-     ImageStateView(imageState: failure)
-         .squareImageView(shape: Circle(), background: .white)
-         .foregroundColor(.blue)
-         .background(.blue.opacity(0.3))
-         .frame(width: 200, height: 200)
- 
-     ImageStateView(imageState: failure, errorPlaceholder: placeholder)
-         .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0), background: .gray)
-         .foregroundColor(.black)
-         .frame(width: 200, height: 200)
- }
+    )
+
+    let placeholder: String = Constants.errorPlaceholder
+
+    HStack {
+        VStack {
+            ImageStateView(imageState: failure)
+                .squareImageView(shape: Circle(), background: .white)
+                .foregroundColor(.blue)
+                .background(.blue.opacity(0.3))
+                .frame(width: 200, height: 200)
+
+            Text("Default Placeholder").font(.caption)
+        }
+
+        VStack {
+            ImageStateView(
+                imageState: failure,
+                errorPlaceholder: "exclamationmark.triangle"
+            )
+            .squareImageView(
+                shape: RoundedRectangle(cornerRadius: 24.0),
+                background: .blue
+            )
+            .foregroundColor(.white)
+            .frame(width: 200, height: 200)
+
+            Text("Custom Placeholder").font(.caption)
+        }
+    }
+}

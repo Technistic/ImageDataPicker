@@ -114,17 +114,25 @@ func imageResourceData(for _imageResource: String) -> Data? {
     }
 }
 
-#Preview("Placeholders") {
+#Preview("Placeholders", traits: .landscapeRight) {
     HStack {
         VStack {
             ImageDataView(imageData: nil)
+                .scaleEffect(0.7)
+                .foregroundStyle(.white)
+                .background(.blue, ignoresSafeAreaEdges: [])
+                .scaleEffect(0.8)
                 .border(.green)
             Text("Default Placeholder")
         }
         VStack {
-            ImageDataView(imageData: nil, placeholder: "person")
+            ImageDataView(imageData: nil, placeholder: Constants.personPlaceholder)
+                .scaleEffect(0.7)
+                .foregroundStyle(.white)
+                .background(.blue, ignoresSafeAreaEdges: [])
+                .scaleEffect(0.8)
                 .border(.green)
-            Text("Specified Placeholder")
+            Text("Custom Placeholder")
         }
     }
 }
@@ -136,7 +144,7 @@ func imageResourceData(for _imageResource: String) -> Data? {
         ImageDataView(imageData: imageData)
             .scaledToFill()
             .squareImageView(shape: Circle())
-            .background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
+            .background(.pink, ignoresSafeAreaEdges: [])
             .border(.green)
         ImageDataView(imageData: imageData)
             .scaledToFill()
@@ -145,7 +153,7 @@ func imageResourceData(for _imageResource: String) -> Data? {
     }
 }
 
-#Preview("Placeholders-Squared") {
+#Preview("Placeholders-Squared", traits: .landscapeRight) {
     @Previewable @State var imageData: Data? = imageResourceData(for: "TestPortrait")
     
     HStack {
@@ -156,18 +164,20 @@ func imageResourceData(for _imageResource: String) -> Data? {
             .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: Constants.photoPlaceholder))
             .squareImageView(shape: Circle(), background: .blue)
             .background(.blue.opacity(0.3))
+            .scaleEffect(0.8)
             .border(.green)
             Text("Default Placeholder")
         }
         
         VStack {
-            ImageDataView(imageData: nil, placeholder: "person")
+            ImageDataView(imageData: nil, placeholder: Constants.personPlaceholder)
                 .foregroundColor(.white)
                 .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: Constants.personPlaceholder))
                 .offset(x: 0, y: SymbolLayoutHelper.offsetFactor(systemImage: Constants.personPlaceholder))
                 .squareImageView(shape: RoundedRectangle(cornerRadius: 24.0), background: .blue)
-
-            Text("Specified Placeholder")
+                .scaleEffect(0.8)
+                .border(.green)
+            Text("Custom Placeholder")
         }
     }
 }
