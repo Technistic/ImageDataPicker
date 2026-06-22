@@ -32,8 +32,11 @@
 
 set -euo pipefail
 
-framework_version_file="ImageDataPicker/Configuration/BundleConfig.xcconfig"
-sample_version_file="EmployeeFormExample/Configuration/BundleConfig.xcconfig"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="${CI_PRIMARY_REPOSITORY_PATH:-$(cd "${script_dir}/.." && pwd)}"
+
+framework_version_file="${repo_root}/ImageDataPicker/Configuration/BundleConfig.xcconfig"
+sample_version_file="${repo_root}/EmployeeFormExample/Configuration/BundleConfig.xcconfig"
 
 read_marketing_version() {
     local file_path="$1"
