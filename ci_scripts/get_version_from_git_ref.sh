@@ -6,7 +6,7 @@
 #  Updated by Michael Logothetis on 16/7/2025.
 #
 #
-#  Set the marketing version and build type based on the branch or tag name.
+#  Set the marketing version and release channel based on the branch or tag name.
 #
 #  Branch names should follow the format:
 #    [TYPE(.BUILD)]_vMAJOR.MINOR.PATCH
@@ -16,16 +16,16 @@
 #
 #
 #  Example Branch Names:
-#  features-featureA -> No Xcode Cloud Build
-#  bugs-bugA -> No Xcode Cloud Build
-#  alpha.2_v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Integration Build)
-#  beta.1_v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Staging Build)
+#  features-featureA -> No Xcode Cloud release channel
+#  bugs-bugA -> No Xcode Cloud release channel
+#  alpha.2_v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Alpha Build)
+#  beta.1_v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Beta Build)
 #  rc.1_v1.2.3 -> v1.2.3-rc.1 (Xcode Cloud Release Candidate Build)
-#  main (Xcode Cloud Production Build)
+#  main (Xcode Cloud Production Build by default)
 #
 #  Example Tag Names:
-#  alpha.2-v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Integration Release)
-#  beta.1-v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Staging Release)
+#  alpha.2-v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Alpha Release)
+#  beta.1-v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Beta Release)
 #  rc.1-v1.2.3 -> v1.2.3-rc.1 (Xcode Cloud Release Candidate)
 #  v1.2.3 -> v1.2.3 (Xcode Cloud Production Release)
 #
@@ -64,6 +64,7 @@ CI_TAG="${CI_TAG:-}"
 CI_BRANCH="${CI_BRANCH:-}"
 CI_PULL_REQUEST_SOURCE_BRANCH="${CI_PULL_REQUEST_SOURCE_BRANCH:-}"
 CI_PULL_REQUEST_TARGET_BRANCH="${CI_PULL_REQUEST_TARGET_BRANCH:-}"
+CI_PRODUCTION_BRANCH="${CI_PRODUCTION_BRANCH:-main}"
 
 if [[ -n "$CI_TAG" ]]; then
     # $CI_TAG should align with the branch name.
@@ -79,7 +80,7 @@ fi
 
 # As CI_TAG must match CI_BRANCH, we derive the version from BRANCH.
 if [[ -n "$BRANCH" ]]; then
-    if [[ "$BRANCH" == "main" ]]; then
+    if [[ "$BRANCH" == "$CI_PRODUCTION_BRANCH" ]]; then
         validate_repo_versions
         if [[ "$repo_marketing_version" =~ ^([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)$ ]]; then
             major=${BASH_REMATCH[1]}
@@ -165,6 +166,7 @@ echo "CI_TAG: $CI_TAG"
 echo "CI_BRANCH: $CI_BRANCH"
 echo "CI_PULL_REQUEST_SOURCE_BRANCH: $CI_PULL_REQUEST_SOURCE_BRANCH"
 echo "CI_PULL_REQUEST_TARGET_BRANCH: $CI_PULL_REQUEST_TARGET_BRANCH"
+echo "CI_PRODUCTION_BRANCH: $CI_PRODUCTION_BRANCH"
 echo
 echo "BRANCH: $BRANCH"
 echo "VER_TYPE: $ver_type"
