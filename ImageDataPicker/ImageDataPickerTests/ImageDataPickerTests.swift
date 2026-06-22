@@ -35,12 +35,53 @@ struct ImageDataPickerTests {
     }
 
     @MainActor
+    @Test func imageDataModelInitializesFromBindingValue() {
+        var imageData: Data? = TestImageData.png
+        let binding = Binding<Data?>(
+            get: { imageData },
+            set: { imageData = $0 }
+        )
+
+        let model = ImageDataModel(imageData: binding)
+
+        switch model.imageState {
+        case .success(let resolvedData):
+            #expect(resolvedData == TestImageData.png)
+        default:
+            Issue.record("Expected success state when initialized from a binding with image data.")
+        }
+    }
+
+    @MainActor
     @Test func imageDataModelResetsToEmptyWhenSelectionClears() {
         let model = ImageDataModel(imageData: TestImageData.png)
 
         model.imageSelection = nil
 
         #expect(model.imageState == .empty)
+    }
+
+    @Test func imageStateEquatableMatchesAssociatedValues() {
+        let sameFailureLhs = ImageDataModel.ImageState.failure(
+            NSError(domain: "Example", code: 1, userInfo: [
+                NSLocalizedDescriptionKey: "Same failure"
+            ])
+        )
+        let sameFailureRhs = ImageDataModel.ImageState.failure(
+            NSError(domain: "DifferentDomain", code: 99, userInfo: [
+                NSLocalizedDescriptionKey: "Same failure"
+            ])
+        )
+        let differentFailure = ImageDataModel.ImageState.failure(
+            NSError(domain: "Example", code: 2, userInfo: [
+                NSLocalizedDescriptionKey: "Different failure"
+            ])
+        )
+
+        #expect(ImageDataModel.ImageState.empty == .empty)
+        #expect(ImageDataModel.ImageState.success(TestImageData.png) == .success(TestImageData.png))
+        #expect(sameFailureLhs == sameFailureRhs)
+        #expect(sameFailureLhs != differentFailure)
     }
 
     @MainActor
@@ -95,7 +136,7 @@ struct ImageDataPickerTests {
         var imageData = TestImageData.png
         let binding = Binding<Data?>(
             get: { imageData },
-            set: { imageData = $0! }
+            set: { imageData = $0 }
         )
 
         let view = ImageDataPickerView(

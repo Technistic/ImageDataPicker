@@ -1,13 +1,27 @@
 @Tutorial(time: 5) {
     @Intro(title: "Add the ImageDataPicker Framework to your Project") {
-        How to add the ImageDataPicker framework to your project.
+        How to add the ImageDataPicker framework to your project, either through Swift Package Manager or as a downloaded xcframework.
 
         @Image(source: "Plus-Header-R", alt: "Framework")
     }
+
+    @Section(title: "Add with Swift Package Manager") {
+        @Steps {
+            @Step {
+                In Xcode, choose **File > Add Package Dependencies...**
+            }
+            @Step {
+                Enter the repository URL for **ImageDataPicker** and add the package to your project.
+            }
+            @Step {
+                Add the **ImageDataPicker** library product to the app target that will present ``ImageDataPickerView``.
+            }
+        }
+    }
     
-    @Section(title: "Add the Framework to your Project") {
+    @Section(title: "Add the XCFramework to your Project") {
         @ContentAndMedia {
-            Add the ImageDataPicker framework to your Xcode project.
+            Add the downloaded ImageDataPicker xcframework to your Xcode project.
             @Image(source: "Plus-Header", alt: "Add Framework")
         }
         @Steps {

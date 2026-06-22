@@ -42,47 +42,35 @@ final class EmployeeFormExampleUITests: XCTestCase {
     
     @MainActor
     func testInitialList() throws {
-        // UI tests must launch the application that they test.
-        //let app = XCUIApplication()
-        //app.launch()
-        
-        XCTAssert(app.images.count == 4)
+        XCTAssertTrue(
+            app.images["EmployeeList.Aleshia.Evans"].waitForExistence(timeout: 5)
+        )
+        XCTAssertTrue(app.images["EmployeeList.Peter.Jones"].exists)
+        XCTAssertTrue(app.images["EmployeeList.Craig.Birch"].exists)
+        XCTAssertTrue(app.images["EmployeeList.Anne.Lee"].exists)
     }
         
     @MainActor
     func testEmployeeExists() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-        
         let aleshia = app.images["EmployeeList.Aleshia.Evans"]
+        XCTAssertTrue(aleshia.waitForExistence(timeout: 5))
         aleshia.tap()
-        
-        if app.textFields["Given Name"].waitForExistence(timeout: 5) {
-            let firstName = app.textFields["Given Name"]
-            XCTAssert(firstName.exists)
-            XCTAssertEqual(firstName.value as! String, "Aleshia")
-            #if os(iOS)
-            firstName.doubleTap()
-            #else
-            firstName.doubleClick()
-            #endif
-            firstName.typeText("\u{8}")
-            firstName.typeText("A New Name")
-            
-            app.buttons[UIIdentifiers.EmployeeView.saveButton].tap()
-            
-            //print(app.navigationBars.firstMatch.buttons)
-           // if app.navigationBars.firstMatch.buttons.count(@"'name' IN $NAME_LIST") > {
-           //
-            //}
-            //if app.navigationBars.firstMatch.buttons.contains("Our Employees") {
-            //    app.navigationBars.firstMatch.buttons["Our Employees"].tap()
-            //}
 
-            if app.staticTexts["Our Employees"].waitForExistence(timeout: 5) {
-                XCTAssert(app.staticTexts["A New Name Evans"].exists)
-            }
-        }
+        let firstName = app.textFields["Given Name"]
+        XCTAssertTrue(firstName.waitForExistence(timeout: 5))
+        XCTAssertEqual(firstName.value as? String, "Aleshia")
+
+        #if os(iOS)
+        firstName.doubleTap()
+        #else
+        firstName.doubleClick()
+        #endif
+
+        firstName.typeText("\u{8}")
+        firstName.typeText("A New Name")
+
+        app.buttons[UIIdentifiers.EmployeeView.saveButton].tap()
+
+        XCTAssertTrue(app.staticTexts["A New Name Evans"].waitForExistence(timeout: 5))
     }
 }
