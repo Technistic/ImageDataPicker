@@ -40,7 +40,10 @@
 		69059A772E285CE800A1A3B2 /* Exceptions for "Configuration" folder in "ImageDataPicker" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Alpha.xcconfig,
+				Beta.xcconfig,
 				BundleConfig.xcconfig,
+				DebugLike.xcconfig,
 			);
 			target = 69CF512D2DC45A1400402D6E /* ImageDataPicker */;
 		};
@@ -292,7 +295,7 @@
 		694066922DF7B960005B4D45 /* Alpha */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69059A662E285BC100A1A3B2 /* Configuration */;
-			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
+			baseConfigurationReferenceRelativePath = Alpha.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -373,7 +376,7 @@
 		694066932DF7B960005B4D45 /* Alpha */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69059A662E285BC100A1A3B2 /* Configuration */;
-			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
+			baseConfigurationReferenceRelativePath = Alpha.xcconfig;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -453,7 +456,7 @@
 		694066952DF7B9B9005B4D45 /* Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69059A662E285BC100A1A3B2 /* Configuration */;
-			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
+			baseConfigurationReferenceRelativePath = Beta.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -534,7 +537,7 @@
 		694066962DF7B9B9005B4D45 /* Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69059A662E285BC100A1A3B2 /* Configuration */;
-			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
+			baseConfigurationReferenceRelativePath = Beta.xcconfig;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -612,7 +615,7 @@
 		69CF51402DC45A1400402D6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69059A662E285BC100A1A3B2 /* Configuration */;
-			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
+			baseConfigurationReferenceRelativePath = DebugLike.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -767,7 +770,7 @@
 		69CF51432DC45A1400402D6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69059A662E285BC100A1A3B2 /* Configuration */;
-			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
+			baseConfigurationReferenceRelativePath = DebugLike.xcconfig;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;

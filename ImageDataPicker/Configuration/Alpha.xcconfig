@@ -1,0 +1,10 @@
+//
+//  Alpha.xcconfig
+//  ImageDataPicker
+//
+//  Created by Michael Logothetis on 22/06/2026.
+//
+
+#include "DebugLike.xcconfig"
+
+// Alpha builds intentionally match Debug behavior for the framework.
