@@ -25,37 +25,19 @@ public struct SquareImageViewModifier<S: Shape>: ViewModifier {
     #endif
 
     public func body(content: Content) -> some View {
-        var imageSize: CGSize = CGSize(
-            width: CGFloat.infinity,
-            height: CGFloat.infinity
-        )
-        ZStack {
-            GeometryReader { geometry in
-                let side = SymbolLayoutHelper.minDim(geometry.size)
-                content
-                    .frame(width: side, height: side)
-                    .background(background)
-                    .clipShape(shape)
-                    .clipped()
-                    .onChange(of: geometry.size) {
-                        imageSize = CGSize(
-                            width: SymbolLayoutHelper.minDim(geometry.size),
-                            height: SymbolLayoutHelper.minDim(geometry.size)
-                        )
-                    }
-                    .onAppear {
-                        imageSize = CGSize(
-                            width: SymbolLayoutHelper.minDim(geometry.size),
-                            height: SymbolLayoutHelper.minDim(geometry.size)
-                        )
-                    }
-            }
-            .scaledToFit()
+        GeometryReader { geometry in
+            let side = SymbolLayoutHelper.finiteMinDim(geometry.size)
 
-            .frame(
-                width: SymbolLayoutHelper.minDim(imageSize),
-                height: SymbolLayoutHelper.minDim(imageSize)
-            )
+            content
+                .frame(width: side, height: side)
+                .background(background)
+                .clipShape(shape)
+                .clipped()
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .center
+                )
         }
     }
 }
@@ -74,6 +56,19 @@ public struct SymbolLayoutHelper {
     /// - Returns: The smaller of the width or height of the CGSize.
     static func minDim(_ size: CGSize) -> CGFloat {
         min(size.width, size.height)
+    }
+
+    /// Returns the smallest finite, non-negative dimension of a given CGSize.
+    /// - Parameter size: The CGSize to evaluate.
+    /// - Returns: A safe dimension suitable for frame calculations.
+    static func finiteMinDim(_ size: CGSize) -> CGFloat {
+        let dimension = minDim(size)
+
+        guard dimension.isFinite, dimension >= 0 else {
+            return 0
+        }
+
+        return dimension
     }
     
     /// Calculates the radius of the smallest circle that contains the supplied symbol image.
@@ -177,25 +172,43 @@ extension View {
 #Preview {
     VStack {
         #if canImport(UIKit)
-        Image(uiImage: UIImage(data: imageResourceData(for: "TestImage")!)!)
-            .resizable()
-            .scaledToFit()
+        if let imageData = imageResourceData(for: "TestImage"),
+           let uiImage = UIImage(data: imageData) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFit()
 
-        Image(uiImage: UIImage(data: imageResourceData(for: "TestImage")!)!)
-            .resizable()
-            .scaledToFill()
-            .squareImageView(shape: Circle())
-            .background(.blue.opacity(0.3))
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFill()
+                .squareImageView(shape: Circle())
+                .background(.blue.opacity(0.3))
+        } else {
+            Image(systemName: Constants.photoPlaceholder)
+                .resizable()
+                .scaledToFit()
+                .squareImageView(shape: Circle())
+                .background(.blue.opacity(0.3))
+        }
         #else
-        Image(nsImage: NSImage(data: imageResourceData(for: "TestImage")!)!)
-            .resizable()
-            .scaledToFit()
+        if let imageData = imageResourceData(for: "TestImage"),
+           let nsImage = NSImage(data: imageData) {
+            Image(nsImage: nsImage)
+                .resizable()
+                .scaledToFit()
 
-        Image(nsImage: NSImage(data: imageResourceData(for: "TestImage")!)!)
-            .resizable()
-            .scaledToFill()
-            .squareImageView(shape: Circle())
-            .background(.blue.opacity(0.3))
+            Image(nsImage: nsImage)
+                .resizable()
+                .scaledToFill()
+                .squareImageView(shape: Circle())
+                .background(.blue.opacity(0.3))
+        } else {
+            Image(systemName: Constants.photoPlaceholder)
+                .resizable()
+                .scaledToFit()
+                .squareImageView(shape: Circle())
+                .background(.blue.opacity(0.3))
+        }
         #endif
         
         Image(systemName: "person.circle")

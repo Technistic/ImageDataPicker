@@ -1,6 +1,6 @@
 //
 //  ImageDataPickerTests.swift
-//  Test suite for the ImageDataPicker framework.
+//  Swift Package test suite for the ImageDataPicker framework.
 //
 //  Created by Michael Logothetis on 30/04/2025.
 //
@@ -109,7 +109,10 @@ struct ImageDataPickerTests {
             ImageDataModel.ImageState.loading(matchingLoadingLhs)
                 != .loading(differentLoading)
         )
-        #expect(ImageDataModel.ImageState.success(TestImageData.png) == .success(TestImageData.png))
+        #expect(
+            ImageDataModel.ImageState.success(TestImageData.png)
+                == .success(TestImageData.png)
+        )
         #expect(sameFailureLhs == sameFailureRhs)
         #expect(sameFailureLhs != differentFailure)
     }
@@ -156,7 +159,10 @@ struct ImageDataPickerTests {
         )
 
         #expect(view.imageData == TestImageData.png)
-        #expect((reflectedValue(named: "placeholder", in: view) as? String) == Constants.photoPlaceholder)
+        #expect(
+            (reflectedValue(named: "placeholder", in: view) as? String)
+                == Constants.photoPlaceholder
+        )
 
         let body = view.body
         #expect(String(describing: type(of: body)).isEmpty == false)
@@ -177,8 +183,14 @@ struct ImageDataPickerTests {
             Issue.record("Expected failure state to be retained by ImageStateView.")
         }
 
-        #expect((reflectedValue(named: "emptyPlaceholder", in: view) as? String) == Constants.photoPlaceholder)
-        #expect((reflectedValue(named: "errorPlaceholder", in: view) as? String) == Constants.errorPlaceholder)
+        #expect(
+            (reflectedValue(named: "emptyPlaceholder", in: view) as? String)
+                == Constants.photoPlaceholder
+        )
+        #expect(
+            (reflectedValue(named: "errorPlaceholder", in: view) as? String)
+                == Constants.errorPlaceholder
+        )
 
         let body = view.body
         #expect(String(describing: type(of: body)).isEmpty == false)
@@ -200,8 +212,14 @@ struct ImageDataPickerTests {
             Issue.record("Expected success state to be retained by ClippedImageStateView.")
         }
 
-        #expect((reflectedValue(named: "emptyPlaceholder", in: view) as? String) == Constants.photoPlaceholder)
-        #expect((reflectedValue(named: "errorPlaceholder", in: view) as? String) == Constants.errorPlaceholder)
+        #expect(
+            (reflectedValue(named: "emptyPlaceholder", in: view) as? String)
+                == Constants.photoPlaceholder
+        )
+        #expect(
+            (reflectedValue(named: "errorPlaceholder", in: view) as? String)
+                == Constants.errorPlaceholder
+        )
         #expect(reflectedValue(named: "clipShape", in: view) is Circle)
 
         let body = view.body
@@ -209,7 +227,7 @@ struct ImageDataPickerTests {
     }
 
     @MainActor
-    @Test func imageDataPickerViewRetainsInitializerValues() {
+    @Test func imageDataPickerViewRetainsInitializerValuesAndBuildsBody() {
         var imageData: Data? = TestImageData.png
         let binding = Binding<Data?>(
             get: { imageData },
@@ -223,9 +241,18 @@ struct ImageDataPickerTests {
             clipShape: Circle()
         )
 
-        #expect((reflectedValue(named: "emptyPlaceholderImageName", in: view) as? String) == Constants.photoPlaceholder)
-        #expect((reflectedValue(named: "errorPlaceholderImageName", in: view) as? String) == Constants.errorPlaceholder)
+        #expect(
+            (reflectedValue(named: "emptyPlaceholderImageName", in: view)
+                as? String) == Constants.photoPlaceholder
+        )
+        #expect(
+            (reflectedValue(named: "errorPlaceholderImageName", in: view)
+                as? String) == Constants.errorPlaceholder
+        )
         #expect(reflectedValue(named: "clipShape", in: view) is Circle)
+
+        let body = view.body
+        #expect(String(describing: type(of: body)).isEmpty == false)
     }
 
     @MainActor
@@ -252,7 +279,10 @@ struct ImageDataPickerTests {
         #expect(SymbolLayoutHelper.minDim(size) == 180)
         #expect(SymbolLayoutHelper.scaleFactor(systemImage: "person.circle") == 1.0)
         #expect(SymbolLayoutHelper.offsetFactor(systemImage: "person.circle") == 0.0)
-        #expect(SymbolLayoutHelper.offsetFactor(systemImage: "exclamationmark.triangle") == -3.0)
+        #expect(
+            SymbolLayoutHelper.offsetFactor(systemImage: "exclamationmark.triangle")
+                == -3.0
+        )
 
         let photoScaleFactor = SymbolLayoutHelper.scaleFactor(
             systemImage: Constants.photoPlaceholder

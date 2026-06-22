@@ -1,0 +1,10 @@
+//
+//  Beta.xcconfig
+//  ImageDataPicker
+//
+//  Created by Michael Logothetis on 22/06/2026.
+//
+
+#include "DebugLike.xcconfig"
+
+// Beta builds intentionally match Debug behavior for the framework.

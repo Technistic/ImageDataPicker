@@ -1,13 +1,13 @@
 @Tutorial(time: 5) {
     @Intro(title: "App Signing") {
-        Review the following aspects of your app before submitting to the **AppStore** when using the ImageDataPicker framework.
+        Review the following aspects of your app before distribution when using the xcframework form of ImageDataPicker.
         
         @Image(source: "Shop-Header-R", alt: "AppStore submission preparation")
     }
     
     @Section(title: "Verify App Signing") {
         @ContentAndMedia {
-            Ensure your app and all included frameworks are properly signed. After adding the ImageDataPicker framework, verify it uses a compatible signature.
+            Ensure your app and any embedded frameworks are properly signed. After adding the ImageDataPicker xcframework, verify that its signature matches your distribution workflow.
             
             @Image(source: "Key-Header", alt: "Code signing verification")
         }

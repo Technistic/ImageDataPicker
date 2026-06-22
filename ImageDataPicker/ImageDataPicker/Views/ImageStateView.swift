@@ -112,7 +112,6 @@ public struct ImageStateView: View {
 
 #Preview("Empty View", traits: .landscapeRight) {
     @Previewable @State var empty: ImageDataModel.ImageState = .empty
-    let placeholder: String = Constants.personPlaceholder
 
     HStack {
         VStack {
@@ -207,8 +206,6 @@ public struct ImageStateView: View {
     @Previewable @State var failure: ImageDataModel.ImageState = .failure(
         NSError(domain: "Test", code: 1, userInfo: nil)
     )
-
-    let placeholder: String = Constants.errorPlaceholder
 
     HStack {
         VStack {

@@ -4,27 +4,27 @@
 
 ## Overview
 
-The **EmployeeFormExample** application demonstrates how to build a multiplatform application using the 
-**ImageDataPicker** framework. It presents a list of employees, displaying their name, department and a
-photo. Selecting an employee from the list presents a detail view that allows this information to be 
-edited, including selecting a photo using the **PhotosPicker**.
+The **EmployeeFormExample** application demonstrates how to build a multiplatform application using the
+**ImageDataPicker** framework. It presents a list of employees showing each person's name, department, and
+photo. Selecting an employee from the list presents a detail view that allows this information to be
+edited, including selecting a photo with **PhotosPicker**.
 
 ## Architecture
 
-The application uses a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model()) 
-to store the information for employees. The ``Employee`` model's ``imageData`` property is bound to an 
-``ImageDataPickerView`` that allows a photo to be selected from the **PhotoLibrary**. The `detail:` 
-``EmployeeView`` loads the selected ``Employee`` data into temporary variables. This allows the user
-to either `save()` or `cancel()` their proposed changes.
+The application uses a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model())
+to store employee information. The ``Employee`` model's ``imageData`` property is bound to an
+``ImageDataPickerView`` that allows a photo to be selected from the photo library. The detail
+``EmployeeView`` loads the selected ``Employee`` data into temporary state variables so the user can
+either save or cancel their proposed changes.
 
 ![Architecture](EmployeeFormExample/EmployeeFormExample.docc/Resources/ImageDataPicker-Header@0.5x.png)
 
 ## Design
 
-As this is a multiplatform application - it can be run on iOS, iPadOS and macOS - it uses a 
-`NavigationSplitView` to present a list-detail interface. The `NavigationSplitView`
-`List` is configured to use the `Edit()` button to `delete()` rows from the `List`. An `Add()` button adds 
-a new row to the `List` with default values that can be modified in the ``EmployeeView``.
+As a multiplatform application that runs on iOS, iPadOS, and macOS, it uses a
+`NavigationSplitView` to present a list-detail interface. The `List` supports deleting rows through the
+standard edit flow, and an add button inserts a new employee with default values that can then be modified
+in ``EmployeeView``.
 
 The segmented picker at the bottom of the ``EmployeeView`` allows you to see the effect of the ``clipShape`` initializer parameter on the ``ImageDataPickerView``.
 

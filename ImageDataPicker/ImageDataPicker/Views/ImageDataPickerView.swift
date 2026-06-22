@@ -75,6 +75,24 @@ public struct ImageDataPickerView<S: Shape>: View {
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
         }
+
+        public init(
+            imageData: Binding<Data?>,
+            emptyPlaceholderImageName: String = Constants.personPlaceholder,
+            errorPlaceholderImageName: String = Constants.errorPlaceholder,
+            clipShape: S,
+            backgroundColor: NSColor,
+            foregroundColor: NSColor = NSColor.labelColor
+        ) {
+            self.init(
+                imageData: imageData,
+                emptyPlaceholderImageName: emptyPlaceholderImageName,
+                errorPlaceholderImageName: errorPlaceholderImageName,
+                clipShape: clipShape,
+                backgroundColor: Color(nsColor: backgroundColor),
+                foregroundColor: Color(nsColor: foregroundColor)
+            )
+        }
     #else
         /// Initializer for the ImageDataPickerView().
         /// - Parameters:
@@ -104,6 +122,8 @@ public struct ImageDataPickerView<S: Shape>: View {
     #endif
 
     public var body: some View {
+        let currentButtonSize = buttonSize
+
         ClippedImageStateView(
             imageState: viewModel.imageState,
             emptyPlaceholder: emptyPlaceholderImageName,
@@ -128,15 +148,18 @@ public struct ImageDataPickerView<S: Shape>: View {
             ) {
                 Circle()
                     .opacity(0.0)
-                    .frame(width: buttonSize * 0.9, height: buttonSize * 0.9)
+                    .frame(
+                        width: currentButtonSize * 0.9,
+                        height: currentButtonSize * 0.9
+                    )
             }
             .clipShape(Circle())
             .contentShape(Circle())
             .overlay(alignment: .center) {
                 ImagePickerEditButton()
                     .frame(
-                        width: buttonSize,
-                        height: buttonSize,
+                        width: currentButtonSize,
+                        height: currentButtonSize,
                         alignment: .center
                     )
                     .allowsHitTesting(false)
@@ -150,8 +173,8 @@ public struct ImageDataPickerView<S: Shape>: View {
                     Circle()
                         .opacity(0.0)
                         .frame(
-                            width: buttonSize * 0.9,
-                            height: buttonSize * 0.9
+                            width: currentButtonSize * 0.9,
+                            height: currentButtonSize * 0.9
                         )
                 }
                 .clipShape(Circle())
@@ -159,8 +182,8 @@ public struct ImageDataPickerView<S: Shape>: View {
                 .overlay(alignment: .center) {
                     ImagePickerDeleteButton()
                         .frame(
-                            width: buttonSize,
-                            height: buttonSize,
+                            width: currentButtonSize,
+                            height: currentButtonSize,
                             alignment: .center
                         )
                         .allowsHitTesting(false)
@@ -204,7 +227,7 @@ public struct ImageDataPickerView<S: Shape>: View {
     }
 
     func bsize(size: CGSize) -> CGFloat {
-        return ratio(size: imageSize) * 0.2
+        return ratio(size: size) * 0.2
     }
 
     private var paddingSize: CGFloat {
@@ -254,6 +277,25 @@ public struct ClippedImageStateView<S: Shape>: View {
             self.clipShape = clipShape
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
+        }
+
+        public init(
+            imageState: ImageDataModel.ImageState = ImageDataModel.ImageState
+                .empty,
+            emptyPlaceholder: String = Constants.personPlaceholder,
+            errorPlaceholder: String = Constants.errorPlaceholder,
+            clipShape: S,
+            backgroundColor: NSColor,
+            foregroundColor: NSColor = NSColor.labelColor
+        ) {
+            self.init(
+                imageState: imageState,
+                emptyPlaceholder: emptyPlaceholder,
+                errorPlaceholder: errorPlaceholder,
+                clipShape: clipShape,
+                backgroundColor: Color(nsColor: backgroundColor),
+                foregroundColor: Color(nsColor: foregroundColor)
+            )
         }
     #else
         public init(
@@ -345,7 +387,7 @@ public struct ClippedImageStateView<S: Shape>: View {
         ImageDataPickerView(
             imageData: $nilImageData,
             clipShape: Circle(),
-            backgroundColor: .blue,
+            backgroundColor: Color.blue,
             foregroundColor: Color(.white)
         )
         .background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
@@ -353,24 +395,24 @@ public struct ClippedImageStateView<S: Shape>: View {
         ImageDataPickerView(
             imageData: $nilImageData,
             clipShape: RoundedRectangle(cornerRadius: 16),
-            backgroundColor: .yellow,
-            foregroundColor: .red
+            backgroundColor: Color.yellow,
+            foregroundColor: Color.red
         )
 
         ImageDataPickerView(
             imageData: $nilImageData,
             emptyPlaceholderImageName: Constants.photoPlaceholder,
             clipShape: Rectangle(),
-            backgroundColor: .orange,
-            foregroundColor: .white
+            backgroundColor: Color.orange,
+            foregroundColor: Color.white
         )
 
         ImageDataPickerView(
             imageData:
                 $successImageData,
             clipShape: Circle(),
-            backgroundColor: .blue,
-            foregroundColor: .white
+            backgroundColor: Color.blue,
+            foregroundColor: Color.white
         )
         .background(.blue.opacity(0.3))
 
@@ -378,8 +420,8 @@ public struct ClippedImageStateView<S: Shape>: View {
             imageData: $successImageData,
             emptyPlaceholderImageName: Constants.photoPlaceholder,
             clipShape: Rectangle(),
-            backgroundColor: .yellow,
-            foregroundColor: .red
+            backgroundColor: Color.yellow,
+            foregroundColor: Color.red
         )
     }
 }
@@ -401,8 +443,8 @@ public struct ClippedImageStateView<S: Shape>: View {
         imageState: emptyState,
         emptyPlaceholder: "person.circle",
         clipShape: Circle(),
-        backgroundColor: .white,
-        foregroundColor: .blue
+        backgroundColor: Color.white,
+        foregroundColor: Color.blue
     )
     .background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
 
@@ -410,30 +452,30 @@ public struct ClippedImageStateView<S: Shape>: View {
         imageState: emptyState,
         emptyPlaceholder: "person.circle",
         clipShape: RoundedRectangle(cornerRadius: 8),
-        backgroundColor: .yellow,
-        foregroundColor: .red
+        backgroundColor: Color.yellow,
+        foregroundColor: Color.red
     )
 
     ClippedImageStateView(
         imageState: failureState,
         errorPlaceholder: "exclamationmark.triangle",
         clipShape: Circle(),
-        backgroundColor: .orange,
-        foregroundColor: .white
+        backgroundColor: Color.orange,
+        foregroundColor: Color.white
     )
     ClippedImageStateView(
         imageState: loadingState,
         clipShape: Circle(),
-        backgroundColor: .blue,
-        foregroundColor: .white
+        backgroundColor: Color.blue,
+        foregroundColor: Color.white
     )
     .background(.blue.opacity(0.3))
 
     ClippedImageStateView(
         imageState: successState,
         clipShape: Circle(),
-        backgroundColor: .red,
-        foregroundColor: .yellow
+        backgroundColor: Color.red,
+        foregroundColor: Color.yellow
     )
     .background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
 }
