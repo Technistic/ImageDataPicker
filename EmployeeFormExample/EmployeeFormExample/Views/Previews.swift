@@ -63,7 +63,7 @@ import SwiftUI
     Text("with custom placeholder").font(.title2)
     ImageDataView(
         imageData: imageData,
-        emptyImage: "photo.fill"
+        placeholder: "photo.fill"
     )
 }
 
@@ -136,23 +136,22 @@ import SwiftUI
     Text("with custom placeholder").font(.title2)
     ImageStateView(
         imageState: imageStateEmpty,
-        emptyImage: "photo.circle.fill",
-        errorImage: "exclamationmark.triangle.fill"
+        emptyPlaceholder: "photo.circle.fill",
+        errorPlaceholder: "exclamationmark.triangle.fill"
     )
 }
 
 #Preview("ImageStateView-empty_sample-photo") {
     @Previewable @State var imageStateSuccessBoy: ImageDataModel.ImageState =
-        ImageDataModel.ImageState.success(nil)
-
+    ImageDataModel.ImageState.success(nil)
+    
     Text("ImageStateView").font(.title)
     Text("Test empty sample Image").font(.title2)
     Text("with custom placeholder").font(.title2)
     ImageStateView(
         imageState: imageStateSuccessBoy,
-        emptyImage: "photo.circle.fill",
-        errorImage: "exclamationmark.triangle.fill"
-    )
+        emptyPlaceholder: "photo.circle.fill",
+        errorPlaceholder: "exclamationmark.triangle.fill")
 }
 
 #Preview("ImageStateView-failure-triangle") {
@@ -164,77 +163,9 @@ import SwiftUI
     Text("with custom placeholder").font(.title2)
     ImageStateView(
         imageState: imageStateFailure,
-        emptyImage: "photo.circle.fill",
-        errorImage: "exclamationmark.triangle.fill"
+        emptyPlaceholder: "photo.circle.fill",
+        errorPlaceholder: "exclamationmark.triangle.fill"
     )
-}
-
-#Preview("SquareImageViews") {
-    SquareImageView(
-        imageState: ImageDataModel.ImageState.success(
-            UIImage(named: "Anne_Lee")?.pngData()
-        )
-    )
-    
-    SquareImageView(
-        imageState: ImageDataModel.ImageState.success(
-            UIImage(named: "Boy_Rectangle")?.pngData()
-        )
-    )
-
-    SquareImageView(
-        imageState: ImageDataModel.ImageState.empty,
-        emptyImage: "photo"
-    )
-    .background(Color.mint)
-    .foregroundColor(Color.white)
-
-    SquareImageView(
-        imageState: ImageDataModel.ImageState.empty,
-        emptyImage: "exclamationmark.triangle.fill"
-    )
-    .background(Color.mint)
-    .foregroundColor(Color.white)
-}
-
-#Preview("ClippedImageStateView-Girl") {
-    @Previewable @State var imageStateSuccessGirl: ImageDataModel.ImageState =
-        ImageDataModel.ImageState.success(
-            UIImage(named: "Girl_Rectangle")?.pngData()
-        )
-    Text("ClippedImageStateView").font(.title)
-    Text("Test imageData=Girl").font(.title2)
-    Text("clippedImageShape(.roundedSquare)")
-    ClippedImageStateView(
-        imageState: imageStateSuccessGirl
-    )
-    .clippedImageShape(.roundedSquare)
-}
-
-#Preview("ClippedImageStateView-Boy") {
-    @Previewable @State var imageStateSuccessBoy: ImageDataModel.ImageState =
-        ImageDataModel.ImageState.success(
-            UIImage(named: "Boy_Rectangle")?.pngData()
-        )
-    Text("ClippedImageStateView").font(.title)
-    Text("Test imageData=Boy").font(.title2)
-    Text("clippedImageShape(.round)")
-    ClippedImageStateView(
-        imageState: imageStateSuccessBoy
-    )
-    .clippedImageShape(.round)
-}
-
-#Preview("ClippedImageStateView-Empty") {
-    @Previewable @State var imageStateEmpty: ImageDataModel.ImageState =
-        ImageDataModel.ImageState.empty
-    Text("ClippedImageStateView").font(.title)
-    Text("Test imageData=empty").font(.title2)
-    Text("clippedImageShape(.round)")
-    ClippedImageStateView(
-        imageState: imageStateEmpty
-    )
-    .clippedImageShape(.roundedSquare)
 }
 
 #Preview("ImagePickerView-nil-default") {
@@ -244,9 +175,9 @@ import SwiftUI
     Text("with default placeholder").font(.title2)
     ImageDataPickerView(
         imageData: $imageData,
-        emptyImage: "person.circle.fill"
+        emptyPlaceholderImageName: "person.circle.fill",
+        clipShape: Circle()
     )
-    .clippedImageShape(.round)
     .frame(width: 200, height: 200)
 }
 
@@ -255,11 +186,11 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Woman").font(.title2)
-    Text("clippedImageShape(.round)")
+    Text("clipShape: RoundedRectangle(cornerRadius: 8)")
     ImageDataPickerView(
-        imageData: $imageData
+        imageData: $imageData,
+        clipShape: RoundedRectangle(cornerRadius: 8)
     )
-    .clippedImageShape(.roundedSquare)
     .frame(width: 200, height: 200)
 }
 
@@ -268,11 +199,11 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Man").font(.title2)
-    Text("clippedImageShape(.square)")
+    Text("clipShape: Rectangle()")
     ImageDataPickerView(
-        imageData: $imageData
+        imageData: $imageData,
+        clipShape: Rectangle()
     )
-    .clippedImageShape(.square)
     .frame(width: 200, height: 200)
 }
 
@@ -281,11 +212,11 @@ import SwiftUI
         .pngData()
     Text("ImagePickerView").font(.title)
     Text("Test imageData=Girl").font(.title2)
-    Text("clippedImageShape(.roundedSquare)")
+    Text("clipShape: RoundedRectangle(cornerRadius: 8)")
     ImageDataPickerView(
-        imageData: $imageData
+        imageData: $imageData,
+        clipShape: RoundedRectangle(cornerRadius: 8)
     )
-    .clippedImageShape(.roundedSquare)
 }
 
 #Preview("ImagePickerView-nil-photo") {
@@ -295,10 +226,10 @@ import SwiftUI
     Text("with custom placeholder").font(.title2)
     ImageDataPickerView(
         imageData: $imageData,
-        emptyImage: "photo.circle.fill",
-        errorImage: "exclamationmark.triangle.fill"
+        emptyPlaceholderImageName: "photo.circle.fill",
+        errorPlaceholderImageName: "exclamationmark.triangle.fill",
+        clipShape: Circle()
     )
-    .clippedImageShape(.round)
     .frame(width: 200, height: 200)
 }
 
@@ -309,7 +240,7 @@ import SwiftUI
     Text("Non-Existing").font(.title)
     ImageDataPickerView(
         imageData: $imageData,
-        emptyImage: "photo.circle.fill",
+        emptyPlaceholderImageName: "photo.circle.fill",
     )
     .frame(width: 200,  height: 200)
 }

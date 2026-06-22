@@ -18,11 +18,10 @@ import SwiftUI
 
 /// The ``EmployeeListView`` displays a list of employees, allowing the user to select an ``Employee`` to view their details.
 ///
-/// This is a multi-platform view based on a NavigationSplitView that presents a list of
+/// This is a multiplatform view based on a NavigationSplitView that presents a list of
 /// employees along with their photo, name and department.
 struct EmployeeListView: View {
     @Environment(\.editMode) private var editMode
-
     @Environment(\.modelContext) private var modelContext
     @Query private var employees: [Employee]
 
@@ -49,7 +48,7 @@ struct EmployeeListView: View {
             }
             .navigationTitle("Our Employees")
             .environment(\.defaultMinListRowHeight, 100)
-
+            
             .toolbar {
                 #if os(iOS)
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -108,7 +107,14 @@ struct EmployeeListView: View {
                     selectedEmployeeID = nil
                 }
                 modelContext.delete(deletedEmployee)
-                try! modelContext.save()
+            }
+
+            do {
+                try modelContext.save()
+            } catch {
+                Logger.appdata.error(
+                    "Failed to save employee deletions: \(error.localizedDescription)"
+                )
             }
         }
     }
@@ -121,55 +127,65 @@ struct EmployeeListRowView: View {
     private let employeeListTestID = UIIdentifiers.EmployeeList.self
 
     var body: some View {
-        @State var img: Data? = employee?.imageData
-        @State var state: ImageDataModel = ImageDataModel(imageData: img)
-        HStack {
-            VStack {
-                ClippedImageStateView(
-                    imageState: state.imageState
-                )
-                .clippedImageShape(.round)
+        if let employee {
+            let imageData = employee.imageData
+
+            HStack {
+                VStack {
+                    if let imageData {
+                        ImageDataView(imageData: imageData)
+                            .scaledToFill()
+                            .squareImageView(shape: Circle())
+                    } else {
+                        ImageStateView(
+                            imageState: .empty
+                        )
+                        .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: Constants.personPlaceholder))
+                        .squareImageView(shape: Circle(), background: .blue)
+                        .foregroundStyle(.white)
+                        .padding(4)
+                        .frame(width: 80, height: 80)
+                    }
+                }
                 .padding(4)
-                .accessibilityIdentifier(
-                    employeeListTestID.employeeFullName(
-                        firstName: employee!.firstName,
-                        lastName: employee!.lastName
-                    )
-                )
-            }
+                .frame(width: 80, height: 80)
+            
             VStack {
                 HStack {
-                    Text("\(employee?.firstName ?? "")")
+                    Text(employee.firstName)
                         .font(.headline)
                         .accessibilityIdentifier(
                             employeeListTestID.firstName(
-                                employeeID: employee!.persistentModelID,
-                                firstName: employee!.firstName
+                                employeeID: employee.persistentModelID,
+                                firstName: employee.firstName
                             )
                         )
 
-                    Text("\(employee?.lastName ?? "")")
+                    Text(employee.lastName)
                         .font(.headline)
                         .accessibilityIdentifier(
                             employeeListTestID.lastName(
-                                employeeID: employee!.persistentModelID,
-                                lastName: employee!.lastName
+                                employeeID: employee.persistentModelID,
+                                lastName: employee.lastName
                             )
                         )
                 }
 
-                Text("\(employee?.department ?? "")")
+                Text(employee.department)
                     .font(.subheadline)
                     .accessibilityIdentifier(
                         employeeListTestID.department(
-                            employeeID: employee!.persistentModelID,
-                            department: employee!.department
+                            employeeID: employee.persistentModelID,
+                            department: employee.department
                         )
                     )
+                }
             }
-        }
-        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
-            return 0
+            .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+                return 0
+            }
+        } else {
+            EmptyView()
         }
     }
 }

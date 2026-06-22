@@ -44,5 +44,7 @@ Package.pins
 
 .vscode
 
+build
+framework
 ImageDataPicker/archives
 ImageDataPicker/framework

@@ -62,8 +62,8 @@ final class Employee: Identifiable {
                 return Image(systemName: Constants.personPlaceholder)
             }
         #else
-            if let imageData {
-                return Image(nsImage: NSImage(data: imageData as Data)!)
+            if let imageData, let nsImage = NSImage(data: imageData) {
+                return Image(nsImage: nsImage)
             } else {
                 return Image(systemName: Constants.personPlaceholder)
             }

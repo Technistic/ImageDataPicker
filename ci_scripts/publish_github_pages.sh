@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 #  publish_github_pages.sh
 #  
@@ -56,7 +56,7 @@ git config user.email "$DOCC_GITHUB_EMAIL"
     
 # Stash any uncommitted changes in the primary repository path so that we can safely switch branches.
 # TODO: This should not be required.
-git stash
+git stash || true
     
 # Change the GitHub URL to your repository
 git remote set-url origin https://${DOCC_GITHUB_USERNAME}:${DOCC_GITHUB_API_TOKEN}@github.com/${GITHUB_ORGANIZATION}/${GITHUB_PAGES_REPO}
@@ -83,8 +83,12 @@ done
 #  Commit and push the changes to the GitHub Pages branch.
 # git add ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR} ${CI_PRIMARY_REPOSITORY_PATH}/doc_archives
 git add ${CI_PRIMARY_REPOSITORY_PATH}/${GITHUB_PAGES_DIR}
-git commit -m "Updated DocC documentation"
-git push --set-upstream origin ${GITHUB_PAGES_BRANCH}
+if git diff --cached --quiet; then
+  echo "No DocC changes to publish."
+else
+  git commit -m "Updated DocC documentation"
+  git push --set-upstream origin ${GITHUB_PAGES_BRANCH}
+fi
 
 echo "Publishing DocC documentation for ${CI_PRODUCT} completed successfully."
     

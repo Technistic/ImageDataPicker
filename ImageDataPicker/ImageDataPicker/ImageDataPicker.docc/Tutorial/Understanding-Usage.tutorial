@@ -1,0 +1,15 @@
+@Article(time: 5) {
+    @Intro(title: "Using the Framework") {
+        It is simple to incorporate the **ImageDataPicker Framework** in your application. Add the package with Swift Package Manager or embed the xcframework, create a SwiftData model or `@State` property, and bind ``ImageDataPickerView`` to a `Data?` value.
+        @Image(source: "Brain-Header-R", alt: "Brain")
+    }
+    
+    @ContentAndMedia {
+        @Image(source: "ImageDataPicker-Header", alt: "Typical usage of the ImageDataPicker Framework.")
+        ``ImageDataPickerView`` is designed to bind directly to `Data?`. In practice, many apps use it with a SwiftData model property, but it also works with `@State`. When a user selects a photo from the photo library, the bound value updates with the selected image data.
+    }
+
+    @ContentAndMedia {
+        In Xcode, the recommended installation path is **File > Add Package Dependencies...** and adding the `ImageDataPicker` package. If you prefer a binary distribution, you can also download and embed the released xcframework.
+    }
+}
