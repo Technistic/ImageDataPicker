@@ -9,25 +9,21 @@
 #  Set the marketing version and release channel based on the branch or tag name.
 #
 #  Branch names should follow the format:
-#    [TYPE(.BUILD)]_vMAJOR.MINOR.PATCH
+#    CHANNEL_vMAJOR.MINOR.PATCH
 #
 #  Tag names should follow the format:
-#    [TYPE(.BUILD)]-vMAJOR.MINOR.PATCH
+#    CHANNEL-vMAJOR.MINOR.PATCH
 #
 #
 #  Example Branch Names:
-#  features-featureA -> No Xcode Cloud release channel
-#  bugs-bugA -> No Xcode Cloud release channel
-#  alpha.2_v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Alpha Build)
-#  beta.1_v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Beta Build)
-#  rc.1_v1.2.3 -> v1.2.3-rc.1 (Xcode Cloud Release Candidate Build)
-#  main (Xcode Cloud Production Build by default)
+#  alpha_v1.2.3 -> Alpha release channel build
+#  beta_v1.2.3 -> Beta release channel build
+#  main -> Production release channel build
 #
 #  Example Tag Names:
-#  alpha.2-v1.2.3 -> v1.2.3-alpha.2 (Xcode Cloud Alpha Release)
-#  beta.1-v1.2.3 -> v1.2.3-beta.1 (Xcode Cloud Beta Release)
-#  rc.1-v1.2.3 -> v1.2.3-rc.1 (Xcode Cloud Release Candidate)
-#  v1.2.3 -> v1.2.3 (Xcode Cloud Production Release)
+#  alpha-v1.2.3 -> Alpha prerelease publication
+#  beta-v1.2.3 -> Beta prerelease publication
+#  v1.2.3 -> Production release publication
 #
 
 set -euo pipefail

@@ -34,6 +34,16 @@ If those values drift, the release workflow fails early.
 
 ## Workflows
 
+## Scheme Mapping
+
+Use these shared schemes consistently across GitHub Actions and Xcode Cloud:
+
+- `alpha_v*` uses `ImageDataPicker-alpha` and `EmployeeFormExample-alpha`
+- `beta_v*` uses `ImageDataPicker-beta` and `EmployeeFormExample-beta`
+- `main` uses `ImageDataPicker` and `EmployeeFormExample-Release`
+
+If an Xcode Cloud workflow ever stops appearing or stops triggering after scheme changes, first confirm that the workflow still points to the correct shared scheme and branch filter for its release channel.
+
 ### `OSS Build and Test`
 
 This workflow runs on:
