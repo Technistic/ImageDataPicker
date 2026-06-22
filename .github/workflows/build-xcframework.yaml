@@ -78,9 +78,11 @@ jobs:
       matrix:
         include:
           - target_kind: framework
-            project: ImageDataPicker/ImageDataPicker.xcodeproj
+            container_flag: -project
+            container_path: ImageDataPicker/ImageDataPicker.xcodeproj
           - target_kind: sample
-            project: EmployeeFormExample/EmployeeFormExample.xcodeproj
+            container_flag: -workspace
+            container_path: ImageDataPicker.xcworkspace
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -89,6 +91,8 @@ jobs:
         env:
           FRAMEWORK_SCHEME: ${{ needs.resolve-release-metadata.outputs.framework_scheme }}
           SAMPLE_SCHEME: ${{ needs.resolve-release-metadata.outputs.sample_scheme }}
+          CONTAINER_FLAG: ${{ matrix.container_flag }}
+          CONTAINER_PATH: ${{ matrix.container_path }}
         run: |
           if [[ "${{ matrix.target_kind }}" == "framework" ]]; then
             SCHEME="$FRAMEWORK_SCHEME"
@@ -96,13 +100,14 @@ jobs:
             SCHEME="$SAMPLE_SCHEME"
           fi
           xcodebuild test \
-            -project "${{ matrix.project }}" \
+            "$CONTAINER_FLAG" "$CONTAINER_PATH" \
             -scheme "$SCHEME" \
             -destination "platform=macOS" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
-            DEVELOPMENT_TEAM=""
+            DEVELOPMENT_TEAM="" \
+            SWIFT_STRICT_MEMORY_SAFETY=""
 
   build-and-release:
     runs-on: macos-15
@@ -153,7 +158,8 @@ jobs:
           xcodebuild \
             clean \
             -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}.xcodeproj" \
-            -scheme "${FRAMEWORK_SCHEME}"
+            -scheme "${FRAMEWORK_SCHEME}" \
+            SWIFT_STRICT_MEMORY_SAFETY=""
 
           mkdir -p "$RUNNER_TEMP/build" "$RUNNER_TEMP/framework"
 
@@ -167,7 +173,8 @@ jobs:
               -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}.xcodeproj" \
               -scheme "${FRAMEWORK_SCHEME}" \
               -destination "generic/platform=${destination}" \
-              -archivePath "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive"
+              -archivePath "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive" \
+              SWIFT_STRICT_MEMORY_SAFETY=""
           done
 
       - name: Create xcframework
