@@ -14,6 +14,14 @@ import Testing
 @testable import ImageDataPicker
 
 struct ImageDataPickerTests {
+    @Test func frameworkConstantsExposeExpectedDefaults() {
+        #expect(Constants.personPlaceholder == "person.fill")
+        #expect(Constants.photoPlaceholder == "photo.fill")
+        #expect(Constants.errorPlaceholder == "exclamationmark.circle.fill")
+        #expect(buttonPosition == Constants.buttonPosition)
+        #expect(Constants.buttonPosition > 0)
+        #expect(Constants.buttonPosition < 1)
+    }
 
     @MainActor
     @Test func imageDataModelInitializesEmptyStateFromNilImageData() {
@@ -53,6 +61,16 @@ struct ImageDataPickerTests {
     }
 
     @MainActor
+    @Test func imageDataModelRetainsExplicitInitialState() {
+        let loadingState = ImageDataModel.ImageState.loading(
+            Progress(totalUnitCount: 10)
+        )
+        let model = ImageDataModel(imageState: loadingState)
+
+        #expect(model.imageState == loadingState)
+    }
+
+    @MainActor
     @Test func imageDataModelResetsToEmptyWhenSelectionClears() {
         let model = ImageDataModel(imageData: TestImageData.png)
 
@@ -62,6 +80,10 @@ struct ImageDataPickerTests {
     }
 
     @Test func imageStateEquatableMatchesAssociatedValues() {
+        let matchingLoadingLhs = Progress(totalUnitCount: 1)
+        let matchingLoadingRhs = Progress(totalUnitCount: 1)
+        let differentLoading = Progress(totalUnitCount: 2)
+
         let sameFailureLhs = ImageDataModel.ImageState.failure(
             NSError(domain: "Example", code: 1, userInfo: [
                 NSLocalizedDescriptionKey: "Same failure"
@@ -79,9 +101,40 @@ struct ImageDataPickerTests {
         )
 
         #expect(ImageDataModel.ImageState.empty == .empty)
+        #expect(
+            ImageDataModel.ImageState.loading(matchingLoadingLhs)
+                == .loading(matchingLoadingRhs)
+        )
+        #expect(
+            ImageDataModel.ImageState.loading(matchingLoadingLhs)
+                != .loading(differentLoading)
+        )
         #expect(ImageDataModel.ImageState.success(TestImageData.png) == .success(TestImageData.png))
         #expect(sameFailureLhs == sameFailureRhs)
         #expect(sameFailureLhs != differentFailure)
+    }
+
+    @Test func imageStateDescriptionMatchesCases() {
+        #expect(ImageDataModel.ImageState.empty.description() == "empty")
+        #expect(
+            ImageDataModel.ImageState.loading(Progress(totalUnitCount: 1))
+                .description() == "loading"
+        )
+        #expect(
+            ImageDataModel.ImageState.success(TestImageData.png)
+                .description() == "success"
+        )
+        #expect(
+            ImageDataModel.ImageState.failure(TestFailureError.example)
+                .description() == "failure"
+        )
+    }
+
+    @Test func dataImageInitializerRejectsNilAndRetainsImageData() {
+        #expect(ImageDataModel.DataImage(imageData: nil) == nil)
+
+        let dataImage = ImageDataModel.DataImage(imageData: TestImageData.png)
+        #expect(dataImage?.imageData == TestImageData.png)
     }
 
     @MainActor
@@ -132,8 +185,32 @@ struct ImageDataPickerTests {
     }
 
     @MainActor
+    @Test func clippedImageStateViewRetainsInitializerValuesAndBuildsBody() {
+        let view = ClippedImageStateView(
+            imageState: .success(TestImageData.png),
+            emptyPlaceholder: Constants.photoPlaceholder,
+            errorPlaceholder: Constants.errorPlaceholder,
+            clipShape: Circle()
+        )
+
+        switch view.imageState {
+        case .success(let imageData):
+            #expect(imageData == TestImageData.png)
+        default:
+            Issue.record("Expected success state to be retained by ClippedImageStateView.")
+        }
+
+        #expect((reflectedValue(named: "emptyPlaceholder", in: view) as? String) == Constants.photoPlaceholder)
+        #expect((reflectedValue(named: "errorPlaceholder", in: view) as? String) == Constants.errorPlaceholder)
+        #expect(reflectedValue(named: "clipShape", in: view) is Circle)
+
+        let body = view.body
+        #expect(String(describing: type(of: body)).isEmpty == false)
+    }
+
+    @MainActor
     @Test func imageDataPickerViewRetainsInitializerValuesAndBuildsBody() {
-        var imageData = TestImageData.png
+        var imageData: Data? = TestImageData.png
         let binding = Binding<Data?>(
             get: { imageData },
             set: { imageData = $0 }
@@ -152,6 +229,39 @@ struct ImageDataPickerTests {
 
         let body = view.body
         #expect(String(describing: type(of: body)).isEmpty == false)
+    }
+
+    @MainActor
+    @Test func imageDataPickerViewSizingHelpersUseProvidedSize() {
+        var imageData: Data? = nil
+        let binding = Binding<Data?>(
+            get: { imageData },
+            set: { imageData = $0 }
+        )
+        let view = ImageDataPickerView(
+            imageData: binding,
+            clipShape: Circle()
+        )
+
+        let size = CGSize(width: 200, height: 120)
+        #expect(view.ratio(size: size) == 120)
+        #expect(view.bsize(size: size) == 24)
+    }
+
+    @Test func symbolLayoutHelpersReturnExpectedValues() {
+        let size = CGSize(width: 320, height: 180)
+
+        #expect(SymbolLayoutHelper.maxDim(size) == 320)
+        #expect(SymbolLayoutHelper.minDim(size) == 180)
+        #expect(SymbolLayoutHelper.scaleFactor(systemImage: "person.circle") == 1.0)
+        #expect(SymbolLayoutHelper.offsetFactor(systemImage: "person.circle") == 0.0)
+        #expect(SymbolLayoutHelper.offsetFactor(systemImage: "exclamationmark.triangle") == -3.0)
+
+        let photoScaleFactor = SymbolLayoutHelper.scaleFactor(
+            systemImage: Constants.photoPlaceholder
+        )
+        #expect(photoScaleFactor > 0)
+        #expect(photoScaleFactor <= 1)
     }
 }
 

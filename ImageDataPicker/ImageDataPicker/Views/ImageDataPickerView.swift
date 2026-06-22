@@ -209,7 +209,7 @@ public struct ImageDataPickerView<S: Shape>: View {
     }
 
     func bsize(size: CGSize) -> CGFloat {
-        return ratio(size: imageSize) * 0.2
+        return ratio(size: size) * 0.2
     }
 
     private var paddingSize: CGFloat {
