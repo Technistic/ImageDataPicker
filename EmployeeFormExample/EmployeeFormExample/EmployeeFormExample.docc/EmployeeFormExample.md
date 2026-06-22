@@ -12,7 +12,7 @@ A sample application built with SwiftUI and SwiftData that demonstrates how to u
 
 ![ImageDataPicker](ImageDataPicker-Header)
 
-The ``EmployeeFormExample`` demonstrates how to use the ImageDataPicker framework in a SwiftUI application backed by SwiftData. The app displays a list of employees and lets the user edit each employee's first name, last name, department, and photo. The selected photo is bound as `Data?` and edited with ``ImageDataPicker/ImageDataPickerView``.
+The ``EmployeeFormExample`` demonstrates how to use the ImageDataPicker framework in a SwiftUI application backed by SwiftData. The app displays a list of employees and lets the user edit each employee's first name, last name, department, and photo. The selected photo is bound as `Data?` and edited with `ImageDataPickerView`.
 
 ## Topics
 

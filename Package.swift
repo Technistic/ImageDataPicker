@@ -28,7 +28,7 @@ let package = Package(
         .testTarget(
             name: "ImageDataPickerTests",
             dependencies: ["ImageDataPicker"],
-            path: "ImageDataPicker/ImageDataPickerTests"
+            path: "ImageDataPicker/ImageDataPickerPackageTests"
         ),
     ]
 )
