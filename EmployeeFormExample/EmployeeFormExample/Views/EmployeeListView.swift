@@ -127,14 +127,14 @@ struct EmployeeListRowView: View {
                 if let imageData {
                     ImageDataView(imageData: imageData)
                         .scaledToFill()
-                        .squareImageView(shape: Circle(), background: .green)
+                        .squareImageView(shape: Circle())
                 } else {
                     ImageStateView(
                         imageState: .empty
                     )
-                    .foregroundColor(.white)
-                    .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: "person"))
-                    .squareImageView(shape: Circle(), background: .green)
+                    .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: Constants.personPlaceholder))
+                    .squareImageView(shape: Circle(), background: .blue)
+                    .foregroundStyle(.white)
                     .padding(4)
                     .frame(width: 80, height: 80)
                     .accessibilityIdentifier(

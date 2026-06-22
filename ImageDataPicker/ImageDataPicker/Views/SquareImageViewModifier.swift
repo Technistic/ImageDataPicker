@@ -177,56 +177,34 @@ extension View {
 #Preview {
     VStack {
         #if canImport(UIKit)
-            Image(
-                uiImage: UIImage(
-                    named: "TestImage",
-                    in: Bundle(for: ImageDataModel.self),
-                    compatibleWith: nil
-                )!
-            )
+        Image(uiImage: UIImage(data: imageResourceData(for: "TestImage")!)!)
             .resizable()
             .scaledToFit()
 
-            Image(
-                uiImage: UIImage(
-                    named: "TestImage",
-                    in: Bundle(for: ImageDataModel.self),
-                    compatibleWith: nil
-                )!
-            )
+        Image(uiImage: UIImage(data: imageResourceData(for: "TestImage")!)!)
             .resizable()
             .scaledToFill()
             .squareImageView(shape: Circle())
-            .background(.yellow)
-
+            .background(.blue.opacity(0.3))
         #else
-            Image(
-                nsImage: Bundle(for: ImageDataModel.self).image(
-                    forResource: "TestImage"
-                )!
-            )
+        Image(nsImage: NSImage(data: imageResourceData(for: "TestImage")!)!)
             .resizable()
             .scaledToFit()
 
-            Image(
-                nsImage: Bundle(for: ImageDataModel.self).image(
-                    forResource: "TestImage"
-                )!
-            )
+        Image(nsImage: NSImage(data: imageResourceData(for: "TestImage")!)!)
             .resizable()
             .scaledToFill()
             .squareImageView(shape: Circle())
-            .background(.yellow)
+            .background(.blue.opacity(0.3))
         #endif
-        Image(systemName: "person")
+        
+        Image(systemName: "person.circle")
             .resizable()
             .scaledToFit()
-            .scaleEffect(0.7)
             .foregroundStyle(.white)
             .modifier(
-                SquareImageViewModifier(shape: Circle(), background: .red)
+                SquareImageViewModifier(shape: Circle(), background: .blue)
             )
-            .background(.green, ignoresSafeAreaEdges: [])
-            //.border(.green)
+            .background(.gray.opacity(0.3), ignoresSafeAreaEdges: [])
     }
 }

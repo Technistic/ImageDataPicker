@@ -55,9 +55,10 @@ struct EmployeeView: View {
                 }
 
                 ImageDataPickerView(imageData: $imageData,
-                                    clipShape: clippingShape(selection: clippingSelection), backgroundColor: .green, foregroundColor: .white)
+                                    clipShape: clippingShape(selection: clippingSelection), backgroundColor: .blue.opacity(0.3), foregroundColor: .white)
                     .padding(8)
                     .frame(width: 240, height: 240)
+                    //.background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
 
                 VStack(alignment: .center) {
                     Label("Employee Name", systemImage: "person.fill")
