@@ -6,11 +6,11 @@
 
 ## Summary
 
-The **ImageDataPicker** framework provides a convenient, intuitive and customizable control that you can use in your **SwiftUI** projects, to select photos from a device's **PhotoLibrary** and bind the selected image to a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model()).
+The **ImageDataPicker** framework provides a convenient, intuitive, and customizable control you can use in **SwiftUI** projects to select photos from the system photo library and bind the selected image as `Data?` in app state or a **SwiftData** [@Model](https://developer.apple.com/documentation/swiftdata/model()).
 
 ## Features
 
-The **ImageDataPicker** framework is a multiplatform framework that can be used with **SwiftUI** on iOS, iPadOS and macOS. It leverages the **Swift PhotosUI** [PhotosPicker](https://developer.apple.com/documentation/photosui/photospicker) to provide a **SwiftUI** control that presents an `Image` selected from a user's **PhotoLibrary**. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the Image to the containing `Frame`. Use the ``clipShape`` initializer parameter to present the image clipped to a circular, square or rounded-square shape.
+The **ImageDataPicker** framework is a multiplatform framework for **SwiftUI** on iOS, iPadOS, macOS, and visionOS. It leverages **PhotosUI** [PhotosPicker](https://developer.apple.com/documentation/photosui/photospicker) to provide a **SwiftUI** control that presents an `Image` selected from a user's photo library. The control automatically crops the selected image to a 1:1 aspect ratio and resizes the image to the containing frame. Use the `clipShape` initializer parameter to present the image clipped to a circular, square, or rounded-square shape.
 
 ![Clipping Options](ImageDataPicker/ImageDataPicker.docc/Resources/Clipping-Background@0.5x.png)
 
@@ -32,7 +32,7 @@ Add this repository in Xcode using `File > Add Package Dependencies...`, then se
 
 ## Using the **ImageDataPicker** Framework
 
-1. Add **(+)** the *ImageDataPicker.xcframework* framework to your Xcode Project.
+1. If you are using the xcframework distribution, add **ImageDataPicker.xcframework** to your Xcode project.
 
     ![Embed Framework](/assets/images/MyGreatApp-FrameworkEmbedded.png)
    
@@ -80,9 +80,9 @@ Add this repository in Xcode using `File > Add Package Dependencies...`, then se
 
 See the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework.
 
-Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to build a multiplatform application using the **ImageDataPicker** framework.
+Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to adopt the framework in a multiplatform SwiftUI application.
 
-Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for our [EmployeeFormExample](EmployeeFormExample/README.md) application, to understand how to use the Framework in a *real-world* application.
+Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for the [EmployeeFormExample](EmployeeFormExample/README.md) application to see how the framework is used in a working sample app.
 
 ## Credits
 

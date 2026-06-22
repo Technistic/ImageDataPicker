@@ -13,10 +13,9 @@
     
         @ContentAndMedia {
             @Image(source: "Clipping-Background", alt: "ImageDataPickerView clipping shape options.")
-            The shape of the ``ImageDataPickerView`` can be customized to be either circular (`.round`), a rounded-square (`.rounded`) or a square (`.square`).
+            The shape of the ``ImageDataPickerView`` can be customized by supplying any SwiftUI `Shape`, such as `Circle()`, `RoundedRectangle(cornerRadius:)`, or `Rectangle()`.
         
-            The `ImageDataPickerView` centres the selected image and clips it to a 1:1 aspect ratio, using the image's smaller horizontal or vertical dimension. The ``ImageDataPickerView`` will then be sized to fill its containing `Frame`.
+            The `ImageDataPickerView` centers the selected image and clips it to a 1:1 aspect ratio using the image's smaller horizontal or vertical dimension. The result is then sized to fill its containing frame.
         }
     }
 }
-
