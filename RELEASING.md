@@ -5,8 +5,9 @@ This repository uses a branch-promotion release flow:
 1. Feature branches merge into `alpha_vX.Y.Z`
 2. The alpha branch is promoted into `beta_vX.Y.Z`
 3. The beta branch is promoted into `main`
+4. Once `main` is verified, a `vX.Y.Z` tag is created from `main`
 
-Each release branch runs automated validation. Successful pushes to the active alpha, beta, and production branches also publish a GitHub release with build artifacts.
+Each release branch runs automated validation. Successful pushes to alpha and beta branches publish prerelease GitHub releases, and a verified production tag publishes the final production release.
 
 ## Branch Model
 
@@ -23,7 +24,7 @@ The workflows validate that both of these files carry the same release version:
 - `ImageDataPicker/Configuration/BundleConfig.xcconfig`
 - `EmployeeFormExample/Configuration/BundleConfig.xcconfig`
 
-For production releases, `main` derives its release version from those checked-in `MARKETING_VERSION` values.
+For production releases, the `vX.Y.Z` tag must match the checked-in `MARKETING_VERSION` on `main`.
 
 For prerelease branches, the workflow validates both:
 
@@ -67,7 +68,7 @@ This workflow runs on:
 - manual dispatch
 - pushes to `alpha_v*`
 - pushes to `beta_v*`
-- pushes to `main`
+- pushes of production tags matching `v*`
 
 It performs:
 
@@ -75,6 +76,7 @@ It performs:
 - `swift test`
 - unsigned macOS Xcode tests for both projects
 - xcframework creation for iOS, iOS Simulator, and macOS
+- Swift package source archive creation
 - optional codesigning of the xcframework
 - GitHub release publication
 
@@ -96,13 +98,14 @@ A successful push to `beta_vX.Y.Z` publishes:
 - a moving prerelease tag `beta-vX.Y.Z`
 - a release asset named `ImageDataPicker-beta-vX.Y.Z.tgz`
 
-### Production pushes
+### Production tags
 
-A successful push to `main` publishes:
+A successful push of `vX.Y.Z` from `main` publishes:
 
 - a production GitHub release named `vX.Y.Z`
 - an immutable production tag `vX.Y.Z`
 - a release asset named `ImageDataPicker-vX.Y.Z.tgz`
+- a source package release asset named `ImageDataPicker-package-vX.Y.Z.tgz`
 
 The production tag is the Swift Package Manager publication mechanism for the source package in this repository.
 
@@ -148,11 +151,13 @@ Before promoting a release line:
 1. Update `MARKETING_VERSION` in both bundle config files.
 2. Create or update the matching alpha branch, for example `alpha_v0.1.0`.
 3. Merge feature work into that alpha branch.
-4. Confirm `OSS Build and Test` passes.
+4. Confirm alpha validation and prerelease publication succeed.
 5. Promote the alpha branch into `beta_v0.1.0`.
 6. Confirm beta validation and prerelease publication succeed.
 7. Promote beta into `main`.
-8. Confirm the production release publishes `vX.Y.Z`.
+8. Verify `main` using the production schemes and Xcode Cloud workflow.
+9. Create tag `vX.Y.Z` from `main`.
+10. Confirm the production release publishes `vX.Y.Z`.
 
 ## Troubleshooting
 
@@ -181,6 +186,6 @@ Check that all of the following are configured:
 
 Check that:
 
-- the production workflow completed on `main`
-- the `vX.Y.Z` tag was created successfully
+- the production release workflow completed for the `vX.Y.Z` tag
+- the `vX.Y.Z` tag was created from the verified `main` commit
 - the repository version matches the intended release version
