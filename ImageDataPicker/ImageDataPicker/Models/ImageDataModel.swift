@@ -89,8 +89,8 @@ public final class ImageDataModel: Hashable {
     public init(imageState: ImageState, imageSelection: PhotosPickerItem? = nil)
     {
         Logger.application.info("\(imageState.description())")
-        self.imageState = imageState
         self.imageSelection = imageSelection
+        self.imageState = imageState
     }
 
     /// Creates a model from a `Binding<Data?>`.

@@ -95,8 +95,8 @@ public enum Constants {
     ImageDataPickerView(
         imageData: $imageData,
         clipShape: Circle(),
-        backgroundColor: .black,
-        foregroundColor: .white
+        backgroundColor: Color.black,
+        foregroundColor: Color.white
     )
     .background(.teal)
 }

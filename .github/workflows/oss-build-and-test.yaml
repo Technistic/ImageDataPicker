@@ -1,0 +1,110 @@
+name: OSS Build and Test
+
+on:
+  pull_request:
+    branches:
+      - main
+      - 'alpha_v*'
+      - 'alpha-v*'
+      - 'beta_v*'
+      - 'beta-v*'
+  push:
+    branches:
+      - main
+      - 'alpha_v*'
+      - 'alpha-v*'
+      - 'beta_v*'
+      - 'beta-v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oss-build-and-test-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  resolve-channel:
+    runs-on: ubuntu-latest
+    outputs:
+      release_channel: ${{ steps.resolve.outputs.release_channel }}
+      framework_scheme: ${{ steps.resolve.outputs.framework_scheme }}
+      sample_scheme: ${{ steps.resolve.outputs.sample_scheme }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve channel and scheme selection
+        id: resolve
+        env:
+          CI_BRANCH: ${{ github.ref_name }}
+          CI_PULL_REQUEST_SOURCE_BRANCH: ${{ github.head_ref }}
+          CI_PULL_REQUEST_TARGET_BRANCH: ${{ github.base_ref }}
+        run: |
+          . ci_scripts/get_version_from_git_ref.sh
+          case "$release_channel" in
+            alpha)
+              framework_scheme="ImageDataPicker-alpha"
+              sample_scheme="EmployeeFormExample-alpha"
+              ;;
+            beta)
+              framework_scheme="ImageDataPicker-beta"
+              sample_scheme="EmployeeFormExample-beta"
+              ;;
+            *)
+              framework_scheme="ImageDataPicker"
+              sample_scheme="EmployeeFormExample-Release"
+              ;;
+          esac
+          echo "release_channel=${release_channel}" >> "$GITHUB_OUTPUT"
+          echo "framework_scheme=${framework_scheme}" >> "$GITHUB_OUTPUT"
+          echo "sample_scheme=${sample_scheme}" >> "$GITHUB_OUTPUT"
+
+  package-tests:
+    runs-on: macos-latest
+    needs: resolve-channel
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Swift package tests
+        run: swift test
+
+  xcode-tests:
+    runs-on: macos-latest
+    needs: resolve-channel
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target_kind: framework
+            container_flag: -project
+            container_path: ImageDataPicker/ImageDataPicker.xcodeproj
+          - target_kind: sample
+            container_flag: -workspace
+            container_path: ImageDataPicker.xcworkspace
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run unsigned macOS tests
+        env:
+          FRAMEWORK_SCHEME: ${{ needs.resolve-channel.outputs.framework_scheme }}
+          SAMPLE_SCHEME: ${{ needs.resolve-channel.outputs.sample_scheme }}
+          CONTAINER_FLAG: ${{ matrix.container_flag }}
+          CONTAINER_PATH: ${{ matrix.container_path }}
+        run: |
+          if [[ "${{ matrix.target_kind }}" == "framework" ]]; then
+            SCHEME="$FRAMEWORK_SCHEME"
+          else
+            SCHEME="$SAMPLE_SCHEME"
+          fi
+          xcodebuild test \
+            "$CONTAINER_FLAG" "$CONTAINER_PATH" \
+            -scheme "$SCHEME" \
+            -destination "platform=macOS" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            SWIFT_STRICT_MEMORY_SAFETY=""

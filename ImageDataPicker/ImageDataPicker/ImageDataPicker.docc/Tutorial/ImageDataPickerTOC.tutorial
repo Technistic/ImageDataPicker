@@ -1,8 +1,8 @@
 @Tutorials(name: "ImageDataPicker Tutorial") {
     @Intro(title: "Using the ImageDataPicker Framework") {
-        Learn how to get the Framework, incorporate it in your App and important steps for releasing your App to the AppStore.
+        Learn how to install the framework, incorporate it in your app, and prepare a shipping build for release.
         
-        `iOS 16.0+ | iPadOS 16.0+ | macOS 13.0+`
+        `iOS 17.0+ | iPadOS 17.0+ | macOS 14.0+ | visionOS 1.0+`
         
         @Image(source: "ImageDataPicker-Hero", alt: "ImageDataPicker Framework")
     }
@@ -18,7 +18,7 @@
     }
         
     @Chapter(name: "Getting Started") {
-        Download the latest version of the ImageDataPicker framework, extract the archive and add the Framework to your project.
+        Add the package with Swift Package Manager or download the xcframework, then bring the framework into your project.
             
         @Image(source: "Compass-Header", alt: "Download Arrow")
             
@@ -28,7 +28,7 @@
     }
         
     @Chapter(name: "Building an ImageDataPicker App") {
-        Learn how to use the ImageDataPicker in your own App.
+        Learn how to use ImageDataPicker in your own app.
             
         @Image(source: "Phone-Header", alt: "Your App")
             
@@ -50,8 +50,7 @@
     }
     
     @Chapter(name: "Releasing Your App") {
-        Getting your App ready for the AppStore. This chapter covers important steps for releasing your App to the AppStore.
-        This chapter covers important steps for releasing your App to the AppStore.
+        Prepare your app for distribution, including platform permissions and signing checks that matter when the app embeds photo-picking functionality.
         
         @Image(source: "Shop-Header", alt: "Shopfront")
         
@@ -71,7 +70,7 @@
         }
             
         @Downloads(destination: "https://github.com/Technistic/ImageDataPicker/releases") {
-            Get the latest stable release or try beta versions.
+            Get the latest packaged release of ImageDataPicker.
         }
                 
         @Documentation(destination: "https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker/") {

@@ -14,9 +14,9 @@ Use the `ImageDataPickerView` to bind a selected photo directly to `Data?` in `@
 
 ![ImageDataPicker](ImageDataPicker-Header)
 
-1. Download the [latest release](https://github.com/Technistic/ImageDataPicker/releases) of the **ImageDataPicker** framework from the official repository.
+1. Add the package in Xcode with **File > Add Package Dependencies...** or download the [latest release](https://github.com/Technistic/ImageDataPicker/releases) if you prefer the xcframework distribution.
 
-2. Add `ImageDataPicker.xcframework` to your Xcode project. The framework supports iOS, iPadOS, and macOS.
+2. If you are using the binary distribution, add `ImageDataPicker.xcframework` to your Xcode project. The framework supports iOS, iPadOS, macOS, and visionOS.
 
 3. Create a SwiftData `@Model` property or an `@State` property to store image data as `Data?`.
 
@@ -44,7 +44,7 @@ Learn more by following the <doc:ImageDataPickerTOC> tutorial.
 
 ## Example Application
 
-The [EmployeeFormExample](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) application demonstrates how to use the **ImageDataPicker** framework in a multiplatform **SwiftUI** application.
+The [EmployeeFormExample](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) application demonstrates how to use the **ImageDataPicker** framework in a multiplatform **SwiftUI** application backed by SwiftData.
 
 ## Topics
 

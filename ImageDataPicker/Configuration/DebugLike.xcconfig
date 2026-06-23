@@ -1,0 +1,13 @@
+//
+//  DebugLike.xcconfig
+//  ImageDataPicker
+//
+//  Created by Michael Logothetis on 22/06/2026.
+//
+
+#include "BundleConfig.xcconfig"
+
+// Shared settings for local debug-style framework builds.
+ENABLE_TESTABILITY = YES
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG $(inherited)

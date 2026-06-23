@@ -20,7 +20,10 @@ extension ImageDataModel.ImageState: Equatable {
         case (.empty, .empty):
             return true
         case (.loading(let lhsv), .loading(let rhsv)):
-            return lhsv == rhsv
+            return lhsv.totalUnitCount == rhsv.totalUnitCount
+                && lhsv.completedUnitCount == rhsv.completedUnitCount
+                && lhsv.isCancelled == rhsv.isCancelled
+                && lhsv.isFinished == rhsv.isFinished
         case (.success(let lhsv), .success(let rhsv)):
             return lhsv == rhsv
         case (.failure(let lhsv), .failure(let rhsv)):

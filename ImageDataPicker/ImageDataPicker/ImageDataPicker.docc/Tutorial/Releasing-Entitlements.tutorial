@@ -1,13 +1,13 @@
 @Tutorial(time: 5) {
     @Intro(title: "App Entitlements") {
-        Review the following aspects of your app before submitting to the **AppStore** when using the ImageDataPicker framework.
+        Review the following runtime permissions before distributing an app that uses ImageDataPicker.
         
         @Image(source: "Shop-Header-R", alt: "AppStore submission preparation")
     }
     
     @Section(title: "Configure Entitlements") {
         @ContentAndMedia {
-            The ``ImageDataPickerView`` uses Swift's [PhotosUI](https://developer.apple.com/documentation/photosui) framework and [PhotosPicker](https://developer.apple.com/documentation/PhotosUI/PhotosPicker). While iOS handles photo library access automatically, macOS requires explicit permission through the Hardened Runtime settings.
+            The ``ImageDataPickerView`` uses Swift's [PhotosUI](https://developer.apple.com/documentation/photosui) framework and [PhotosPicker](https://developer.apple.com/documentation/PhotosUI/PhotosPicker). While iOS and iPadOS handle photo library access through the standard picker flow, macOS apps may need explicit Hardened Runtime configuration depending on how the app is signed and distributed.
             
             @Image(source: "List-Header", alt: "Entitlements configuration")
         }

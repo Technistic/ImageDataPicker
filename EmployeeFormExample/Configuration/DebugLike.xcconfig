@@ -1,0 +1,11 @@
+//
+//  DebugLike.xcconfig
+//  EmployeeFormExample
+//
+//  Created by Michael Logothetis on 22/06/2026.
+//
+
+#include "BundleConfig.xcconfig"
+
+// Default branding for local debug-style builds.
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon

@@ -9,6 +9,6 @@
         @Image(source: "Release-Doc-Title", alt: "The ImageDataPickerView")
         The **ImageDataPicker Framework** makes it simple to select photos from a user's photo library and bind them to `Data?` in SwiftUI state or a SwiftData model. It uses [PhotosUI](https://developer.apple.com/documentation/photosui) and [PhotosPicker](https://developer.apple.com/documentation/PhotosUI/PhotosPicker) to present a square thumbnail with controls for replacing or deleting the selected image.
         
-        Think of it as a `TextField` for `Images`.
+        Think of it as a photo field for SwiftUI forms and editors.
     }
 }
