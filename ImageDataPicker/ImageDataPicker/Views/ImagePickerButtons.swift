@@ -1,9 +1,9 @@
 //
-//  EditButton.swift
-//  A SwiftUI Image Picker that supporting SwiftData binding.
-//  Refer to FigmaDesign
+//  ImagePickerButtons.swift
+//  Overlay controls used by ImageDataPickerView.
 //
 //  Created by Michael Logothetis on 30/04/2025.
+//  Updated by Michael Logothetis on 02/04/2026.
 //
 //  MIT License
 //  Copyright (c) 2025 Michael Logothetis (Technistic Pty Ltd)
@@ -12,12 +12,8 @@
 import OSLog
 import SwiftUI
 
-#if canImport(UIKit)
-    import UIKit
-#endif
-
 /// An EditButton used as an overlay over a thumbnail image.
-///
+/// 
 struct ImagePickerEditButton: View {
     var body: some View {
         VStack {
@@ -37,8 +33,8 @@ struct ImagePickerEditButton: View {
     }
 }
 
-///  A DeleteButton used as an overlay over a thumbnail image.
-///
+/// A DeleteButton used as an overlay over a thumbnail image.
+/// 
 struct ImagePickerDeleteButton: View {
     var body: some View {
         VStack {
@@ -59,8 +55,8 @@ struct ImagePickerDeleteButton: View {
     }
 }
 
-///  A Star used as an overlay over a thumbnail image.
-///
+/// A Star used as an overlay over a thumbnail image.
+/// 
 struct ImagePickerStar: View {
     var color = Color.yellow
 
@@ -70,11 +66,10 @@ struct ImagePickerStar: View {
             .aspectRatio(contentMode: .fit)
             .background(.background.opacity(0.0))
             .foregroundStyle(color)
-
     }
 }
 
-#Preview {
+#Preview("ImagePickerButtons") {
     VStack {
         ImagePickerEditButton()
             .frame(width: 50, height: 50)

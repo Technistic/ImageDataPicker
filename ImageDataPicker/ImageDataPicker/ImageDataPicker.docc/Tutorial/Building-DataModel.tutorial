@@ -1,0 +1,77 @@
+@Tutorial(time: 10) {
+    @Intro(title: "Create a SwiftData Model") {
+        Add a SwiftData Model to your project to store a list of images.
+        
+        @Image(source: "Phone-Header-R", alt: "Phone Background")
+    }
+
+    @Section(title: "Create the Data Model") {
+        @ContentAndMedia {
+            Next, we create a SwiftData Model to store a list of images selected by the user, along with a user specified name for each image.
+            @Image(source: "SwiftData-Header", alt: "Xcode Project Platform")
+        }
+        
+        @Steps {
+            @Step {
+                Add a new **Swift File** to your **Project**.
+                
+                > This file will define your data model for storing images and their names.
+                
+                @Image(source: "3-1-NewModelFile", alt: "Xcode Framework Embed")
+            }
+            
+            @Step {
+                Name your file `MyImageModel.swift`.
+                @Image(source: "3-2-NewModelFile-MyImageModel", alt: "Xcode Framework Embed")
+            }
+            
+            @Step {
+                Next we add a SwiftData @Model to the file.
+                @Code(name: "MyImageModel.swift", file:"3-3-MyImageModel.swift") {
+                    @Image(source: "3-3-MyImageModelSrc", alt: "Xcode Framework Embed")
+                }
+            }
+            
+            @Step {
+                Use `import SwiftData` and wrap the `MyImage` class with an `@Model` attribute to create a SwiftData model. Add an `imageName` property to record a name for each image.
+
+                @Code(name: "MyImageModel.swift", file: "3-4-MyImageModel.swift", previousFile: "3-3-MyImageModel.swift") {
+                }
+            }
+            
+            @Step {
+                Add an `imageData?` property to store the `Data?` for each image.
+                @Code(name: "MyImageModel.swift", file: "3-5-MyImageModel.swift", previousFile: "3-4-MyImageModel.swift") {
+                }
+            }
+            
+            @Step {
+                Add a matching initializer to the @Model.
+                @Code(name: "MyImageModel.swift", file: "3-6-MyImageModel.swift", previousFile: "3-5-MyImageModel.swift")
+            }
+            
+            @Step {
+                Optionally store your `imageData` in an external file.
+                
+                > Tip: If you would like to store the image data in a file rather than in the database, you can use the `.externalStorage` Attribute as follows. `@Attribute(.externalStorage) var imageData: Data?`
+
+                @Code(name: "MyImageModel.swift", file: "3-7-MyImageModel.swift", previousFile: "3-6-MyImageModel.swift") {
+                }
+            }
+            
+            @Step {
+                For convenience, we add a computed property: **photo** that returns an `Image` object created from the `imageData` property.
+                @Code(name: "MyImageModel.swift", file: "3-8-MyImageModel.swift", previousFile: "3-7-MyImageModel.swift") 
+            }
+            
+            @Step {
+                Add `Constants` that represent options for placeholder images when `imageData` is `nil`. In this instance we will default to the `photo` system image.
+                @Code(name: "MyImageModel.swift", file: "3-9-MyImageModel.swift", previousFile: "3-8-MyImageModel.swift") 
+            }
+            
+            @Step {
+                Now you can update the **MyImageListApp.swift** file by replacing the "boiler-plate" `Item.self` in the `ModelContainer` schema with `MyImage.self`.
+                @Code(name: "MyImageListApp.swift", file: "3-10-MyImageListApp.swift", previousFile: "3-10-MyImageListApp-orig.swift") 
+            }
+        }
+    }

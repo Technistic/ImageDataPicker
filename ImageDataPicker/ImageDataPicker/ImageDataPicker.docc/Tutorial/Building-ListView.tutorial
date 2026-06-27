@@ -1,0 +1,59 @@
+@Tutorial(time: 10) {
+    @Intro(title: "Create a List view") {
+        Create a `List` view within a `NavigationSplitView` to display the **List** of Images and navigate to a **Detail** view for each one .
+        
+        @Image(source: "Phone-Header-R", alt: "Phone Background")
+    }
+    
+    @Section(title: "Add the MyImageListView") {
+        @ContentAndMedia {
+            Add a `NavigationSplitView` to your SwiftUI project to display the **List** of images and their details.
+            @Image(source: "4-MyImageListView", alt: "List Background")
+        }
+        @Steps {
+            @Step {
+                Add a new **Swift View File** to your **Project**
+                @Image(source: "4-1-NewViewFile", alt: "Xcode Framework Embed")
+            }
+            
+            @Step {
+                Name your file `MyImageListView.swift` 
+                @Image(source: "4-2-NewViewFile-MyImageListView", alt: "Xcode Framework Embed")
+            }
+            
+            @Step {
+                Click **Create**
+                @Code(name: "MyImageListView.swift", file: "4-3-MyImageListView.swift") {
+                    @Image(source: "4-3-MyImageListViewSrc", alt: "Xcode Framework Embed")
+                }
+            }
+        }
+    }
+    
+    @Section(title: "Add a NavigationSplitView") {
+        @ContentAndMedia {
+            Add a `NavigationSplitView` to your SwiftUI project to display the selected images and their details.
+            @Image(source: "4-4-MyImageListViewSrc", alt: "Split Background")
+        }
+        @Steps {
+            @Step {
+                Add a `NavigationSplitView` to your `MyImageListView.swift` file.
+                @Code(name: "MyImageListView.swift", file: 4-4-MyImageListView.swift, previousFile: 4-3-MyImageListView.swift) {
+                    @Image(source: "4-4-MyImageListViewSrc", alt: "")
+                }
+            }
+            @Step {
+                Add controls and functions to *Add* to and *Delete* from the List.
+                @Code(name: "MyImageListView.swift", file: 4-5-MyImageListView.swift, previousFile: 4-4-MyImageListView.swift) {
+                    @Image(source: "4-5-MyImageListViewSrc", alt: "")
+                }
+            }
+            @Step {
+                Add a MyImageListRow View to present each row in the List.
+                @Code(name: "MyImageListView.swift", file: 4-6-MyImageListView.swift, previousFile: 4-5-MyImageListView.swift) {
+                    @Image(source: "4-6-MyImageListViewSrc", alt: "")
+                }
+            }
+        }
+    }
+}

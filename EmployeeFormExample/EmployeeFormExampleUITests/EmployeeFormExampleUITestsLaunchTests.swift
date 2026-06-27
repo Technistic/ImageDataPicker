@@ -36,4 +36,12 @@ final class EmployeeFormExampleUITestsLaunchTests: XCTestCase {
         attachment.lifetime = .keepAlways
         add(attachment)
     }
+    
+    @MainActor
+    func testLaunchPerformance() throws {
+        // This measures how long it takes to launch your application.
+        measure(metrics: [XCTApplicationLaunchMetric()]) {
+            XCUIApplication().launch()
+        }
+    }
 }

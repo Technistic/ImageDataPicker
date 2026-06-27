@@ -11,26 +11,24 @@
 //  Copyright (c) 2025 Michael Logothetis (Technistic Pty Ltd)
 //
 
-
+import ImageDataPicker
 import OSLog
 import SwiftData
 import SwiftUI
-import ImageDataPicker
 
 /// The ``EmployeeListView`` displays a list of employees, allowing the user to select an ``Employee`` to view their details.
 ///
-/// This is a multi-platform view based on a NavigationSplitView that presents a list of
+/// This is a multiplatform view based on a NavigationSplitView that presents a list of
 /// employees along with their photo, name and department.
 struct EmployeeListView: View {
     @Environment(\.editMode) private var editMode
-
     @Environment(\.modelContext) private var modelContext
     @Query private var employees: [Employee]
 
     @State private var selectedEmployeeID: Employee.ID? = nil
     @State private var columnVisibility =
         NavigationSplitViewVisibility.doubleColumn
-    
+
     private let employeeListTestID = UIIdentifiers.EmployeeList.self
 
     var body: some View {
@@ -38,28 +36,29 @@ struct EmployeeListView: View {
             List(selection: $selectedEmployeeID) {
                 ForEach(employees) { employee in
                     EmployeeListRowView(employee: employee)
+                        .listRowSeparator(.visible)
                         .accessibilityIdentifier(
-                            employeeListTestID.employeeFullName(firstName: employee.firstName, lastName: employee.lastName)
+                            employeeListTestID.employeeFullName(
+                                firstName: employee.firstName,
+                                lastName: employee.lastName
+                            )
                         )
                 }
                 .onDelete(perform: deleteEmployees)
-                //.navigationTitle("Our Employees")
             }
             .navigationTitle("Our Employees")
-            .listRowSeparator(.automatic)
-
             .environment(\.defaultMinListRowHeight, 100)
-
+            
             .toolbar {
                 #if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                    .accessibilityIdentifier(
-                        UIIdentifiers.EmployeeList.deleteEmployeeButton
-                    )
-                }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                            .accessibilityIdentifier(
+                                UIIdentifiers.EmployeeList.deleteEmployeeButton
+                            )
+                    }
                 #endif
-                
+
                 ToolbarItem {
                     Button(action: addEmployee) {
                         Label("Add Employee", systemImage: "plus")
@@ -70,20 +69,19 @@ struct EmployeeListView: View {
                 }
             }
             #if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
+                .navigationSplitViewColumnWidth(min: 180, ideal: 200)
             #endif
-        }
-        detail: {
-            if let selection = selectedEmployeeID {
+        } detail: {
+            if selectedEmployeeID == nil {
+                Text("Please select an employee")
+
+            } else {
                 EmployeeView(
                     selectedEmployeeID: $selectedEmployeeID
                 )
-            } else {
-                Text("Please select an employee")
             }
         }
         .navigationSplitViewStyle(.balanced)
-        .accentColor(.blue)
     }
 
     /// Add a new ``Employee`` with default data.
@@ -109,7 +107,14 @@ struct EmployeeListView: View {
                     selectedEmployeeID = nil
                 }
                 modelContext.delete(deletedEmployee)
-                try! modelContext.save()
+            }
+
+            do {
+                try modelContext.save()
+            } catch {
+                Logger.appdata.error(
+                    "Failed to save employee deletions: \(error.localizedDescription)"
+                )
             }
         }
     }
@@ -118,54 +123,69 @@ struct EmployeeListView: View {
 /// A view that presents an employee's details in a row in the list.
 struct EmployeeListRowView: View {
     var employee: Employee?
-    
+
     private let employeeListTestID = UIIdentifiers.EmployeeList.self
 
     var body: some View {
-        @State var img: Data? = employee?.imageData
-        @State var state: ImageDataModel = ImageDataModel(imageData: img)
-        HStack {
-            VStack {
-                ClippedImageStateView(
-                    imageState: state.imageState
-                )
-                .clippedImageShape(.round)
-                .accessibilityIdentifier(
-                    employeeListTestID.employeeFullName(
-                        firstName: employee!.firstName,
-                        lastName: employee!.lastName
-                    )
-                )
-            }
+        if let employee {
+            let imageData = employee.imageData
+
+            HStack {
+                VStack {
+                    if let imageData {
+                        ImageDataView(imageData: imageData)
+                            .scaledToFill()
+                            .squareImageView(shape: Circle())
+                    } else {
+                        ImageStateView(
+                            imageState: .empty
+                        )
+                        .scaleEffect(SymbolLayoutHelper.scaleFactor(systemImage: Constants.personPlaceholder))
+                        .squareImageView(shape: Circle(), background: .blue)
+                        .foregroundStyle(.white)
+                        .padding(4)
+                        .frame(width: 80, height: 80)
+                    }
+                }
+                .padding(4)
+                .frame(width: 80, height: 80)
+            
             VStack {
                 HStack {
-                    Text("\(employee?.firstName ?? "")")
+                    Text(employee.firstName)
                         .font(.headline)
                         .accessibilityIdentifier(
                             employeeListTestID.firstName(
-                                employeeID: employee!.persistentModelID,
-                                firstName: employee!.firstName
+                                employeeID: employee.persistentModelID,
+                                firstName: employee.firstName
                             )
                         )
 
-                    Text("\(employee?.lastName ?? "")")
+                    Text(employee.lastName)
                         .font(.headline)
                         .accessibilityIdentifier(
                             employeeListTestID.lastName(
-                                employeeID: employee!.persistentModelID,
-                                lastName: employee!.lastName)
+                                employeeID: employee.persistentModelID,
+                                lastName: employee.lastName
+                            )
                         )
                 }
 
-                Text("\(employee?.department ?? "")")
+                Text(employee.department)
                     .font(.subheadline)
                     .accessibilityIdentifier(
                         employeeListTestID.department(
-                            employeeID: employee!.persistentModelID,
-                            department: employee!.department
+                            employeeID: employee.persistentModelID,
+                            department: employee.department
                         )
                     )
+                }
             }
+            .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+                return 0
+            }
+        } else {
+            EmptyView()
         }
     }
 }

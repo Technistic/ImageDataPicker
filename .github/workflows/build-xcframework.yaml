@@ -1,0 +1,246 @@
+name: Build and Release XCFramework
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'alpha_v*'
+      - 'alpha-v*'
+      - 'beta_v*'
+      - 'beta-v*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-and-release-xcframework-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  resolve-release-metadata:
+    runs-on: ubuntu-latest
+    outputs:
+      product_version: ${{ steps.resolve.outputs.product_version }}
+      tag_name: ${{ steps.resolve.outputs.tag_name }}
+      prerelease: ${{ steps.resolve.outputs.prerelease }}
+      release_channel: ${{ steps.resolve.outputs.release_channel }}
+      artifact_name: ${{ steps.resolve.outputs.artifact_name }}
+      framework_scheme: ${{ steps.resolve.outputs.framework_scheme }}
+      sample_scheme: ${{ steps.resolve.outputs.sample_scheme }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve release metadata
+        id: resolve
+        env:
+          CI_BRANCH: ${{ github.ref_name }}
+        run: |
+          . ci_scripts/get_version_from_git_ref.sh
+          case "$release_channel" in
+            alpha)
+              framework_scheme="ImageDataPicker-alpha"
+              sample_scheme="EmployeeFormExample-alpha"
+              ;;
+            beta)
+              framework_scheme="ImageDataPicker-beta"
+              sample_scheme="EmployeeFormExample-beta"
+              ;;
+            *)
+              framework_scheme="ImageDataPicker"
+              sample_scheme="EmployeeFormExample-Release"
+              ;;
+          esac
+          echo "product_version=${product_version}" >> "$GITHUB_OUTPUT"
+          echo "tag_name=${tag_name}" >> "$GITHUB_OUTPUT"
+          echo "prerelease=${prerelease}" >> "$GITHUB_OUTPUT"
+          echo "release_channel=${release_channel}" >> "$GITHUB_OUTPUT"
+          echo "framework_scheme=${framework_scheme}" >> "$GITHUB_OUTPUT"
+          echo "sample_scheme=${sample_scheme}" >> "$GITHUB_OUTPUT"
+          echo "artifact_name=ImageDataPicker-${tag_name}.tgz" >> "$GITHUB_OUTPUT"
+
+  package-tests:
+    runs-on: macos-latest
+    needs: resolve-release-metadata
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Swift package tests
+        run: swift test
+
+  xcode-tests:
+    runs-on: macos-latest
+    needs: resolve-release-metadata
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target_kind: framework
+            container_flag: -project
+            container_path: ImageDataPicker/ImageDataPicker.xcodeproj
+          - target_kind: sample
+            container_flag: -workspace
+            container_path: ImageDataPicker.xcworkspace
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run unsigned macOS tests
+        env:
+          FRAMEWORK_SCHEME: ${{ needs.resolve-release-metadata.outputs.framework_scheme }}
+          SAMPLE_SCHEME: ${{ needs.resolve-release-metadata.outputs.sample_scheme }}
+          CONTAINER_FLAG: ${{ matrix.container_flag }}
+          CONTAINER_PATH: ${{ matrix.container_path }}
+        run: |
+          if [[ "${{ matrix.target_kind }}" == "framework" ]]; then
+            SCHEME="$FRAMEWORK_SCHEME"
+          else
+            SCHEME="$SAMPLE_SCHEME"
+          fi
+          xcodebuild test \
+            "$CONTAINER_FLAG" "$CONTAINER_PATH" \
+            -scheme "$SCHEME" \
+            -destination "platform=macOS" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            SWIFT_STRICT_MEMORY_SAFETY=""
+
+  build-and-release:
+    runs-on: macos-15
+    needs:
+      - resolve-release-metadata
+      - package-tests
+      - xcode-tests
+    defaults:
+      run:
+        shell: bash
+    env:
+      FRAMEWORK_NAME: ImageDataPicker
+      PRODUCT_VERSION: ${{ needs.resolve-release-metadata.outputs.product_version }}
+      RELEASE_CHANNEL: ${{ needs.resolve-release-metadata.outputs.release_channel }}
+      RELEASE_TAG: ${{ needs.resolve-release-metadata.outputs.tag_name }}
+      RELEASE_ARTIFACT: ${{ needs.resolve-release-metadata.outputs.artifact_name }}
+      FRAMEWORK_SCHEME: ${{ needs.resolve-release-metadata.outputs.framework_scheme }}
+      BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+      P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+      KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+      XCFRAMEWORK_SIGNING_IDENTITY: ${{ vars.XCFRAMEWORK_SIGNING_IDENTITY }}
+    steps:
+      - name: Check Xcode version
+        run: /usr/bin/xcodebuild -version
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install signing certificate
+        if: ${{ env.BUILD_CERTIFICATE_BASE64 != '' }}
+        run: |
+          CERTIFICATE_PATH="$RUNNER_TEMP/build_certificate.p12"
+          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
+
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o "$CERTIFICATE_PATH"
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+
+      - name: Build archives
+        run: |
+          xcodebuild \
+            clean \
+            -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}.xcodeproj" \
+            -scheme "${FRAMEWORK_SCHEME}" \
+            SWIFT_STRICT_MEMORY_SAFETY=""
+
+          mkdir -p "$RUNNER_TEMP/build" "$RUNNER_TEMP/framework"
+
+          destinations=('iOS' 'iOS Simulator' 'macOS')
+          for destination in "${destinations[@]}"; do
+            output_archive="$(echo "${destination}" | tr ' ' '_')"
+            xcodebuild \
+              archive \
+              SKIP_INSTALL=NO \
+              BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+              -project "${FRAMEWORK_NAME}/${FRAMEWORK_NAME}.xcodeproj" \
+              -scheme "${FRAMEWORK_SCHEME}" \
+              -destination "generic/platform=${destination}" \
+              -archivePath "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-${output_archive}.xcarchive" \
+              SWIFT_STRICT_MEMORY_SAFETY=""
+          done
+
+      - name: Create xcframework
+        run: |
+          xcodebuild \
+            -create-xcframework \
+            -archive "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-iOS.xcarchive" -framework "${FRAMEWORK_NAME}.framework" \
+            -archive "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-iOS_Simulator.xcarchive" -framework "${FRAMEWORK_NAME}.framework" \
+            -archive "$RUNNER_TEMP/build/${FRAMEWORK_NAME}-macOS.xcarchive" -framework "${FRAMEWORK_NAME}.framework" \
+            -output "$RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework"
+
+      - name: Sign xcframework
+        if: ${{ env.BUILD_CERTIFICATE_BASE64 != '' && env.XCFRAMEWORK_SIGNING_IDENTITY != '' }}
+        run: |
+          codesign --timestamp -s "$XCFRAMEWORK_SIGNING_IDENTITY" "$RUNNER_TEMP/framework/${FRAMEWORK_NAME}.xcframework"
+
+      - name: Archive xcframework artifact
+        run: |
+          cd "$RUNNER_TEMP/framework"
+          tar -czf "$RELEASE_ARTIFACT" "${FRAMEWORK_NAME}.xcframework"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.RELEASE_ARTIFACT }}
+          path: ${{ runner.temp }}/framework/${{ env.RELEASE_ARTIFACT }}
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Sync prerelease tag to current commit
+        if: ${{ needs.resolve-release-metadata.outputs.prerelease == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -f "$RELEASE_TAG" "$GITHUB_SHA"
+          git push origin "refs/tags/${RELEASE_TAG}" --force
+
+      - name: Create production tag for Swift Package Manager
+        if: ${{ needs.resolve-release-metadata.outputs.release_channel == 'production' }}
+        run: |
+          if git rev-parse "$RELEASE_TAG" >/dev/null 2>&1; then
+            existing_sha="$(git rev-list -n 1 "$RELEASE_TAG")"
+            if [[ "$existing_sha" != "$GITHUB_SHA" ]]; then
+              echo "Production tag $RELEASE_TAG already exists at $existing_sha and will not be moved."
+              exit 1
+            fi
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag "$RELEASE_TAG" "$GITHUB_SHA"
+            git push origin "refs/tags/${RELEASE_TAG}"
+          fi
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2.3.2
+        with:
+          draft: false
+          files: ${{ runner.temp }}/framework/${{ env.RELEASE_ARTIFACT }}
+          generate_release_notes: true
+          name: ${{ env.PRODUCT_VERSION }}
+          overwrite_files: true
+          prerelease: ${{ needs.resolve-release-metadata.outputs.prerelease == 'true' }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          target_commitish: ${{ github.sha }}
+
+      - name: Production tag notice for Swift Package Manager
+        if: ${{ needs.resolve-release-metadata.outputs.release_channel == 'production' }}
+        run: |
+          echo "Published production tag ${RELEASE_TAG}. Swift Package Manager consumers can resolve this release from the repository tag."

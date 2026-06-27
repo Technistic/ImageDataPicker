@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69846AEF2E8BA1AB00F97452 /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69791C6E2E1616E50071F8AB /* ImageDataPicker.framework */; };
+		69846AF02E8BA1AB00F97452 /* ImageDataPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69791C6E2E1616E50071F8AB /* ImageDataPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		69CF51B82DC45CB300402D6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 69CF51B72DC45CB300402D6E /* README.md */; };
-		69CF52912DC98B6300402D6E /* ImageDataPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF52902DC98B6300402D6E /* ImageDataPicker.framework */; };
-		69CF52922DC98B6300402D6E /* ImageDataPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69CF52902DC98B6300402D6E /* ImageDataPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,13 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		69CF51822DC45A8000402D6E /* Embed Frameworks */ = {
+		69846AF12E8BA1AB00F97452 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				69CF52922DC98B6300402D6E /* ImageDataPicker.framework in Embed Frameworks */,
+				69846AF02E8BA1AB00F97452 /* ImageDataPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,14 +44,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		69791C6E2E1616E50071F8AB /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51512DC45A5400402D6E /* EmployeeFormExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeFormExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF51612DC45A5600402D6E /* EmployeeFormExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CF516B2DC45A5700402D6E /* EmployeeFormExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeFormExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		69CF51B72DC45CB300402D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		69CF52902DC98B6300402D6E /* ImageDataPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageDataPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69CF51B72DC45CB300402D6E /* README.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		69DE42AB2E67C46900FDBE62 /* EmployeeFormExample-Hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmployeeFormExample-Hero.png"; sourceTree = "<group>"; };
+		69DE42AC2E67C46900FDBE62 /* EmployeeFormExample-Hero@0.5x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmployeeFormExample-Hero@0.5x.png"; sourceTree = "<group>"; };
+		69DE42AD2E67C46900FDBE62 /* EmployeeFormExample-Hero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmployeeFormExample-Hero@2x.png"; sourceTree = "<group>"; };
+		69DE42AE2E67C46900FDBE62 /* ImageDataPicker-README-Hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero.png"; sourceTree = "<group>"; };
+		69DE42AF2E67C46900FDBE62 /* ImageDataPicker-README-Hero@0.5x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@0.5x.png"; sourceTree = "<group>"; };
+		69DE42B02E67C46900FDBE62 /* ImageDataPicker-README-Hero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageDataPicker-README-Hero@2x.png"; sourceTree = "<group>"; };
+		69DE42B12E67C46900FDBE62 /* MyGreatApp-Content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-Content.png"; sourceTree = "<group>"; };
+		69DE42B22E67C46900FDBE62 /* MyGreatApp-Content_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-Content_orig.png"; sourceTree = "<group>"; };
+		69DE42B32E67C46900FDBE62 /* MyGreatApp-FrameworkEmbedded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp-FrameworkEmbedded.png"; sourceTree = "<group>"; };
+		69DE42B42E67C46900FDBE62 /* MyGreatApp[FrameworkEmbedded_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyGreatApp[FrameworkEmbedded_orig.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6952DA282DF643AF0080276E /* Exceptions for "Configuration" folder in "EmployeeFormExample" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BundleConfig.xcconfig,
+				SampleCode.xcconfig,
+			);
+			target = 69CF51502DC45A5400402D6E /* EmployeeFormExample */;
+		};
 		69E73CFB2DE817CE00618E91 /* Exceptions for "EmployeeFormExample" folder in "EmployeeFormExampleUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -92,6 +110,9 @@
 		};
 		69E73CB92DDF673900618E91 /* Configuration */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6952DA282DF643AF0080276E /* Exceptions for "Configuration" folder in "EmployeeFormExample" target */,
+			);
 			path = Configuration;
 			sourceTree = "<group>";
 		};
@@ -102,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69CF52912DC98B6300402D6E /* ImageDataPicker.framework in Frameworks */,
+				69846AEF2E8BA1AB00F97452 /* ImageDataPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +147,7 @@
 		69CF51482DC45A5400402D6E = {
 			isa = PBXGroup;
 			children = (
+				69DE42B62E67C46900FDBE62 /* assets */,
 				69E73CB92DDF673900618E91 /* Configuration */,
 				69CF52812DC9838700402D6E /* Development Assets */,
 				69CF51532DC45A5400402D6E /* EmployeeFormExample */,
@@ -151,10 +173,36 @@
 		69CF517E2DC45A8000402D6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				69CF52902DC98B6300402D6E /* ImageDataPicker.framework */,
+				69791C6E2E1616E50071F8AB /* ImageDataPicker.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		69DE42B52E67C46900FDBE62 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				69DE42AB2E67C46900FDBE62 /* EmployeeFormExample-Hero.png */,
+				69DE42AC2E67C46900FDBE62 /* EmployeeFormExample-Hero@0.5x.png */,
+				69DE42AD2E67C46900FDBE62 /* EmployeeFormExample-Hero@2x.png */,
+				69DE42AE2E67C46900FDBE62 /* ImageDataPicker-README-Hero.png */,
+				69DE42AF2E67C46900FDBE62 /* ImageDataPicker-README-Hero@0.5x.png */,
+				69DE42B02E67C46900FDBE62 /* ImageDataPicker-README-Hero@2x.png */,
+				69DE42B12E67C46900FDBE62 /* MyGreatApp-Content.png */,
+				69DE42B22E67C46900FDBE62 /* MyGreatApp-Content_orig.png */,
+				69DE42B32E67C46900FDBE62 /* MyGreatApp-FrameworkEmbedded.png */,
+				69DE42B42E67C46900FDBE62 /* MyGreatApp[FrameworkEmbedded_orig.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		69DE42B62E67C46900FDBE62 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				69DE42B52E67C46900FDBE62 /* images */,
+			);
+			name = assets;
+			path = ../assets;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -166,7 +214,7 @@
 				69CF514D2DC45A5400402D6E /* Sources */,
 				69CF514E2DC45A5400402D6E /* Frameworks */,
 				69CF514F2DC45A5400402D6E /* Resources */,
-				69CF51822DC45A8000402D6E /* Embed Frameworks */,
+				69846AF12E8BA1AB00F97452 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -239,7 +287,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					69CF51502DC45A5400402D6E = {
 						CreatedOnToolsVersion = 16.3;
@@ -338,14 +386,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		69CF51732DC45A5700402D6E /* Debug */ = {
+		6952DA1E2DF3D1850080276E /* Alpha */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
-			baseConfigurationReferenceRelativePath = SampleCode.xcconfig;
+			baseConfigurationReferenceRelativePath = Alpha.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Employees-Beta";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -375,6 +423,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker/employeeformexample;
@@ -395,29 +444,138 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppDataUsageDescription = "EmployeeFormExample stores employee details and selected photos in the app's local data store.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "EmployeeFormExample can save selected employee photos from your photo library into the app.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "EmployeeFormExample is requesting access to your Photo Library.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				XROS_DEPLOYMENT_TARGET = 2.0;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
-			name = Debug;
+			name = Alpha;
 		};
-		69CF51742DC45A5700402D6E /* Release */ = {
+		6952DA1F2DF3D1850080276E /* Alpha */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
-			baseConfigurationReferenceRelativePath = SampleCode.xcconfig;
+			baseConfigurationReferenceRelativePath = Alpha.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 49;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Development Assets/Preview Assets.xcassets\"";
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_CFBundleDisplayName = EmployeeFormExample;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Allow access to your Photo Library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to your Photo Library.";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Alpha;
+		};
+		6952DA202DF3D1850080276E /* Alpha */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
+			baseConfigurationReferenceRelativePath = Alpha.xcconfig;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmployeeFormExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmployeeFormExample";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Alpha;
+		};
+		6952DA212DF3D1850080276E /* Alpha */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
+			baseConfigurationReferenceRelativePath = Alpha.xcconfig;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = EmployeeFormExample;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Alpha;
+		};
+		6952DA242DF4EC6D0080276E /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
+			baseConfigurationReferenceRelativePath = Beta.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Employees-Beta";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -447,6 +605,267 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				DOCC_HOSTING_BASE_PATH = ImageDataPicker/employeeformexample;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppDataUsageDescription = "EmployeeFormExample stores employee details and selected photos in the app's local data store.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "EmployeeFormExample can save selected employee photos from your photo library into the app.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "EmployeeFormExample is requesting access to your Photo Library.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
+				RUN_DOCUMENTATION_COMPILER = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Beta;
+		};
+		6952DA252DF4EC6D0080276E /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
+			baseConfigurationReferenceRelativePath = Beta.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "$(CODE_SIGN_IDENTITY_$(_DEVELOPMENT_TEAM_IS_EMPTY))";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 49;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Development Assets/Preview Assets.xcassets\"";
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_CFBundleDisplayName = EmployeeFormExample;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Allow access to your Photo Library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to your Photo Library.";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Beta;
+		};
+		6952DA262DF4EC6D0080276E /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
+			baseConfigurationReferenceRelativePath = Beta.xcconfig;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmployeeFormExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmployeeFormExample";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Beta;
+		};
+		6952DA272DF4EC6D0080276E /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
+			baseConfigurationReferenceRelativePath = Beta.xcconfig;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = EmployeeFormExample;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Beta;
+		};
+		69CF51732DC45A5700402D6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
+			baseConfigurationReferenceRelativePath = DebugLike.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 84D2ELH9N9;
+				DOCC_HOSTING_BASE_PATH = ImageDataPicker/employeeformexample;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppDataUsageDescription = "EmployeeFormExample stores employee details and selected photos in the app's local data store.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "EmployeeFormExample can save selected employee photos from your photo library into the app.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "EmployeeFormExample is requesting access to your Photo Library.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
+				RUN_DOCUMENTATION_COMPILER = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		69CF51742DC45A5700402D6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
+			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				DOCC_HOSTING_BASE_PATH = ImageDataPicker/employeeformexample;
@@ -461,36 +880,49 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppDataUsageDescription = "EmployeeFormExample stores employee details and selected photos in the app's local data store.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "EmployeeFormExample can save selected employee photos from your photo library into the app.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "EmployeeFormExample is requesting access to your Photo Library.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
-				XROS_DEPLOYMENT_TARGET = 2.0;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
 		69CF51762DC45A5700402D6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
-			baseConfigurationReferenceRelativePath = SampleCode.xcconfig;
+			baseConfigurationReferenceRelativePath = DebugLike.xcconfig;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
+				CURRENT_PROJECT_VERSION = 49;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_CFBundleDisplayName = EmployeeFormExample;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Allow access to your Photo Library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to your Photo Library.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -501,40 +933,48 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
 		69CF51772DC45A5700402D6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
-			baseConfigurationReferenceRelativePath = SampleCode.xcconfig;
+			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = EmployeeFormExample/EmployeeFormExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Development\\ Assets/Preview\\ Assets.xcassets";
+				CURRENT_PROJECT_VERSION = 49;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Development Assets/Preview Assets.xcassets\"";
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_CFBundleDisplayName = EmployeeFormExample;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Allow access to your Photo Library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to your Photo Library.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -545,35 +985,37 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.samplecode.EmployeeFormExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
 		69CF51792DC45A5700402D6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
-			baseConfigurationReferenceRelativePath = SampleCode.xcconfig;
+			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -583,22 +1025,23 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmployeeFormExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmployeeFormExample";
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
 		69CF517A2DC45A5700402D6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
-			baseConfigurationReferenceRelativePath = SampleCode.xcconfig;
+			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -608,21 +1051,22 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmployeeFormExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmployeeFormExample";
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
 		69CF517C2DC45A5700402D6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
-			baseConfigurationReferenceRelativePath = SampleCode.xcconfig;
+			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -632,21 +1076,22 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_TARGET_NAME = EmployeeFormExample;
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
 		69CF517D2DC45A5700402D6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 69E73CB92DDF673900618E91 /* Configuration */;
-			baseConfigurationReferenceRelativePath = SampleCode.xcconfig;
+			baseConfigurationReferenceRelativePath = BundleConfig.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 84D2ELH9N9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.technistic.EmployeeFormExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -656,7 +1101,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_TARGET_NAME = EmployeeFormExample;
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
@@ -667,6 +1112,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				69CF51732DC45A5700402D6E /* Debug */,
+				6952DA1E2DF3D1850080276E /* Alpha */,
+				6952DA242DF4EC6D0080276E /* Beta */,
 				69CF51742DC45A5700402D6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -676,6 +1123,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				69CF51762DC45A5700402D6E /* Debug */,
+				6952DA1F2DF3D1850080276E /* Alpha */,
+				6952DA252DF4EC6D0080276E /* Beta */,
 				69CF51772DC45A5700402D6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -685,6 +1134,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				69CF51792DC45A5700402D6E /* Debug */,
+				6952DA202DF3D1850080276E /* Alpha */,
+				6952DA262DF4EC6D0080276E /* Beta */,
 				69CF517A2DC45A5700402D6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -694,6 +1145,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				69CF517C2DC45A5700402D6E /* Debug */,
+				6952DA212DF3D1850080276E /* Alpha */,
+				6952DA272DF4EC6D0080276E /* Beta */,
 				69CF517D2DC45A5700402D6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
