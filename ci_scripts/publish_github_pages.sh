@@ -47,7 +47,28 @@ echo "Publishing DocC documentation for ${CI_PRODUCT:-unknown product}"
 rm -rf "${workspace_doc_archives}"
 mkdir -p "${workspace_doc_archives}"
 
-mapfile -t docc_archives < <(find "${CI_DERIVED_DATA_PATH}" -type d -name "*.doccarchive" | sort)
+lowercase_string() {
+    echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+capitalize_string() {
+    local input="$1"
+    local first_char rest
+
+    if [[ -z "${input}" ]]; then
+        return
+    fi
+
+    first_char="$(printf '%s' "${input}" | cut -c1 | tr '[:lower:]' '[:upper:]')"
+    rest="$(printf '%s' "${input}" | cut -c2-)"
+    printf '%s%s\n' "${first_char}" "${rest}"
+}
+
+docc_archives=()
+while IFS= read -r archive_path; do
+    docc_archives+=("${archive_path}")
+done < <(find "${CI_DERIVED_DATA_PATH}" -type d -name "*.doccarchive" | sort)
+
 if [[ "${#docc_archives[@]}" -eq 0 ]]; then
     echo "No DocC archives found in ${CI_DERIVED_DATA_PATH}."
     exit 0
@@ -69,9 +90,11 @@ source "${script_dir}/get_version_from_git_ref.sh" >/dev/null
 determine_pages_channel() {
     local requested_channel="${DOCC_PAGES_CHANNEL:-${GITHUB_PAGES_CHANNEL:-}}"
     local normalized_release_channel="${release_channel:-}"
+    local normalized_requested_channel
 
     if [[ -n "${requested_channel}" ]]; then
-        case "${requested_channel,,}" in
+        normalized_requested_channel="$(lowercase_string "${requested_channel}")"
+        case "${normalized_requested_channel}" in
             integration|alpha)
                 echo "integration"
                 return
@@ -85,13 +108,14 @@ determine_pages_channel() {
                 return
                 ;;
             *)
-                echo "${requested_channel,,}"
+                echo "${normalized_requested_channel}"
                 return
                 ;;
         esac
     fi
 
-    case "${normalized_release_channel,,}" in
+    normalized_release_channel="$(lowercase_string "${normalized_release_channel}")"
+    case "${normalized_release_channel}" in
         alpha)
             echo "integration"
             ;;
@@ -102,7 +126,7 @@ determine_pages_channel() {
             echo "release"
             ;;
         *)
-            echo "${normalized_release_channel,,}"
+            echo "${normalized_release_channel}"
             ;;
     esac
 }
@@ -156,7 +180,7 @@ generate_channel_index() {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${CI_PRODUCT:-DocC} ${channel^} Documentation</title>
+  <title>${CI_PRODUCT:-DocC} $(capitalize_string "${channel}") Documentation</title>
   <meta http-equiv="refresh" content="0; url=./${first_archive}/">
   <link rel="canonical" href="./${first_archive}/">
 </head>
@@ -185,7 +209,7 @@ first_archive_in_channel() {
 
 generate_site_index() {
     local site_index="${pages_root}/index.html"
-    local -a discovered_channels=()
+    local discovered_channels=()
     local default_channel=""
     local default_archive=""
 
@@ -318,7 +342,7 @@ EOF
         local archive_name
         archive_name="$(first_archive_in_channel "${candidate}")"
         cat >> "${site_index}" <<EOF
-      { name: "${candidate}", title: "${candidate^}", href: "./documentation/${candidate}/${archive_name}/" },
+      { name: "${candidate}", title: "$(capitalize_string "${candidate}")", href: "./documentation/${candidate}/${archive_name}/" },
 EOF
     done
 
