@@ -619,7 +619,7 @@ echo "Publishing documentation channel: ${pages_channel}"
 
 git -C "${repo_root}" fetch origin "${GITHUB_PAGES_BRANCH}"
 git -C "${repo_root}" checkout "${GITHUB_PAGES_BRANCH}"
-
+git -C "${repo_root}" reset --hard "origin/${GITHUB_PAGES_BRANCH}"
 rm -rf "${channel_root}"
 mkdir -p "${channel_root}"
 
