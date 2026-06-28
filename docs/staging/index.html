@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EmployeeFormExample Staging Documentation</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #eff3fb;
+      --panel: rgba(255, 255, 255, 0.92);
+      --text: #172033;
+      --muted: #5f6b82;
+      --border: #d6deef;
+      --accent: #0b5cff;
+      --accent-soft: #eaf1ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, #dce7ff 0%, transparent 30%),
+        linear-gradient(180deg, #f9fbff 0%, var(--bg) 100%);
+    }
+    main {
+      width: min(980px, calc(100vw - 32px));
+      margin: 48px auto;
+      padding: 32px;
+      border-radius: 28px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 64px rgba(23, 32, 51, 0.10);
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+    }
+    p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 66ch;
+    }
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card {
+      display: block;
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 14px 36px rgba(23, 32, 51, 0.06);
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+    }
+    .card p {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="eyebrow">Staging</span>
+    <h1>EmployeeFormExample Documentation</h1>
+    <p>Choose the documentation set you want to browse for this channel. The framework and sample app are published independently so both projects can coexist under the same GitHub Pages site.</p>
+    <div class="grid">
+      <a class="card" href="./imagedatapicker/documentation/imagedatapicker/">
+        <h2>ImageDataPicker</h2>
+        <p>Framework API documentation, conceptual guides, and tutorials.</p>
+      </a>
+      <a class="card" href="./employeeformexample/documentation/employeeformexample/">
+        <h2>EmployeeFormExample</h2>
+        <p>Sample app documentation showing the framework in a complete SwiftUI application.</p>
+      </a>
+    </div>
+    <a class="back-link" href="../">Return to the documentation selector</a>
+  </main>
+</body>
+</html>

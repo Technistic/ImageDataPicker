@@ -114,12 +114,24 @@
       </div>
     </div>
     <div class="actions">
-      <a class="button" id="open-docs" href="./integration/imagedatapicker/documentation/imagedatapicker/">Open documentation</a>
+      <a class="button" id="open-docs" href="./staging/imagedatapicker/documentation/imagedatapicker/">Open documentation</a>
     </div>
     <div class="channel-links" id="channel-links"></div>
   </main>
   <script>
     const docs = {
+      "staging": {
+        "imagedatapicker": {
+          title: "imagedatapicker",
+          label: "ImageDataPicker",
+          href: "./staging/imagedatapicker/documentation/imagedatapicker/"
+        },
+        "employeeformexample": {
+          title: "employeeformexample",
+          label: "EmployeeFormExample",
+          href: "./staging/employeeformexample/documentation/employeeformexample/"
+        },
+      },
       "integration": {
         "imagedatapicker": {
           title: "imagedatapicker",
@@ -181,7 +193,7 @@ function syncOpenLink() {
 }
 
     renderChannelOptions();
-    channelSelect.value = "integration";
+    channelSelect.value = "staging";
     renderProjectOptions(channelSelect.value);
     projectSelect.value = "imagedatapicker";
     syncOpenLink();
