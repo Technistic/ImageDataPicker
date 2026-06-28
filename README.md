@@ -40,7 +40,7 @@ struct ContentView: View {
 
 ## Documentation
 
-Read the [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework, or get started with the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc).
+Read the [Documentation](https://technistic.github.io/ImageDataPicker/) for details on how to use and customize the **ImageDataPicker** framework across the release channels, or go directly to the [release framework documentation](https://technistic.github.io/ImageDataPicker/release/imagedatapicker/documentation/imagedatapicker) and [tutorial](https://technistic.github.io/ImageDataPicker/release/imagedatapicker/tutorials/imagedatapickertoc).
 
 See the documentation and code for the **EmployeeFormExample** sample app to understand how the framework fits into a real SwiftUI and SwiftData workflow.
 
@@ -63,6 +63,6 @@ Xcode Cloud and GitHub Actions should both follow the same scheme mapping:
 
 Commercial Support available on request.
 
-[EmployeeFormExample Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample)
+[EmployeeFormExample Documentation](https://technistic.github.io/ImageDataPicker/release/employeeformexample/documentation/employeeformexample)
 
 Copyright &copy; 2025 Technistic Pty Ltd
