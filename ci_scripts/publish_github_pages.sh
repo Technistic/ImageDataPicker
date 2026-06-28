@@ -16,7 +16,8 @@ GITHUB_PAGES_DIR="${GITHUB_PAGES_DIR:-docs}"
 GITHUB_ORGANIZATION="${GITHUB_ORGANIZATION:-Technistic}"
 GITHUB_PAGES_REPO="${GITHUB_PAGES_REPO:-ImageDataPicker}"
 
-workspace_doc_archives="${CI_WORKSPACE_PATH}/doc_archives"
+workspace_root="${CI_WORKSPACE_PATH:-${repo_root}}"
+workspace_doc_archives="${workspace_root}/doc_archives"
 pages_root="${repo_root}/${GITHUB_PAGES_DIR}"
 
 stash_created="false"
