@@ -554,11 +554,13 @@ EOF
       });
     }
 
-    function syncOpenLink() {
-      const channel = channelSelect.value;
-      const project = projectSelect.value;
-      openLink.href = docs[channel][project].href;
-    }
+function syncOpenLink() {
+  const channel = channelSelect.value;
+  const project = projectSelect.value;
+  const entry = (docs[channel] || {})[project];
+  if (!entry) return;
+  openLink.href = entry.href;
+}
 
     renderChannelOptions();
     channelSelect.value = "${default_channel}";
