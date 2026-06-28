@@ -583,10 +583,16 @@ echo "Publishing DocC documentation for ${CI_PRODUCT:-unknown product}"
 rm -rf "${workspace_doc_archives}"
 mkdir -p "${workspace_doc_archives}"
 
+derived_data_path="${CI_DERIVED_DATA_PATH:-${DERIVED_DATA_PATH:-}}"
+if [[ -z "${derived_data_path}" ]]; then
+    echo "Error: CI_DERIVED_DATA_PATH (or DERIVED_DATA_PATH) is not set."
+    exit 1
+fi
+
 docc_archives=()
 while IFS= read -r archive_path; do
     docc_archives+=("${archive_path}")
-done < <(find "${CI_DERIVED_DATA_PATH}" -type d -name "*.doccarchive" | sort)
+done < <(find "${derived_data_path}" -type d -name "*.doccarchive" | sort)
 
 if [[ "${#docc_archives[@]}" -eq 0 ]]; then
     echo "No DocC archives found in ${CI_DERIVED_DATA_PATH}."
