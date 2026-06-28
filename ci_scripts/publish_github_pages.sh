@@ -346,6 +346,7 @@ generate_site_index() {
     local default_channel
     local default_project="imagedatapicker"
     local channel
+    local project_label
 
     default_channel="$(first_channel_with_docs)"
     if [[ -z "${default_channel}" ]]; then
@@ -489,10 +490,11 @@ EOF
             local added_project="false"
             for project_slug in imagedatapicker employeeformexample; do
                 if channel_has_project "${channel}" "${project_slug}"; then
+                    project_label="$(doc_title_for_slug "${project_slug}")"
                     cat >> "${site_index}" <<EOF
         "${project_slug}": {
           title: "${project_slug}",
-          label: "${doc_title_for_slug "${project_slug}")",
+          label: "${project_label}",
           href: "./${channel}/${project_slug}/documentation/${project_slug}/"
         },
 EOF
