@@ -15,9 +15,9 @@ Grab the package from [Swift Package Index](https://swiftpackageindex.com/) or d
 
 ### 1.1 Add the ImageDataPicker to your project:
 
-    A. Download the framework archive from our repo and extract the Xcode multi-platform framework or;
+A. Download the framework archive from our repo and extract the Xcode multi-platform framework or;
 
-    B. Add the Swift package from Swift Package Index.
+B. Add the Swift package from Swift Package Index.
 
 ### 1.2. Import the ImageDataPicker module into your project.
 
