@@ -4,11 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
       - 'alpha_v*'
       - 'alpha-v*'
       - 'beta_v*'
       - 'beta-v*'
+    tags:
+      - 'v*'
 
 permissions:
   contents: write
@@ -25,7 +26,8 @@ jobs:
       tag_name: ${{ steps.resolve.outputs.tag_name }}
       prerelease: ${{ steps.resolve.outputs.prerelease }}
       release_channel: ${{ steps.resolve.outputs.release_channel }}
-      artifact_name: ${{ steps.resolve.outputs.artifact_name }}
+      xcframework_artifact_name: ${{ steps.resolve.outputs.xcframework_artifact_name }}
+      source_artifact_name: ${{ steps.resolve.outputs.source_artifact_name }}
       framework_scheme: ${{ steps.resolve.outputs.framework_scheme }}
       sample_scheme: ${{ steps.resolve.outputs.sample_scheme }}
     steps:
@@ -36,6 +38,7 @@ jobs:
         id: resolve
         env:
           CI_BRANCH: ${{ github.ref_name }}
+          CI_TAG: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '' }}
         run: |
           . ci_scripts/get_version_from_git_ref.sh
           case "$release_channel" in
@@ -58,7 +61,8 @@ jobs:
           echo "release_channel=${release_channel}" >> "$GITHUB_OUTPUT"
           echo "framework_scheme=${framework_scheme}" >> "$GITHUB_OUTPUT"
           echo "sample_scheme=${sample_scheme}" >> "$GITHUB_OUTPUT"
-          echo "artifact_name=ImageDataPicker-${tag_name}.tgz" >> "$GITHUB_OUTPUT"
+          echo "xcframework_artifact_name=ImageDataPicker-${tag_name}.tgz" >> "$GITHUB_OUTPUT"
+          echo "source_artifact_name=ImageDataPicker-package-${tag_name}.tgz" >> "$GITHUB_OUTPUT"
 
   package-tests:
     runs-on: macos-latest
@@ -123,7 +127,8 @@ jobs:
       PRODUCT_VERSION: ${{ needs.resolve-release-metadata.outputs.product_version }}
       RELEASE_CHANNEL: ${{ needs.resolve-release-metadata.outputs.release_channel }}
       RELEASE_TAG: ${{ needs.resolve-release-metadata.outputs.tag_name }}
-      RELEASE_ARTIFACT: ${{ needs.resolve-release-metadata.outputs.artifact_name }}
+      XCFRAMEWORK_ARTIFACT: ${{ needs.resolve-release-metadata.outputs.xcframework_artifact_name }}
+      SOURCE_ARTIFACT: ${{ needs.resolve-release-metadata.outputs.source_artifact_name }}
       FRAMEWORK_SCHEME: ${{ needs.resolve-release-metadata.outputs.framework_scheme }}
       BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
       P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
@@ -132,6 +137,14 @@ jobs:
     steps:
       - name: Check Xcode version
         run: /usr/bin/xcodebuild -version
+
+      - name: Validate production release trigger
+        if: ${{ needs.resolve-release-metadata.outputs.release_channel == 'production' }}
+        run: |
+          if [[ "${GITHUB_REF}" != refs/tags/v* ]]; then
+            echo "Production releases must be published from a vX.Y.Z tag on main."
+            exit 1
+          fi
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -194,13 +207,25 @@ jobs:
       - name: Archive xcframework artifact
         run: |
           cd "$RUNNER_TEMP/framework"
-          tar -czf "$RELEASE_ARTIFACT" "${FRAMEWORK_NAME}.xcframework"
+          tar -czf "$XCFRAMEWORK_ARTIFACT" "${FRAMEWORK_NAME}.xcframework"
+
+      - name: Archive Swift package source artifact
+        run: |
+          git archive --format=tar.gz --output "$RUNNER_TEMP/framework/$SOURCE_ARTIFACT" HEAD
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.RELEASE_ARTIFACT }}
-          path: ${{ runner.temp }}/framework/${{ env.RELEASE_ARTIFACT }}
+          name: ${{ env.XCFRAMEWORK_ARTIFACT }}
+          path: ${{ runner.temp }}/framework/${{ env.XCFRAMEWORK_ARTIFACT }}
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload Swift package source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.SOURCE_ARTIFACT }}
+          path: ${{ runner.temp }}/framework/${{ env.SOURCE_ARTIFACT }}
           if-no-files-found: error
           retention-days: 14
 
@@ -212,27 +237,13 @@ jobs:
           git tag -f "$RELEASE_TAG" "$GITHUB_SHA"
           git push origin "refs/tags/${RELEASE_TAG}" --force
 
-      - name: Create production tag for Swift Package Manager
-        if: ${{ needs.resolve-release-metadata.outputs.release_channel == 'production' }}
-        run: |
-          if git rev-parse "$RELEASE_TAG" >/dev/null 2>&1; then
-            existing_sha="$(git rev-list -n 1 "$RELEASE_TAG")"
-            if [[ "$existing_sha" != "$GITHUB_SHA" ]]; then
-              echo "Production tag $RELEASE_TAG already exists at $existing_sha and will not be moved."
-              exit 1
-            fi
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git tag "$RELEASE_TAG" "$GITHUB_SHA"
-            git push origin "refs/tags/${RELEASE_TAG}"
-          fi
-
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2.3.2
         with:
           draft: false
-          files: ${{ runner.temp }}/framework/${{ env.RELEASE_ARTIFACT }}
+          files: |
+            ${{ runner.temp }}/framework/${{ env.XCFRAMEWORK_ARTIFACT }}
+            ${{ runner.temp }}/framework/${{ env.SOURCE_ARTIFACT }}
           generate_release_notes: true
           name: ${{ env.PRODUCT_VERSION }}
           overwrite_files: true
@@ -243,4 +254,4 @@ jobs:
       - name: Production tag notice for Swift Package Manager
         if: ${{ needs.resolve-release-metadata.outputs.release_channel == 'production' }}
         run: |
-          echo "Published production tag ${RELEASE_TAG}. Swift Package Manager consumers can resolve this release from the repository tag."
+          echo "Published production release from tag ${RELEASE_TAG}. Swift Package Manager consumers can resolve this release from the repository tag."

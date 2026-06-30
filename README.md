@@ -50,7 +50,8 @@ The repository uses three release channels:
 
 - `alpha_v*` branches build and test the `*-alpha` schemes and publish prerelease artifacts.
 - `beta_v*` branches build and test the `*-beta` schemes and publish prerelease artifacts.
-- `main` builds production artifacts, publishes the production GitHub release, and updates the semantic version tag used by Swift Package Manager.
+- `main` is the verified production branch.
+- `vX.Y.Z` tags created from `main` publish the production GitHub release and the Swift Package Manager release version.
 
 Xcode Cloud and GitHub Actions should both follow the same scheme mapping:
 

@@ -2,6 +2,12 @@ name: OSS Build and Test
 
 on:
   pull_request:
+    branches:
+      - main
+      - 'alpha_v*'
+      - 'alpha-v*'
+      - 'beta_v*'
+      - 'beta-v*'
   push:
     branches:
       - main
@@ -32,28 +38,24 @@ jobs:
         id: resolve
         env:
           CI_BRANCH: ${{ github.ref_name }}
+          CI_PULL_REQUEST_SOURCE_BRANCH: ${{ github.head_ref }}
+          CI_PULL_REQUEST_TARGET_BRANCH: ${{ github.base_ref }}
         run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            release_channel="pull_request"
-            framework_scheme="ImageDataPicker"
-            sample_scheme="EmployeeFormExample"
-          else
-            . ci_scripts/get_version_from_git_ref.sh
-            case "$release_channel" in
-              alpha)
-                framework_scheme="ImageDataPicker-alpha"
-                sample_scheme="EmployeeFormExample-alpha"
-                ;;
-              beta)
-                framework_scheme="ImageDataPicker-beta"
-                sample_scheme="EmployeeFormExample-beta"
-                ;;
-              *)
-                framework_scheme="ImageDataPicker"
-                sample_scheme="EmployeeFormExample-Release"
-                ;;
-            esac
-          fi
+          . ci_scripts/get_version_from_git_ref.sh
+          case "$release_channel" in
+            alpha)
+              framework_scheme="ImageDataPicker-alpha"
+              sample_scheme="EmployeeFormExample-alpha"
+              ;;
+            beta)
+              framework_scheme="ImageDataPicker-beta"
+              sample_scheme="EmployeeFormExample-beta"
+              ;;
+            *)
+              framework_scheme="ImageDataPicker"
+              sample_scheme="EmployeeFormExample-Release"
+              ;;
+          esac
           echo "release_channel=${release_channel}" >> "$GITHUB_OUTPUT"
           echo "framework_scheme=${framework_scheme}" >> "$GITHUB_OUTPUT"
           echo "sample_scheme=${sample_scheme}" >> "$GITHUB_OUTPUT"

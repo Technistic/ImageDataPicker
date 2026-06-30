@@ -90,7 +90,8 @@ This repository publishes three release channels:
 
 - `alpha_v*` branches run the `ImageDataPicker-alpha` and `EmployeeFormExample-alpha` schemes and publish prerelease XCFramework artifacts.
 - `beta_v*` branches run the `ImageDataPicker-beta` and `EmployeeFormExample-beta` schemes and publish prerelease XCFramework artifacts.
-- `main` runs the production schemes, publishes the production XCFramework release, and updates the semantic version tag used by Swift Package Manager.
+- `main` runs the production schemes for verification.
+- `vX.Y.Z` tags created from `main` publish the production XCFramework release and the Swift Package Manager release version.
 
 For Xcode Cloud and GitHub Actions, keep the scheme-to-branch mapping aligned:
 
