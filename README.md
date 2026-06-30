@@ -24,22 +24,19 @@ Grab the package from [Swift Package Index](https://swiftpackageindex.com/) or d
     ```
     import ImageDataPicker
     import SwiftUI
-    
     ```
 
 ### 1.3. Create app state to store the selected image data.
 
     ```
     @State var imageData: Data? = nil
-    
     ```
 
 ### 1.4. Add the ImageDataPicker control to your app.
 
-    ```
-    ImageDataPickerView(imageData: $imageData, clipShape: Circle())
-    
-    ```
+```
+ImageDataPickerView(imageData: $imageData, clipShape: Circle())
+```
 
 
 ## 2. Overview
