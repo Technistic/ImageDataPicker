@@ -21,16 +21,16 @@ B. Add the Swift package from Swift Package Index.
 
 ### 1.2. Import the ImageDataPicker module into your project.
 
-    ```
-    import ImageDataPicker
-    import SwiftUI
-    ```
+```
+import ImageDataPicker
+import SwiftUI
+```
 
 ### 1.3. Create app state to store the selected image data.
 
-    ```
-    @State var imageData: Data? = nil
-    ```
+```
+@State var imageData: Data? = nil
+```
 
 ### 1.4. Add the ImageDataPicker control to your app.
 
