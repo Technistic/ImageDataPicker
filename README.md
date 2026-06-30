@@ -91,7 +91,7 @@ Read the [Documentation](https://technistic.github.io/ImageDataPicker/) for deta
 
 ## 5. Tutorial
 
-The [ImageDataPicker Tutorial](https://technistic.github.io/ImageDataPicker/staging/imagedatapicker/tutorials/imagedatapickertoc) provides a comprehensive step-by-step quide on how to incorporate and use the ImageDataPicker in your application. 
+The [ImageDataPicker Tutorial](https://technistic.github.io/ImageDataPicker/staging/imagedatapicker/tutorials/imagedatapickertoc) provides a comprehensive step-by-step guide on how to incorporate and use the ImageDataPicker in your application. 
 
 
 ## 6. The EmployeeFormExample App
