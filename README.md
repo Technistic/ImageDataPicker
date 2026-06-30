@@ -1,12 +1,55 @@
 [![Build xcframework](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml/badge.svg?branch=alpha_v0.1.0)](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml)
 
-<img width="640" height="320" alt="ImageDataPicker-DocC" src="https://github.com/user-attachments/assets/a4b5dd0d-b3ce-4fcd-a6a6-24279d031ff4" />
+# SwiftUI ImageDataPicker
 
-# SwiftUI Image Data Picker
+## __A SwiftUI control for seemlessly selecting PhotoLibrary images and binding them to SwiftData__.
 
-The **SwiftUI Image Data Picker Framework** provides a convenient, customizable control you can use in SwiftUI projects to select a photo from the system photo library and bind the selected image as `Data?` in app state or a SwiftData model.
+![ImageDataPicker Hero](/assets/images/ImageDataPicker-README-Hero.png)
 
-## Getting Started
+
+The **SwiftUI Image Data Picker Framework** provides a convenient, customizable control you can use in SwiftUI projects to select a photo from an iOS/macOS system's photo library and bind the selected image as `Data?` in app state or a SwiftData model.
+
+Grab the package from [Swift Package Index](https://swiftpackageindex.com/) or download the multi-platform framework to use with Xcode.
+
+## 1. Getting Started
+
+1. Add the ImageDataPicker to your project:
+
+    A. Download the framework archive from our repo and extract the Xcode multi-platform framework or;
+
+    B. Add the Swift package from Swift Package Index.
+
+2. Import the ImageDataPicker module into your project.
+
+    ```
+    import ImageDataPicker
+    import SwiftUI
+    
+    ```
+
+3. Create app state to store the selected image data.
+
+    ```
+    @State var imageData: Data? = nil
+    
+    ```
+
+4. Add the ImageDataPicker control to your app.
+
+    ```
+    ImageDataPickerView(imageData: $imageData, clipShape: Circle())
+    
+    ```
+
+## 2. Concept
+
+The ImageDataPicker control simplifies how developers build apps that allow users to select photos from their device's PhotoLibrary and bind them to app state or persist them to a SwiftData  model. Add the ImageDataPicker control to your app - it is multi-platform, designed to run on iOS, iPadOS and macOS. Bind the control to `Data?`. The control automatically presents a thumbnail of the selected image or a customisable placeholder (any SF Symbol with developer defined foreground and background colours). The thumbnail itself automatically adopts a 1:1 aspect ratio, and can be cropped to a circular, rectangular or rounded-rectangular shape.
+
+
+![Concept](/assets/images/Architecture@1x.png)
+
+
+## 3. Using the ImageDataPicker
 
 ### Add with Swift Package Manager
 
@@ -40,9 +83,11 @@ struct ContentView: View {
 
 ## Documentation
 
-Read the [Documentation](https://technistic.github.io/ImageDataPicker/) for details on how to use and customize the **ImageDataPicker** framework across the release channels, or go directly to the [release framework documentation](https://technistic.github.io/ImageDataPicker/release/imagedatapicker/documentation/imagedatapicker) and [tutorial](https://technistic.github.io/ImageDataPicker/release/imagedatapicker/tutorials/imagedatapickertoc).
+Read the [Documentation](https://technistic.github.io/ImageDataPicker/) for details on how to use and customize the **ImageDataPicker** framework across the [integration, staging] release channels, or go directly to the [release framework documentation](https://technistic.github.io/ImageDataPicker/release/imagedatapicker/documentation/imagedatapicker) and [tutorial](https://technistic.github.io/ImageDataPicker/release/imagedatapicker/tutorials/imagedatapickertoc).
 
 See the documentation and code for the **EmployeeFormExample** sample app to understand how the framework fits into a real SwiftUI and SwiftData workflow.
+
+[EmployeeFormExample Documentation](https://technistic.github.io/ImageDataPicker/release/employeeformexample/documentation/employeeformexample)
 
 ## Release Channels
 
@@ -63,6 +108,5 @@ Xcode Cloud and GitHub Actions should both follow the same scheme mapping:
 
 Commercial Support available on request.
 
-[EmployeeFormExample Documentation](https://technistic.github.io/ImageDataPicker/release/employeeformexample/documentation/employeeformexample)
 
-Copyright &copy; 2025 Technistic Pty Ltd
+Copyright &copy; 2025, 2026 Technistic Pty Ltd
