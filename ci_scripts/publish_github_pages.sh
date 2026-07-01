@@ -603,8 +603,8 @@ fi
 
 cp -R "${docc_archives[@]}" "${workspace_doc_archives}/"
 
-git -C "${repo_root}" config user.name "${DOCC_GITHUB_NAME}"
-git -C "${repo_root}" config user.email "${DOCC_GITHUB_EMAIL}"
+git -C "${repo_root}" config user.name "${DOCC_GITHUB_NAME:?DOCC_GITHUB_NAME is required}"
+git -C "${repo_root}" config user.email "${DOCC_GITHUB_EMAIL:?DOCC_GITHUB_EMAIL is required}"
 
 if [[ -n "$(git -C "${repo_root}" status --porcelain)" ]]; then
     git -C "${repo_root}" stash push -u -m "publish-github-pages" >/dev/null 2>&1 || true
