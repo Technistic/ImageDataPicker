@@ -611,7 +611,7 @@ if [[ -n "$(git -C "${repo_root}" status --porcelain)" ]]; then
     stash_created="true"
 fi
 
-git -C "${repo_root}" remote set-url origin "https://${DOCC_GITHUB_USERNAME}:${DOCC_GITHUB_API_TOKEN}@github.com/${GITHUB_ORGANIZATION}/${GITHUB_PAGES_REPO}"
+git -C "${repo_root}" remote set-url origin "https://${DOCC_GITHUB_USERNAME:?DOCC_GITHUB_USERNAME is required}:${DOCC_GITHUB_API_TOKEN:?DOCC_GITHUB_API_TOKEN is required}@github.com/${GITHUB_ORGANIZATION}/${GITHUB_PAGES_REPO}"
 source "${script_dir}/get_version_from_git_ref.sh" >/dev/null
 
 pages_channel="$(determine_pages_channel)"
