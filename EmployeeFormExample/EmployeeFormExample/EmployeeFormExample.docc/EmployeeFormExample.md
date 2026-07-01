@@ -1,7 +1,7 @@
 # ``EmployeeFormExample``
 
 @Metadata {
-    @Available("EmployeeFormExample", introduced: "0.0.1")
+    @Available("EmployeeFormExample", introduced: "0.1.0")
 }
 
 A sample application built with SwiftUI and SwiftData that demonstrates how to use the ImageDataPicker framework.

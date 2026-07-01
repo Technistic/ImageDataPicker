@@ -58,3 +58,6 @@ Photo by [Jurica Koletić](https://unsplash.com/@juricakoletic?utm_content=credi
 ![Jurica Koletić Image](EmployeeFormExample/Assets.xcassets/Peter_Jones.imageset/jurica-koletic-unsplash.png)
 
 [Credit](https://unsplash.com/photos/man-wearing-henley-top-portrait-7YVZYZeITc8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+
+
+> Copyright &copy; 2025, 2026 Technistic Pty Ltd
