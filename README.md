@@ -103,7 +103,7 @@ The EmployeeFormExample App demonstrates how to use the ImageDataPicker framewor
 
 ## 7. Release Channels
 
-The repository uses three release channels:
+The repository uses the following release references:
 
 - `alpha_v*` branches build and test the `*-alpha` schemes and publish pre-release artifacts for integration testing.
 - `beta_v*` branches build and test the `*-beta` schemes and publish pre-release artifacts for staging releases.
