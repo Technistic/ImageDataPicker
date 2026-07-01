@@ -78,11 +78,11 @@ Add this repository in Xcode using `File > Add Package Dependencies...`, then se
  
 ## Documentation
 
-See the full [Documentation](https://technistic.github.io/ImageDataPicker/imagedatapicker/documentation/imagedatapicker) for details on how to use and customize the **ImageDataPicker** framework.
+See the full [Documentation](https://technistic.github.io/ImageDataPicker/) for details on how to use and customize the **ImageDataPicker** framework across the release channels.
 
-Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/imagedatapicker/tutorials/imagedatapickertoc) to learn how to adopt the framework in a multiplatform SwiftUI application.
+Follow the [Tutorial](https://technistic.github.io/ImageDataPicker/release/imagedatapicker/tutorials/imagedatapickertoc) to learn how to adopt the framework in a multiplatform SwiftUI application.
 
-Look at the [Documentation](https://technistic.github.io/ImageDataPicker/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for the [EmployeeFormExample](EmployeeFormExample/README.md) application to see how the framework is used in a working sample app.
+Look at the [Documentation](https://technistic.github.io/ImageDataPicker/release/employeeformexample/documentation/employeeformexample) and [code](/EmployeeFormExample) for the [EmployeeFormExample](EmployeeFormExample/README.md) application to see how the framework is used in a working sample app.
 
 ## Release Channels
 

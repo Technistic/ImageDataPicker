@@ -12,8 +12,8 @@
 Icon
 
 ## Build generated
-## build/
-## DerivedData/
+build/
+DerivedData/
 
 xcuserdata/
 
@@ -44,7 +44,8 @@ Package.pins
 
 .vscode
 
-build
+docs
+doc_archives
 framework
 ImageDataPicker/archives
 ImageDataPicker/framework
