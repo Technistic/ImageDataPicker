@@ -597,7 +597,7 @@ while IFS= read -r archive_path; do
 done < <(find "${derived_data_path}" -type d -name "*.doccarchive" | sort)
 
 if [[ "${#docc_archives[@]}" -eq 0 ]]; then
-    echo "No DocC archives found in ${CI_DERIVED_DATA_PATH}."
+    echo "No DocC archives found in ${derived_data_path}."
     exit 0
 fi
 
