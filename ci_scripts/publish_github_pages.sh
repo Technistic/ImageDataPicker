@@ -647,7 +647,7 @@ generate_release_redirect "employeeformexample"
 generate_release_doc_redirect "imagedatapicker"
 generate_release_doc_redirect "employeeformexample"
 
-git -C "${repo_root}" add "${GITHUB_PAGES_DIR}"
+git -C "${repo_root}" add -f "${GITHUB_PAGES_DIR}"
 
 if git -C "${repo_root}" diff --cached --quiet; then
     echo "No DocC changes to publish."
