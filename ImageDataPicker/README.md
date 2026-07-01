@@ -114,10 +114,9 @@ Photo by [Jimmy Fermin](https://unsplash.com/@jimmyferminphotography?utm_content
 
 ## Support
 
-Commercial Support available on request.
+If you encounter a bug or would like to suggest an enhancement, review the current list of [open issues](https://github.com/Technistic/ImageDataPicker/issues) first.
 
-**Contact:** [sales@technistic.com](mailto:sales@technistic.com)
+Commercial Support available on request. E-mail <sales@technistic.com>.
 
----
 
-Copyright &copy; 2025 Technistic Pty Ltd
+> Copyright &copy; 2025, 2026 Technistic Pty Ltd
