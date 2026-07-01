@@ -597,21 +597,21 @@ while IFS= read -r archive_path; do
 done < <(find "${derived_data_path}" -type d -name "*.doccarchive" | sort)
 
 if [[ "${#docc_archives[@]}" -eq 0 ]]; then
-    echo "No DocC archives found in ${CI_DERIVED_DATA_PATH}."
+    echo "No DocC archives found in ${derived_data_path}."
     exit 0
 fi
 
 cp -R "${docc_archives[@]}" "${workspace_doc_archives}/"
 
-git -C "${repo_root}" config user.name "${DOCC_GITHUB_NAME}"
-git -C "${repo_root}" config user.email "${DOCC_GITHUB_EMAIL}"
+git -C "${repo_root}" config user.name "${DOCC_GITHUB_NAME:?DOCC_GITHUB_NAME is required}"
+git -C "${repo_root}" config user.email "${DOCC_GITHUB_EMAIL:?DOCC_GITHUB_EMAIL is required}"
 
 if [[ -n "$(git -C "${repo_root}" status --porcelain)" ]]; then
     git -C "${repo_root}" stash push -u -m "publish-github-pages" >/dev/null 2>&1 || true
     stash_created="true"
 fi
 
-git -C "${repo_root}" remote set-url origin "https://${DOCC_GITHUB_USERNAME}:${DOCC_GITHUB_API_TOKEN}@github.com/${GITHUB_ORGANIZATION}/${GITHUB_PAGES_REPO}"
+git -C "${repo_root}" remote set-url origin "https://${DOCC_GITHUB_USERNAME:?DOCC_GITHUB_USERNAME is required}:${DOCC_GITHUB_API_TOKEN:?DOCC_GITHUB_API_TOKEN is required}@github.com/${GITHUB_ORGANIZATION}/${GITHUB_PAGES_REPO}"
 source "${script_dir}/get_version_from_git_ref.sh" >/dev/null
 
 pages_channel="$(determine_pages_channel)"
@@ -647,7 +647,7 @@ generate_release_redirect "employeeformexample"
 generate_release_doc_redirect "imagedatapicker"
 generate_release_doc_redirect "employeeformexample"
 
-git -C "${repo_root}" add "${GITHUB_PAGES_DIR}"
+git -C "${repo_root}" add -f "${GITHUB_PAGES_DIR}"
 
 if git -C "${repo_root}" diff --cached --quiet; then
     echo "No DocC changes to publish."

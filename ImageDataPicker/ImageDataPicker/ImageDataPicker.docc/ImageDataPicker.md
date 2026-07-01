@@ -1,7 +1,7 @@
 # ``ImageDataPicker``
 
 @Metadata {
-    @Available("ImageDataPicker", introduced: "0.2.0")
+    @Available("ImageDataPicker", introduced: "0.1.0")
 }
 
 The **ImageDataPicker** framework provides a **SwiftUI** control for selecting a photo from the photo library using **PhotosUI** and storing it as `Data?`.
