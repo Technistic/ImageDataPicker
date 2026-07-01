@@ -48,7 +48,7 @@ Add the ImageDataPicker control to your app - it is multi-platform, designed to 
 The control automatically presents a thumbnail of the selected image or a customisable placeholder (any SF Symbol with developer defined foreground and background colours). The thumbnail itself automatically adopts a 1:1 aspect ratio, and can be cropped to a circular, rectangular or rounded-rectangular shape.
 
 
-![Concept](/assets/images/Architecture@1x.png)
+![Concept](/assets/images/Architecture.png)
 
 
 ## 3. Using the ImageDataPicker
@@ -81,7 +81,7 @@ struct ContentView: View {
 }
 ```
 
-![Add ImageDataPickerView](/assets/images/MyGreatApp-Content.png)
+![Add ImageDataPickerView](/assets/images/Xcode%20Canvas%20Shadow.png)
 
 
 ## 4. Documentation
