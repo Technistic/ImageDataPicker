@@ -41,7 +41,7 @@ ImageDataPickerView(imageData: $imageData, clipShape: Circle())
 
 ## 2. Overview
 
-The ImageDataPicker control simplifies how developers build apps that allow users to select photos from their device's PhotoLibrary and bind them to app state or persist them to a SwiftData  model.
+The ImageDataPicker control simplifies how developers build apps that allow users to select photos from their device's PhotoLibrary and bind them to app state or persist them to a SwiftData model.
 
 Add the ImageDataPicker control to your app - it is multi-platform, designed to run on iOS, iPadOS and macOS. Bind the control to `Data?`.
 
