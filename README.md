@@ -2,7 +2,7 @@
 
 # SwiftUI ImageDataPicker
 
-*_A SwiftUI control for seemlessly selecting PhotoLibrary images and binding them to SwiftData_*.
+*_A SwiftUI control for seamlessly selecting PhotoLibrary images and binding them to SwiftData_*.
 
 ![ImageDataPicker Hero](/assets/images/ImageDataPicker-README-Hero.png)
 
