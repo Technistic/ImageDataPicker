@@ -1,4 +1,8 @@
-[![Build xcframework](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml/badge.svg?branch=alpha_v0.1.0)](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml)
+[![Build xcframework](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml/badge.svg?branch=beta_v0.1.1)](https://github.com/Technistic/ImageDataPicker/actions/workflows/build-xcframework.yaml)
+
+[![SPI Swift Versions](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FTechnistic%2FImageDataPicker%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/Technistic/ImageDataPicker)
+
+[![SPI Platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FTechnistic%2FImageDataPicker%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/Technistic/ImageDataPicker)
 
 # The ImageDataPicker Framework
 
