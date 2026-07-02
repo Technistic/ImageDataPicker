@@ -234,7 +234,7 @@ generate_channel_index() {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${CI_PRODUCT:-DocC} $(capitalize_string "${channel}") Documentation</title>
+  <title>ImageDataPicker $(capitalize_string "${channel}") Documentation</title>
   <style>
     :root {
       color-scheme: light;
@@ -323,7 +323,7 @@ generate_channel_index() {
 <body>
   <main>
     <span class="eyebrow">$(capitalize_string "${channel}")</span>
-    <h1>${CI_PRODUCT:-DocC} Documentation</h1>
+    <h1>ImageDataPicker Documentation</h1>
     <p>Choose the documentation set you want to browse for this channel. The framework and sample app are published independently so both projects can coexist under the same GitHub Pages site.</p>
     <div class="grid">
       <a class="card" href="${framework_link}">
@@ -364,7 +364,7 @@ generate_site_index() {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${CI_PRODUCT:-DocC} Documentation</title>
+  <title>ImageDataPicker Documentation</title>
   <style>
     :root {
       color-scheme: light;
@@ -462,7 +462,7 @@ generate_site_index() {
 </head>
 <body>
   <main>
-    <h1>${CI_PRODUCT:-DocC} Documentation</h1>
+    <h1>ImageDataPicker Documentation</h1>
     <p>Browse the framework and sample app documentation across the integration, staging, and release channels from one GitHub Pages site.</p>
     <div class="controls">
       <div>
