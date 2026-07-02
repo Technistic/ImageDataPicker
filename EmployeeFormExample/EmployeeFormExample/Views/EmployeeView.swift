@@ -52,11 +52,14 @@ struct EmployeeView: View {
                         )
                 }
 
-                ImageDataPickerView(imageData: $imageData,
-                                    clipShape: clippingShape(selection: clippingSelection), backgroundColor: .blue.opacity(0.3), foregroundColor: .white)
-                    .padding(8)
-                    .frame(width: 240, height: 240)
-                    //.background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
+                ImageDataPickerView(
+                    imageData: $imageData,
+                    clipShape: clippingShape(selection: clippingSelection),
+                    backgroundColor: .blue.opacity(0.3), foregroundColor: .white
+                )
+                .padding(8)
+                .frame(width: 240, height: 180)
+                //.background(.blue.opacity(0.3), ignoresSafeAreaEdges: [])
 
                 VStack(alignment: .center) {
                     Label("Employee Name", systemImage: "person.fill")
@@ -203,7 +206,7 @@ func clippingShape(selection: ClipShape) -> AnyShape {
     switch selection {
     case .circle:
         return AnyShape(Circle())
-    case  .square:
+    case .square:
         return AnyShape(Rectangle())
     case .roundedSquare:
         return AnyShape(RoundedRectangle(cornerRadius: 12))
@@ -215,13 +218,13 @@ func clippingShape(selection: ClipShape) -> AnyShape {
 
     @Previewable @State var selectedEmployeeID: Employee.ID?
     @Previewable @State var selectedEmployee: Employee = Employee(
-         firstName: "John",
-         lastName: "Doe",
-         department: "Test Department",
-         imageData: UIImage(named: "Anne_Lee")?.pngData()
+        firstName: "John",
+        lastName: "Doe",
+        department: "Test Department",
+        imageData: UIImage(named: "Anne_Lee")?.pngData()
     )
     //DataController.previewContainer.mainContext.insert(selectedEmployee)
-    
+
     //selectedEmployeeID = selectedEmployee.persistentModelID
 
     EmployeeView(selectedEmployeeID: $selectedEmployeeID, employee: selectedEmployee)
@@ -229,5 +232,5 @@ func clippingShape(selection: ClipShape) -> AnyShape {
             //DataController.previewContainer.mainContext.insert(selectedEmployee)
             //selectedEmployeeID = selectedEmployee.persistentModelID
         }
-        
+
 }

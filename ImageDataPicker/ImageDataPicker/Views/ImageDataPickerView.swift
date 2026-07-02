@@ -76,7 +76,7 @@ public struct ImageDataPickerView<S: Shape>: View {
             self.foregroundColor = foregroundColor
         }
 
-        public init(
+        /* public init(
             imageData: Binding<Data?>,
             emptyPlaceholderImageName: String = Constants.personPlaceholder,
             errorPlaceholderImageName: String = Constants.errorPlaceholder,
@@ -92,7 +92,7 @@ public struct ImageDataPickerView<S: Shape>: View {
                 backgroundColor: Color(nsColor: backgroundColor),
                 foregroundColor: Color(nsColor: foregroundColor)
             )
-        }
+        } */
     #else
         /// Initializer for the ImageDataPickerView().
         /// - Parameters:

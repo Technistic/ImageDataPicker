@@ -25,19 +25,37 @@ public struct SquareImageViewModifier<S: Shape>: ViewModifier {
     #endif
 
     public func body(content: Content) -> some View {
-        GeometryReader { geometry in
-            let side = SymbolLayoutHelper.finiteMinDim(geometry.size)
+        var imageSize: CGSize = CGSize(
+            width: CGFloat.infinity,
+            height: CGFloat.infinity
+        )
+        ZStack {
+            GeometryReader { geometry in
+                let side = SymbolLayoutHelper.minDim(geometry.size)
+                content
+                    .frame(width: side, height: side)
+                    .background(background)
+                    .clipShape(shape)
+                    .clipped()
+                    .onChange(of: geometry.size) {
+                        imageSize = CGSize(
+                            width: SymbolLayoutHelper.minDim(geometry.size),
+                            height: SymbolLayoutHelper.minDim(geometry.size)
+                        )
+                    }
+                    .onAppear {
+                        imageSize = CGSize(
+                            width: SymbolLayoutHelper.minDim(geometry.size),
+                            height: SymbolLayoutHelper.minDim(geometry.size)
+                        )
+                    }
+            }
+            .scaledToFit()
 
-            content
-                .frame(width: side, height: side)
-                .background(background)
-                .clipShape(shape)
-                .clipped()
-                .frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .center
-                )
+            .frame(
+                width: SymbolLayoutHelper.minDim(imageSize),
+                height: SymbolLayoutHelper.minDim(imageSize)
+            )
         }
     }
 }
@@ -50,7 +68,7 @@ public struct SymbolLayoutHelper {
     static func maxDim(_ size: CGSize) -> CGFloat {
         max(size.width, size.height)
     }
-    
+
     /// Returns the minimum dimension (width or height) of a given CGSize.
     /// - Parameter size: The CGSize to evaluate.
     /// - Returns: The smaller of the width or height of the CGSize.
@@ -58,19 +76,6 @@ public struct SymbolLayoutHelper {
         min(size.width, size.height)
     }
 
-    /// Returns the smallest finite, non-negative dimension of a given CGSize.
-    /// - Parameter size: The CGSize to evaluate.
-    /// - Returns: A safe dimension suitable for frame calculations.
-    static func finiteMinDim(_ size: CGSize) -> CGFloat {
-        let dimension = minDim(size)
-
-        guard dimension.isFinite, dimension >= 0 else {
-            return 0
-        }
-
-        return dimension
-    }
-    
     /// Calculates the radius of the smallest circle that contains the supplied symbol image.
     /// - Parameter systemImage: The SF Symbol name to measure.
     /// - Returns: The radius needed to contain the symbol.
@@ -84,18 +89,19 @@ public struct SymbolLayoutHelper {
                 }
                 let imageSize = image.size
             #else
-                guard let image = NSImage(
-                    systemSymbolName: systemImage,
-                    accessibilityDescription: "System image"
-                ) else {
+                guard
+                    let image = NSImage(
+                        systemSymbolName: systemImage,
+                        accessibilityDescription: "System image"
+                    )
+                else {
                     return 1.0
                 }
                 let imageSize = image.size
             #endif
-            let radius = (
-                (imageSize.width * imageSize.width + imageSize.height * imageSize.height)
-                .squareRoot()
-            ) / 2.0
+            let radius =
+                ((imageSize.width * imageSize.width + imageSize.height * imageSize.height)
+                    .squareRoot()) / 2.0
 
             return radius
         }
@@ -122,7 +128,7 @@ public struct SymbolLayoutHelper {
                 * 0.9
         }
     }
-    
+
     /// Calculates a vertical offset used to visually center some SF Symbols in circular placeholders.
     /// - Parameter systemImage: The SF Symbol name to position.
     /// - Returns: A vertical offset for the symbol.
@@ -138,12 +144,12 @@ public struct SymbolLayoutHelper {
 }
 
 extension View {
-#if canImport(UIKit)
-    /// A `View` extension that applies the ``SquareImageViewModifier`` .
-    /// - Parameters:
-    ///   - shape: The `Shape` to which the view will be clipped.
-    ///   - background: The background color to apply behind the clipped shape. Default is the system background color.
-    /// - Returns: A view modified to have a square aspect ratio, clipped to the specified shape, and with the specified background color.
+    #if canImport(UIKit)
+        /// A `View` extension that applies the ``SquareImageViewModifier`` .
+        /// - Parameters:
+        ///   - shape: The `Shape` to which the view will be clipped.
+        ///   - background: The background color to apply behind the clipped shape. Default is the system background color.
+        /// - Returns: A view modified to have a square aspect ratio, clipped to the specified shape, and with the specified background color.
         public func squareImageView<S: Shape>(
             shape: S,
             background: Color = Color(uiColor: UIColor.systemBackground)
@@ -152,12 +158,12 @@ extension View {
                 SquareImageViewModifier(shape: shape, background: background)
             )
         }
-#else
-    /// A `View` extension that applies the ``SquareImageViewModifier`` .
-    /// - Parameters:
-    ///   - shape: The `Shape` to which the view will be clipped.
-    ///   - background: The background color to apply behind the clipped shape. Default is the window background color.
-    /// - Returns:  A view modified to have a square aspect ratio, clipped to the specified shape, and with the specified background color.
+    #else
+        /// A `View` extension that applies the ``SquareImageViewModifier`` .
+        /// - Parameters:
+        ///   - shape: The `Shape` to which the view will be clipped.
+        ///   - background: The background color to apply behind the clipped shape. Default is the window background color.
+        /// - Returns:  A view modified to have a square aspect ratio, clipped to the specified shape, and with the specified background color.
         public func squareImageView<S: Shape>(
             shape: S,
             background: Color = Color(nsColor: NSColor.windowBackgroundColor)
@@ -172,45 +178,47 @@ extension View {
 #Preview {
     VStack {
         #if canImport(UIKit)
-        if let imageData = imageResourceData(for: "TestImage"),
-           let uiImage = UIImage(data: imageData) {
-            Image(uiImage: uiImage)
-                .resizable()
-                .scaledToFit()
+            if let imageData = imageResourceData(for: "TestImage"),
+                let uiImage = UIImage(data: imageData)
+            {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFit()
 
-            Image(uiImage: uiImage)
-                .resizable()
-                .scaledToFill()
-                .squareImageView(shape: Circle())
-                .background(.blue.opacity(0.3))
-        } else {
-            Image(systemName: Constants.photoPlaceholder)
-                .resizable()
-                .scaledToFit()
-                .squareImageView(shape: Circle())
-                .background(.blue.opacity(0.3))
-        }
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .squareImageView(shape: Circle())
+                    .background(.blue.opacity(0.3))
+            } else {
+                Image(systemName: Constants.photoPlaceholder)
+                    .resizable()
+                    .scaledToFit()
+                    .squareImageView(shape: Circle())
+                    .background(.blue.opacity(0.3))
+            }
         #else
-        if let imageData = imageResourceData(for: "TestImage"),
-           let nsImage = NSImage(data: imageData) {
-            Image(nsImage: nsImage)
-                .resizable()
-                .scaledToFit()
+            if let imageData = imageResourceData(for: "TestImage"),
+                let nsImage = NSImage(data: imageData)
+            {
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .scaledToFit()
 
-            Image(nsImage: nsImage)
-                .resizable()
-                .scaledToFill()
-                .squareImageView(shape: Circle())
-                .background(.blue.opacity(0.3))
-        } else {
-            Image(systemName: Constants.photoPlaceholder)
-                .resizable()
-                .scaledToFit()
-                .squareImageView(shape: Circle())
-                .background(.blue.opacity(0.3))
-        }
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .scaledToFill()
+                    .squareImageView(shape: Circle())
+                    .background(.blue.opacity(0.3))
+            } else {
+                Image(systemName: Constants.photoPlaceholder)
+                    .resizable()
+                    .scaledToFit()
+                    .squareImageView(shape: Circle())
+                    .background(.blue.opacity(0.3))
+            }
         #endif
-        
+
         Image(systemName: "person.circle")
             .resizable()
             .scaledToFit()
