@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'alpha_v*'
-      - 'alpha-v*'
-      - 'beta_v*'
-      - 'beta-v*'
+      - "alpha_v*"
+      - "alpha-v*"
+      - "beta_v*"
+      - "beta-v*"
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   contents: write
@@ -32,7 +32,7 @@ jobs:
       sample_scheme: ${{ steps.resolve.outputs.sample_scheme }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Resolve release metadata
         id: resolve
@@ -69,7 +69,7 @@ jobs:
     needs: resolve-release-metadata
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Swift package tests
         run: swift test
@@ -89,7 +89,7 @@ jobs:
             container_path: ImageDataPicker.xcworkspace
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Run unsigned macOS tests
         env:
@@ -147,7 +147,7 @@ jobs:
           fi
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -214,7 +214,7 @@ jobs:
           git archive --format=tar.gz --output "$RUNNER_TEMP/framework/$SOURCE_ARTIFACT" HEAD
 
       - name: Upload workflow artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.XCFRAMEWORK_ARTIFACT }}
           path: ${{ runner.temp }}/framework/${{ env.XCFRAMEWORK_ARTIFACT }}
@@ -222,7 +222,7 @@ jobs:
           retention-days: 14
 
       - name: Upload Swift package source artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.SOURCE_ARTIFACT }}
           path: ${{ runner.temp }}/framework/${{ env.SOURCE_ARTIFACT }}
@@ -238,7 +238,7 @@ jobs:
           git push origin "refs/tags/${RELEASE_TAG}" --force
 
       - name: Publish GitHub release
-        uses: softprops/action-gh-release@v2.3.2
+        uses: softprops/action-gh-release@v3
         with:
           draft: false
           files: |
