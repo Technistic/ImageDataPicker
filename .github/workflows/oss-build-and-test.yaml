@@ -4,17 +4,17 @@ on:
   pull_request:
     branches:
       - main
-      - 'alpha_v*'
-      - 'alpha-v*'
-      - 'beta_v*'
-      - 'beta-v*'
+      - "alpha_v*"
+      - "alpha-v*"
+      - "beta_v*"
+      - "beta-v*"
   push:
     branches:
       - main
-      - 'alpha_v*'
-      - 'alpha-v*'
-      - 'beta_v*'
-      - 'beta-v*'
+      - "alpha_v*"
+      - "alpha-v*"
+      - "beta_v*"
+      - "beta-v*"
 
 permissions:
   contents: read
@@ -32,7 +32,7 @@ jobs:
       sample_scheme: ${{ steps.resolve.outputs.sample_scheme }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Resolve channel and scheme selection
         id: resolve
@@ -65,7 +65,7 @@ jobs:
     needs: resolve-channel
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Swift package tests
         run: swift test
@@ -85,10 +85,11 @@ jobs:
             container_path: ImageDataPicker.xcworkspace
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Run unsigned macOS tests
         env:
+          RELEASE_CHANNEL: ${{ needs.resolve-channel.outputs.release_channel }}
           FRAMEWORK_SCHEME: ${{ needs.resolve-channel.outputs.framework_scheme }}
           SAMPLE_SCHEME: ${{ needs.resolve-channel.outputs.sample_scheme }}
           CONTAINER_FLAG: ${{ matrix.container_flag }}
@@ -97,6 +98,10 @@ jobs:
           if [[ "${{ matrix.target_kind }}" == "framework" ]]; then
             SCHEME="$FRAMEWORK_SCHEME"
           else
+            if [[ "$RELEASE_CHANNEL" != "alpha" && "$RELEASE_CHANNEL" != "beta" ]]; then
+              echo "Skipping sample app tests for release channel: $RELEASE_CHANNEL"
+              exit 0
+            fi
             SCHEME="$SAMPLE_SCHEME"
           fi
           xcodebuild test \
