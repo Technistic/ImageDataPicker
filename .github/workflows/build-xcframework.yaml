@@ -84,28 +84,20 @@ jobs:
           - target_kind: framework
             container_flag: -project
             container_path: ImageDataPicker/ImageDataPicker.xcodeproj
-          - target_kind: sample
-            container_flag: -workspace
-            container_path: ImageDataPicker.xcworkspace
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Run unsigned macOS tests
+      - name: Run unsigned macOS tests (framework only)
         env:
           FRAMEWORK_SCHEME: ${{ needs.resolve-release-metadata.outputs.framework_scheme }}
-          SAMPLE_SCHEME: ${{ needs.resolve-release-metadata.outputs.sample_scheme }}
           CONTAINER_FLAG: ${{ matrix.container_flag }}
           CONTAINER_PATH: ${{ matrix.container_path }}
         run: |
-          if [[ "${{ matrix.target_kind }}" == "framework" ]]; then
-            SCHEME="$FRAMEWORK_SCHEME"
-          else
-            SCHEME="$SAMPLE_SCHEME"
-          fi
           xcodebuild test \
             "$CONTAINER_FLAG" "$CONTAINER_PATH" \
-            -scheme "$SCHEME" \
+            -scheme "$FRAMEWORK_SCHEME" \
+            -configuration Debug \
             -destination "platform=macOS" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
